@@ -1,0 +1,13 @@
+{
+  "name": "algorithmic-art",
+  "version": "1.0.0",
+  "description": "Create rule-based generative artwork using code, math patterns, and parameterized visual systems.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "writing-plans",
+  "version": "1.0.0",
+  "description": "Create clear writing plans that map audience, structure, and milestones before drafting.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

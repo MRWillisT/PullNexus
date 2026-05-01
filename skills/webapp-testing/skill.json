@@ -1,0 +1,13 @@
+{
+  "name": "webapp-testing",
+  "version": "1.0.0",
+  "description": "Test web applications end to end with focused coverage of UI behavior, APIs, and regressions.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

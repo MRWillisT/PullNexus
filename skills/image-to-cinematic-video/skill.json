@@ -1,0 +1,13 @@
+{
+  "name": "image-to-cinematic-video",
+  "version": "1.0.0",
+  "description": "Turn still images into cinematic video concepts with scene planning, camera motion, and storytelling beats.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

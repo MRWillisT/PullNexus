@@ -1,0 +1,13 @@
+{
+  "name": "skill-creator",
+  "version": "1.0.0",
+  "description": "Design high-quality reusable skills with clear metadata, examples, and evaluation cases.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

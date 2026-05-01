@@ -1,0 +1,13 @@
+{
+  "name": "test-driven-development",
+  "version": "1.0.0",
+  "description": "Apply TDD workflows to design behavior-first code with fast feedback and safe refactoring.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

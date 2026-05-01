@@ -1,0 +1,13 @@
+{
+  "name": "docx",
+  "version": "1.0.0",
+  "description": "Generate and edit Microsoft Word documents with reliable structure, formatting, and content organization.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

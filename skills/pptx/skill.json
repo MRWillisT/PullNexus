@@ -1,0 +1,13 @@
+{
+  "name": "pptx",
+  "version": "1.0.0",
+  "description": "Create and refine PowerPoint presentations with structured slides, visual consistency, and presenter-ready content.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

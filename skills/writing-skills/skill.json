@@ -1,0 +1,13 @@
+{
+  "name": "writing-skills",
+  "version": "1.0.0",
+  "description": "Improve writing quality with techniques for clarity, tone, structure, and concise communication.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

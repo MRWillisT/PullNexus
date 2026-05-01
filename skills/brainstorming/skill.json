@@ -1,0 +1,13 @@
+{
+  "name": "brainstorming",
+  "version": "1.0.0",
+  "description": "Run structured ideation sessions to expand options, compare directions, and converge on the best next step.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

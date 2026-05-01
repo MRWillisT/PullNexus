@@ -1,0 +1,13 @@
+{
+  "name": "systematic-debugging",
+  "version": "1.0.0",
+  "description": "Debug complex issues step by step using hypotheses, instrumentation, and evidence-driven iteration.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

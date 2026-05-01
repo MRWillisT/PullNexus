@@ -1,0 +1,13 @@
+{
+  "name": "mcp-builder",
+  "version": "1.0.0",
+  "description": "Architect Model Context Protocol servers and tool interfaces for reliable agent integrations.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

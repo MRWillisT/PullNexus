@@ -1,0 +1,13 @@
+{
+  "name": "web-artifacts-builder",
+  "version": "1.0.0",
+  "description": "Build complete web deliverables including pages, assets, and deploy-ready bundles.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

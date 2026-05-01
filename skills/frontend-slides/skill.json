@@ -1,0 +1,13 @@
+{
+  "name": "frontend-slides",
+  "version": "1.0.0",
+  "description": "Build polished slide-style frontend presentations with reusable sections, animations, and narrative flow.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "ai-image-color-cycling",
+  "version": "1.0.0",
+  "description": "Generate smooth palette-shift effects for AI images with prompt-driven color transitions and style consistency.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}

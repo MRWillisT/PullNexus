@@ -7,7 +7,13 @@
       "name": "grill-me",
       "version": "1.1.0",
       "description": "Relentlessly interview the user about a plan or design, resolving every branch of the decision tree. Extended with JSONL training examples and eval cases. Inspired by Matt Pocock's skill, adapted for PullNexus.",
-      "tags": ["interview", "design-review", "decision-tree", "stress-test", "external-source"],
+      "tags": [
+        "interview",
+        "design-review",
+        "decision-tree",
+        "stress-test",
+        "external-source"
+      ],
       "license": "MIT",
       "examples": 5,
       "mcp_compatible": false,
@@ -19,7 +25,7 @@
     {
       "name": "ai-image-color-cycling",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for ai image color cycling.",
+      "description": "Generate smooth palette-shift effects for AI images with prompt-driven color transitions and style consistency.",
       "tags": [
         "imported",
         "skill-pack"
@@ -32,7 +38,7 @@
     {
       "name": "algorithmic-art",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for algorithmic art.",
+      "description": "Create rule-based generative artwork using code, math patterns, and parameterized visual systems.",
       "tags": [
         "imported",
         "skill-pack"
@@ -45,7 +51,7 @@
     {
       "name": "annie-universal-api-orchestrator",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for annie universal api orchestrator.",
+      "description": "Design and coordinate multi-step API workflows with robust routing, retries, and schema-aware transformations.",
       "tags": [
         "imported",
         "skill-pack"
@@ -91,7 +97,7 @@
     {
       "name": "brainstorming",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for brainstorming.",
+      "description": "Run structured ideation sessions to expand options, compare directions, and converge on the best next step.",
       "tags": [
         "imported",
         "skill-pack"
@@ -104,7 +110,7 @@
     {
       "name": "brand-guidelines",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for brand guidelines.",
+      "description": "Define and apply clear brand voice, visual identity, and messaging rules across content and design.",
       "tags": [
         "imported",
         "skill-pack"
@@ -117,7 +123,7 @@
     {
       "name": "canvas-design",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for canvas design.",
+      "description": "Plan and prototype layouts quickly on canvas-style surfaces for diagrams, flows, and visual concepts.",
       "tags": [
         "imported",
         "skill-pack"
@@ -162,7 +168,7 @@
     {
       "name": "docx",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for docx.",
+      "description": "Generate and edit Microsoft Word documents with reliable structure, formatting, and content organization.",
       "tags": [
         "imported",
         "skill-pack"
@@ -175,7 +181,7 @@
     {
       "name": "frontend-design",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for frontend design.",
+      "description": "Craft modern, usable frontend interfaces with strong hierarchy, interaction patterns, and responsive layouts.",
       "tags": [
         "imported",
         "skill-pack"
@@ -188,7 +194,7 @@
     {
       "name": "frontend-slides",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for frontend slides.",
+      "description": "Build polished slide-style frontend presentations with reusable sections, animations, and narrative flow.",
       "tags": [
         "imported",
         "skill-pack"
@@ -201,7 +207,7 @@
     {
       "name": "high-end-website-design",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for high end website design.",
+      "description": "Design premium website experiences with strong typography, visual systems, and conversion-focused UX.",
       "tags": [
         "imported",
         "skill-pack"
@@ -214,7 +220,7 @@
     {
       "name": "image-to-cinematic-video",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for image to cinematic video.",
+      "description": "Turn still images into cinematic video concepts with scene planning, camera motion, and storytelling beats.",
       "tags": [
         "imported",
         "skill-pack"
@@ -243,7 +249,7 @@
     {
       "name": "manim-video",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for manim video.",
+      "description": "Create explanatory math and technical animations using Manim with clear pacing and visual pedagogy.",
       "tags": [
         "imported",
         "skill-pack"
@@ -256,7 +262,7 @@
     {
       "name": "mcp-builder",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for mcp builder.",
+      "description": "Architect Model Context Protocol servers and tool interfaces for reliable agent integrations.",
       "tags": [
         "imported",
         "skill-pack"
@@ -285,7 +291,7 @@
     {
       "name": "pdf",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for pdf.",
+      "description": "Generate and manipulate PDF documents with clean formatting, extraction, and workflow automation.",
       "tags": [
         "imported",
         "skill-pack"
@@ -298,7 +304,7 @@
     {
       "name": "pdfkit-generation",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for pdfkit generation.",
+      "description": "Produce production-ready PDFs with PDFKit using templates, dynamic data, and layout controls.",
       "tags": [
         "imported",
         "skill-pack"
@@ -311,7 +317,7 @@
     {
       "name": "PDFKit-Generation-v2",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for PDFKit Generation v2.",
+      "description": "Apply advanced PDFKit patterns for modular components, pagination, and high-fidelity document output.",
       "tags": [
         "imported",
         "skill-pack"
@@ -324,7 +330,7 @@
     {
       "name": "pptx",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for pptx.",
+      "description": "Create and refine PowerPoint presentations with structured slides, visual consistency, and presenter-ready content.",
       "tags": [
         "imported",
         "skill-pack"
@@ -385,7 +391,7 @@
     {
       "name": "skill-creator",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for skill creator.",
+      "description": "Design high-quality reusable skills with clear metadata, examples, and evaluation cases.",
       "tags": [
         "imported",
         "skill-pack"
@@ -398,7 +404,7 @@
     {
       "name": "systematic-debugging",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for systematic debugging.",
+      "description": "Debug complex issues step by step using hypotheses, instrumentation, and evidence-driven iteration.",
       "tags": [
         "imported",
         "skill-pack"
@@ -411,7 +417,7 @@
     {
       "name": "test-driven-development",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for test driven development.",
+      "description": "Apply TDD workflows to design behavior-first code with fast feedback and safe refactoring.",
       "tags": [
         "imported",
         "skill-pack"
@@ -440,7 +446,7 @@
     {
       "name": "web-artifacts-builder",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for web artifacts builder.",
+      "description": "Build complete web deliverables including pages, assets, and deploy-ready bundles.",
       "tags": [
         "imported",
         "skill-pack"
@@ -453,7 +459,7 @@
     {
       "name": "web-design-guidelines",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for web design guidelines.",
+      "description": "Apply practical web design standards for accessibility, responsiveness, and visual consistency.",
       "tags": [
         "imported",
         "skill-pack"
@@ -466,7 +472,7 @@
     {
       "name": "webapp-testing",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for webapp testing.",
+      "description": "Test web applications end to end with focused coverage of UI behavior, APIs, and regressions.",
       "tags": [
         "imported",
         "skill-pack"
@@ -479,7 +485,7 @@
     {
       "name": "writing-plans",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for writing plans.",
+      "description": "Create clear writing plans that map audience, structure, and milestones before drafting.",
       "tags": [
         "imported",
         "skill-pack"
@@ -492,7 +498,7 @@
     {
       "name": "writing-skills",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for writing skills.",
+      "description": "Improve writing quality with techniques for clarity, tone, structure, and concise communication.",
       "tags": [
         "imported",
         "skill-pack"
@@ -505,7 +511,7 @@
     {
       "name": "xlsx",
       "version": "1.0.0",
-      "description": "Imported SKILL.md package for xlsx.",
+      "description": "Generate and transform Excel workbooks with formulas, tables, and automation-friendly structure.",
       "tags": [
         "imported",
         "skill-pack"

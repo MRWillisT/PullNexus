@@ -1,0 +1,13 @@
+{
+  "name": "frontend-design",
+  "version": "1.0.0",
+  "description": "Craft modern, usable frontend interfaces with strong hierarchy, interaction patterns, and responsive layouts.",
+  "tags": [
+    "imported",
+    "skill-pack"
+  ],
+  "license": "SEE-SKILL",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "community-import"
+}
