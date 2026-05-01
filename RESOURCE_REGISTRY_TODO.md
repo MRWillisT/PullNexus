@@ -27,6 +27,25 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [ ] Add a `rag-eval-baseline` resource with retrieval and answer-quality checks.
 - [ ] Add compatibility notes for common local stacks (Ollama + Chroma/Weaviate + reranker).
 
+## P2 - Feedback & Compatibility
+> An LLM reaching out when it hits a gap needs to know "will this work on my setup?" before pulling anything.
+> Contextual compatibility reports are more useful than a global score.
+
+- [ ] Define minimal feedback schema per resource: `model`, `hardware`, `use_case`, `outcome` (success/fail), `notes`.
+- [ ] Add `pullnexus feedback <resource-id>` CLI command to submit a compatibility report (GitHub-backed storage).
+- [ ] Surface compatibility data in `pullnexus info` output:
+	- `✓ Works on:` Llama2-7b (N reports), Mistral-7b (N reports)
+	- `✗ Known issues:` GPU <8GB (N reports)
+	- `⚠ Unverified on:` GPT4All, Phi-2
+- [ ] Include `compatibility` field in `pullnexus info --json` for agent-native consumption.
+- [ ] Add `--context model=<name>,hardware=<vram>` flag to `pullnexus recommend` to filter by known-good compatibility.
+
+### Out of scope until 200+ resources
+- Web UI feedback form (PullNexus is LLM-first CLI)
+- Anti-gaming / identity staking (add friction only when gaming is observed)
+- Global star ratings (contextual display only — never fake certainty)
+- ML-based pattern recognition (build from real data after 100+ feedback entries exist)
+
 ## P2 - UX and API Consistency
 - [ ] Add `resource_type` column to all human-readable discovery surfaces where helpful.
 - [ ] Add `installable` semantics to command UX (`pull` should reject non-installable resource types).
@@ -43,6 +62,8 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [ ] Should `repository` remain a type or be folded into `tool`/`dataset`/`playbook` after curation?
 - [ ] Should `recommend` default to `--type skill` or include all types by default?
 - [ ] Which minimum fields are mandatory for each type in `skill.json`/resource metadata?
+- [ ] What is the minimum feedback volume (N reports) before compatibility data is shown rather than "unverified"?
+- [ ] Should feedback be stored as flat JSONL per resource in the repo, or as a separate `feedback/` index?
 
 ## Why This Matters
 When a local LLM hits a gap, it should retrieve not only a skill, but also the right tool, dataset, eval, playbook, and policy to close that gap reliably.
