@@ -32,9 +32,14 @@ def recommend(
         None,
         "--category",
         "-c",
-        help="Constrain recommendations to a category.",
+        help="Hard-filter recommendations to an exact category slug.",
     ),
     limit: int = typer.Option(5, "--limit", "-n", help="Maximum recommendations"),
+    explain: str = typer.Option(
+        "basic",
+        "--explain",
+        help="Score explanation detail level: basic or verbose.",
+    ),
 ):
     """Recommend the most relevant skills for a user problem."""
     skills = fetch_index()
@@ -42,13 +47,19 @@ def recommend(
         console.print("[yellow]No skills available yet.[/yellow]")
         raise typer.Exit(1)
 
-    inferred_category = category.lower().strip() if category else _infer_category(problem)
+    explain_level = explain.lower().strip()
+    if explain_level not in {"basic", "verbose"}:
+        console.print("[red]Invalid --explain value. Use 'basic' or 'verbose'.[/red]")
+        raise typer.Exit(1)
+
+    requested_category = category.lower().strip() if category else ""
+    inferred_category = _infer_category(problem) if not requested_category else ""
     q = problem.lower()
     scored: list[tuple[int, dict, str]] = []
 
     for skill in skills:
         skill_category = _skill_category_slug(skill)
-        if category and skill_category != inferred_category:
+        if requested_category and skill_category != requested_category:
             continue
 
         tags = [t.lower() for t in skill.get("tags", [])]
@@ -57,25 +68,40 @@ def recommend(
 
         score = 0
         reasons: list[str] = []
+        verbose_parts: list[str] = []
 
-        if inferred_category and skill_category == inferred_category:
+        if requested_category and skill_category == requested_category:
             score += 40
             reasons.append(f"category={_skill_category_label(skill)}")
+            verbose_parts.append(f"category match +40 ({requested_category})")
+        elif inferred_category and skill_category == inferred_category:
+            score += 40
+            reasons.append(f"category={_skill_category_label(skill)}")
+            verbose_parts.append(f"inferred category match +40 ({inferred_category})")
 
         if any(token in name for token in q.split() if token):
             score += 25
             reasons.append("name match")
+            verbose_parts.append("name token overlap +25")
 
         overlap = [token for token in q.split() if token and (token in tags or token in desc)]
         if overlap:
-            score += min(20, len(overlap) * 4)
+            overlap_points = min(20, len(overlap) * 4)
+            score += overlap_points
             reasons.append("keyword overlap")
+            verbose_parts.append(f"keyword overlap +{overlap_points} ({', '.join(sorted(set(overlap)))})")
 
         # Prefer richer skills when scores tie.
-        score += min(10, int(skill.get("examples", 0)))
+        examples_bonus = min(10, int(skill.get("examples", 0)))
+        score += examples_bonus
+        if examples_bonus:
+            verbose_parts.append(f"examples bonus +{examples_bonus}")
 
         if score > 0:
-            scored.append((score, skill, ", ".join(reasons)))
+            reason = ", ".join(reasons)
+            if explain_level == "verbose":
+                reason = " | ".join(verbose_parts) if verbose_parts else "relevance"
+            scored.append((score, skill, reason))
 
     scored.sort(key=lambda x: x[0], reverse=True)
     top = scored[:limit]
@@ -87,7 +113,8 @@ def recommend(
     table = Table(
         title=(
             f"Recommended Skills for: {problem}" +
-            (f"  [category={inferred_category}]" if inferred_category else "")
+            (f"  [category={requested_category}]" if requested_category else "") +
+            (f"  [inferred={inferred_category}]" if inferred_category else "")
         ),
         show_header=True,
         header_style="bold cyan",
