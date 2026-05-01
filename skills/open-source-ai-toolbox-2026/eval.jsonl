@@ -1,0 +1,5 @@
+{"input": "Give me an open-source AI stack for a solo builder with one GPU.", "expected": "Should propose a minimal, resource-aware stack and explain tradeoffs without requiring enterprise infrastructure."}
+{"input": "Suggest tools for RAG + evals + deployment for a small startup.", "expected": "Should return a coherent end-to-end path that includes retrieval, evaluation, and deploy strategy with sequencing."}
+{"input": "I need local-first tools and optional cloud later.", "expected": "Should provide a local baseline first and a clear migration path to scale."}
+{"input": "What category of tools should I prioritize first?", "expected": "Should ask constraints, then prioritize core categories before optional add-ons."}
+{"input": "Can you just list all 69 repos?", "expected": "Should avoid raw dumping and instead summarize by category with actionable recommendations."}

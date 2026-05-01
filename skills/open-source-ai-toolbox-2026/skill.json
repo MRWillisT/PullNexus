@@ -1,0 +1,21 @@
+{
+  "name": "open-source-ai-toolbox-2026",
+  "version": "1.0.0",
+  "description": "Curated decision framework for selecting open-source AI tools across inference, RAG, agents, evals, fine-tuning, deployment, and multimodal workflows.",
+  "tags": [
+    "open-source",
+    "tool-selection",
+    "local-ai",
+    "rag",
+    "agents",
+    "deployment",
+    "multimodal",
+    "curation"
+  ],
+  "license": "CC-BY-4.0",
+  "examples": 8,
+  "mcp_compatible": false,
+  "author": "MRWillisT",
+  "inspired_by": "https://x.com/seelffff/status/2049214021430325677",
+  "source": "https://x.com/seelffff/status/2049214021430325677"
+}
