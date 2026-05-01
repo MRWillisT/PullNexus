@@ -34,6 +34,8 @@ def info(
         author = skill_json.get("author", "")
         inspired_by = skill_json.get("inspired_by", "")
         source = skill_json.get("source", "")
+        resource_type = skill_json.get("resource_type", "")
+        repo = skill_json.get("repo", "")
 
         meta_lines = []
         if version:
@@ -52,6 +54,8 @@ def info(
             meta_lines.append(f"**Inspired by:** {inspired_by}")
         if source:
             meta_lines.append(f"**Source:** {source}")
+        if repo:
+            meta_lines.append(f"**Repo:** {repo}")
         if description:
             meta_lines.append(f"\n{description}")
 
@@ -66,6 +70,9 @@ def info(
         console.print()
         console.print(Markdown(readme))
 
-    console.print(
-        f"\n[dim]Install this skill: [bold]pullnexus pull {skill_name}[/bold][/dim]"
-    )
+    if skill_json and skill_json.get("resource_type") == "repository":
+        console.print("\n[dim]This is a repository resource entry (reference metadata, not a pullable skill package).[/dim]")
+    else:
+        console.print(
+            f"\n[dim]Install this skill: [bold]pullnexus pull {skill_name}[/bold][/dim]"
+        )
