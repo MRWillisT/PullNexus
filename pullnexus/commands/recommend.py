@@ -1,5 +1,6 @@
 """pullnexus recommend — suggest skills for a problem statement."""
 
+import json
 from typing import Optional
 
 import typer
@@ -40,6 +41,11 @@ def recommend(
         "--explain",
         help="Score explanation detail level: basic or verbose.",
     ),
+    as_json: bool = typer.Option(
+        False,
+        "--json",
+        help="Output recommendations as JSON for machine-friendly consumption.",
+    ),
 ):
     """Recommend the most relevant skills for a user problem."""
     skills = fetch_index()
@@ -55,7 +61,7 @@ def recommend(
     requested_category = category.lower().strip() if category else ""
     inferred_category = _infer_category(problem) if not requested_category else ""
     q = problem.lower()
-    scored: list[tuple[int, dict, str]] = []
+    scored: list[tuple[int, dict, str, list[str]]] = []
 
     for skill in skills:
         skill_category = _skill_category_slug(skill)
@@ -101,7 +107,7 @@ def recommend(
             reason = ", ".join(reasons)
             if explain_level == "verbose":
                 reason = " | ".join(verbose_parts) if verbose_parts else "relevance"
-            scored.append((score, skill, reason))
+            scored.append((score, skill, reason, verbose_parts))
 
     scored.sort(key=lambda x: x[0], reverse=True)
     top = scored[:limit]
@@ -109,6 +115,27 @@ def recommend(
     if not top:
         console.print("[red]No recommendations found for that problem statement.[/red]")
         raise typer.Exit(1)
+
+    if as_json:
+        payload = {
+            "problem": problem,
+            "requested_category": requested_category or None,
+            "inferred_category": inferred_category or None,
+            "explain": explain_level,
+            "total_recommendations": len(top),
+            "recommendations": [
+                {
+                    "name": skill.get("name", ""),
+                    "category": _skill_category_slug(skill),
+                    "score": score,
+                    "why": reason or "relevance",
+                    "details": detail_parts if explain_level == "verbose" else None,
+                }
+                for score, skill, reason, detail_parts in top
+            ],
+        }
+        console.print(json.dumps(payload, indent=2))
+        raise typer.Exit(0)
 
     table = Table(
         title=(
@@ -125,7 +152,7 @@ def recommend(
     table.add_column("Score", style="green", width=6, justify="right")
     table.add_column("Why")
 
-    for score, skill, reason in top:
+    for score, skill, reason, _ in top:
         table.add_row(
             skill.get("name", ""),
             _skill_category_label(skill),
