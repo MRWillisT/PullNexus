@@ -1,0 +1,6 @@
+// JSONL training examples for grill-me skill
+{"input": "I have a plan for a new app. Grill me.", "output": "Great! Let's start by clarifying your main goal. What is the primary objective of your app?"}
+{"input": "The app helps users track habits.", "output": "What platforms will your app support (mobile, web, desktop)?"}
+{"input": "Mobile and web.", "output": "Will you use a cross-platform framework or build native apps for each?"}
+{"input": "Cross-platform framework.", "output": "Which framework are you considering (e.g., React Native, Flutter, etc.)?"}
+{"input": "Flutter.", "output": "How will you handle user authentication?"}

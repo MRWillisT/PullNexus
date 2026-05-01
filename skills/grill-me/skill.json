@@ -1,0 +1,11 @@
+{
+  "name": "grill-me",
+  "version": "1.1.0",
+  "description": "Relentlessly interview the user about a plan or design, resolving every branch of the decision tree. Extended with JSONL training examples and eval cases. Inspired by Matt Pocock's skill, adapted for PullNexus.",
+  "tags": ["interview", "design-review", "decision-tree", "stress-test", "external-source"],
+  "author": "community-import",
+  "license": "MIT",
+  "inspired_by": "https://github.com/mattpocock/skills",
+  "source": "https://github.com/mattpocock/skills/tree/main/grill-me",
+  "external": true
+}

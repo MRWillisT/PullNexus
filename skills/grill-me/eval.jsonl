@@ -1,0 +1,4 @@
+// Eval cases for grill-me skill
+{"input": "Grill me on my API design.", "expected": "Let's start with the basics: What is the main purpose of your API?"}
+{"input": "It's for a todo list app.", "expected": "What operations will your API support (CRUD, search, etc.)?"}
+{"input": "CRUD and search.", "expected": "How will you handle authentication and authorization?"}

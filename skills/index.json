@@ -1,8 +1,21 @@
 {
   "version": "1.0",
   "updated": "2026-05-01",
-  "total": 36,
+  "total": 37,
   "skills": [
+    {
+      "name": "grill-me",
+      "version": "1.1.0",
+      "description": "Relentlessly interview the user about a plan or design, resolving every branch of the decision tree. Extended with JSONL training examples and eval cases. Inspired by Matt Pocock's skill, adapted for PullNexus.",
+      "tags": ["interview", "design-review", "decision-tree", "stress-test", "external-source"],
+      "license": "MIT",
+      "examples": 5,
+      "mcp_compatible": false,
+      "author": "community-import",
+      "inspired_by": "https://github.com/mattpocock/skills",
+      "source": "https://github.com/mattpocock/skills/tree/main/grill-me",
+      "external": true
+    },
     {
       "name": "ai-image-color-cycling",
       "version": "1.0.0",
@@ -501,6 +514,14 @@
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import"
+    }
+  ],
+  "external_sources": [
+    {
+      "name": "mattpocock-skills",
+      "repo": "mattpocock/skills",
+      "license": "MIT",
+      "adapter": "claude-skill-md"
     }
   ]
 }
