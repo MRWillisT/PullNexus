@@ -115,7 +115,7 @@ Community benefits → model gets smarter → more real usage
 - Standardized skill format (JSONL + Markdown as the core spec)
 - GitHub-backed registry + simple web UI (GitHub Pages to start)
 - CLI tool: `pullnexus pull`, `pullnexus search`, `pullnexus submit`, `pullnexus list`, `pullnexus info`
-- 5 seed skills live on day one
+- 9 seed skills live on day one
 - Ollama / LM Studio / MCP integration examples
 
 ### Later
@@ -157,6 +157,10 @@ All built from real conversations and battle-tested JSONL pipelines — not theo
 | `vibe-coder-workflow` | autonomous_agent_sharegpt_vibecoder |
 | `reasoning-and-problem-solving` | synthetic_reasoning_and_problem_solving |
 | `autonomous-agent-patterns` | autonomous_agent_sharegpt |
+| `code-refactoring` | converted-chats code refactoring sessions |
+| `crypto-trading-bot` | synthetic_crypto_trading_knowledge |
+| `n8n-mcp-workflows` | community + MCP workflow patterns |
+| `autonomous-agent-payments` | community + x402 payment flow patterns |
 
 ---
 

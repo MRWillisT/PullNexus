@@ -1,0 +1,3 @@
+{"id":"pay-001","input":"Design a safe micropayment flow for paid tool usage by an agent.","expected_behavior":"Includes quote, policy check, approval gate, proof of payment, and receipt logging."}
+{"id":"pay-002","input":"Add spend controls to prevent runaway autonomous purchases.","expected_behavior":"Defines hard caps, risk tiers, allowlists, and escalation paths."}
+{"id":"pay-003","input":"Handle payment success but service delivery failure.","expected_behavior":"Provides retry policy, reconciliation records, and refund/dispute procedure."}

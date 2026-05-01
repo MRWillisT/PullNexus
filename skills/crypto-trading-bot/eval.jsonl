@@ -1,0 +1,3 @@
+{"id":"crypto-001","input":"Design a safer position sizing function for a bot.","expected_behavior":"Includes risk-per-trade sizing, stop-distance logic, hard max caps, and validation steps."}
+{"id":"crypto-002","input":"Backtest results are strong but live fails. Diagnose.","expected_behavior":"Identifies overfitting, slippage/fees, data leakage, and suggests walk-forward plus paper trading."}
+{"id":"crypto-003","input":"Recommend order types for breakout entry and stop loss.","expected_behavior":"Recommends market or aggressive limit for entry contextually, stop-market for loss protection."}

@@ -1,0 +1,3 @@
+{"id":"n8n-001","input":"Create a resilient API-to-database workflow in n8n.","expected_behavior":"Includes retries, validation, idempotency strategy, and failure notifications."}
+{"id":"n8n-002","input":"Update an existing workflow to reduce duplicate side effects.","expected_behavior":"Adds dedupe keying and safe write guards while preserving original intent."}
+{"id":"n8n-003","input":"Explain how to use MCP for n8n workflow editing.","expected_behavior":"Describes controlled tool access, review checkpoints, and versioned deployment."}

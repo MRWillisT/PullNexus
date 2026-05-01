@@ -1,0 +1,3 @@
+{"id":"refactor-001","input":"Refactor this long function into smaller ones while preserving behavior.","expected_behavior":"Provides incremental extraction plan, emphasizes tests-first safety, avoids logic rewrite."}
+{"id":"refactor-002","input":"Remove duplication between two similar modules.","expected_behavior":"Suggests shared helper/module extraction, verifies parity with tests, keeps API stable."}
+{"id":"refactor-003","input":"How should I refactor an unfamiliar repo quickly?","expected_behavior":"Prioritizes low-risk files first, one-commit-per-file strategy, and regression validation."}

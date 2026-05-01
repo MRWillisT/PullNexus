@@ -45,10 +45,10 @@ Pull directly from `W:\Copilot-Training-Data\ready-for-training\synthetic\` — 
 - [ ] `pytest-and-testing` ← from `synthetic_pytest_testing_2026-04-28.jsonl`
 - [ ] `vibe-coder-workflow` ← from `autonomous_agent_sharegpt_vibecoder_10.jsonl`
 - [ ] `reasoning-and-problem-solving` ← from `synthetic_reasoning_and_problem_solving_2026-04-28.jsonl`
-- [ ] `code-refactoring` ← from converted-chats Code Refactoring files
-- [ ] `crypto-trading-bot` ← from `synthetic_crypto_trading_knowledge_2026-04-28.jsonl`
-- [ ] `n8n-mcp-workflows` ← NEW (see feature note below ⬇️)
-- [ ] `autonomous-agent-payments` ← NEW (see x402 feature note below ⬇️)
+- [x] `code-refactoring` ← from converted-chats Code Refactoring files
+- [x] `crypto-trading-bot` ← from `synthetic_crypto_trading_knowledge_2026-04-28.jsonl`
+- [x] `n8n-mcp-workflows` ← NEW (see feature note below ⬇️)
+- [x] `autonomous-agent-payments` ← NEW (see x402 feature note below ⬇️)
 
 ### 5. Build the CLI (Python)
 Basic commands to start:
@@ -123,11 +123,11 @@ Other stuff to add - Best GitHub repos for Claude Code that will 10x your next p
 
 1. Claude Mem
 http://github.com/thedotmack/claude-mem
-Persistent memory across sessions � stop re-teaching Claude your codebase
+Persistent memory across sessions � stop re-teaching Claude your codebase
 
 2. UI UX Pro Max
 http://github.com/nextlevelbuilder/ui-ux-pro-max-skill
-50+ styles, 161 color palettes, 99 UX guidelines � Claude stops building ugly UIs
+50+ styles, 161 color palettes, 99 UX guidelines � Claude stops building ugly UIs
 
 3. n8n-MCP
 http://github.com/czlonkowski/n8n-mcp
@@ -135,15 +135,15 @@ Connect Claude Code to 400+ n8n integrations via MCP
 
 4. LightRAG
 http://github.com/hkuds/lightrag
-Graph + vector RAG � lets Claude understand large codebases structurally
+Graph + vector RAG � lets Claude understand large codebases structurally
 
 5. Everything Claude Code
 http://github.com/affaan-m/everything-claude-code
-Skills, instincts, security scanning, multi-language coverage � full agent harness
+Skills, instincts, security scanning, multi-language coverage � full agent harness
 
 6. Awesome Claude Code
 http://github.com/hesreallyhim/awesome-claude-code
-Community bible � curated skills, hooks, slash commands, orchestrators
+Community bible � curated skills, hooks, slash commands, orchestrators
 
 7. Superpowers
 http://github.com/obra/superpowers
@@ -151,11 +151,11 @@ Forces structured thinking before writing a single line of code
 
 8. Claude Code Ultimate Guide
 http://github.com/FlorianBruniaux/claude-code-ultimate-guide
-23K+ lines of docs, 219 templates, 271 quizzes � beginner to power user
+23K+ lines of docs, 219 templates, 271 quizzes � beginner to power user
 
 9. Antigravity Awesome Skills
 http://github.com/sickn33/antigravity-awesome-skills
-1,200+ ready-to-use skills � one of the largest collections
+1,200+ ready-to-use skills � one of the largest collections
 
 10. Claude Agent Blueprints  
 http://github.com/danielrosehill/Claude-Code-Repos-Index
@@ -167,7 +167,7 @@ Natural voice conversations with Claude Code via Whisper + Kokoro
 
 12. Awesome Claude Plugins 
 http://github.com/quemsah/awesome-claude-plugins
-9,000+ repos indexed with adoption metrics � find what people actually install
+9,000+ repos indexed with adoption metrics � find what people actually install
 
 ---
 

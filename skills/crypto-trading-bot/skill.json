@@ -1,0 +1,11 @@
+{
+  "name": "crypto-trading-bot",
+  "version": "1.0.0",
+  "description": "Core concepts and implementation guidance for crypto trading bots: market regimes, execution, slippage, risk controls, and backtest-to-live reliability.",
+  "tags": ["crypto", "trading-bot", "risk", "backtesting", "execution"],
+  "license": "CC0-1.0",
+  "examples": 5,
+  "mcp_compatible": false,
+  "author": "MRWillisT",
+  "source": "synthetic"
+}

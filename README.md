@@ -128,13 +128,15 @@ PullNexus will start with a simple steering committee made up of founding contri
 
 These can be built directly from the existing JSONL pipeline before launch â€” no extra work needed:
 
-1. `python-advanced-debugging` â€” memory leaks, pdb, tracing
-2. `pytest-and-testing` â€” test structure, fixtures, coverage
-3. `vibe-coder-workflow` â€” idea to working code, full loop
-4. `multi-turn-debugging` â€” back-and-forth error fixing sessions
+1. `autonomous-agent-patterns` â€” planning, tool orchestration, memory loops
+2. `python-advanced-debugging` â€” memory leaks, pdb, tracing
+3. `pytest-and-testing` â€” test structure, fixtures, coverage
+4. `vibe-coder-workflow` â€” idea to working code, full loop
 5. `reasoning-and-problem-solving` â€” breaking down complex problems
-6. `crypto-trading-bot` â€” strategy logic, backtesting, bot architecture
-7. `code-refactoring` â€” cleanup, modularization, readability
+6. `code-refactoring` â€” cleanup, modularization, readability
+7. `crypto-trading-bot` â€” strategy logic, backtesting, bot architecture
+8. `n8n-mcp-workflows` â€” MCP-native n8n automation patterns
+9. `autonomous-agent-payments` â€” x402-style payment and policy guardrails
 
 These aren't placeholders â€” they're real, battle-tested conversations already in JSONL format. That's the head start no other project launching in this space has.
 
@@ -145,7 +147,7 @@ These aren't placeholders â€” they're real, battle-tested conversations alr
 | Week | Action |
 |---|---|
 | **Week 1** | Lock everything â€” GitHub org (`pullnexus`), PyPI package, domain (`pullnexus.dev` or `pullnexus.io`) |
-| **Week 1** | Convert 5 seed skills from existing JSONL pipeline into the skill format |
+| **Week 1** | Convert 9 seed skills from existing JSONL pipeline/community patterns into the skill format |
 | **Week 2** | Write the full spec doc + contribution guide |
 | **Week 2** | Build basic CLI in Python (`pull`, `search`, `submit`) |
 | **Week 3** | GitHub Pages landing page + registry structure |

@@ -1,0 +1,11 @@
+{
+  "name": "code-refactoring",
+  "version": "1.0.0",
+  "description": "Practical refactoring playbooks for Python projects: readability upgrades, modularization, dead-code removal, and safe incremental cleanup without changing behavior.",
+  "tags": ["python", "refactoring", "code-quality", "maintainability", "architecture"],
+  "license": "CC0-1.0",
+  "examples": 5,
+  "mcp_compatible": false,
+  "author": "MRWillisT",
+  "source": "converted-chats"
+}
