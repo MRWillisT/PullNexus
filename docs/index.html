@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PullNexus - Local AI Skill Commons</title>
+  <meta name="description" content="Pull skills, tools, and knowledge for local LLMs on demand. Open, free, and community-built.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5efe3;
+      --ink: #102a43;
+      --ink-soft: #486581;
+      --panel: #fff9ef;
+      --accent: #d64545;
+      --accent-2: #f08c00;
+      --ok: #2f855a;
+      --line: #d9c9ac;
+      --shadow: 0 12px 30px rgba(16, 42, 67, 0.15);
+      --radius: 16px;
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(240, 140, 0, 0.20), transparent 35%),
+        radial-gradient(circle at 88% 14%, rgba(214, 69, 69, 0.18), transparent 40%),
+        linear-gradient(180deg, #f9f4ea 0%, #f4ecdf 42%, #f6f0e5 100%);
+      min-height: 100%;
+    }
+
+    .grain::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.14;
+      background-image: radial-gradient(#2d374830 1px, transparent 1px);
+      background-size: 3px 3px;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), 92vw);
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      background: linear-gradient(135deg, #fff9ef, #fff2d8);
+    }
+
+    .hero-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(240, 140, 0, 0.16), rgba(214, 69, 69, 0.14));
+    }
+
+    .badge {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      border: 1px solid #c8a96b;
+      background: #fff7ea;
+      border-radius: 999px;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    .hero-main {
+      padding: 28px 20px 30px;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      margin: 0 0 8px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: clamp(1rem, 1.9vw, 1.2rem);
+      max-width: 70ch;
+    }
+
+    .hero-actions {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), #ff6b6b);
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(214, 69, 69, 0.28);
+    }
+
+    .btn-secondary {
+      border-color: #b9a37f;
+      background: #fff7e7;
+    }
+
+    .grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: rise 540ms ease both;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(8px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .panel-head {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      font-family: "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-soft);
+      background: #fff5e1;
+    }
+
+    .panel-body {
+      padding: 14px;
+    }
+
+    .muted {
+      color: var(--ink-soft);
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      border: 1px solid #c7b494;
+      background: #fffdf8;
+      color: var(--ink);
+      border-radius: 12px;
+      padding: 11px 12px;
+      font: inherit;
+    }
+
+    .skills {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .skill {
+      border: 1px solid #dcc8a7;
+      border-radius: 14px;
+      background: #fffef9;
+      padding: 14px;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .skill:hover {
+      transform: translateY(-2px);
+      border-color: #d49b5a;
+    }
+
+    .skill h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      line-height: 1.15;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d7bf95;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.76rem;
+      color: #784421;
+      background: #fff4de;
+    }
+
+    .meta {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-soft);
+      font-size: 0.8rem;
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--ink-soft);
+      margin-top: 12px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--ok);
+      box-shadow: 0 0 0 6px rgba(47, 133, 90, 0.18);
+    }
+
+    .foot {
+      margin-top: 16px;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
+    .empty {
+      border: 1px dashed #c5aa7a;
+      border-radius: 12px;
+      padding: 14px;
+      color: var(--ink-soft);
+      background: #fff9ed;
+    }
+
+    @media (max-width: 1040px) {
+      .grid,
+      .skills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 740px) {
+      .grid,
+      .skills,
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-main {
+        padding-top: 22px;
+      }
+    }
+  </style>
+</head>
+<body class="grain">
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-head">
+        <span class="badge">PullNexus</span>
+        <span class="badge" id="live-source">Loading registry source...</span>
+      </div>
+      <div class="hero-main">
+        <h1>Pull from the Nexus.<br>Keep local AI smart.</h1>
+        <p class="tagline">Open, free, community-built skills for local LLMs. Discover practical modules, pull what you need, and contribute improvements back to the commons.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/MRWillisT/PullNexus">View Repository</a>
+          <a class="btn btn-secondary" href="https://github.com/MRWillisT/PullNexus/blob/main/CONTRIBUTING.md">Contribute a Skill</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-head">Skill Browser</div>
+        <div class="panel-body">
+          <div class="controls">
+            <input id="search" class="input" placeholder="Search skills, tags, descriptions..." aria-label="Search skills">
+            <select id="tag" class="select" aria-label="Filter by tag">
+              <option value="">All tags</option>
+            </select>
+            <button id="clear" class="btn btn-secondary" type="button">Clear</button>
+          </div>
+          <div class="status"><span class="dot"></span><span id="stats">Waiting for registry...</span></div>
+          <div class="skills" id="skills"></div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">Quick Start</div>
+        <div class="panel-body">
+<pre style="margin:0;white-space:pre-wrap;font-family:'IBM Plex Mono',monospace;color:#334e68;line-height:1.45;"># Install from source
+pip install -e .
+
+# Discover skills
+pullnexus list
+pullnexus search debugging
+
+# Pull one locally
+pullnexus pull python-advanced-debugging</pre>
+          <p class="foot">Use pulled skill folders for context loading, prompt packs, or fine-tuning datasets.</p>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head">Project Direction</div>
+        <div class="panel-body">
+          <p class="muted" style="margin-top:0;">PullNexus is building the missing intelligence layer for local-first AI: discoverable, pullable, remixable skills with open governance and no paywalls.</p>
+          <ul style="margin:0;padding-left:18px;line-height:1.5;">
+            <li>JSONL-first skill format</li>
+            <li>CLI for search, pull, submit, list</li>
+            <li>MCP-compatible patterns</li>
+            <li>Community skill curation loop</li>
+          </ul>
+          <p class="foot">Read the full vision: <a href="vision.md">docs/vision.md</a></p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const remoteIndex = "https://raw.githubusercontent.com/MRWillisT/PullNexus/main/skills/index.json";
+      const localIndex = "../skills/index.json";
+
+      const sourceLabel = document.getElementById("live-source");
+      const stats = document.getElementById("stats");
+      const skillsNode = document.getElementById("skills");
+      const searchNode = document.getElementById("search");
+      const tagNode = document.getElementById("tag");
+      const clearNode = document.getElementById("clear");
+
+      let allSkills = [];
+
+      const text = (v) => (typeof v === "string" ? v : "");
+
+      function scoreSkill(skill, query) {
+        const q = query.toLowerCase();
+        if (!q) return 0;
+        const name = text(skill.name).toLowerCase();
+        const desc = text(skill.description).toLowerCase();
+        const tags = (skill.tags || []).join(" ").toLowerCase();
+
+        if (name.includes(q)) return 0;
+        if (tags.includes(q)) return 1;
+        if (desc.includes(q)) return 2;
+        return 99;
+      }
+
+      function applyFilters() {
+        const q = searchNode.value.trim().toLowerCase();
+        const t = tagNode.value.trim().toLowerCase();
+
+        let filtered = allSkills.filter((skill) => {
+          const hasTag = !t || (skill.tags || []).some((tag) => text(tag).toLowerCase() === t);
+          const hasQuery = !q || scoreSkill(skill, q) < 99;
+          return hasTag && hasQuery;
+        });
+
+        filtered = filtered
+          .map((s) => ({ s, r: scoreSkill(s, q) }))
+          .sort((a, b) => a.r - b.r || text(a.s.name).localeCompare(text(b.s.name)))
+          .map((entry) => entry.s);
+
+        render(filtered);
+      }
+
+      function render(skills) {
+        stats.textContent = `${skills.length} skill${skills.length === 1 ? "" : "s"} visible`;
+
+        if (!skills.length) {
+          skillsNode.innerHTML = '<div class="empty">No skills match this filter yet. Try a different search or clear tag filtering.</div>';
+          return;
+        }
+
+        skillsNode.innerHTML = skills.map((skill) => {
+          const tags = (skill.tags || []).slice(0, 6).map((tag) => `<span class="pill">${tag}</span>`).join("");
+          const mc = skill.mcp_compatible ? "MCP yes" : "MCP no";
+          return `
+            <article class="skill">
+              <h3>${text(skill.name)}</h3>
+              <div class="muted">${text(skill.description)}</div>
+              <div class="pill-row">${tags}</div>
+              <div class="meta">
+                <span>v${text(skill.version) || "1.0.0"}</span>
+                <span>${mc}</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
+      function populateTags(skills) {
+        const tags = Array.from(new Set(skills.flatMap((s) => s.tags || [])))
+          .map((tag) => text(tag))
+          .filter(Boolean)
+          .sort((a, b) => a.localeCompare(b));
+
+        tagNode.innerHTML = '<option value="">All tags</option>' +
+          tags.map((tag) => `<option value="${tag}">${tag}</option>`).join("");
+      }
+
+      function bindEvents() {
+        searchNode.addEventListener("input", applyFilters);
+        tagNode.addEventListener("change", applyFilters);
+        clearNode.addEventListener("click", function () {
+          searchNode.value = "";
+          tagNode.value = "";
+          applyFilters();
+        });
+      }
+
+      async function loadRegistry() {
+        const targets = [
+          { url: remoteIndex, label: "Live registry: GitHub" },
+          { url: localIndex, label: "Local registry: repo" }
+        ];
+
+        for (const target of targets) {
+          try {
+            const response = await fetch(target.url, { cache: "no-store" });
+            if (!response.ok) continue;
+
+            const data = await response.json();
+            allSkills = Array.isArray(data.skills) ? data.skills : [];
+            populateTags(allSkills);
+            render(allSkills);
+            sourceLabel.textContent = target.label;
+            return;
+          } catch (err) {
+            // Continue to next target.
+          }
+        }
+
+        sourceLabel.textContent = "Registry unavailable";
+        stats.textContent = "Could not load skill index";
+        skillsNode.innerHTML = '<div class="empty">Unable to fetch skills/index.json right now. Check repository visibility or network access.</div>';
+      }
+
+      bindEvents();
+      loadRegistry();
+    })();
+  </script>
+</body>
+</html>
