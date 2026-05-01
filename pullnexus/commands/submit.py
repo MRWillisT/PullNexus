@@ -67,9 +67,9 @@ def submit(
     if "examples.jsonl" in existing:
         try:
             lines = [
-                l for l in
+                line for line in
                 (skill_path / "examples.jsonl").read_text(encoding="utf-8").splitlines()
-                if l.strip()
+                if line.strip()
             ]
             for i, line in enumerate(lines, 1):
                 obj = json.loads(line)
@@ -92,9 +92,9 @@ def submit(
     if "eval.jsonl" in existing:
         try:
             lines = [
-                l for l in
+                line for line in
                 (skill_path / "eval.jsonl").read_text(encoding="utf-8").splitlines()
-                if l.strip()
+                if line.strip()
             ]
             eval_count = len(lines)
             for i, line in enumerate(lines, 1):
