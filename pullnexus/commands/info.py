@@ -1,19 +1,13 @@
 """pullnexus info — show detailed information about a skill."""
 
-import json
-import base64
-from typing import Optional
-
-import httpx
 import typer
 from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
 
-from pullnexus import __registry_url__
+from pullnexus.api import fetch_skill_json, fetch_skill_readme
 
 console = Console()
-HEADERS = {"Accept": "application/vnd.github.v3+json"}
 
 
 def info(
@@ -21,8 +15,8 @@ def info(
 ):
     """Show full details for a skill — description, tags, examples, and usage."""
 
-    skill_json = _fetch_skill_json(skill_name)
-    readme = _fetch_readme(skill_name)
+    skill_json = fetch_skill_json(skill_name)
+    readme = fetch_skill_readme(skill_name)
 
     if skill_json is None and readme is None:
         console.print(f"[red]✗ Skill '{skill_name}' not found in the registry.[/red]")
@@ -37,10 +31,15 @@ def info(
         license_ = skill_json.get("license", "")
         examples = skill_json.get("examples", skill_json.get("evaluation_cases", ""))
         mcp = skill_json.get("mcp_compatible", False)
+        author = skill_json.get("author", "")
+        inspired_by = skill_json.get("inspired_by", "")
+        source = skill_json.get("source", "")
 
         meta_lines = []
         if version:
             meta_lines.append(f"**Version:** {version}")
+        if author:
+            meta_lines.append(f"**Author:** {author}")
         if license_:
             meta_lines.append(f"**License:** {license_}")
         if examples:
@@ -49,6 +48,10 @@ def info(
             meta_lines.append("**MCP compatible:** ✓")
         if tags:
             meta_lines.append(f"**Tags:** {', '.join(tags)}")
+        if inspired_by:
+            meta_lines.append(f"**Inspired by:** {inspired_by}")
+        if source:
+            meta_lines.append(f"**Source:** {source}")
         if description:
             meta_lines.append(f"\n{description}")
 
@@ -66,30 +69,3 @@ def info(
     console.print(
         f"\n[dim]Install this skill: [bold]pullnexus pull {skill_name}[/bold][/dim]"
     )
-
-
-def _fetch_skill_json(skill_name: str) -> Optional[dict]:
-    url = f"{__registry_url__}/{skill_name}/skill.json"
-    try:
-        with httpx.Client(timeout=10.0) as client:
-            resp = client.get(url, headers=HEADERS)
-            if resp.status_code != 200:
-                return None
-            content_b64 = resp.json().get("content", "")
-            content = base64.b64decode(content_b64).decode("utf-8")
-            return json.loads(content)
-    except Exception:
-        return None
-
-
-def _fetch_readme(skill_name: str) -> Optional[str]:
-    url = f"{__registry_url__}/{skill_name}/README.md"
-    try:
-        with httpx.Client(timeout=10.0) as client:
-            resp = client.get(url, headers=HEADERS)
-            if resp.status_code != 200:
-                return None
-            content_b64 = resp.json().get("content", "")
-            return base64.b64decode(content_b64).decode("utf-8")
-    except Exception:
-        return None

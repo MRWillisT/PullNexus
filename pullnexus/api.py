@@ -60,6 +60,39 @@ def fetch_index() -> list[dict]:
     return fetch_registry().get("skills", [])
 
 
+def fetch_skill_json(skill_name: str) -> Optional[dict]:
+    """Fetch a skill's metadata from remote GitHub, then fall back to local files."""
+    url = f"{__registry_url__}/{skill_name}/skill.json"
+    try:
+        with httpx.Client(timeout=10.0) as client:
+            resp = client.get(url, headers=HEADERS)
+            if resp.status_code == 200:
+                content_b64 = resp.json().get("content", "")
+                import base64
+                content = base64.b64decode(content_b64).decode("utf-8")
+                return json.loads(content)
+    except Exception:
+        pass
+
+    return _fetch_local_skill_json(skill_name)
+
+
+def fetch_skill_readme(skill_name: str) -> Optional[str]:
+    """Fetch a skill README from remote GitHub, then fall back to local files."""
+    url = f"{__registry_url__}/{skill_name}/README.md"
+    try:
+        with httpx.Client(timeout=10.0) as client:
+            resp = client.get(url, headers=HEADERS)
+            if resp.status_code == 200:
+                content_b64 = resp.json().get("content", "")
+                import base64
+                return base64.b64decode(content_b64).decode("utf-8")
+    except Exception:
+        pass
+
+    return _fetch_local_skill_readme(skill_name)
+
+
 def _fetch_registry_from_local_index() -> Optional[dict]:
     """Read skills/index.json from common local workspace locations."""
     candidate_paths = [
@@ -81,6 +114,36 @@ def _fetch_registry_from_local_index() -> Optional[dict]:
         except Exception:
             continue
 
+    return None
+
+
+def _skill_candidate_paths(skill_name: str, filename: str) -> list[Path]:
+    """Return likely local file paths for a skill asset."""
+    return [
+        Path.cwd() / "skills" / skill_name / filename,
+        Path(__file__).resolve().parents[1] / "skills" / skill_name / filename,
+    ]
+
+
+def _fetch_local_skill_json(skill_name: str) -> Optional[dict]:
+    """Read skill.json from local workspace locations."""
+    for path in _skill_candidate_paths(skill_name, "skill.json"):
+        try:
+            if path.exists():
+                return json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+    return None
+
+
+def _fetch_local_skill_readme(skill_name: str) -> Optional[str]:
+    """Read README.md from local workspace locations."""
+    for path in _skill_candidate_paths(skill_name, "README.md"):
+        try:
+            if path.exists():
+                return path.read_text(encoding="utf-8")
+        except Exception:
+            continue
     return None
 
 

@@ -5,20 +5,70 @@
   "declared_total_repos": 69,
   "extracted_total_repos": 62,
   "extraction_status": "partial",
-  "missing_rank_numbers": [22, 23, 24, 25, 26, 27, 28],
+  "missing_rank_numbers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
   "categories": [
     {
       "slug": "llm-inference",
       "title": "LLM Inference",
       "description": "Run models locally or serve them efficiently.",
       "repos": [
-        {"rank": 1, "name": "ollama", "repo": "ollama/ollama", "url": "https://github.com/ollama/ollama"},
-        {"rank": 2, "name": "llama.cpp", "repo": "ggml-org/llama.cpp", "url": "https://github.com/ggml-org/llama.cpp"},
-        {"rank": 3, "name": "vllm", "repo": "vllm-project/vllm", "url": "https://github.com/vllm-project/vllm"},
-        {"rank": 4, "name": "lm studio", "repo": "lmstudio-ai/lmstudio.js", "url": "https://github.com/lmstudio-ai/lmstudio.js"},
-        {"rank": 5, "name": "jan", "repo": "janhq/jan", "url": "https://github.com/janhq/jan"},
-        {"rank": 6, "name": "text-generation-webui", "repo": "oobabooga/text-generation-webui", "url": "https://github.com/oobabooga/text-generation-webui"},
-        {"rank": 7, "name": "localai", "repo": "mudler/LocalAI", "url": "https://github.com/mudler/LocalAI"}
+        {
+          "rank": 1,
+          "name": "ollama",
+          "repo": "ollama/ollama",
+          "url": "https://github.com/ollama/ollama",
+          "summary": "Run local LLMs with one command, GPU support, and OpenAI-compatible endpoints."
+        },
+        {
+          "rank": 2,
+          "name": "llama.cpp",
+          "repo": "ggml-org/llama.cpp",
+          "url": "https://github.com/ggml-org/llama.cpp",
+          "summary": "Low-level inference engine for running GGUF-style LLMs efficiently on CPUs and GPUs."
+        },
+        {
+          "rank": 3,
+          "name": "vllm",
+          "repo": "vllm-project/vllm",
+          "url": "https://github.com/vllm-project/vllm",
+          "summary": "High-throughput serving stack for production LLM inference with batching and paged attention."
+        },
+        {
+          "rank": 4,
+          "name": "lm studio",
+          "repo": "lmstudio-ai/lmstudio.js",
+          "url": "https://github.com/lmstudio-ai/lmstudio.js",
+          "summary": "Desktop app for downloading, running, and exposing local models through a friendly UI."
+        },
+        {
+          "rank": 5,
+          "name": "jan",
+          "repo": "janhq/jan",
+          "url": "https://github.com/janhq/jan",
+          "summary": "Offline-first ChatGPT-style desktop client for local models and local API serving."
+        },
+        {
+          "rank": 6,
+          "name": "text-generation-webui",
+          "repo": "oobabooga/text-generation-webui",
+          "url": "https://github.com/oobabooga/text-generation-webui",
+          "summary": "Feature-rich local LLM web UI supporting many backends, samplers, and workflows."
+        },
+        {
+          "rank": 7,
+          "name": "localai",
+          "repo": "mudler/LocalAI",
+          "url": "https://github.com/mudler/LocalAI",
+          "summary": "Self-hosted OpenAI-compatible API layer for swapping cloud models with local ones."
+        }
       ]
     },
     {
@@ -26,13 +76,55 @@
       "title": "RAG and Knowledge",
       "description": "Ground model answers in your own data.",
       "repos": [
-        {"rank": 8, "name": "langchain", "repo": "langchain-ai/langchain", "url": "https://github.com/langchain-ai/langchain"},
-        {"rank": 9, "name": "llamaindex", "repo": "run-llama/llama_index", "url": "https://github.com/run-llama/llama_index"},
-        {"rank": 10, "name": "rag-anything", "repo": "HKUDS/RAG-Anything", "url": "https://github.com/HKUDS/RAG-Anything"},
-        {"rank": 11, "name": "chroma", "repo": "chroma-core/chroma", "url": "https://github.com/chroma-core/chroma"},
-        {"rank": 12, "name": "weaviate", "repo": "weaviate/weaviate", "url": "https://github.com/weaviate/weaviate"},
-        {"rank": 13, "name": "haystack", "repo": "deepset-ai/haystack", "url": "https://github.com/deepset-ai/haystack"},
-        {"rank": 14, "name": "docling", "repo": "DS4SD/docling", "url": "https://github.com/DS4SD/docling"}
+        {
+          "rank": 8,
+          "name": "langchain",
+          "repo": "langchain-ai/langchain",
+          "url": "https://github.com/langchain-ai/langchain",
+          "summary": "General-purpose framework for chaining models, tools, retrievers, and agent workflows."
+        },
+        {
+          "rank": 9,
+          "name": "llamaindex",
+          "repo": "run-llama/llama_index",
+          "url": "https://github.com/run-llama/llama_index",
+          "summary": "Data-centric framework for indexing external knowledge sources and building RAG apps."
+        },
+        {
+          "rank": 10,
+          "name": "rag-anything",
+          "repo": "HKUDS/RAG-Anything",
+          "url": "https://github.com/HKUDS/RAG-Anything",
+          "summary": "Multimodal retrieval framework designed for text, tables, charts, images, and mixed documents."
+        },
+        {
+          "rank": 11,
+          "name": "chroma",
+          "repo": "chroma-core/chroma",
+          "url": "https://github.com/chroma-core/chroma",
+          "summary": "Developer-friendly vector database for embeddings, semantic search, and metadata filtering."
+        },
+        {
+          "rank": 12,
+          "name": "weaviate",
+          "repo": "weaviate/weaviate",
+          "url": "https://github.com/weaviate/weaviate",
+          "summary": "Production-grade vector database with hybrid search, scaling, and built-in ML features."
+        },
+        {
+          "rank": 13,
+          "name": "haystack",
+          "repo": "deepset-ai/haystack",
+          "url": "https://github.com/deepset-ai/haystack",
+          "summary": "Mature end-to-end framework for building modular RAG and search pipelines."
+        },
+        {
+          "rank": 14,
+          "name": "docling",
+          "repo": "DS4SD/docling",
+          "url": "https://github.com/DS4SD/docling",
+          "summary": "Convert PDFs and complex documents into structured markdown optimized for AI workflows."
+        }
       ]
     },
     {
@@ -40,13 +132,55 @@
       "title": "AI Agents",
       "description": "Let models act, delegate, and run workflows.",
       "repos": [
-        {"rank": 15, "name": "autogen", "repo": "microsoft/autogen", "url": "https://github.com/microsoft/autogen"},
-        {"rank": 16, "name": "crewai", "repo": "crewAIInc/crewAI", "url": "https://github.com/crewAIInc/crewAI"},
-        {"rank": 17, "name": "langgraph", "repo": "langchain-ai/langgraph", "url": "https://github.com/langchain-ai/langgraph"},
-        {"rank": 18, "name": "agno", "repo": "agno-agi/agno", "url": "https://github.com/agno-agi/agno"},
-        {"rank": 19, "name": "smolagents", "repo": "huggingface/smolagents", "url": "https://github.com/huggingface/smolagents"},
-        {"rank": 20, "name": "openhands", "repo": "All-Hands-AI/OpenHands", "url": "https://github.com/All-Hands-AI/OpenHands"},
-        {"rank": 21, "name": "superagi", "repo": "TransformerOptimus/SuperAGI", "url": "https://github.com/TransformerOptimus/SuperAGI"}
+        {
+          "rank": 15,
+          "name": "autogen",
+          "repo": "microsoft/autogen",
+          "url": "https://github.com/microsoft/autogen",
+          "summary": "Microsoft multi-agent framework for delegation, tool use, and collaborative agent conversations."
+        },
+        {
+          "rank": 16,
+          "name": "crewai",
+          "repo": "crewAIInc/crewAI",
+          "url": "https://github.com/crewAIInc/crewAI",
+          "summary": "Role-based agent orchestration framework for building collaborative AI teams."
+        },
+        {
+          "rank": 17,
+          "name": "langgraph",
+          "repo": "langchain-ai/langgraph",
+          "url": "https://github.com/langchain-ai/langgraph",
+          "summary": "Graph-based framework for stateful agent workflows, branching logic, and human-in-the-loop flows."
+        },
+        {
+          "rank": 18,
+          "name": "agno",
+          "repo": "agno-agi/agno",
+          "url": "https://github.com/agno-agi/agno",
+          "summary": "Fast multimodal agent framework with tool support, memory, and clean developer ergonomics."
+        },
+        {
+          "rank": 19,
+          "name": "smolagents",
+          "repo": "huggingface/smolagents",
+          "url": "https://github.com/huggingface/smolagents",
+          "summary": "Minimal Hugging Face agent framework centered on compact, code-executing agents."
+        },
+        {
+          "rank": 20,
+          "name": "openhands",
+          "repo": "All-Hands-AI/OpenHands",
+          "url": "https://github.com/All-Hands-AI/OpenHands",
+          "summary": "Open-source coding agent platform for software tasks like editing, testing, and debugging."
+        },
+        {
+          "rank": 21,
+          "name": "superagi",
+          "repo": "TransformerOptimus/SuperAGI",
+          "url": "https://github.com/TransformerOptimus/SuperAGI",
+          "summary": "Self-hosted autonomous agent platform with multiple agents, telemetry, and UI management."
+        }
       ]
     },
     {
@@ -54,12 +188,48 @@
       "title": "Prompts and Evals",
       "description": "Measure quality, optimize prompts, and enforce output structure.",
       "repos": [
-        {"rank": 29, "name": "dspy", "repo": "stanfordnlp/dspy", "url": "https://github.com/stanfordnlp/dspy"},
-        {"rank": 30, "name": "guidance", "repo": "guidance-ai/guidance", "url": "https://github.com/guidance-ai/guidance"},
-        {"rank": 31, "name": "outlines", "repo": "dottxt-ai/outlines", "url": "https://github.com/dottxt-ai/outlines"},
-        {"rank": 32, "name": "promptfoo", "repo": "promptfoo/promptfoo", "url": "https://github.com/promptfoo/promptfoo"},
-        {"rank": 33, "name": "braintrust", "repo": "brainlid/langchain", "url": "https://github.com/brainlid/langchain"},
-        {"rank": 34, "name": "instructor", "repo": "instructor-ai/instructor", "url": "https://github.com/instructor-ai/instructor"}
+        {
+          "rank": 29,
+          "name": "dspy",
+          "repo": "stanfordnlp/dspy",
+          "url": "https://github.com/stanfordnlp/dspy",
+          "summary": "Program LLM behavior declaratively and optimize prompts systematically from examples and metrics."
+        },
+        {
+          "rank": 30,
+          "name": "guidance",
+          "repo": "guidance-ai/guidance",
+          "url": "https://github.com/guidance-ai/guidance",
+          "summary": "Constrain generation with programmatic logic, structured output control, and schema-aware prompting."
+        },
+        {
+          "rank": 31,
+          "name": "outlines",
+          "repo": "dottxt-ai/outlines",
+          "url": "https://github.com/dottxt-ai/outlines",
+          "summary": "Force structured outputs like JSON, regex matches, and typed formats from language models."
+        },
+        {
+          "rank": 32,
+          "name": "promptfoo",
+          "repo": "promptfoo/promptfoo",
+          "url": "https://github.com/promptfoo/promptfoo",
+          "summary": "Test prompts and model outputs with regression-style evaluations before shipping."
+        },
+        {
+          "rank": 33,
+          "name": "braintrust",
+          "repo": "brainlid/langchain",
+          "url": "https://github.com/brainlid/langchain",
+          "summary": "Evaluate and compare LLM app quality across prompts, models, and configurations."
+        },
+        {
+          "rank": 34,
+          "name": "instructor",
+          "repo": "instructor-ai/instructor",
+          "url": "https://github.com/instructor-ai/instructor",
+          "summary": "Generate validated structured outputs from LLMs directly into Pydantic models."
+        }
       ]
     },
     {
@@ -67,12 +237,48 @@
       "title": "Fine-Tuning",
       "description": "Adapt models efficiently for your own tasks and constraints.",
       "repos": [
-        {"rank": 35, "name": "unsloth", "repo": "unslothai/unsloth", "url": "https://github.com/unslothai/unsloth"},
-        {"rank": 36, "name": "axolotl", "repo": "axolotl-org/axolotl", "url": "https://github.com/axolotl-org/axolotl"},
-        {"rank": 37, "name": "llama-factory", "repo": "hiyouga/LLaMA-Factory", "url": "https://github.com/hiyouga/LLaMA-Factory"},
-        {"rank": 38, "name": "trl", "repo": "huggingface/trl", "url": "https://github.com/huggingface/trl"},
-        {"rank": 39, "name": "torchtune", "repo": "pytorch/torchtune", "url": "https://github.com/pytorch/torchtune"},
-        {"rank": 40, "name": "mergekit", "repo": "arcee-ai/mergekit", "url": "https://github.com/arcee-ai/mergekit"}
+        {
+          "rank": 35,
+          "name": "unsloth",
+          "repo": "unslothai/unsloth",
+          "url": "https://github.com/unslothai/unsloth",
+          "summary": "Memory-efficient fine-tuning toolkit for LoRA and QLoRA on limited hardware."
+        },
+        {
+          "rank": 36,
+          "name": "axolotl",
+          "repo": "axolotl-org/axolotl",
+          "url": "https://github.com/axolotl-org/axolotl",
+          "summary": "Config-driven fine-tuning stack supporting many dataset formats and training strategies."
+        },
+        {
+          "rank": 37,
+          "name": "llama-factory",
+          "repo": "hiyouga/LLaMA-Factory",
+          "url": "https://github.com/hiyouga/LLaMA-Factory",
+          "summary": "User-friendly fine-tuning suite with UI support for LoRA, QLoRA, and full training."
+        },
+        {
+          "rank": 38,
+          "name": "trl",
+          "repo": "huggingface/trl",
+          "url": "https://github.com/huggingface/trl",
+          "summary": "Hugging Face reinforcement learning library for RLHF, DPO, PPO, and alignment workflows."
+        },
+        {
+          "rank": 39,
+          "name": "torchtune",
+          "repo": "pytorch/torchtune",
+          "url": "https://github.com/pytorch/torchtune",
+          "summary": "PyTorch-native fine-tuning library emphasizing clarity, hackability, and reference implementations."
+        },
+        {
+          "rank": 40,
+          "name": "mergekit",
+          "repo": "arcee-ai/mergekit",
+          "url": "https://github.com/arcee-ai/mergekit",
+          "summary": "Merge multiple fine-tuned checkpoints into composite models without retraining from scratch."
+        }
       ]
     },
     {
@@ -80,14 +286,62 @@
       "title": "Tools and Context",
       "description": "Feed models the right context and connect them to external systems.",
       "repos": [
-        {"rank": 41, "name": "markitdown", "repo": "microsoft/markitdown", "url": "https://github.com/microsoft/markitdown"},
-        {"rank": 42, "name": "files-to-prompt", "repo": "simonw/files-to-prompt", "url": "https://github.com/simonw/files-to-prompt"},
-        {"rank": 43, "name": "crawl4ai", "repo": "unclecode/crawl4ai", "url": "https://github.com/unclecode/crawl4ai"},
-        {"rank": 44, "name": "firecrawl", "repo": "mendableai/firecrawl", "url": "https://github.com/mendableai/firecrawl"},
-        {"rank": 45, "name": "playwright-mcp", "repo": "microsoft/playwright-mcp", "url": "https://github.com/microsoft/playwright-mcp"},
-        {"rank": 46, "name": "model-context-protocol", "repo": "anthropics/model-context-protocol", "url": "https://github.com/anthropics/model-context-protocol"},
-        {"rank": 47, "name": "awesome-mcp-servers", "repo": "punkpeye/awesome-mcp-servers", "url": "https://github.com/punkpeye/awesome-mcp-servers"},
-        {"rank": 48, "name": "n8n", "repo": "n8n-io/n8n", "url": "https://github.com/n8n-io/n8n"}
+        {
+          "rank": 41,
+          "name": "markitdown",
+          "repo": "microsoft/markitdown",
+          "url": "https://github.com/microsoft/markitdown",
+          "summary": "Convert many file types into clean markdown for prompt injection, RAG, and preprocessing."
+        },
+        {
+          "rank": 42,
+          "name": "files-to-prompt",
+          "repo": "simonw/files-to-prompt",
+          "url": "https://github.com/simonw/files-to-prompt",
+          "summary": "Flatten codebases or folders into a single prompt-ready text payload while respecting ignore rules."
+        },
+        {
+          "rank": 43,
+          "name": "crawl4ai",
+          "repo": "unclecode/crawl4ai",
+          "url": "https://github.com/unclecode/crawl4ai",
+          "summary": "AI-oriented web crawler for turning sites into clean markdown and structured extraction outputs."
+        },
+        {
+          "rank": 44,
+          "name": "firecrawl",
+          "repo": "mendableai/firecrawl",
+          "url": "https://github.com/mendableai/firecrawl",
+          "summary": "Production web crawling and extraction service for turning websites into LLM-ready data."
+        },
+        {
+          "rank": 45,
+          "name": "playwright-mcp",
+          "repo": "microsoft/playwright-mcp",
+          "url": "https://github.com/microsoft/playwright-mcp",
+          "summary": "Give agents a real browser through MCP for navigation, clicking, screenshots, and dynamic pages."
+        },
+        {
+          "rank": 46,
+          "name": "model-context-protocol",
+          "repo": "anthropics/model-context-protocol",
+          "url": "https://github.com/anthropics/model-context-protocol",
+          "summary": "Core MCP specification and ecosystem entry point for connecting models to external tools."
+        },
+        {
+          "rank": 47,
+          "name": "awesome-mcp-servers",
+          "repo": "punkpeye/awesome-mcp-servers",
+          "url": "https://github.com/punkpeye/awesome-mcp-servers",
+          "summary": "Curated catalog of ready-made MCP servers spanning developer, browser, data, and SaaS tasks."
+        },
+        {
+          "rank": 48,
+          "name": "n8n",
+          "repo": "n8n-io/n8n",
+          "url": "https://github.com/n8n-io/n8n",
+          "summary": "Self-hosted workflow automation platform with broad integrations and custom AI workflow support."
+        }
       ]
     },
     {
@@ -95,12 +349,48 @@
       "title": "Deployment",
       "description": "Ship AI systems and scale serving workloads responsibly.",
       "repos": [
-        {"rank": 49, "name": "litellm", "repo": "BerriAI/litellm", "url": "https://github.com/BerriAI/litellm"},
-        {"rank": 50, "name": "bentoml", "repo": "bentoml/BentoML", "url": "https://github.com/bentoml/BentoML"},
-        {"rank": 51, "name": "ray serve", "repo": "ray-project/ray", "url": "https://github.com/ray-project/ray"},
-        {"rank": 52, "name": "triton inference server", "repo": "triton-inference-server/server", "url": "https://github.com/triton-inference-server/server"},
-        {"rank": 53, "name": "lorax", "repo": "predibase/lorax", "url": "https://github.com/predibase/lorax"},
-        {"rank": 54, "name": "supabase", "repo": "supabase/supabase", "url": "https://github.com/supabase/supabase"}
+        {
+          "rank": 49,
+          "name": "litellm",
+          "repo": "BerriAI/litellm",
+          "url": "https://github.com/BerriAI/litellm",
+          "summary": "Unified proxy and API format for routing requests across many LLM providers and local backends."
+        },
+        {
+          "rank": 50,
+          "name": "bentoml",
+          "repo": "bentoml/BentoML",
+          "url": "https://github.com/bentoml/BentoML",
+          "summary": "Package, serve, and deploy AI services from local development to production infrastructure."
+        },
+        {
+          "rank": 51,
+          "name": "ray serve",
+          "repo": "ray-project/ray",
+          "url": "https://github.com/ray-project/ray",
+          "summary": "Distributed serving layer for large-scale model inference and multi-model deployments."
+        },
+        {
+          "rank": 52,
+          "name": "triton inference server",
+          "repo": "triton-inference-server/server",
+          "url": "https://github.com/triton-inference-server/server",
+          "summary": "NVIDIA inference server focused on high GPU utilization, batching, and enterprise workloads."
+        },
+        {
+          "rank": 53,
+          "name": "lorax",
+          "repo": "predibase/lorax",
+          "url": "https://github.com/predibase/lorax",
+          "summary": "Serve many LoRA adapters efficiently from one base model with dynamic adapter loading."
+        },
+        {
+          "rank": 54,
+          "name": "supabase",
+          "repo": "supabase/supabase",
+          "url": "https://github.com/supabase/supabase",
+          "summary": "Open-source backend platform with Postgres, auth, storage, edge functions, and vector support."
+        }
       ]
     },
     {
@@ -108,10 +398,34 @@
       "title": "Claude-Specific",
       "description": "Tools and patterns focused on Claude-based workflows.",
       "repos": [
-        {"rank": 55, "name": "obra/superpowers", "repo": "obra/superpowers", "url": "https://github.com/obra/superpowers"},
-        {"rank": 56, "name": "claude-code-skills", "repo": "anthropics/claude-code-skills", "url": "https://github.com/anthropics/claude-code-skills"},
-        {"rank": 57, "name": "free-claude-code", "repo": "Alishahryar1/free-claude-code", "url": "https://github.com/Alishahryar1/free-claude-code"},
-        {"rank": 58, "name": "claude-mem", "repo": "thedotmack/claude-mem", "url": "https://github.com/thedotmack/claude-mem"}
+        {
+          "rank": 55,
+          "name": "obra/superpowers",
+          "repo": "obra/superpowers",
+          "url": "https://github.com/obra/superpowers",
+          "summary": "Enhancement layer for Claude Code focused on deeper analysis, editing, and refactoring workflows."
+        },
+        {
+          "rank": 56,
+          "name": "claude-code-skills",
+          "repo": "anthropics/claude-code-skills",
+          "url": "https://github.com/anthropics/claude-code-skills",
+          "summary": "Anthropic skill framework and patterns for teaching Claude Code reusable task behaviors."
+        },
+        {
+          "rank": 57,
+          "name": "free-claude-code",
+          "repo": "Alishahryar1/free-claude-code",
+          "url": "https://github.com/Alishahryar1/free-claude-code",
+          "summary": "Guide and tooling for running Claude Code through free GitHub Models access paths."
+        },
+        {
+          "rank": 58,
+          "name": "claude-mem",
+          "repo": "thedotmack/claude-mem",
+          "url": "https://github.com/thedotmack/claude-mem",
+          "summary": "Persistent memory layer for Claude workflows across sessions and ongoing projects."
+        }
       ]
     },
     {
@@ -119,11 +433,41 @@
       "title": "Data Prep",
       "description": "Clean, extract, chunk, and manage data before retrieval or training.",
       "repos": [
-        {"rank": 59, "name": "unstructured", "repo": "Unstructured-IO/unstructured", "url": "https://github.com/Unstructured-IO/unstructured"},
-        {"rank": 60, "name": "datatrove", "repo": "huggingface/datatrove", "url": "https://github.com/huggingface/datatrove"},
-        {"rank": 61, "name": "trafilatura", "repo": "adbar/trafilatura", "url": "https://github.com/adbar/trafilatura"},
-        {"rank": 62, "name": "semchunk", "repo": "umarbutler/semchunk", "url": "https://github.com/umarbutler/semchunk"},
-        {"rank": 63, "name": "datachain", "repo": "iterative/datachain", "url": "https://github.com/iterative/datachain"}
+        {
+          "rank": 59,
+          "name": "unstructured",
+          "repo": "Unstructured-IO/unstructured",
+          "url": "https://github.com/Unstructured-IO/unstructured",
+          "summary": "Parse messy source documents into clean chunks for retrieval, search, and downstream AI use."
+        },
+        {
+          "rank": 60,
+          "name": "datatrove",
+          "repo": "huggingface/datatrove",
+          "url": "https://github.com/huggingface/datatrove",
+          "summary": "Large-scale text processing toolkit for filtering, deduplication, and dataset preparation."
+        },
+        {
+          "rank": 61,
+          "name": "trafilatura",
+          "repo": "adbar/trafilatura",
+          "url": "https://github.com/adbar/trafilatura",
+          "summary": "Extract clean article text or markdown from webpages while stripping boilerplate."
+        },
+        {
+          "rank": 62,
+          "name": "semchunk",
+          "repo": "umarbutler/semchunk",
+          "url": "https://github.com/umarbutler/semchunk",
+          "summary": "Split text into semantically meaningful chunks for better retrieval quality than fixed windows."
+        },
+        {
+          "rank": 63,
+          "name": "datachain",
+          "repo": "iterative/datachain",
+          "url": "https://github.com/iterative/datachain",
+          "summary": "Version and process multimodal datasets for training, retrieval, and data-centric AI workflows."
+        }
       ]
     },
     {
@@ -131,11 +475,41 @@
       "title": "Vision and Multimodal",
       "description": "Bring images, audio, and multimodal inputs into AI workflows.",
       "repos": [
-        {"rank": 64, "name": "moondream", "repo": "vikhyat/moondream", "url": "https://github.com/vikhyat/moondream"},
-        {"rank": 65, "name": "internvl", "repo": "OpenGVLab/InternVL", "url": "https://github.com/OpenGVLab/InternVL"},
-        {"rank": 66, "name": "whisper", "repo": "openai/whisper", "url": "https://github.com/openai/whisper"},
-        {"rank": 67, "name": "insanely-fast-whisper", "repo": "Vaibhavs10/insanely-fast-whisper", "url": "https://github.com/Vaibhavs10/insanely-fast-whisper"},
-        {"rank": 68, "name": "stable-diffusion-webui", "repo": "AUTOMATIC1111/stable-diffusion-webui", "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui"}
+        {
+          "rank": 64,
+          "name": "moondream",
+          "repo": "vikhyat/moondream",
+          "url": "https://github.com/vikhyat/moondream",
+          "summary": "Small vision-language model optimized for lightweight local image understanding tasks."
+        },
+        {
+          "rank": 65,
+          "name": "internvl",
+          "repo": "OpenGVLab/InternVL",
+          "url": "https://github.com/OpenGVLab/InternVL",
+          "summary": "High-performing open-source multimodal model for images, documents, charts, and screenshots."
+        },
+        {
+          "rank": 66,
+          "name": "whisper",
+          "repo": "openai/whisper",
+          "url": "https://github.com/openai/whisper",
+          "summary": "Local speech recognition model for multilingual transcription and audio-to-text pipelines."
+        },
+        {
+          "rank": 67,
+          "name": "insanely-fast-whisper",
+          "repo": "Vaibhavs10/insanely-fast-whisper",
+          "url": "https://github.com/Vaibhavs10/insanely-fast-whisper",
+          "summary": "Accelerated Whisper wrapper for fast batch transcription on consumer GPUs."
+        },
+        {
+          "rank": 68,
+          "name": "stable-diffusion-webui",
+          "repo": "AUTOMATIC1111/stable-diffusion-webui",
+          "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+          "summary": "Popular browser interface for image generation, editing, extensions, and ControlNet workflows."
+        }
       ]
     },
     {
@@ -143,7 +517,13 @@
       "title": "Bonus",
       "description": "Extra tools adjacent to the main stack.",
       "repos": [
-        {"rank": 69, "name": "kreo - copy the top polymarket traders", "repo": null, "url": "http://t.me/KreoPolyBot?start=ref-kreohub"}
+        {
+          "rank": 69,
+          "name": "kreo - copy the top polymarket traders",
+          "repo": null,
+          "url": "http://t.me/KreoPolyBot?start=ref-kreohub",
+          "summary": "Trading bot service that mirrors high-performing Polymarket wallets without custom infrastructure."
+        }
       ]
     }
   ]
