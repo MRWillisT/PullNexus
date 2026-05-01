@@ -2,7 +2,14 @@
   "name": "vibe-coder-workflow",
   "version": "1.0.0",
   "description": "The self-taught builder's AI workflow — how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally.",
-  "tags": ["workflow", "vibe-coding", "local-ai", "development", "beginner"],
+  "tags": [
+    "workflow",
+    "vibe-coding",
+    "local-ai",
+    "development",
+    "beginner",
+    "use:developer"
+  ],
   "license": "CC0-1.0",
   "examples": 10,
   "mcp_compatible": false,

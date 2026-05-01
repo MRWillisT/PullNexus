@@ -4,7 +4,11 @@
   "description": "Architect Model Context Protocol servers and tool interfaces for reliable agent integrations.",
   "tags": [
     "imported",
-    "skill-pack"
+    "mcp",
+    "tools",
+    "integration",
+    "protocol",
+    "use:automation"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

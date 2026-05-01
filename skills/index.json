@@ -9,10 +9,11 @@
       "description": "Relentlessly interview the user about a plan or design, resolving every branch of the decision tree. Extended with JSONL training examples and eval cases. Inspired by Matt Pocock's skill, adapted for PullNexus.",
       "tags": [
         "interview",
+        "planning",
         "design-review",
         "decision-tree",
-        "stress-test",
-        "external-source"
+        "external-source",
+        "use:planning"
       ],
       "license": "MIT",
       "examples": 5,
@@ -28,7 +29,11 @@
       "description": "Generate smooth palette-shift effects for AI images with prompt-driven color transitions and style consistency.",
       "tags": [
         "imported",
-        "skill-pack"
+        "image",
+        "creative",
+        "prompting",
+        "animation",
+        "use:creative"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -41,7 +46,11 @@
       "description": "Create rule-based generative artwork using code, math patterns, and parameterized visual systems.",
       "tags": [
         "imported",
-        "skill-pack"
+        "generative-art",
+        "creative",
+        "coding",
+        "visuals",
+        "use:creative"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -54,7 +63,11 @@
       "description": "Design and coordinate multi-step API workflows with robust routing, retries, and schema-aware transformations.",
       "tags": [
         "imported",
-        "skill-pack"
+        "api",
+        "automation",
+        "orchestration",
+        "integration",
+        "use:automation"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -69,9 +82,9 @@
         "autonomous-agent",
         "tool-use",
         "planning",
-        "multi-step",
-        "local-ai",
-        "mcp"
+        "mcp",
+        "workflow",
+        "use:automation"
       ],
       "license": "CC0-1.0",
       "examples": 10,
@@ -87,7 +100,8 @@
         "payments",
         "x402",
         "mcp",
-        "commerce"
+        "commerce",
+        "use:automation"
       ],
       "license": "CC0-1.0",
       "examples": 5,
@@ -100,7 +114,11 @@
       "description": "Run structured ideation sessions to expand options, compare directions, and converge on the best next step.",
       "tags": [
         "imported",
-        "skill-pack"
+        "ideation",
+        "planning",
+        "creativity",
+        "strategy",
+        "use:planning"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -113,7 +131,11 @@
       "description": "Define and apply clear brand voice, visual identity, and messaging rules across content and design.",
       "tags": [
         "imported",
-        "skill-pack"
+        "branding",
+        "writing",
+        "messaging",
+        "design",
+        "use:writing"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -126,7 +148,11 @@
       "description": "Plan and prototype layouts quickly on canvas-style surfaces for diagrams, flows, and visual concepts.",
       "tags": [
         "imported",
-        "skill-pack"
+        "design",
+        "diagramming",
+        "layout",
+        "whiteboarding",
+        "use:design"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -142,7 +168,8 @@
         "refactoring",
         "code-quality",
         "maintainability",
-        "architecture"
+        "architecture",
+        "use:developer"
       ],
       "license": "CC0-1.0",
       "examples": 5,
@@ -158,7 +185,8 @@
         "trading-bot",
         "risk",
         "backtesting",
-        "execution"
+        "execution",
+        "use:finance"
       ],
       "license": "CC0-1.0",
       "examples": 5,
@@ -171,7 +199,11 @@
       "description": "Generate and edit Microsoft Word documents with reliable structure, formatting, and content organization.",
       "tags": [
         "imported",
-        "skill-pack"
+        "documents",
+        "docx",
+        "office",
+        "formatting",
+        "use:documents"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -184,7 +216,11 @@
       "description": "Craft modern, usable frontend interfaces with strong hierarchy, interaction patterns, and responsive layouts.",
       "tags": [
         "imported",
-        "skill-pack"
+        "frontend",
+        "ui",
+        "ux",
+        "responsive",
+        "use:design"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -197,7 +233,11 @@
       "description": "Build polished slide-style frontend presentations with reusable sections, animations, and narrative flow.",
       "tags": [
         "imported",
-        "skill-pack"
+        "frontend",
+        "slides",
+        "presentation",
+        "storytelling",
+        "use:presentation"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -210,7 +250,11 @@
       "description": "Design premium website experiences with strong typography, visual systems, and conversion-focused UX.",
       "tags": [
         "imported",
-        "skill-pack"
+        "web-design",
+        "branding",
+        "ux",
+        "conversion",
+        "use:design"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -223,7 +267,11 @@
       "description": "Turn still images into cinematic video concepts with scene planning, camera motion, and storytelling beats.",
       "tags": [
         "imported",
-        "skill-pack"
+        "video",
+        "image",
+        "storyboarding",
+        "creative",
+        "use:creative"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -239,7 +287,8 @@
         "trading-bot",
         "time-series",
         "signal-fusion",
-        "risk-management"
+        "risk-management",
+        "use:finance"
       ],
       "license": "CC0-1.0",
       "examples": 6,
@@ -252,7 +301,11 @@
       "description": "Create explanatory math and technical animations using Manim with clear pacing and visual pedagogy.",
       "tags": [
         "imported",
-        "skill-pack"
+        "animation",
+        "education",
+        "math",
+        "video",
+        "use:creative"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -265,7 +318,11 @@
       "description": "Architect Model Context Protocol servers and tool interfaces for reliable agent integrations.",
       "tags": [
         "imported",
-        "skill-pack"
+        "mcp",
+        "tools",
+        "integration",
+        "protocol",
+        "use:automation"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -281,7 +338,8 @@
         "mcp",
         "automation",
         "workflows",
-        "integration"
+        "integration",
+        "use:automation"
       ],
       "license": "CC0-1.0",
       "examples": 5,
@@ -294,7 +352,11 @@
       "description": "Generate and manipulate PDF documents with clean formatting, extraction, and workflow automation.",
       "tags": [
         "imported",
-        "skill-pack"
+        "documents",
+        "pdf",
+        "extraction",
+        "formatting",
+        "use:documents"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -307,7 +369,11 @@
       "description": "Produce production-ready PDFs with PDFKit using templates, dynamic data, and layout controls.",
       "tags": [
         "imported",
-        "skill-pack"
+        "pdf",
+        "pdfkit",
+        "documents",
+        "templating",
+        "use:documents"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -320,7 +386,11 @@
       "description": "Apply advanced PDFKit patterns for modular components, pagination, and high-fidelity document output.",
       "tags": [
         "imported",
-        "skill-pack"
+        "pdf",
+        "pdfkit",
+        "pagination",
+        "components",
+        "use:documents"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -333,7 +403,11 @@
       "description": "Create and refine PowerPoint presentations with structured slides, visual consistency, and presenter-ready content.",
       "tags": [
         "imported",
-        "skill-pack"
+        "presentation",
+        "slides",
+        "pptx",
+        "office",
+        "use:presentation"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -349,7 +423,8 @@
         "pytest",
         "testing",
         "mocking",
-        "development"
+        "development",
+        "use:testing"
       ],
       "license": "CC0-1.0",
       "examples": 8,
@@ -364,8 +439,9 @@
         "python",
         "debugging",
         "async",
-        "trading-bot",
-        "development"
+        "diagnostics",
+        "development",
+        "use:developer"
       ],
       "license": "CC0-1.0",
       "examples": 6,
@@ -381,7 +457,8 @@
         "problem-solving",
         "architecture",
         "debugging",
-        "decision-making"
+        "decision-making",
+        "use:planning"
       ],
       "license": "CC0-1.0",
       "examples": 12,
@@ -394,7 +471,11 @@
       "description": "Design high-quality reusable skills with clear metadata, examples, and evaluation cases.",
       "tags": [
         "imported",
-        "skill-pack"
+        "meta",
+        "skill-authoring",
+        "examples",
+        "evaluation",
+        "use:developer"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -407,7 +488,11 @@
       "description": "Debug complex issues step by step using hypotheses, instrumentation, and evidence-driven iteration.",
       "tags": [
         "imported",
-        "skill-pack"
+        "debugging",
+        "diagnostics",
+        "troubleshooting",
+        "development",
+        "use:developer"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -420,7 +505,11 @@
       "description": "Apply TDD workflows to design behavior-first code with fast feedback and safe refactoring.",
       "tags": [
         "imported",
-        "skill-pack"
+        "testing",
+        "tdd",
+        "refactoring",
+        "development",
+        "use:testing"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -436,7 +525,8 @@
         "vibe-coding",
         "local-ai",
         "development",
-        "beginner"
+        "beginner",
+        "use:developer"
       ],
       "license": "CC0-1.0",
       "examples": 10,
@@ -449,7 +539,11 @@
       "description": "Build complete web deliverables including pages, assets, and deploy-ready bundles.",
       "tags": [
         "imported",
-        "skill-pack"
+        "web",
+        "build",
+        "assets",
+        "deployment",
+        "use:web"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -462,7 +556,11 @@
       "description": "Apply practical web design standards for accessibility, responsiveness, and visual consistency.",
       "tags": [
         "imported",
-        "skill-pack"
+        "web-design",
+        "accessibility",
+        "responsive",
+        "ui",
+        "use:design"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -475,7 +573,11 @@
       "description": "Test web applications end to end with focused coverage of UI behavior, APIs, and regressions.",
       "tags": [
         "imported",
-        "skill-pack"
+        "testing",
+        "web",
+        "qa",
+        "regression",
+        "use:testing"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -488,7 +590,11 @@
       "description": "Create clear writing plans that map audience, structure, and milestones before drafting.",
       "tags": [
         "imported",
-        "skill-pack"
+        "writing",
+        "planning",
+        "outlining",
+        "content",
+        "use:writing"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -501,7 +607,11 @@
       "description": "Improve writing quality with techniques for clarity, tone, structure, and concise communication.",
       "tags": [
         "imported",
-        "skill-pack"
+        "writing",
+        "editing",
+        "clarity",
+        "communication",
+        "use:writing"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -514,7 +624,11 @@
       "description": "Generate and transform Excel workbooks with formulas, tables, and automation-friendly structure.",
       "tags": [
         "imported",
-        "skill-pack"
+        "spreadsheets",
+        "xlsx",
+        "excel",
+        "automation",
+        "use:documents"
       ],
       "license": "SEE-SKILL",
       "examples": 0,
@@ -530,10 +644,8 @@
         "tool-selection",
         "local-ai",
         "rag",
-        "agents",
         "deployment",
-        "multimodal",
-        "curation"
+        "use:research"
       ],
       "license": "CC-BY-4.0",
       "examples": 8,
@@ -551,10 +663,8 @@
         "catalog",
         "tool-registry",
         "local-ai",
-        "rag",
-        "agents",
-        "multimodal",
-        "research"
+        "research",
+        "use:research"
       ],
       "license": "CC-BY-4.0",
       "examples": 6,

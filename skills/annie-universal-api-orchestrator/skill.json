@@ -4,7 +4,11 @@
   "description": "Design and coordinate multi-step API workflows with robust routing, retries, and schema-aware transformations.",
   "tags": [
     "imported",
-    "skill-pack"
+    "api",
+    "automation",
+    "orchestration",
+    "integration",
+    "use:automation"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

@@ -2,7 +2,14 @@
   "name": "n8n-mcp-workflows",
   "version": "1.0.0",
   "description": "Build and edit n8n automations through MCP-aware assistant workflows: planning nodes, validating flows, and deploying safe updates.",
-  "tags": ["n8n", "mcp", "automation", "workflows", "integration"],
+  "tags": [
+    "n8n",
+    "mcp",
+    "automation",
+    "workflows",
+    "integration",
+    "use:automation"
+  ],
   "license": "CC0-1.0",
   "examples": 5,
   "mcp_compatible": true,

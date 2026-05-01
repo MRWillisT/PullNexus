@@ -2,7 +2,14 @@
   "name": "pytest-and-testing",
   "version": "1.0.0",
   "description": "Practical pytest patterns for developers who have never written tests — mocking exchange APIs, fixtures, conftest.py, parametrize, coverage, and testing async code.",
-  "tags": ["python", "pytest", "testing", "mocking", "development"],
+  "tags": [
+    "python",
+    "pytest",
+    "testing",
+    "mocking",
+    "development",
+    "use:testing"
+  ],
   "license": "CC0-1.0",
   "examples": 8,
   "mcp_compatible": false,

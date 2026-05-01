@@ -1,5 +1,6 @@
 """pullnexus list — list all available skills."""
 
+from collections import defaultdict
 from typing import Optional
 
 import typer
@@ -14,6 +15,11 @@ console = Console()
 def list_skills(
     tag: Optional[str] = typer.Option(None, "--tag", "-t", help="Filter by tag"),
     sort: str = typer.Option("name", "--sort", "-s", help="Sort by: name, version"),
+    group_by: Optional[str] = typer.Option(
+        None,
+        "--group-by",
+        help="Group skills by taxonomy. Supported values: use",
+    ),
     show_all: bool = typer.Option(
         False,
         "--all",
@@ -43,6 +49,22 @@ def list_skills(
     else:
         skills.sort(key=lambda s: s.get("name", ""))
 
+    if group_by:
+        _print_grouped_skills(skills, group_by)
+    else:
+        _print_skills_table(skills, tag)
+
+    if show_all:
+        _print_external_sources(external_sources)
+
+    console.print(
+        "\n[dim]Run [bold]pullnexus pull <skill-name>[/bold] to install a skill locally.[/dim]"
+    )
+
+
+def _print_skills_table(skills: list[dict], tag: Optional[str]) -> None:
+    """Render the default flat skills table."""
+
     table = Table(
         title=f"PullNexus Skills Registry ({len(skills)} skill{'s' if len(skills) != 1 else ''})"
         + (f"  [tag={tag}]" if tag else ""),
@@ -68,35 +90,81 @@ def list_skills(
 
     console.print(table)
 
-    if show_all:
-        ext_table = Table(
-            title=(
-                "External Skill Sources "
-                f"({len(external_sources)} source{'s' if len(external_sources) != 1 else ''})"
-            ),
-            show_header=True,
-            header_style="bold magenta",
-            border_style="dim",
-        )
-        ext_table.add_column("Name", style="bold")
-        ext_table.add_column("Repo", style="cyan")
-        ext_table.add_column("License", style="dim")
-        ext_table.add_column("Adapter")
 
-        if external_sources:
-            for source in external_sources:
-                ext_table.add_row(
-                    source.get("name", ""),
-                    source.get("repo", ""),
-                    source.get("license", ""),
-                    source.get("adapter", ""),
-                )
-        else:
-            ext_table.add_row("—", "—", "—", "No external sources configured")
+def _print_grouped_skills(skills: list[dict], group_by: str) -> None:
+    """Render grouped skills tables for supported taxonomy views."""
+    if group_by != "use":
+        console.print(f"[red]Unsupported group: '{group_by}'. Try [bold]use[/bold].[/red]")
+        raise typer.Exit(1)
 
-        console.print()
-        console.print(ext_table)
+    grouped: dict[str, list[dict]] = defaultdict(list)
+    for skill in skills:
+        group_name = _extract_use_group(skill.get("tags", []))
+        grouped[group_name].append(skill)
 
     console.print(
-        "\n[dim]Run [bold]pullnexus pull <skill-name>[/bold] to install a skill locally.[/dim]"
+        f"[bold]PullNexus Skills Grouped By Use[/bold]"
+        f" [dim]({len(skills)} skill{'s' if len(skills) != 1 else ''})[/dim]"
     )
+
+    for group_name in sorted(grouped):
+        group_table = Table(
+            title=group_name,
+            show_header=True,
+            header_style="bold cyan",
+            border_style="dim",
+        )
+        group_table.add_column("Skill", style="bold")
+        group_table.add_column("Tags", style="cyan")
+        group_table.add_column("Description")
+
+        for skill in sorted(grouped[group_name], key=lambda item: item.get("name", "")):
+            visible_tags = [tag for tag in skill.get("tags", []) if not tag.startswith("use:")]
+            group_table.add_row(
+                skill.get("name", ""),
+                ", ".join(visible_tags),
+                skill.get("description", "")[:80],
+            )
+
+        console.print()
+        console.print(group_table)
+
+
+def _extract_use_group(tags: list[str]) -> str:
+    """Extract a human-readable use grouping from taxonomy tags."""
+    for tag in tags:
+        if tag.startswith("use:"):
+            return tag.split(":", 1)[1].replace("-", " ").title()
+    return "Other"
+
+
+def _print_external_sources(external_sources: list[dict]) -> None:
+    """Render the configured external source list."""
+
+    ext_table = Table(
+        title=(
+            "External Skill Sources "
+            f"({len(external_sources)} source{'s' if len(external_sources) != 1 else ''})"
+        ),
+        show_header=True,
+        header_style="bold magenta",
+        border_style="dim",
+    )
+    ext_table.add_column("Name", style="bold")
+    ext_table.add_column("Repo", style="cyan")
+    ext_table.add_column("License", style="dim")
+    ext_table.add_column("Adapter")
+
+    if external_sources:
+        for source in external_sources:
+            ext_table.add_row(
+                source.get("name", ""),
+                source.get("repo", ""),
+                source.get("license", ""),
+                source.get("adapter", ""),
+            )
+    else:
+        ext_table.add_row("—", "—", "—", "No external sources configured")
+
+    console.print()
+    console.print(ext_table)

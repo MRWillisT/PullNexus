@@ -4,7 +4,11 @@
   "description": "Apply advanced PDFKit patterns for modular components, pagination, and high-fidelity document output.",
   "tags": [
     "imported",
-    "skill-pack"
+    "pdf",
+    "pdfkit",
+    "pagination",
+    "components",
+    "use:documents"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

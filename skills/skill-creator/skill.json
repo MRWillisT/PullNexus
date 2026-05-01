@@ -4,7 +4,11 @@
   "description": "Design high-quality reusable skills with clear metadata, examples, and evaluation cases.",
   "tags": [
     "imported",
-    "skill-pack"
+    "meta",
+    "skill-authoring",
+    "examples",
+    "evaluation",
+    "use:developer"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

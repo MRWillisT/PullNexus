@@ -7,10 +7,8 @@
     "catalog",
     "tool-registry",
     "local-ai",
-    "rag",
-    "agents",
-    "multimodal",
-    "research"
+    "research",
+    "use:research"
   ],
   "license": "CC-BY-4.0",
   "examples": 6,

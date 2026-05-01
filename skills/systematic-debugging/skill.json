@@ -4,7 +4,11 @@
   "description": "Debug complex issues step by step using hypotheses, instrumentation, and evidence-driven iteration.",
   "tags": [
     "imported",
-    "skill-pack"
+    "debugging",
+    "diagnostics",
+    "troubleshooting",
+    "development",
+    "use:developer"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

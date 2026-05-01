@@ -4,7 +4,11 @@
   "description": "Build complete web deliverables including pages, assets, and deploy-ready bundles.",
   "tags": [
     "imported",
-    "skill-pack"
+    "web",
+    "build",
+    "assets",
+    "deployment",
+    "use:web"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

@@ -4,7 +4,11 @@
   "description": "Test web applications end to end with focused coverage of UI behavior, APIs, and regressions.",
   "tags": [
     "imported",
-    "skill-pack"
+    "testing",
+    "web",
+    "qa",
+    "regression",
+    "use:testing"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

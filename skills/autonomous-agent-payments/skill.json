@@ -2,7 +2,14 @@
   "name": "autonomous-agent-payments",
   "version": "1.0.0",
   "description": "Patterns for autonomous agents that can request, verify, and perform micropayments for data/tool access using x402-style payment flows.",
-  "tags": ["autonomous-agent", "payments", "x402", "mcp", "commerce"],
+  "tags": [
+    "autonomous-agent",
+    "payments",
+    "x402",
+    "mcp",
+    "commerce",
+    "use:automation"
+  ],
   "license": "CC0-1.0",
   "examples": 5,
   "mcp_compatible": true,

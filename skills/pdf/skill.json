@@ -4,7 +4,11 @@
   "description": "Generate and manipulate PDF documents with clean formatting, extraction, and workflow automation.",
   "tags": [
     "imported",
-    "skill-pack"
+    "documents",
+    "pdf",
+    "extraction",
+    "formatting",
+    "use:documents"
   ],
   "license": "SEE-SKILL",
   "examples": 0,

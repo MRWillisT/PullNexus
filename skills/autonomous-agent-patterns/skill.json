@@ -2,7 +2,14 @@
   "name": "autonomous-agent-patterns",
   "version": "1.0.0",
   "description": "Core patterns for building autonomous AI agents — task planning, tool orchestration, multi-step execution, error recovery, and memory persistence across sessions.",
-  "tags": ["autonomous-agent", "tool-use", "planning", "multi-step", "local-ai", "mcp"],
+  "tags": [
+    "autonomous-agent",
+    "tool-use",
+    "planning",
+    "mcp",
+    "workflow",
+    "use:automation"
+  ],
   "license": "CC0-1.0",
   "examples": 10,
   "mcp_compatible": true,

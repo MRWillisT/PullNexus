@@ -4,7 +4,11 @@
   "description": "Apply practical web design standards for accessibility, responsiveness, and visual consistency.",
   "tags": [
     "imported",
-    "skill-pack"
+    "web-design",
+    "accessibility",
+    "responsive",
+    "ui",
+    "use:design"
   ],
   "license": "SEE-SKILL",
   "examples": 0,
