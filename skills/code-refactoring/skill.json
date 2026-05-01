@@ -14,5 +14,6 @@
   "examples": 5,
   "mcp_compatible": false,
   "author": "MRWillisT",
-  "source": "converted-chats"
+  "source": "converted-chats",
+  "category": "developer"
 }

@@ -14,5 +14,6 @@
   "examples": 10,
   "mcp_compatible": false,
   "author": "MRWillisT",
-  "source": "autonomous-agent"
+  "source": "autonomous-agent",
+  "category": "developer"
 }

@@ -14,5 +14,6 @@
   "examples": 5,
   "mcp_compatible": true,
   "author": "MRWillisT",
-  "source": "community"
+  "source": "community",
+  "category": "automation"
 }

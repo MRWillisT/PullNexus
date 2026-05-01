@@ -3,7 +3,7 @@
 import typer
 from rich.console import Console
 
-from pullnexus.commands import search, install, list_skills, submit, info
+from pullnexus.commands import search, install, list_skills, submit, info, recommend
 
 console = Console()
 
@@ -48,6 +48,7 @@ app.command(name="pull")(install.install)           # pullnexus pull <skill>  al
 app.command(name="list")(list_skills.list_skills)   # pullnexus list
 app.command()(submit.submit)
 app.command()(info.info)
+app.command()(recommend.recommend)
 
 if __name__ == "__main__":
     app()

@@ -14,11 +14,17 @@ console = Console()
 
 def list_skills(
     tag: Optional[str] = typer.Option(None, "--tag", "-t", help="Filter by tag"),
+    category: Optional[str] = typer.Option(
+        None,
+        "--category",
+        "-c",
+        help="Filter by category (e.g. design, automation, testing).",
+    ),
     sort: str = typer.Option("name", "--sort", "-s", help="Sort by: name, version"),
     group_by: Optional[str] = typer.Option(
         None,
         "--group-by",
-        help="Group skills by taxonomy. Supported values: use",
+        help="Group skills by taxonomy. Supported values: category, use",
     ),
     show_all: bool = typer.Option(
         False,
@@ -44,6 +50,17 @@ def list_skills(
             console.print(f"[red]No skills found with tag '{tag}'[/red]")
             raise typer.Exit(1)
 
+    if category:
+        requested = category.lower().strip()
+        skills = [
+            s
+            for s in skills
+            if _skill_category_slug(s).lower() == requested
+        ]
+        if not skills:
+            console.print(f"[red]No skills found in category '{category}'[/red]")
+            raise typer.Exit(1)
+
     if sort == "version":
         skills.sort(key=lambda s: s.get("version", ""))
     else:
@@ -52,7 +69,7 @@ def list_skills(
     if group_by:
         _print_grouped_skills(skills, group_by)
     else:
-        _print_skills_table(skills, tag)
+        _print_skills_table(skills, tag, category)
 
     if show_all:
         _print_external_sources(external_sources)
@@ -62,17 +79,19 @@ def list_skills(
     )
 
 
-def _print_skills_table(skills: list[dict], tag: Optional[str]) -> None:
+def _print_skills_table(skills: list[dict], tag: Optional[str], category: Optional[str]) -> None:
     """Render the default flat skills table."""
 
     table = Table(
         title=f"PullNexus Skills Registry ({len(skills)} skill{'s' if len(skills) != 1 else ''})"
-        + (f"  [tag={tag}]" if tag else ""),
+        + (f"  [tag={tag}]" if tag else "")
+        + (f"  [category={category}]" if category else ""),
         show_header=True,
         header_style="bold cyan",
         border_style="dim",
     )
     table.add_column("Skill", style="bold")
+    table.add_column("Category", style="magenta", width=14)
     table.add_column("Version", style="dim", width=8)
     table.add_column("Examples", style="green", width=9, justify="right")
     table.add_column("Tags", style="cyan")
@@ -82,6 +101,7 @@ def _print_skills_table(skills: list[dict], tag: Optional[str]) -> None:
         examples = skill.get("examples", skill.get("evaluation_cases", ""))
         table.add_row(
             skill.get("name", ""),
+            _skill_category_label(skill),
             skill.get("version", ""),
             str(examples) if examples else "—",
             ", ".join(skill.get("tags", [])),
@@ -93,17 +113,22 @@ def _print_skills_table(skills: list[dict], tag: Optional[str]) -> None:
 
 def _print_grouped_skills(skills: list[dict], group_by: str) -> None:
     """Render grouped skills tables for supported taxonomy views."""
-    if group_by != "use":
-        console.print(f"[red]Unsupported group: '{group_by}'. Try [bold]use[/bold].[/red]")
+    if group_by not in {"use", "category"}:
+        console.print(
+            f"[red]Unsupported group: '{group_by}'. Try [bold]category[/bold] or [bold]use[/bold].[/red]"
+        )
         raise typer.Exit(1)
 
     grouped: dict[str, list[dict]] = defaultdict(list)
     for skill in skills:
-        group_name = _extract_use_group(skill.get("tags", []))
+        if group_by == "category":
+            group_name = _skill_category_label(skill)
+        else:
+            group_name = _extract_use_group(skill.get("tags", []))
         grouped[group_name].append(skill)
 
     console.print(
-        f"[bold]PullNexus Skills Grouped By Use[/bold]"
+        f"[bold]PullNexus Skills Grouped By {group_by.title()}[/bold]"
         f" [dim]({len(skills)} skill{'s' if len(skills) != 1 else ''})[/dim]"
     )
 
@@ -136,6 +161,22 @@ def _extract_use_group(tags: list[str]) -> str:
         if tag.startswith("use:"):
             return tag.split(":", 1)[1].replace("-", " ").title()
     return "Other"
+
+
+def _skill_category_slug(skill: dict) -> str:
+    """Return category slug from explicit category field or use: tag fallback."""
+    explicit = skill.get("category", "")
+    if explicit:
+        return str(explicit).strip().lower().replace(" ", "-")
+    for tag in skill.get("tags", []):
+        if isinstance(tag, str) and tag.startswith("use:"):
+            return tag.split(":", 1)[1].strip().lower()
+    return "other"
+
+
+def _skill_category_label(skill: dict) -> str:
+    """Return human-readable category label for UI tables."""
+    return _skill_category_slug(skill).replace("-", " ").title()
 
 
 def _print_external_sources(external_sources: list[dict]) -> None:

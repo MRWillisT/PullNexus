@@ -13,5 +13,6 @@
   "license": "SEE-SKILL",
   "examples": 0,
   "mcp_compatible": false,
-  "author": "community-import"
+  "author": "community-import",
+  "category": "documents"
 }

@@ -14,5 +14,6 @@
   "license": "MIT",
   "inspired_by": "https://github.com/mattpocock/skills",
   "source": "https://github.com/mattpocock/skills/tree/main/grill-me",
-  "external": true
+  "external": true,
+  "category": "planning"
 }

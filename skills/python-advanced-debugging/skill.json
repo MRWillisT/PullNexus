@@ -14,5 +14,6 @@
   "examples": 6,
   "mcp_compatible": false,
   "author": "MRWillisT",
-  "source": "synthetic"
+  "source": "synthetic",
+  "category": "developer"
 }

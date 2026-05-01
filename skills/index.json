@@ -21,7 +21,8 @@
       "author": "community-import",
       "inspired_by": "https://github.com/mattpocock/skills",
       "source": "https://github.com/mattpocock/skills/tree/main/grill-me",
-      "external": true
+      "external": true,
+      "category": "planning"
     },
     {
       "name": "ai-image-color-cycling",
@@ -38,7 +39,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "creative"
     },
     {
       "name": "algorithmic-art",
@@ -55,7 +57,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "creative"
     },
     {
       "name": "annie-universal-api-orchestrator",
@@ -72,7 +75,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "automation"
     },
     {
       "name": "autonomous-agent-patterns",
@@ -89,7 +93,8 @@
       "license": "CC0-1.0",
       "examples": 10,
       "mcp_compatible": true,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "automation"
     },
     {
       "name": "autonomous-agent-payments",
@@ -106,7 +111,8 @@
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": true,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "automation"
     },
     {
       "name": "brainstorming",
@@ -123,7 +129,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "planning"
     },
     {
       "name": "brand-guidelines",
@@ -140,7 +147,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "writing"
     },
     {
       "name": "canvas-design",
@@ -157,7 +165,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "design"
     },
     {
       "name": "code-refactoring",
@@ -174,7 +183,8 @@
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "developer"
     },
     {
       "name": "crypto-trading-bot",
@@ -191,7 +201,8 @@
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "finance"
     },
     {
       "name": "docx",
@@ -208,7 +219,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "documents"
     },
     {
       "name": "frontend-design",
@@ -225,7 +237,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "design"
     },
     {
       "name": "frontend-slides",
@@ -242,7 +255,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "presentation"
     },
     {
       "name": "high-end-website-design",
@@ -259,7 +273,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "design"
     },
     {
       "name": "image-to-cinematic-video",
@@ -276,7 +291,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "creative"
     },
     {
       "name": "kronos-trading-integration",
@@ -293,7 +309,8 @@
       "license": "CC0-1.0",
       "examples": 6,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "finance"
     },
     {
       "name": "manim-video",
@@ -310,7 +327,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "creative"
     },
     {
       "name": "mcp-builder",
@@ -327,7 +345,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "automation"
     },
     {
       "name": "n8n-mcp-workflows",
@@ -344,7 +363,8 @@
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": true,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "automation"
     },
     {
       "name": "pdf",
@@ -361,7 +381,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "documents"
     },
     {
       "name": "pdfkit-generation",
@@ -378,7 +399,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "documents"
     },
     {
       "name": "PDFKit-Generation-v2",
@@ -395,7 +417,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "documents"
     },
     {
       "name": "pptx",
@@ -412,7 +435,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "presentation"
     },
     {
       "name": "pytest-and-testing",
@@ -429,7 +453,8 @@
       "license": "CC0-1.0",
       "examples": 8,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "testing"
     },
     {
       "name": "python-advanced-debugging",
@@ -446,7 +471,8 @@
       "license": "CC0-1.0",
       "examples": 6,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "developer"
     },
     {
       "name": "reasoning-and-problem-solving",
@@ -463,7 +489,8 @@
       "license": "CC0-1.0",
       "examples": 12,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "planning"
     },
     {
       "name": "skill-creator",
@@ -480,7 +507,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "developer"
     },
     {
       "name": "systematic-debugging",
@@ -497,7 +525,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "developer"
     },
     {
       "name": "test-driven-development",
@@ -514,7 +543,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "testing"
     },
     {
       "name": "vibe-coder-workflow",
@@ -531,7 +561,8 @@
       "license": "CC0-1.0",
       "examples": 10,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "MRWillisT",
+      "category": "developer"
     },
     {
       "name": "web-artifacts-builder",
@@ -548,7 +579,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "web"
     },
     {
       "name": "web-design-guidelines",
@@ -565,7 +597,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "design"
     },
     {
       "name": "webapp-testing",
@@ -582,7 +615,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "testing"
     },
     {
       "name": "writing-plans",
@@ -599,7 +633,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "writing"
     },
     {
       "name": "writing-skills",
@@ -616,7 +651,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "writing"
     },
     {
       "name": "xlsx",
@@ -633,7 +669,8 @@
       "license": "SEE-SKILL",
       "examples": 0,
       "mcp_compatible": false,
-      "author": "community-import"
+      "author": "community-import",
+      "category": "documents"
     },
     {
       "name": "open-source-ai-toolbox-2026",
@@ -652,7 +689,8 @@
       "mcp_compatible": false,
       "author": "MRWillisT",
       "inspired_by": "https://x.com/seelffff/status/2049214021430325677",
-      "source": "https://x.com/seelffff/status/2049214021430325677"
+      "source": "https://x.com/seelffff/status/2049214021430325677",
+      "category": "research"
     },
     {
       "name": "open-source-ai-repo-catalog-2026",
@@ -671,7 +709,8 @@
       "mcp_compatible": false,
       "author": "MRWillisT",
       "inspired_by": "https://x.com/seelffff/status/2049214021430325677",
-      "source": "https://x.com/seelffff/status/2049214021430325677"
+      "source": "https://x.com/seelffff/status/2049214021430325677",
+      "category": "research"
     }
   ],
   "external_sources": [
