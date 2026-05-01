@@ -35,7 +35,7 @@ def main(
 ):
     """Top-level options and command routing for PullNexus CLI."""
     if list_only:
-        list_skills.list_skills(show_all=all_sources)
+        list_skills.list_skills(tag=None, sort="name", show_all=all_sources)
         raise typer.Exit(0)
 
     # Keep normal no-args help behavior when invoked without a subcommand.

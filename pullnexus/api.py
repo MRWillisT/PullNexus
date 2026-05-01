@@ -40,6 +40,11 @@ def fetch_registry() -> dict:
     except Exception:
         pass
 
+    # Local fallback: useful when the remote registry is private/unreachable.
+    local_registry = _fetch_registry_from_local_index()
+    if local_registry is not None:
+        return local_registry
+
     # Fallback: enumerate the skills/ directory on GitHub
     return {"skills": _fetch_skills_from_directory(), "external_sources": []}
 
@@ -53,6 +58,30 @@ def fetch_index() -> list[dict]:
     empty list when the registry is completely unreachable.
     """
     return fetch_registry().get("skills", [])
+
+
+def _fetch_registry_from_local_index() -> Optional[dict]:
+    """Read skills/index.json from common local workspace locations."""
+    candidate_paths = [
+        Path.cwd() / "skills" / "index.json",
+        Path(__file__).resolve().parents[1] / "skills" / "index.json",
+    ]
+
+    for index_path in candidate_paths:
+        try:
+            if not index_path.exists():
+                continue
+            data = json.loads(index_path.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                continue
+            return {
+                "skills": data.get("skills", []),
+                "external_sources": data.get("external_sources", []),
+            }
+        except Exception:
+            continue
+
+    return None
 
 
 def _fetch_skills_from_directory() -> list[dict]:
