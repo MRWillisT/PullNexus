@@ -12,6 +12,7 @@ build/
 *.whl
 
 # PyPI publishing tools
+twine
 twine/
 
 # Virtual environments
