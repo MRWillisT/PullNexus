@@ -45,6 +45,7 @@ def search(
         raise typer.Exit(1)
 
     q = query.lower().strip()
+    normalized_q = q.replace(" ", "-")
     results = []
     for skill in skills:
         name = skill.get("name", "").lower()
@@ -61,6 +62,9 @@ def search(
         # Score relevance
         if not q:
             results.append((3, skill))
+        elif normalized_q == skill_category:
+            # Category intent should beat generic keyword matches.
+            results.append((-1, skill))
         elif q in name:
             results.append((0, skill))   # name match — highest priority
         elif q in tags:

@@ -3,7 +3,7 @@
 import typer
 from rich.console import Console
 
-from pullnexus.commands import search, install, list_skills, submit, info, recommend
+from pullnexus.commands import search, install, list_skills, submit, info, recommend, categories
 
 console = Console()
 
@@ -35,7 +35,13 @@ def main(
 ):
     """Top-level options and command routing for PullNexus CLI."""
     if list_only:
-        list_skills.list_skills(tag=None, sort="name", show_all=all_sources)
+        list_skills.list_skills(
+            tag=None,
+            category=None,
+            sort="name",
+            group_by=None,
+            show_all=all_sources,
+        )
         raise typer.Exit(0)
 
     # Keep normal no-args help behavior when invoked without a subcommand.
@@ -49,6 +55,7 @@ app.command(name="list")(list_skills.list_skills)   # pullnexus list
 app.command()(submit.submit)
 app.command()(info.info)
 app.command()(recommend.recommend)
+app.command()(categories.categories)
 
 if __name__ == "__main__":
     app()
