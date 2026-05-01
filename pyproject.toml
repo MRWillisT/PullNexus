@@ -4,6 +4,18 @@ version = "0.1.0"
 description = "Pull from the Nexus. Give back to the Nexus. Keep local AI smart."
 readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["llm", "local-ai", "skills", "rag", "ollama", "mcp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = [
     "typer[all]>=0.15",
     "rich>=14",
@@ -11,8 +23,16 @@ dependencies = [
     "packaging>=24",
 ]
 
+[project.urls]
+Homepage = "https://github.com/MRWillisT/PullNexus"
+Repository = "https://github.com/MRWillisT/PullNexus"
+Issues = "https://github.com/MRWillisT/PullNexus/issues"
+
 [project.scripts]
 pullnexus = "pullnexus.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pullnexus"]
 
 [build-system]
 requires = ["hatchling"]
