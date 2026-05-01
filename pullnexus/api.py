@@ -71,13 +71,13 @@ def fetch_skill_json(skill_name: str) -> Optional[dict]:
                 content_b64 = resp.json().get("content", "")
                 import base64
                 content = base64.b64decode(content_b64).decode("utf-8")
-                return json.loads(content)
+                return _normalize_resource_entry(json.loads(content))
     except Exception:
         pass
 
     local = _fetch_local_skill_json(skill_name)
     if local is not None:
-        return local
+        return _normalize_resource_entry(local)
 
     # Virtual/generated entries can still be discovered from the index.
     for skill in fetch_index():
@@ -141,7 +141,7 @@ def _fetch_local_skill_json(skill_name: str) -> Optional[dict]:
     for path in _skill_candidate_paths(skill_name, "skill.json"):
         try:
             if path.exists():
-                return json.loads(path.read_text(encoding="utf-8"))
+                return _normalize_resource_entry(json.loads(path.read_text(encoding="utf-8")))
         except Exception:
             continue
     return None
@@ -196,7 +196,7 @@ def _fetch_skill_meta(client: httpx.Client, skill_name: str) -> Optional[dict]:
         import base64
         content_b64 = resp.json().get("content", "")
         content = base64.b64decode(content_b64).decode("utf-8")
-        return json.loads(content)
+        return _normalize_resource_entry(json.loads(content))
     except Exception:
         return {"name": skill_name, "description": "", "tags": [], "version": ""}
 
@@ -246,7 +246,11 @@ def _augment_skills_with_catalog_resources(skills: list[dict]) -> list[dict]:
     if not isinstance(skills, list):
         return []
 
-    expanded: list[dict] = list(skills)
+    expanded: list[dict] = [
+        _normalize_resource_entry(skill)
+        for skill in skills
+        if isinstance(skill, dict)
+    ]
     existing_names = {str(skill.get("name", "")) for skill in expanded if isinstance(skill, dict)}
 
     for skill in skills:
@@ -267,7 +271,7 @@ def _augment_skills_with_catalog_resources(skills: list[dict]) -> list[dict]:
             if resource_name in existing_names:
                 continue
             expanded.append(
-                {
+                _normalize_resource_entry({
                     "name": resource_name,
                     "version": skill.get("version", "1.0.0"),
                     "description": entry["description"],
@@ -290,7 +294,8 @@ def _augment_skills_with_catalog_resources(skills: list[dict]) -> list[dict]:
                     "catalog_parent": parent_name,
                     "catalog_rank": entry["rank"],
                     "display_name": entry["title"],
-                }
+                    "installable": False,
+                })
             )
             existing_names.add(resource_name)
 
@@ -374,3 +379,20 @@ def _slugify(value: str) -> str:
     while "--" in slug:
         slug = slug.replace("--", "-")
     return slug.strip("-") or "resource"
+
+
+def _normalize_resource_entry(entry: dict) -> dict:
+    """Ensure registry entries expose a stable typed-resource shape."""
+    if not isinstance(entry, dict):
+        return {}
+
+    normalized = dict(entry)
+    resource_type = str(normalized.get("resource_type", "")).strip().lower()
+    if not resource_type:
+        resource_type = "skill"
+    normalized["resource_type"] = resource_type
+
+    if "installable" not in normalized:
+        normalized["installable"] = resource_type == "skill"
+
+    return normalized

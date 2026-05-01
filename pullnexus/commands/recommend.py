@@ -35,6 +35,11 @@ def recommend(
         "-c",
         help="Hard-filter recommendations to an exact category slug.",
     ),
+    resource_type: Optional[str] = typer.Option(
+        None,
+        "--type",
+        help="Hard-filter recommendations to a resource type (e.g. skill, repository).",
+    ),
     limit: int = typer.Option(5, "--limit", "-n", help="Maximum recommendations"),
     explain: str = typer.Option(
         "basic",
@@ -59,13 +64,17 @@ def recommend(
         raise typer.Exit(1)
 
     requested_category = category.lower().strip() if category else ""
+    requested_type = resource_type.lower().strip() if resource_type else ""
     inferred_category = _infer_category(problem) if not requested_category else ""
     q = problem.lower()
     scored: list[tuple[int, dict, str, list[str]]] = []
 
     for skill in skills:
         skill_category = _skill_category_slug(skill)
+        skill_type = _resource_type_slug(skill)
         if requested_category and skill_category != requested_category:
+            continue
+        if requested_type and skill_type != requested_type:
             continue
 
         tags = [t.lower() for t in skill.get("tags", [])]
@@ -120,12 +129,14 @@ def recommend(
         payload = {
             "problem": problem,
             "requested_category": requested_category or None,
+            "requested_type": requested_type or None,
             "inferred_category": inferred_category or None,
             "explain": explain_level,
             "total_recommendations": len(top),
             "recommendations": [
                 {
                     "name": skill.get("name", ""),
+                    "resource_type": _resource_type_slug(skill),
                     "category": _skill_category_slug(skill),
                     "score": score,
                     "why": reason or "relevance",
@@ -141,6 +152,7 @@ def recommend(
         title=(
             f"Recommended Skills for: {problem}" +
             (f"  [category={requested_category}]" if requested_category else "") +
+            (f"  [type={requested_type}]" if requested_type else "") +
             (f"  [inferred={inferred_category}]" if inferred_category else "")
         ),
         show_header=True,
@@ -148,6 +160,7 @@ def recommend(
         border_style="dim",
     )
     table.add_column("Skill", style="bold")
+    table.add_column("Type", style="yellow", width=11)
     table.add_column("Category", style="magenta", width=14)
     table.add_column("Score", style="green", width=6, justify="right")
     table.add_column("Why")
@@ -155,6 +168,7 @@ def recommend(
     for score, skill, reason, _ in top:
         table.add_row(
             skill.get("name", ""),
+            _resource_type_label(skill),
             _skill_category_label(skill),
             str(score),
             reason or "relevance",
@@ -195,3 +209,14 @@ def _skill_category_slug(skill: dict) -> str:
 def _skill_category_label(skill: dict) -> str:
     """Return human-readable category label for UI tables."""
     return _skill_category_slug(skill).replace("-", " ").title()
+
+
+def _resource_type_slug(skill: dict) -> str:
+    """Return normalized resource type slug."""
+    value = skill.get("resource_type", "skill")
+    return str(value).strip().lower() or "skill"
+
+
+def _resource_type_label(skill: dict) -> str:
+    """Return human-readable resource type label for UI tables."""
+    return _resource_type_slug(skill).replace("-", " ").title()

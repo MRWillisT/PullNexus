@@ -21,6 +21,11 @@ def list_skills(
         "-c",
         help="Filter by category (e.g. design, automation, testing).",
     ),
+    resource_type: Optional[str] = typer.Option(
+        None,
+        "--type",
+        help="Filter by resource type (e.g. skill, repository, dataset, playbook).",
+    ),
     sort: str = typer.Option("name", "--sort", "-s", help="Sort by: name, version"),
     group_by: Optional[str] = typer.Option(
         None,
@@ -67,6 +72,13 @@ def list_skills(
             console.print(f"[red]No skills found in category '{category}'[/red]")
             raise typer.Exit(1)
 
+    if resource_type:
+        requested_type = resource_type.lower().strip()
+        skills = [s for s in skills if _resource_type_slug(s) == requested_type]
+        if not skills:
+            console.print(f"[red]No resources found with type '{resource_type}'[/red]")
+            raise typer.Exit(1)
+
     if sort == "version":
         skills.sort(key=lambda s: s.get("version", ""))
     else:
@@ -77,6 +89,7 @@ def list_skills(
             "filters": {
                 "tag": tag,
                 "category": category.lower().strip() if category else None,
+                "resource_type": resource_type.lower().strip() if resource_type else None,
                 "sort": sort,
                 "group_by": group_by,
                 "all_sources": show_all,
@@ -85,6 +98,7 @@ def list_skills(
             "skills": [
                 {
                     "name": skill.get("name", ""),
+                    "resource_type": _resource_type_slug(skill),
                     "category": _skill_category_slug(skill),
                     "version": skill.get("version", ""),
                     "examples": skill.get("examples", skill.get("evaluation_cases", 0)),
@@ -124,6 +138,7 @@ def _print_skills_table(skills: list[dict], tag: Optional[str], category: Option
         border_style="dim",
     )
     table.add_column("Skill", style="bold")
+    table.add_column("Type", style="yellow", width=11)
     table.add_column("Category", style="magenta", width=14)
     table.add_column("Version", style="dim", width=8)
     table.add_column("Examples", style="green", width=9, justify="right")
@@ -134,6 +149,7 @@ def _print_skills_table(skills: list[dict], tag: Optional[str], category: Option
         examples = skill.get("examples", skill.get("evaluation_cases", ""))
         table.add_row(
             skill.get("name", ""),
+            _resource_type_label(skill),
             _skill_category_label(skill),
             skill.get("version", ""),
             str(examples) if examples else "—",
@@ -212,6 +228,17 @@ def _skill_category_label(skill: dict) -> str:
     return _skill_category_slug(skill).replace("-", " ").title()
 
 
+def _resource_type_slug(skill: dict) -> str:
+    """Return normalized resource type slug."""
+    value = skill.get("resource_type", "skill")
+    return str(value).strip().lower() or "skill"
+
+
+def _resource_type_label(skill: dict) -> str:
+    """Return human-readable resource type label for UI tables."""
+    return _resource_type_slug(skill).replace("-", " ").title()
+
+
 def _print_external_sources(external_sources: list[dict]) -> None:
     """Render the configured external source list."""
 
@@ -261,6 +288,7 @@ def _build_group_payload(skills: list[dict], group_by: str) -> dict[str, list[di
         grouped[group_name].append(
             {
                 "name": skill.get("name", ""),
+                "resource_type": _resource_type_slug(skill),
                 "category": _skill_category_slug(skill),
                 "version": skill.get("version", ""),
                 "tags": skill.get("tags", []),

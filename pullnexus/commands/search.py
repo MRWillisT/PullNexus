@@ -25,6 +25,11 @@ def search(
         "--use",
         help="Alias for --category.",
     ),
+    resource_type: Optional[str] = typer.Option(
+        None,
+        "--type",
+        help="Filter by resource type (e.g. skill, repository, dataset, playbook).",
+    ),
     limit: int = typer.Option(20, "--limit", "-n", help="Maximum number of results"),
 ):
     """Search skills in the Nexus by keyword, tag, or description."""
@@ -38,9 +43,9 @@ def search(
         raise typer.Exit(1)
 
     selected_category = (category or use)
-    if not query and not tag and not selected_category:
+    if not query and not tag and not selected_category and not resource_type:
         console.print(
-            "[red]Provide a query or use filters like [bold]--tag[/bold] or [bold]--category[/bold].[/red]"
+            "[red]Provide a query or use filters like [bold]--tag[/bold], [bold]--category[/bold], or [bold]--type[/bold].[/red]"
         )
         raise typer.Exit(1)
 
@@ -52,11 +57,14 @@ def search(
         desc = skill.get("description", "").lower()
         tags = [t.lower() for t in skill.get("tags", [])]
         skill_category = _skill_category_slug(skill)
+        skill_type = _resource_type_slug(skill)
 
         # Apply tag filter first if provided
         if tag and tag.lower() not in tags:
             continue
         if selected_category and skill_category != selected_category.lower().strip():
+            continue
+        if resource_type and skill_type != resource_type.lower().strip():
             continue
 
         # Score relevance
@@ -81,6 +89,8 @@ def search(
             msg += f" with tag [bold]'{tag}'[/bold]"
         if selected_category:
             msg += f" in category [bold]'{selected_category}'[/bold]"
+        if resource_type:
+            msg += f" with type [bold]'{resource_type}'[/bold]"
         console.print(f"[red]{msg}[/red]")
         console.print("\nTry [bold]pullnexus list[/bold] to browse all available skills.")
         raise typer.Exit(1)
@@ -88,12 +98,14 @@ def search(
     table = Table(
         title=(f"Skills matching '{query}'" if query else "Skills matching filters")
         + (f"  [tag={tag}]" if tag else "")
-        + (f"  [category={selected_category}]" if selected_category else ""),
+        + (f"  [category={selected_category}]" if selected_category else "")
+        + (f"  [type={resource_type}]" if resource_type else ""),
         show_header=True,
         header_style="bold cyan",
         border_style="dim",
     )
     table.add_column("Skill", style="bold")
+    table.add_column("Type", style="yellow", width=11)
     table.add_column("Category", style="magenta", width=14)
     table.add_column("Version", style="dim", width=8)
     table.add_column("Tags", style="cyan")
@@ -102,6 +114,7 @@ def search(
     for skill in results:
         table.add_row(
             skill.get("name", ""),
+            _resource_type_label(skill),
             _skill_category_label(skill),
             skill.get("version", ""),
             ", ".join(skill.get("tags", [])),
@@ -129,3 +142,14 @@ def _skill_category_slug(skill: dict) -> str:
 def _skill_category_label(skill: dict) -> str:
     """Return human-readable category label for UI tables."""
     return _skill_category_slug(skill).replace("-", " ").title()
+
+
+def _resource_type_slug(skill: dict) -> str:
+    """Return normalized resource type slug."""
+    value = skill.get("resource_type", "skill")
+    return str(value).strip().lower() or "skill"
+
+
+def _resource_type_label(skill: dict) -> str:
+    """Return human-readable resource type label for UI tables."""
+    return _resource_type_slug(skill).replace("-", " ").title()
