@@ -1,13 +1,59 @@
 {
   "version": "1.0",
   "updated": "2026-05-01",
-  "total": 10,
+  "total": 36,
   "skills": [
+    {
+      "name": "ai-image-color-cycling",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for ai image color cycling.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "algorithmic-art",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for algorithmic art.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "annie-universal-api-orchestrator",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for annie universal api orchestrator.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
     {
       "name": "autonomous-agent-patterns",
       "version": "1.0.0",
       "description": "Core patterns for building autonomous AI agents — task planning, tool orchestration, multi-step execution, error recovery, and memory persistence across sessions.",
-      "tags": ["autonomous-agent", "tool-use", "planning", "multi-step", "local-ai", "mcp"],
+      "tags": [
+        "autonomous-agent",
+        "tool-use",
+        "planning",
+        "multi-step",
+        "local-ai",
+        "mcp"
+      ],
       "license": "CC0-1.0",
       "examples": 10,
       "mcp_compatible": true,
@@ -17,17 +63,68 @@
       "name": "autonomous-agent-payments",
       "version": "1.0.0",
       "description": "Patterns for autonomous agents that can request, verify, and perform micropayments for data/tool access using x402-style payment flows.",
-      "tags": ["autonomous-agent", "payments", "x402", "mcp", "commerce"],
+      "tags": [
+        "autonomous-agent",
+        "payments",
+        "x402",
+        "mcp",
+        "commerce"
+      ],
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": true,
       "author": "MRWillisT"
     },
     {
+      "name": "brainstorming",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for brainstorming.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "brand-guidelines",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for brand guidelines.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "canvas-design",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for canvas design.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
       "name": "code-refactoring",
       "version": "1.0.0",
       "description": "Practical refactoring playbooks for Python projects: readability upgrades, modularization, dead-code removal, and safe incremental cleanup without changing behavior.",
-      "tags": ["python", "refactoring", "code-quality", "maintainability", "architecture"],
+      "tags": [
+        "python",
+        "refactoring",
+        "code-quality",
+        "maintainability",
+        "architecture"
+      ],
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": false,
@@ -37,49 +134,222 @@
       "name": "crypto-trading-bot",
       "version": "1.0.0",
       "description": "Core concepts and implementation guidance for crypto trading bots: market regimes, execution, slippage, risk controls, and backtest-to-live reliability.",
-      "tags": ["crypto", "trading-bot", "risk", "backtesting", "execution"],
+      "tags": [
+        "crypto",
+        "trading-bot",
+        "risk",
+        "backtesting",
+        "execution"
+      ],
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": false,
       "author": "MRWillisT"
     },
     {
+      "name": "docx",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for docx.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "frontend-design",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for frontend design.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "frontend-slides",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for frontend slides.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "high-end-website-design",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for high end website design.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "image-to-cinematic-video",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for image to cinematic video.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
       "name": "kronos-trading-integration",
       "version": "1.0.0",
       "description": "Integrate Kronos market predictions into crypto trading workflows with safe feature engineering, signal fusion, and risk-aware execution.",
-      "tags": ["kronos", "trading-bot", "time-series", "signal-fusion", "risk-management"],
+      "tags": [
+        "kronos",
+        "trading-bot",
+        "time-series",
+        "signal-fusion",
+        "risk-management"
+      ],
       "license": "CC0-1.0",
       "examples": 6,
       "mcp_compatible": false,
       "author": "MRWillisT"
     },
     {
+      "name": "manim-video",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for manim video.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "mcp-builder",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for mcp builder.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
       "name": "n8n-mcp-workflows",
       "version": "1.0.0",
       "description": "Build and edit n8n automations through MCP-aware assistant workflows: planning nodes, validating flows, and deploying safe updates.",
-      "tags": ["n8n", "mcp", "automation", "workflows", "integration"],
+      "tags": [
+        "n8n",
+        "mcp",
+        "automation",
+        "workflows",
+        "integration"
+      ],
       "license": "CC0-1.0",
       "examples": 5,
       "mcp_compatible": true,
       "author": "MRWillisT"
     },
     {
-      "name": "python-advanced-debugging",
+      "name": "pdf",
       "version": "1.0.0",
-      "description": "Expert multi-turn debugging techniques for Python — async hangs, silent failures, rate limits, P&L calculation errors, and systematic diagnosis workflows.",
-      "tags": ["python", "debugging", "async", "trading-bot", "development"],
-      "license": "CC0-1.0",
-      "examples": 6,
+      "description": "Imported SKILL.md package for pdf.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
       "mcp_compatible": false,
-      "author": "MRWillisT"
+      "author": "community-import"
+    },
+    {
+      "name": "pdfkit-generation",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for pdfkit generation.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "PDFKit-Generation-v2",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for PDFKit Generation v2.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "pptx",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for pptx.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
     },
     {
       "name": "pytest-and-testing",
       "version": "1.0.0",
       "description": "Practical pytest patterns for developers who have never written tests — mocking exchange APIs, fixtures, conftest.py, parametrize, coverage, and testing async code.",
-      "tags": ["python", "pytest", "testing", "mocking", "development"],
+      "tags": [
+        "python",
+        "pytest",
+        "testing",
+        "mocking",
+        "development"
+      ],
       "license": "CC0-1.0",
       "examples": 8,
+      "mcp_compatible": false,
+      "author": "MRWillisT"
+    },
+    {
+      "name": "python-advanced-debugging",
+      "version": "1.0.0",
+      "description": "Expert multi-turn debugging techniques for Python — async hangs, silent failures, rate limits, P&L calculation errors, and systematic diagnosis workflows.",
+      "tags": [
+        "python",
+        "debugging",
+        "async",
+        "trading-bot",
+        "development"
+      ],
+      "license": "CC0-1.0",
+      "examples": 6,
       "mcp_compatible": false,
       "author": "MRWillisT"
     },
@@ -87,21 +357,150 @@
       "name": "reasoning-and-problem-solving",
       "version": "1.0.0",
       "description": "Systematic problem decomposition for complex technical questions — REST vs WebSockets tradeoffs, debugging vague failures, architectural decisions, and reasoning under uncertainty.",
-      "tags": ["reasoning", "problem-solving", "architecture", "debugging", "decision-making"],
+      "tags": [
+        "reasoning",
+        "problem-solving",
+        "architecture",
+        "debugging",
+        "decision-making"
+      ],
       "license": "CC0-1.0",
       "examples": 12,
       "mcp_compatible": false,
       "author": "MRWillisT"
     },
     {
+      "name": "skill-creator",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for skill creator.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "systematic-debugging",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for systematic debugging.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "test-driven-development",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for test driven development.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
       "name": "vibe-coder-workflow",
       "version": "1.0.0",
       "description": "The self-taught builder's AI workflow — how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally.",
-      "tags": ["workflow", "vibe-coding", "local-ai", "development", "beginner"],
+      "tags": [
+        "workflow",
+        "vibe-coding",
+        "local-ai",
+        "development",
+        "beginner"
+      ],
       "license": "CC0-1.0",
       "examples": 10,
       "mcp_compatible": false,
       "author": "MRWillisT"
+    },
+    {
+      "name": "web-artifacts-builder",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for web artifacts builder.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "web-design-guidelines",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for web design guidelines.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "webapp-testing",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for webapp testing.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "writing-plans",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for writing plans.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "writing-skills",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for writing skills.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
+    },
+    {
+      "name": "xlsx",
+      "version": "1.0.0",
+      "description": "Imported SKILL.md package for xlsx.",
+      "tags": [
+        "imported",
+        "skill-pack"
+      ],
+      "license": "SEE-SKILL",
+      "examples": 0,
+      "mcp_compatible": false,
+      "author": "community-import"
     }
   ]
 }
