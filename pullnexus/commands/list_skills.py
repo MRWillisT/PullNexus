@@ -6,7 +6,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from pullnexus.api import fetch_index
+from pullnexus.api import fetch_registry
 
 console = Console()
 
@@ -14,9 +14,16 @@ console = Console()
 def list_skills(
     tag: Optional[str] = typer.Option(None, "--tag", "-t", help="Filter by tag"),
     sort: str = typer.Option("name", "--sort", "-s", help="Sort by: name, version"),
+    show_all: bool = typer.Option(
+        False,
+        "--all",
+        help="Include external registry sources.",
+    ),
 ):
     """List all available skills in the Nexus."""
-    skills = fetch_index()
+    registry = fetch_registry()
+    skills = registry.get("skills", [])
+    external_sources = registry.get("external_sources", [])
 
     if not skills:
         console.print(
@@ -60,6 +67,36 @@ def list_skills(
         )
 
     console.print(table)
+
+    if show_all:
+        ext_table = Table(
+            title=(
+                "External Skill Sources "
+                f"({len(external_sources)} source{'s' if len(external_sources) != 1 else ''})"
+            ),
+            show_header=True,
+            header_style="bold magenta",
+            border_style="dim",
+        )
+        ext_table.add_column("Name", style="bold")
+        ext_table.add_column("Repo", style="cyan")
+        ext_table.add_column("License", style="dim")
+        ext_table.add_column("Adapter")
+
+        if external_sources:
+            for source in external_sources:
+                ext_table.add_row(
+                    source.get("name", ""),
+                    source.get("repo", ""),
+                    source.get("license", ""),
+                    source.get("adapter", ""),
+                )
+        else:
+            ext_table.add_row("—", "—", "—", "No external sources configured")
+
+        console.print()
+        console.print(ext_table)
+
     console.print(
         "\n[dim]Run [bold]pullnexus pull <skill-name>[/bold] to install a skill locally.[/dim]"
     )

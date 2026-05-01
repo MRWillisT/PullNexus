@@ -18,6 +18,32 @@ HEADERS = {"Accept": "application/vnd.github.v3+json"}
 _console = Console()
 
 
+def fetch_registry() -> dict:
+    """
+    Fetch full registry metadata from skills/index.json.
+
+    Returns a dict with keys:
+    - skills: list[dict]
+    - external_sources: list[dict]
+    Falls back to directory enumeration when index.json is unavailable.
+    """
+    try:
+        with httpx.Client(timeout=10.0) as client:
+            resp = client.get(__registry_index__, headers=HEADERS)
+            if resp.status_code == 200:
+                data = resp.json()
+                if isinstance(data, dict):
+                    return {
+                        "skills": data.get("skills", []),
+                        "external_sources": data.get("external_sources", []),
+                    }
+    except Exception:
+        pass
+
+    # Fallback: enumerate the skills/ directory on GitHub
+    return {"skills": _fetch_skills_from_directory(), "external_sources": []}
+
+
 def fetch_index() -> list[dict]:
     """
     Fetch the machine-readable skills index (skills/index.json).
@@ -26,17 +52,7 @@ def fetch_index() -> list[dict]:
     directory listing if the index file is missing, and returns an
     empty list when the registry is completely unreachable.
     """
-    try:
-        with httpx.Client(timeout=10.0) as client:
-            resp = client.get(__registry_index__, headers=HEADERS)
-            if resp.status_code == 200:
-                data = resp.json()
-                return data.get("skills", [])
-    except Exception:
-        pass
-
-    # Fallback: enumerate the skills/ directory on GitHub
-    return _fetch_skills_from_directory()
+    return fetch_registry().get("skills", [])
 
 
 def _fetch_skills_from_directory() -> list[dict]:

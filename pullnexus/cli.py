@@ -18,6 +18,30 @@ app = typer.Typer(
     no_args_is_help=True,
 )
 
+
+@app.callback(invoke_without_command=True)
+def main(
+    ctx: typer.Context,
+    list_only: bool = typer.Option(
+        False,
+        "--list",
+        help="List skills (alias for `pullnexus list`).",
+    ),
+    all_sources: bool = typer.Option(
+        False,
+        "--all",
+        help="Include external sources when used with --list.",
+    ),
+):
+    """Top-level options and command routing for PullNexus CLI."""
+    if list_only:
+        list_skills.list_skills(show_all=all_sources)
+        raise typer.Exit(0)
+
+    # Keep normal no-args help behavior when invoked without a subcommand.
+    if ctx.invoked_subcommand is None and not list_only:
+        raise typer.Exit(0)
+
 app.command()(search.search)
 app.command()(install.install)
 app.command(name="pull")(install.install)           # pullnexus pull <skill>  alias
