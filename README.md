@@ -137,6 +137,7 @@ These can be built directly from the existing JSONL pipeline before launch â€
 7. `crypto-trading-bot` â€” strategy logic, backtesting, bot architecture
 8. `n8n-mcp-workflows` â€” MCP-native n8n automation patterns
 9. `autonomous-agent-payments` â€” x402-style payment and policy guardrails
+10. `kronos-trading-integration` â€” Kronos forecast fusion for safer bot decisions
 
 These aren't placeholders â€” they're real, battle-tested conversations already in JSONL format. That's the head start no other project launching in this space has.
 
@@ -147,7 +148,7 @@ These aren't placeholders â€” they're real, battle-tested conversations alr
 | Week | Action |
 |---|---|
 | **Week 1** | Lock everything â€” GitHub org (`pullnexus`), PyPI package, domain (`pullnexus.dev` or `pullnexus.io`) |
-| **Week 1** | Convert 9 seed skills from existing JSONL pipeline/community patterns into the skill format |
+| **Week 1** | Convert 10 seed skills from existing JSONL pipeline/community patterns into the skill format |
 | **Week 2** | Write the full spec doc + contribution guide |
 | **Week 2** | Build basic CLI in Python (`pull`, `search`, `submit`) |
 | **Week 3** | GitHub Pages landing page + registry structure |

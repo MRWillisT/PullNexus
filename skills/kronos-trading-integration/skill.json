@@ -1,0 +1,11 @@
+{
+  "name": "kronos-trading-integration",
+  "version": "1.0.0",
+  "description": "Integrate Kronos market predictions into crypto trading workflows with safe feature engineering, signal fusion, and risk-aware execution.",
+  "tags": ["kronos", "trading-bot", "time-series", "signal-fusion", "risk-management"],
+  "license": "CC0-1.0",
+  "examples": 6,
+  "mcp_compatible": false,
+  "author": "MRWillisT",
+  "source": "KronosA + PullNexus integration patterns"
+}

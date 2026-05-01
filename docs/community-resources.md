@@ -52,6 +52,10 @@ A curated set of open repositories that can amplify local AI and agent workflows
     https://github.com/quemsah/awesome-claude-plugins  
     Large plugin and repo index.
 
+13. KronosA  
+   https://github.com/shiyu-coder/KronosA  
+   Forecasting model repo used as reference for PullNexus Kronos integration skill.
+
 ## Notes
 
 - This list is a starting point for inspiration and interoperability ideas.

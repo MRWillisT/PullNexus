@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-01",
-  "total": 9,
+  "total": 10,
   "skills": [
     {
       "name": "autonomous-agent-patterns",
@@ -40,6 +40,16 @@
       "tags": ["crypto", "trading-bot", "risk", "backtesting", "execution"],
       "license": "CC0-1.0",
       "examples": 5,
+      "mcp_compatible": false,
+      "author": "MRWillisT"
+    },
+    {
+      "name": "kronos-trading-integration",
+      "version": "1.0.0",
+      "description": "Integrate Kronos market predictions into crypto trading workflows with safe feature engineering, signal fusion, and risk-aware execution.",
+      "tags": ["kronos", "trading-bot", "time-series", "signal-fusion", "risk-management"],
+      "license": "CC0-1.0",
+      "examples": 6,
       "mcp_compatible": false,
       "author": "MRWillisT"
     },

@@ -11,6 +11,9 @@ build/
 *.egg
 *.whl
 
+# PyPI publishing tools
+twine/
+
 # Virtual environments
 .venv/
 venv/
