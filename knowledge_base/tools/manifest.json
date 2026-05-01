@@ -1,0 +1,22 @@
+{
+  "name": "tools",
+  "description": "Tool capabilities, safe command policies, and execution recipes.",
+  "rules": [
+    "Document allowlist/denylist updates.",
+    "Store tool examples with expected outputs."
+  ],
+  "fields": {
+    "tool_name": "",
+    "version": "",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  },
+  "documents": [
+    {
+      "path": "windows_local_ai_tooling.md",
+      "tags": ["windows", "local-ai", "ollama", "safe-commands"],
+      "quality_score": 0.85
+    }
+  ]
+}

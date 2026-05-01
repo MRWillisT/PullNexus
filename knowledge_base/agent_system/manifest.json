@@ -1,0 +1,22 @@
+{
+  "name": "agent_system",
+  "description": "Orchestrator runtime, memory schema, role prompts, and policies.",
+  "rules": [
+    "Keep prompts versioned.",
+    "Record safety policy changes with rationale."
+  ],
+  "fields": {
+    "component": "",
+    "version": "",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  },
+  "documents": [
+    {
+      "path": "uncertainty_policy.md",
+      "tags": ["uncertainty", "correction", "safety", "hallucination"],
+      "quality_score": 0.9
+    }
+  ]
+}

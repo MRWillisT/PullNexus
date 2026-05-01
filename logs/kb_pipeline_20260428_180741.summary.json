@@ -1,0 +1,28 @@
+﻿{
+    "ok":  true,
+    "ran_steps":  3,
+    "total_steps":  3,
+    "results":  [
+                    {
+                        "step":  "ingest",
+                        "ok":  true,
+                        "exit_code":  0,
+                        "stdout":  "{\n  \"scanned\": 1,\n  \"ingested\": 1,\n  \"skipped_non_file\": 0,\n  \"skipped_unsupported_ext\": 0,\n  \"skipped_duplicate_content\": 0,\n  \"dry_run\": true,\n  \"files\": [\n    {\n      \"source\": \"W:\\\\Copilot-Training-Data\\\\ready-for-training\\\\knowledge_base\\\\chats_raw\\\\manifest.json\",\n      \"target\": \"W:\\\\Copilot-Training-Data\\\\ready-for-training\\\\knowledge_base\\\\chats_raw\\\\manifest__2.json\",\n      \"sha256\": \"55d6db67dc1da82b823653c4cc75b5fd5d7e6c269659b0ce2332fb609825edaf\"\n    }\n  ]\n}\n",
+                        "stderr":  ""
+                    },
+                    {
+                        "step":  "auto_tag",
+                        "ok":  true,
+                        "exit_code":  0,
+                        "stdout":  "{\n  \"scanned_items\": 0,\n  \"updated_items\": 0,\n  \"top_tags\": [],\n  \"dry_run\": true\n}\n",
+                        "stderr":  ""
+                    },
+                    {
+                        "step":  "route_projects",
+                        "ok":  true,
+                        "exit_code":  0,
+                        "stdout":  "{\n  \"routed_files\": 0,\n  \"skipped_missing_raw\": 0,\n  \"items_without_project_tag\": 0,\n  \"project_counts\": {},\n  \"dry_run\": true\n}\n",
+                        "stderr":  ""
+                    }
+                ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "projects",
+  "description": "Project-specific context, architecture notes, and decisions.",
+  "rules": [
+    "Create one subfolder per project.",
+    "Keep decision logs and current status updated."
+  ],
+  "fields": {
+    "project_name": "",
+    "repo": "",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  },
+  "documents": [
+    {
+      "path": "local_ai_training_project_summary.md",
+      "tags": ["local-ai", "training", "project-summary", "risk"],
+      "quality_score": 0.9
+    }
+  ]
+}

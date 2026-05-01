@@ -1,0 +1,22 @@
+{
+  "name": "index",
+  "description": "Catalogs, corpus manifests, and retrieval index metadata.",
+  "rules": [
+    "Regenerate index metadata after corpus updates.",
+    "Track index build time and source snapshot."
+  ],
+  "fields": {
+    "index_name": "",
+    "build_id": "",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  },
+  "documents": [
+    {
+      "path": "seed_content_index_2026-04-29.md",
+      "tags": ["index", "seed-content", "knowledge-base"],
+      "quality_score": 0.85
+    }
+  ]
+}

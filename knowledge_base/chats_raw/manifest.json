@@ -1,0 +1,14 @@
+{
+  "name": "chats_raw",
+  "description": "Original exported chat files. Keep immutable.",
+  "rules": [
+    "Do not edit files in this folder.",
+    "Use chats_clean for normalized derivatives."
+  ],
+  "fields": {
+    "source": "github_copilot_export",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  }
+}

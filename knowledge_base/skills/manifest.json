@@ -1,0 +1,22 @@
+{
+  "name": "skills",
+  "description": "Reusable role playbooks and specialist procedures.",
+  "rules": [
+    "One skill per file with clear trigger conditions.",
+    "Add examples and failure cases."
+  ],
+  "fields": {
+    "skill_name": "",
+    "owner": "",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  },
+  "documents": [
+    {
+      "path": "vibe_coder_loop.md",
+      "tags": ["vibe-coder", "workflow", "planning", "debugging"],
+      "quality_score": 0.9
+    }
+  ]
+}

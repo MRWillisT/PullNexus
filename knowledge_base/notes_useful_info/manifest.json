@@ -1,0 +1,22 @@
+{
+  "name": "notes_useful_info",
+  "description": "General insights, useful snippets, and short research notes.",
+  "rules": [
+    "Keep notes atomic and searchable.",
+    "Add source link or origin where possible."
+  ],
+  "fields": {
+    "note_title": "",
+    "source": "",
+    "date_range": "",
+    "tags": [],
+    "quality_score": null
+  },
+  "documents": [
+    {
+      "path": "dataset_gap_actions_2026-04-29.md",
+      "tags": ["dataset", "coverage", "domain-skew", "curation"],
+      "quality_score": 0.9
+    }
+  ]
+}
