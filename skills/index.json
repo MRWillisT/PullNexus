@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-01",
-  "total": 38,
+  "total": 39,
   "skills": [
     {
       "name": "grill-me",
@@ -537,6 +537,27 @@
       ],
       "license": "CC-BY-4.0",
       "examples": 8,
+      "mcp_compatible": false,
+      "author": "MRWillisT",
+      "inspired_by": "https://x.com/seelffff/status/2049214021430325677",
+      "source": "https://x.com/seelffff/status/2049214021430325677"
+    },
+    {
+      "name": "open-source-ai-repo-catalog-2026",
+      "version": "1.0.0",
+      "description": "Structured catalog of open-source AI repos grouped by category, with exact tool names and links for fast stack selection and lookup.",
+      "tags": [
+        "open-source",
+        "catalog",
+        "tool-registry",
+        "local-ai",
+        "rag",
+        "agents",
+        "multimodal",
+        "research"
+      ],
+      "license": "CC-BY-4.0",
+      "examples": 6,
       "mcp_compatible": false,
       "author": "MRWillisT",
       "inspired_by": "https://x.com/seelffff/status/2049214021430325677",

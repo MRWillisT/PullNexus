@@ -1,0 +1,5 @@
+{"input": "List the repos in the llm-inference category.", "expected": "Should return exact repo names from the llm-inference group, not a generic summary."}
+{"input": "Which category contains Docling and Chroma?", "expected": "Should identify rag-and-knowledge and reference the exact tool names."}
+{"input": "What is the GitHub repo for LiteLLM?", "expected": "Should return the exact GitHub URL from the catalog."}
+{"input": "Show me Claude-specific tools from the source list.", "expected": "Should enumerate the Claude-specific entries with exact names."}
+{"input": "How complete is the catalog?", "expected": "Should mention that the current machine-readable extraction contains 62 concrete entries from a 69-repo source post."}
