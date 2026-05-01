@@ -1,6 +1,7 @@
 """pullnexus list — list all available skills."""
 
 from collections import defaultdict
+import json
 from typing import Optional
 
 import typer
@@ -30,6 +31,11 @@ def list_skills(
         False,
         "--all",
         help="Include external registry sources.",
+    ),
+    as_json: bool = typer.Option(
+        False,
+        "--json",
+        help="Output skills as JSON for machine-friendly consumption.",
     ),
 ):
     """List all available skills in the Nexus."""
@@ -65,6 +71,33 @@ def list_skills(
         skills.sort(key=lambda s: s.get("version", ""))
     else:
         skills.sort(key=lambda s: s.get("name", ""))
+
+    if as_json:
+        payload = {
+            "filters": {
+                "tag": tag,
+                "category": category.lower().strip() if category else None,
+                "sort": sort,
+                "group_by": group_by,
+                "all_sources": show_all,
+            },
+            "total_skills": len(skills),
+            "skills": [
+                {
+                    "name": skill.get("name", ""),
+                    "category": _skill_category_slug(skill),
+                    "version": skill.get("version", ""),
+                    "examples": skill.get("examples", skill.get("evaluation_cases", 0)),
+                    "tags": skill.get("tags", []),
+                    "description": skill.get("description", ""),
+                }
+                for skill in skills
+            ],
+            "groups": _build_group_payload(skills, group_by) if group_by else None,
+            "external_sources": external_sources if show_all else [],
+        }
+        console.print(json.dumps(payload, indent=2))
+        raise typer.Exit(0)
 
     if group_by:
         _print_grouped_skills(skills, group_by)
@@ -209,3 +242,33 @@ def _print_external_sources(external_sources: list[dict]) -> None:
 
     console.print()
     console.print(ext_table)
+
+
+def _build_group_payload(skills: list[dict], group_by: str) -> dict[str, list[dict]]:
+    """Build grouped skill payload for JSON output."""
+    if group_by not in {"use", "category"}:
+        console.print(
+            f"[red]Unsupported group: '{group_by}'. Try [bold]category[/bold] or [bold]use[/bold].[/red]"
+        )
+        raise typer.Exit(1)
+
+    grouped: dict[str, list[dict]] = defaultdict(list)
+    for skill in skills:
+        if group_by == "category":
+            group_name = _skill_category_slug(skill)
+        else:
+            group_name = _extract_use_group(skill.get("tags", [])).lower().replace(" ", "-")
+        grouped[group_name].append(
+            {
+                "name": skill.get("name", ""),
+                "category": _skill_category_slug(skill),
+                "version": skill.get("version", ""),
+                "tags": skill.get("tags", []),
+                "description": skill.get("description", ""),
+            }
+        )
+
+    return {
+        group: sorted(items, key=lambda item: item.get("name", ""))
+        for group, items in sorted(grouped.items(), key=lambda item: item[0])
+    }
