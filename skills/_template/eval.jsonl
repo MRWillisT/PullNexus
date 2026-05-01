@@ -1,0 +1,3 @@
+{"id": "eval_001", "input": "Describe a scenario where this skill applies and ask the key question.", "expected_behavior": "The model should demonstrate [specific behavior]. It should NOT [anti-pattern to avoid].", "tags": ["core-behavior"]}
+{"id": "eval_002", "input": "A second evaluation scenario.", "expected_behavior": "Description of ideal response characteristics.", "tags": ["edge-case"]}
+{"id": "eval_003", "input": "A harder scenario that tests whether the model really learned the skill.", "expected_behavior": "Description of ideal response for this harder case.", "tags": ["advanced"]}

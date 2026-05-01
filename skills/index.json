@@ -1,0 +1,57 @@
+{
+  "version": "1.0",
+  "updated": "2026-05-01",
+  "total": 5,
+  "skills": [
+    {
+      "name": "autonomous-agent-patterns",
+      "version": "1.0.0",
+      "description": "Core patterns for building autonomous AI agents — task planning, tool orchestration, multi-step execution, error recovery, and memory persistence across sessions.",
+      "tags": ["autonomous-agent", "tool-use", "planning", "multi-step", "local-ai", "mcp"],
+      "license": "CC0-1.0",
+      "examples": 10,
+      "mcp_compatible": true,
+      "author": "MRWillisT"
+    },
+    {
+      "name": "python-advanced-debugging",
+      "version": "1.0.0",
+      "description": "Expert multi-turn debugging techniques for Python — async hangs, silent failures, rate limits, P&L calculation errors, and systematic diagnosis workflows.",
+      "tags": ["python", "debugging", "async", "trading-bot", "development"],
+      "license": "CC0-1.0",
+      "examples": 6,
+      "mcp_compatible": false,
+      "author": "MRWillisT"
+    },
+    {
+      "name": "pytest-and-testing",
+      "version": "1.0.0",
+      "description": "Practical pytest patterns for developers who have never written tests — mocking exchange APIs, fixtures, conftest.py, parametrize, coverage, and testing async code.",
+      "tags": ["python", "pytest", "testing", "mocking", "development"],
+      "license": "CC0-1.0",
+      "examples": 8,
+      "mcp_compatible": false,
+      "author": "MRWillisT"
+    },
+    {
+      "name": "reasoning-and-problem-solving",
+      "version": "1.0.0",
+      "description": "Systematic problem decomposition for complex technical questions — REST vs WebSockets tradeoffs, debugging vague failures, architectural decisions, and reasoning under uncertainty.",
+      "tags": ["reasoning", "problem-solving", "architecture", "debugging", "decision-making"],
+      "license": "CC0-1.0",
+      "examples": 12,
+      "mcp_compatible": false,
+      "author": "MRWillisT"
+    },
+    {
+      "name": "vibe-coder-workflow",
+      "version": "1.0.0",
+      "description": "The self-taught builder's AI workflow — how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally.",
+      "tags": ["workflow", "vibe-coding", "local-ai", "development", "beginner"],
+      "license": "CC0-1.0",
+      "examples": 10,
+      "mcp_compatible": false,
+      "author": "MRWillisT"
+    }
+  ]
+}

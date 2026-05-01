@@ -66,7 +66,11 @@ def submit(
     example_count = 0
     if "examples.jsonl" in existing:
         try:
-            lines = (skill_path / "examples.jsonl").read_text(encoding="utf-8").strip().splitlines()
+            lines = [
+                l for l in
+                (skill_path / "examples.jsonl").read_text(encoding="utf-8").splitlines()
+                if l.strip()
+            ]
             for i, line in enumerate(lines, 1):
                 obj = json.loads(line)
                 if "conversations" not in obj and "messages" not in obj:
@@ -87,7 +91,11 @@ def submit(
     eval_count = 0
     if "eval.jsonl" in existing:
         try:
-            lines = (skill_path / "eval.jsonl").read_text(encoding="utf-8").strip().splitlines()
+            lines = [
+                l for l in
+                (skill_path / "eval.jsonl").read_text(encoding="utf-8").splitlines()
+                if l.strip()
+            ]
             eval_count = len(lines)
             for i, line in enumerate(lines, 1):
                 obj = json.loads(line)

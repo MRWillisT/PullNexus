@@ -1,0 +1,11 @@
+{
+  "name": "reasoning-and-problem-solving",
+  "version": "1.0.0",
+  "description": "Systematic problem decomposition for complex technical questions — REST vs WebSockets tradeoffs, debugging vague failures, architectural decisions, and reasoning under uncertainty.",
+  "tags": ["reasoning", "problem-solving", "architecture", "debugging", "decision-making"],
+  "license": "CC0-1.0",
+  "examples": 12,
+  "mcp_compatible": false,
+  "author": "MRWillisT",
+  "source": "synthetic"
+}
