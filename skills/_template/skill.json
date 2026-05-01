@@ -1,0 +1,11 @@
+{
+  "name": "your-skill-name",
+  "version": "1.0.0",
+  "description": "One clear sentence explaining what this skill teaches a local LLM.",
+  "tags": ["tag1", "tag2"],
+  "license": "CC0-1.0",
+  "examples": 0,
+  "mcp_compatible": false,
+  "author": "your-github-handle",
+  "source": ""
+}

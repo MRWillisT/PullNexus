@@ -1,0 +1,11 @@
+{
+  "name": "python-advanced-debugging",
+  "version": "1.0.0",
+  "description": "Expert multi-turn debugging techniques for Python — async hangs, silent failures, rate limits, P&L calculation errors, and systematic diagnosis workflows.",
+  "tags": ["python", "debugging", "async", "trading-bot", "development"],
+  "license": "CC0-1.0",
+  "examples": 6,
+  "mcp_compatible": false,
+  "author": "MRWillisT",
+  "source": "synthetic"
+}
