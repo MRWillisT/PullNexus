@@ -33,8 +33,9 @@ def fetch_registry() -> dict:
             if resp.status_code == 200:
                 data = resp.json()
                 if isinstance(data, dict):
+                    skills = data.get("skills", [])
                     return {
-                        "skills": data.get("skills", []),
+                        "skills": _augment_skills_with_catalog_resources(skills),
                         "external_sources": data.get("external_sources", []),
                     }
     except Exception:
@@ -74,7 +75,16 @@ def fetch_skill_json(skill_name: str) -> Optional[dict]:
     except Exception:
         pass
 
-    return _fetch_local_skill_json(skill_name)
+    local = _fetch_local_skill_json(skill_name)
+    if local is not None:
+        return local
+
+    # Virtual/generated entries can still be discovered from the index.
+    for skill in fetch_index():
+        if skill.get("name") == skill_name:
+            return skill
+
+    return None
 
 
 def fetch_skill_readme(skill_name: str) -> Optional[str]:
@@ -107,8 +117,9 @@ def _fetch_registry_from_local_index() -> Optional[dict]:
             data = json.loads(index_path.read_text(encoding="utf-8"))
             if not isinstance(data, dict):
                 continue
+            skills = data.get("skills", [])
             return {
-                "skills": data.get("skills", []),
+                "skills": _augment_skills_with_catalog_resources(skills),
                 "external_sources": data.get("external_sources", []),
             }
         except Exception:
@@ -165,7 +176,7 @@ def _fetch_skills_from_directory() -> list[dict]:
                 skill = _fetch_skill_meta(client, entry["name"])
                 if skill:
                     skills.append(skill)
-            return skills
+            return _augment_skills_with_catalog_resources(skills)
     except Exception:
         _console.print(
             "[yellow]⚠ Could not reach the registry. "
@@ -228,3 +239,138 @@ def download_file(url: str) -> Optional[bytes]:
             return resp.content
     except Exception:
         return None
+
+
+def _augment_skills_with_catalog_resources(skills: list[dict]) -> list[dict]:
+    """Expand catalog-style skill entries into first-class resource items."""
+    if not isinstance(skills, list):
+        return []
+
+    expanded: list[dict] = list(skills)
+    existing_names = {str(skill.get("name", "")) for skill in expanded if isinstance(skill, dict)}
+
+    for skill in skills:
+        if not isinstance(skill, dict):
+            continue
+
+        tags = [str(tag).lower() for tag in skill.get("tags", []) if isinstance(tag, str)]
+        if "tool-registry" not in tags and "catalog" not in tags:
+            continue
+
+        catalog_entries = _load_catalog_repos(str(skill.get("name", "")))
+        if not catalog_entries:
+            continue
+
+        parent_name = str(skill.get("name", "catalog"))
+        for entry in catalog_entries:
+            resource_name = entry["name"]
+            if resource_name in existing_names:
+                continue
+            expanded.append(
+                {
+                    "name": resource_name,
+                    "version": skill.get("version", "1.0.0"),
+                    "description": entry["description"],
+                    "tags": [
+                        "resource",
+                        "repository",
+                        "open-source",
+                        f"catalog:{parent_name}",
+                        f"domain:{entry['domain']}",
+                        "use:research",
+                    ],
+                    "license": skill.get("license", "SEE-SOURCE"),
+                    "examples": 0,
+                    "mcp_compatible": False,
+                    "author": skill.get("author", "community"),
+                    "source": entry["url"],
+                    "category": "research",
+                    "resource_type": "repository",
+                    "repo": entry["repo"],
+                    "catalog_parent": parent_name,
+                    "catalog_rank": entry["rank"],
+                    "display_name": entry["title"],
+                }
+            )
+            existing_names.add(resource_name)
+
+    return expanded
+
+
+def _load_catalog_repos(skill_name: str) -> list[dict]:
+    """Load repo entries from <skill>/catalog.json (local first, then remote)."""
+    payload = _load_local_catalog_payload(skill_name)
+    if payload is None:
+        payload = _load_remote_catalog_payload(skill_name)
+    if not isinstance(payload, dict):
+        return []
+
+    categories = payload.get("categories", [])
+    if not isinstance(categories, list):
+        return []
+
+    rows: list[dict] = []
+    for category in categories:
+        if not isinstance(category, dict):
+            continue
+        domain_slug = str(category.get("slug", "other")).strip().lower() or "other"
+        repos = category.get("repos", [])
+        if not isinstance(repos, list):
+            continue
+        for repo in repos:
+            if not isinstance(repo, dict):
+                continue
+            raw_name = str(repo.get("name", "")).strip()
+            if not raw_name:
+                continue
+            rows.append(
+                {
+                    "name": f"repo-{_slugify(raw_name)}",
+                    "title": raw_name,
+                    "repo": str(repo.get("repo", "")).strip(),
+                    "url": str(repo.get("url", "")).strip(),
+                    "description": str(repo.get("summary", "")).strip(),
+                    "domain": domain_slug,
+                    "rank": int(repo.get("rank", 0) or 0),
+                }
+            )
+
+    return rows
+
+
+def _load_local_catalog_payload(skill_name: str) -> Optional[dict]:
+    """Read a catalog.json file from local workspace locations."""
+    for path in _skill_candidate_paths(skill_name, "catalog.json"):
+        try:
+            if path.exists():
+                return json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+    return None
+
+
+def _load_remote_catalog_payload(skill_name: str) -> Optional[dict]:
+    """Read a catalog.json file from remote GitHub registry."""
+    url = f"{__registry_url__}/{skill_name}/catalog.json"
+    try:
+        with httpx.Client(timeout=10.0) as client:
+            resp = client.get(url, headers=HEADERS)
+            if resp.status_code != 200:
+                return None
+            import base64
+
+            content_b64 = resp.json().get("content", "")
+            content = base64.b64decode(content_b64).decode("utf-8")
+            return json.loads(content)
+    except Exception:
+        return None
+
+
+def _slugify(value: str) -> str:
+    """Convert names to lowercase, hyphenated slugs."""
+    cleaned = "-".join(value.strip().lower().split())
+    allowed = "abcdefghijklmnopqrstuvwxyz0123456789-"
+    slug = "".join(ch for ch in cleaned if ch in allowed)
+    while "--" in slug:
+        slug = slug.replace("--", "-")
+    return slug.strip("-") or "resource"
