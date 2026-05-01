@@ -9,6 +9,7 @@ from rich.console import Console
 from rich.table import Table
 
 from pullnexus.api import fetch_registry
+from pullnexus.schema import SCHEMA_VERSION
 
 console = Console()
 
@@ -86,6 +87,7 @@ def list_skills(
 
     if as_json:
         payload = {
+            "schema_version": SCHEMA_VERSION,
             "filters": {
                 "tag": tag,
                 "category": category.lower().strip() if category else None,
@@ -110,7 +112,7 @@ def list_skills(
             "groups": _build_group_payload(skills, group_by) if group_by else None,
             "external_sources": external_sources if show_all else [],
         }
-        console.print(json.dumps(payload, indent=2))
+        print(json.dumps(payload, indent=2))
         raise typer.Exit(0)
 
     if group_by:

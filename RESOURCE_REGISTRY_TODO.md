@@ -9,8 +9,8 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [x] Expand catalog repo entries into first-class discoverable resources.
 - [x] Add resource type defaults (`resource_type`) in registry loading.
 - [x] Add `--type` filtering to `pullnexus list`, `pullnexus search`, and `pullnexus recommend`.
-- [ ] Add schema version field to JSON outputs (`schema_version`) for stable agent parsing.
-- [ ] Add `pullnexus types --json` command to enumerate available resource types and counts.
+- [x] Add schema version field to JSON outputs (`schema_version`) for stable agent parsing.
+- [x] Add `pullnexus types --json` command to enumerate available resource types and counts.
 
 ## P1 - New First-Class Resource Types
 - [ ] `tool` resources: MCP servers, SDK wrappers, integration adapters.

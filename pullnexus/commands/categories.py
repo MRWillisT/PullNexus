@@ -8,6 +8,7 @@ from rich.console import Console
 from rich.table import Table
 
 from pullnexus.api import fetch_index
+from pullnexus.schema import SCHEMA_VERSION
 
 console = Console()
 
@@ -24,7 +25,7 @@ def categories(
 
     if not skills:
         if as_json:
-            console.print(json.dumps({"total_categories": 0, "total_skills": 0, "categories": []}, indent=2))
+            print(json.dumps({"schema_version": SCHEMA_VERSION, "total_categories": 0, "total_skills": 0, "categories": []}, indent=2))
         else:
             console.print("[yellow]No skills available yet.[/yellow]")
         raise typer.Exit(0)
@@ -37,6 +38,7 @@ def categories(
 
     if as_json:
         payload = {
+            "schema_version": SCHEMA_VERSION,
             "total_categories": len(counter),
             "total_skills": len(skills),
             "categories": [
@@ -48,7 +50,7 @@ def categories(
                 for category, count in ordered
             ],
         }
-        console.print(json.dumps(payload, indent=2))
+        print(json.dumps(payload, indent=2))
         raise typer.Exit(0)
 
     table = Table(

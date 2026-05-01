@@ -8,6 +8,7 @@ from rich.console import Console
 from rich.table import Table
 
 from pullnexus.api import fetch_index
+from pullnexus.schema import SCHEMA_VERSION
 
 console = Console()
 
@@ -127,6 +128,7 @@ def recommend(
 
     if as_json:
         payload = {
+            "schema_version": SCHEMA_VERSION,
             "problem": problem,
             "requested_category": requested_category or None,
             "requested_type": requested_type or None,
@@ -145,7 +147,7 @@ def recommend(
                 for score, skill, reason, detail_parts in top
             ],
         }
-        console.print(json.dumps(payload, indent=2))
+        print(json.dumps(payload, indent=2))
         raise typer.Exit(0)
 
     table = Table(
