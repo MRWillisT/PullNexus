@@ -1,0 +1,3 @@
+{"conversations": [{"from": "human", "value": "Example user question or request goes here."}, {"from": "gpt", "value": "Example ideal assistant response goes here. Show the behavior you want the model to learn."}]}
+{"conversations": [{"from": "human", "value": "Second example question."}, {"from": "gpt", "value": "Second ideal response."}]}
+{"conversations": [{"from": "human", "value": "Third example — consider multi-turn conversations for complex skills."}, {"from": "gpt", "value": "First assistant turn."}, {"from": "human", "value": "Follow-up question."}, {"from": "gpt", "value": "Follow-up response showing good behavior."}]}
