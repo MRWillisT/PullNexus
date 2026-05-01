@@ -1,0 +1,51 @@
+{
+  "version": "v1",
+  "updated_at": "2026-04-28T00:00:00Z",
+  "user_preferences": {
+    "response_style": "concise",
+    "risk_tolerance": "low",
+    "ask_before_high_impact_changes": true
+  },
+  "project_constraints": [
+    "offline_only",
+    "no_external_data_transfer",
+    "max_ram_8gb"
+  ],
+  "active_objectives": [
+    {
+      "id": "obj_local_agent_v1",
+      "title": "Build robust local autonomous agent",
+      "status": "in_progress",
+      "milestones": [
+        {
+          "name": "dataset_and_eval_setup",
+          "status": "completed"
+        },
+        {
+          "name": "memory_and_roles_runtime",
+          "status": "in_progress"
+        },
+        {
+          "name": "safety_and_release_gates",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "rejected_approaches": [
+    {
+      "approach": "blind_auto_fix_all_errors",
+      "reason": "high regression risk and poor explainability"
+    }
+  ],
+  "recent_decisions": [
+    "Use deterministic train/val/test split with fixed seed",
+    "Use weighted sampling to balance capability domains"
+  ],
+  "next_actions": [
+    "Implement orchestrator runtime loop",
+    "Wire memory load/save around each task",
+    "Enable role-based delegation with reviewer gate for risky actions"
+  ],
+  "resume_note": "Start by loading this state, then continue objective obj_local_agent_v1 milestone memory_and_roles_runtime."
+}

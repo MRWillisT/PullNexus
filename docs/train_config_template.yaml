@@ -1,0 +1,73 @@
+experiment:
+  name: autonomous-agent-local-v1
+  seed: 20260428
+  output_dir: ./runs/autonomous-agent-local-v1
+
+data:
+  train_file: ./autonomous_agent_train.jsonl
+  val_file: ./autonomous_agent_val.jsonl
+  test_file: ./autonomous_agent_test.jsonl
+  format: mixed_chat
+  max_seq_length: 4096
+  packing: true
+
+model:
+  base_model: your-local-base-model
+  precision: bf16
+  quantization: 4bit
+
+training:
+  method: qlora
+  epochs: 3
+  batch_size_per_device: 2
+  gradient_accumulation_steps: 16
+  learning_rate: 0.0002
+  lr_scheduler: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.01
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  save_steps: 200
+  eval_steps: 100
+  logging_steps: 20
+  early_stopping_patience: 3
+
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+sampling:
+  use_weighted_sampling: true
+  weights:
+    autonomous_agent_sharegpt_coding_10.jsonl: 1.2
+    autonomous_agent_sharegpt_tooling_10.jsonl: 1.2
+    autonomous_agent_sharegpt_reliability_10.jsonl: 1.1
+    autonomous_agent_sharegpt_memory_10.jsonl: 1.1
+    autonomous_agent_sharegpt_hardmode_10.jsonl: 1.0
+    autonomous_agent_sharegpt_multiagent_10.jsonl: 0.9
+    autonomous_agent_sharegpt_vibecoder_10.jsonl: 1.2
+    autonomous_agent_sharegpt_general_assistant_10.jsonl: 1.4
+    autonomous_agent_sharegpt_writing_explanation_10.jsonl: 1.3
+    autonomous_agent_sharegpt_uncertainty_correction_10.jsonl: 1.3
+    autonomous_agent_sharegpt_nonpython_web_shell_10.jsonl: 1.2
+    autonomous_agent_sharegpt_research_10.jsonl: 0.9
+    autonomous_agent_sharegpt_desktop_10.jsonl: 0.9
+    autonomous_agent_sharegpt_eval_10.jsonl: 0.8
+    autonomous_agent_sharegpt_10.jsonl: 1.0
+    autonomous_agent_chatml_10.jsonl: 0.7
+
+inference:
+  temperature: 0.2
+  top_p: 0.9
+  max_new_tokens: 1200
+  repetition_penalty: 1.05
+  system_prompt_profile: orchestrator

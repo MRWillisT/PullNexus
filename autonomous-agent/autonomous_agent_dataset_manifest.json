@@ -1,0 +1,244 @@
+{
+  "name": "autonomous_agent_local_training_bundle",
+  "version": "2026-04-28-v1",
+  "description": "High-quality JSONL corpora focused on autonomous agent capabilities for local model training.",
+  "recommended_ingest_order": [
+    "autonomous_agent_sharegpt_10.jsonl",
+    "autonomous_agent_sharegpt_coding_10.jsonl",
+    "autonomous_agent_sharegpt_hardmode_10.jsonl",
+    "autonomous_agent_sharegpt_eval_10.jsonl",
+    "autonomous_agent_sharegpt_tooling_10.jsonl",
+    "autonomous_agent_sharegpt_multiagent_10.jsonl",
+    "autonomous_agent_sharegpt_vibecoder_10.jsonl",
+    "autonomous_agent_sharegpt_general_assistant_10.jsonl",
+    "autonomous_agent_sharegpt_writing_explanation_10.jsonl",
+    "autonomous_agent_sharegpt_uncertainty_correction_10.jsonl",
+    "autonomous_agent_sharegpt_nonpython_web_shell_10.jsonl",
+    "autonomous_agent_sharegpt_reliability_10.jsonl",
+    "autonomous_agent_sharegpt_memory_10.jsonl",
+    "autonomous_agent_sharegpt_research_10.jsonl",
+    "autonomous_agent_sharegpt_desktop_10.jsonl",
+    "autonomous_agent_chatml_10.jsonl"
+  ],
+  "files": [
+    {
+      "path": "autonomous_agent_sharegpt_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "planning",
+        "tool-usage",
+        "multi-step workflows",
+        "self-correction",
+        "memory"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_coding_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "repo tasks",
+        "tests",
+        "refactoring",
+        "release workflows"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_hardmode_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "adversarial scenarios",
+        "high-pressure recovery",
+        "safe decision-making under uncertainty"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_tooling_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "search patterns",
+        "file operations",
+        "command orchestration",
+        "tool-based verification"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_eval_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "output quality judgment",
+        "rubric-based evaluation",
+        "preference learning signals"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_multiagent_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "parallel delegation",
+        "cross-agent synthesis",
+        "independent verification"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_vibecoder_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "vibe-coder workflows",
+        "local AI setup",
+        "dataset hygiene",
+        "safe command habits",
+        "repo triage"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_general_assistant_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "general assistant behavior",
+        "plain explanations",
+        "decision support",
+        "non-code planning"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_writing_explanation_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "README writing",
+        "documentation",
+        "plan docs",
+        "plain-English explanations"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_uncertainty_correction_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "uncertainty",
+        "context requests",
+        "correction recovery",
+        "hallucination resistance"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_nonpython_web_shell_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "PowerShell",
+        "bash",
+        "SQL"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_reliability_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "failure recovery",
+        "resumability",
+        "guardrails",
+        "observability"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_memory_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "cross-turn memory",
+        "preference retention",
+        "resume context"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_research_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "analysis",
+        "tradeoffs",
+        "decision frameworks"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sharegpt_desktop_10.jsonl",
+      "format": "sharegpt",
+      "examples": 10,
+      "focus": [
+        "desktop automation",
+        "safe file operations",
+        "workflow scripting"
+      ]
+    },
+    {
+      "path": "autonomous_agent_chatml_10.jsonl",
+      "format": "chatml",
+      "examples": 10,
+      "focus": [
+        "role-based conversation formatting",
+        "training compatibility"
+      ]
+    },
+    {
+      "path": "autonomous_agent_train.jsonl",
+      "format": "mixed",
+      "examples": 128,
+      "focus": [
+        "primary fine-tune split",
+        "deterministic sampling source"
+      ]
+    },
+    {
+      "path": "autonomous_agent_val.jsonl",
+      "format": "mixed",
+      "examples": 16,
+      "focus": [
+        "validation split",
+        "early stopping and model selection"
+      ]
+    },
+    {
+      "path": "autonomous_agent_test.jsonl",
+      "format": "mixed",
+      "examples": 16,
+      "focus": [
+        "held-out evaluation",
+        "final quality checks"
+      ]
+    },
+    {
+      "path": "autonomous_agent_sampling_guide.md",
+      "format": "documentation",
+      "examples": 0,
+      "focus": [
+        "weighted sampling",
+        "training configuration defaults"
+      ]
+    }
+  ],
+  "totals": {
+    "sharegpt_examples": 150,
+    "chatml_examples": 10,
+    "grand_total_examples": 160
+  },
+  "notes": [
+    "All files are JSONL with one training item per line.",
+    "IDs are unique within each file.",
+    "Use weighted sampling to prevent overfitting to one domain."
+  ]
+}
