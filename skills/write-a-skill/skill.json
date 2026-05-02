@@ -1,0 +1,15 @@
+{
+  "name": "write-a-skill",
+  "version": "1.0.0",
+  "description": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new VS Code Copilot skill.",
+  "tags": ["skill-creation", "agent-customization", "vscode-skill", "workflow", "meta"],
+  "license": "MIT",
+  "resource_type": "skill",
+  "author": "Matt Pocock",
+  "source": "https://github.com/mattpocock/skills/tree/main/skills/productivity/write-a-skill",
+  "maturity": "stable",
+  "maintained": true,
+  "installable": true,
+  "works_on": ["claude", "gpt-4", "llama3"],
+  "category": "productivity"
+}

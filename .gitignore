@@ -34,3 +34,33 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
+
+# Personal training data / private chat exports
+converted-chats/
+knowledge_base/
+knowledge_base/chats_raw/
+autonomous-agent/autonomous_agent_train.jsonl
+autonomous-agent/autonomous_agent_val.jsonl
+autonomous-agent/autonomous_agent_test.jsonl
+
+# Personal / generated docs (not part of project)
+docs/freedom-bot-full-architecture.md
+docs/agent_system_blueprint.md
+docs/copilot_export_organization_guide.md
+docs/local_ai_dataset_gap_review.md
+docs/local_ai_ollama_training_step_by_step.md
+docs/memory_state_template.json
+docs/multi_agent_roles_template.json
+docs/system_prompt_coder.txt
+docs/system_prompt_orchestrator.txt
+docs/system_prompt_reviewer.txt
+docs/train_config_template.yaml
+
+# Stale root-level files (replaced by pullnexus/ package)
+/api.py
+/cli.py
+/commands/
+
+# Collected Skills — personal scratchpad, not part of registry
+Collected Skills/

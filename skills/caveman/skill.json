@@ -1,0 +1,15 @@
+{
+  "name": "caveman",
+  "version": "1.0.0",
+  "description": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles, and pleasantries while keeping full technical accuracy. Use when user says 'caveman mode', 'talk like caveman', 'use caveman', 'less tokens', or 'be brief'.",
+  "tags": ["communication", "brevity", "token-efficiency", "agent-mode", "vscode-skill"],
+  "license": "MIT",
+  "resource_type": "skill",
+  "author": "Matt Pocock",
+  "source": "https://github.com/mattpocock/skills/tree/main/skills/productivity/caveman",
+  "maturity": "stable",
+  "maintained": true,
+  "installable": true,
+  "works_on": ["claude", "gpt-4", "llama3", "mistral"],
+  "category": "productivity"
+}
