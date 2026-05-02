@@ -41,6 +41,7 @@ converted-chats/
 
 # Local working notes (not for public repo)
 RESOURCE_REGISTRY_TODO.md
+PullNexus_TODO.md
 knowledge_base/
 knowledge_base/chats_raw/
 autonomous-agent/autonomous_agent_train.jsonl
