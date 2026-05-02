@@ -1,4 +1,6 @@
 ---
+# Source: https://github.com/mattpocock/skills/tree/main/skills/productivity/write-a-skill
+# License: MIT — Matt Pocock
 name: write-a-skill
 description: Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.
 ---

@@ -1,4 +1,6 @@
 ---
+# Source: https://github.com/mattpocock/skills/tree/main/skills/productivity/caveman
+# License: MIT — Matt Pocock
 name: caveman
 description: >
   Ultra-compressed communication mode. Cuts token usage ~75% by dropping
