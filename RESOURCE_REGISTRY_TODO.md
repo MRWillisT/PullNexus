@@ -70,24 +70,24 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 > skill search, install, and recommend built in — no CLI wrapper, no extra code.
 
 ### Core server
-- [ ] Build first-party MCP server (`pullnexus/mcp_server.py`) using `fastmcp` or `mcp` SDK
-- [ ] Expose as `pullnexus serve` CLI command — starts a local stdio/HTTP MCP server
-- [ ] Package as optional extra: `pip install pullnexus[mcp]`
+- [x] Build first-party MCP server (`pullnexus/mcp_server.py`) using `fastmcp` or `mcp` SDK
+- [x] Expose as `pullnexus serve` CLI command — starts a local stdio/HTTP MCP server
+- [x] Package as optional extra: `pip install pullnexus[mcp]`
 - [ ] Publish a Docker image for self-hosted / team deployments
 
 ### MCP tools to expose
-- [ ] `pullnexus_search(query, type?, tag?)` — returns ranked skill list as JSON
-- [ ] `pullnexus_recommend(problem, type?, limit?)` — returns scored recommendations
-- [ ] `pullnexus_info(skill_name)` — returns full metadata + README as structured JSON
-- [ ] `pullnexus_install(skill_name, output_path?)` — pulls skill files to local path
-- [ ] `pullnexus_types()` — returns all resource types and counts
-- [ ] `pullnexus_feedback(resource_id, model, hardware, use_case, outcome, notes?)` — submit report
+- [x] `pullnexus_search(query, type?, tag?)` — returns ranked skill list as JSON
+- [x] `pullnexus_recommend(problem, type?, limit?)` — returns scored recommendations
+- [x] `pullnexus_info(skill_name)` — returns full metadata + README as structured JSON
+- [x] `pullnexus_install(skill_name, output_path?)` — pulls skill files to local path
+- [x] `pullnexus_types()` — returns all resource types and counts
+- [x] `pullnexus_feedback(resource_id, model, hardware, use_case, outcome, notes?)` — submit report
 
 ### Client config examples
-- [ ] Claude Code (`claude_mcp_config.json`) setup snippet in docs
-- [ ] Continue.dev (`config.json` mcpServers block) setup snippet in docs
-- [ ] Cursor / generic stdio MCP client config example
-- [ ] Add `docs/mcp-server-setup.md` with copy-paste config for all three
+- [x] Claude Code (`claude_mcp_config.json`) setup snippet in docs
+- [x] Continue.dev (`config.json` mcpServers block) setup snippet in docs
+- [x] Cursor / generic stdio MCP client config example
+- [x] Add `docs/mcp-server-setup.md` with copy-paste config for all three
 
 ### Discoverability
 - [ ] Register on [mcp.so](https://mcp.so) and [glama.ai/mcp](https://glama.ai/mcp/servers) directories
