@@ -370,14 +370,61 @@ def run_stdio() -> None:
 def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
     """Run the MCP server over HTTP (team/cloud deployments)."""
     import os
+
+    public_host = os.getenv("PULLNEXUS_ALLOWED_HOST") or os.getenv("RAILWAY_PUBLIC_DOMAIN")
+
+    try:
+        from mcp.server.transport_security import TransportSecuritySettings
+    except ImportError:
+        TransportSecuritySettings = None
+
+    if TransportSecuritySettings is not None:
+        transport_security = None
+        if public_host:
+            transport_security = TransportSecuritySettings(
+                enable_dns_rebinding_protection=True,
+                allowed_hosts=[
+                    "127.0.0.1",
+                    "127.0.0.1:*",
+                    "localhost",
+                    "localhost:*",
+                    "[::1]",
+                    "[::1]:*",
+                    public_host,
+                    f"{public_host}:*",
+                ],
+                allowed_origins=[
+                    "http://127.0.0.1",
+                    "http://127.0.0.1:*",
+                    "http://localhost",
+                    "http://localhost:*",
+                    "http://[::1]",
+                    "http://[::1]:*",
+                    f"https://{public_host}",
+                    f"https://{public_host}:*",
+                    f"http://{public_host}",
+                    f"http://{public_host}:*",
+                ],
+            )
+
+        mcp.run(
+            transport="streamable-http",
+            host=host,
+            port=port,
+            transport_security=transport_security,
+        )
+        return
+
+    # FastMCP 1.x stores HTTP bind settings on the instance and doesn't expose
+    # transport_security. Serve the Starlette app directly for compatibility.
+    import uvicorn
+
     mcp.settings.host = host
     mcp.settings.port = port
-    # In cloud/proxy deployments the public hostname differs from the bind host.
-    # Read allowed hosts from env var so Railway (or any proxy) works without
-    # hardcoding the domain. Set PULLNEXUS_ALLOWED_HOST or leave unset for local.
-    extra_host = os.getenv("PULLNEXUS_ALLOWED_HOST")
-    if extra_host:
-        mcp.settings.allowed_hosts = [extra_host, "localhost", "127.0.0.1"]
-    else:
-        mcp.settings.allowed_hosts = ["*"]
-    mcp.run(transport="streamable-http")
+    starlette_app = mcp.streamable_http_app()
+    uvicorn.run(
+        starlette_app,
+        host=host,
+        port=port,
+        log_level=mcp.settings.log_level.lower(),
+    )
