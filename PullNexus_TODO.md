@@ -5,19 +5,17 @@
 
 ## 🔴 This Week
 
-- [ ] PyPI — register `pullnexus` as a package
 - [ ] Domain — grab `pullnexus.dev` or `pullnexus.io`
 
 ---
 
 ## 🟡 In Progress
 
-### Finish the CLI
-Structure is in place (`commands/`, `cli.py`) but has import errors — not yet installable.
+### GitHub Pages Landing Page
+`docs/index.html` exists but needs to be wired up via GitHub Pages in repo settings.
 
-- [ ] Fix relative imports in `cli.py`
-- [ ] Verify `pullnexus search`, `install`, `submit`, `list` all work end-to-end
-- [ ] Package and publish to PyPI
+- [ ] Enable GitHub Pages in repo settings (source: `docs/` folder)
+- [ ] Verify live at `https://mrwillist.github.io/PullNexus/` (or custom domain once registered)
 
 ---
 
@@ -54,7 +52,8 @@ Structure is in place (`commands/`, `cli.py`) but has import errors — not yet 
 
 ---
 
-> See [docs/ecosystem-notes.md](docs/ecosystem-notes.md) for context on n8n MCP and x402 payment integrations.
+> See [RESOURCE_REGISTRY_TODO.md](RESOURCE_REGISTRY_TODO.md) for the typed resource registry roadmap.
+> See [docs/ecosystem-notes.md](docs/ecosystem-notes.md) for context on n8n MCP and x402 integrations.
 > See [docs/community-resources.md](docs/community-resources.md) for curated Claude Code repos.
 
 *"Pull from the Nexus. Give back to the Nexus. Keep local AI smart."*
