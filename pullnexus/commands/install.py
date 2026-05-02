@@ -7,6 +7,12 @@ from rich.progress import Progress, SpinnerColumn, TextColumn
 
 from pullnexus.api import fetch_skill_files, download_file, fetch_index, fetch_skill_json
 
+_HF_HELP = (
+    "This entry lives on HuggingFace. "
+    "Install the HuggingFace hub library first:\n"
+    "  [bold]pip install huggingface_hub[/bold]"
+)
+
 console = Console()
 
 _SKILLS_DIR = Path("./pullnexus-skills")
@@ -37,6 +43,15 @@ def install(
                 f"Run [bold]pullnexus info {skill_name}[/bold] to view details and links."
             )
             raise typer.Exit(1)
+
+        # HuggingFace-sourced entries: delegate to huggingface_hub
+        if str(meta.get("source", "")).lower() == "huggingface":
+            hf_repo = meta.get("hf_repo")
+            if not hf_repo:
+                console.print(f"[red]✗ '{skill_name}' is missing 'hf_repo' in its metadata.[/red]")
+                raise typer.Exit(1)
+            _install_from_huggingface(skill_name, hf_repo, meta, output, force)
+            raise typer.Exit(0)
 
     target = output / skill_name
 
@@ -121,3 +136,59 @@ def _suggest_similar(skill_name: str) -> None:
         console.print("\n[dim]Did you mean one of these?[/dim]")
         for m in matches[:5]:
             console.print(f"  [cyan]{m}[/cyan]")
+
+
+def _install_from_huggingface(
+    skill_name: str,
+    hf_repo: str,
+    meta: dict,
+    output: Path,
+    force: bool,
+) -> None:
+    """Download a HuggingFace dataset or model repo into the local skills directory."""
+    try:
+        from huggingface_hub import snapshot_download
+    except ImportError:
+        console.print(f"[red]\u2717 {_HF_HELP}[/red]")
+        raise typer.Exit(1)
+
+    target = output / skill_name
+    if target.exists() and not force:
+        console.print(
+            f"[yellow]\u26a0 '{skill_name}' already exists at {target}[/yellow]\n"
+            "Use [bold]--force[/bold] to overwrite."
+        )
+        raise typer.Exit(1)
+
+    repo_type = meta.get("hf_repo_type", "dataset")
+    console.print(
+        f"[bold]Pulling from HuggingFace[/bold] ([cyan]{hf_repo}[/cyan])\n"
+        f"  type : {repo_type}\n"
+        f"  dest : {target}\n"
+    )
+
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        console=console,
+        transient=True,
+    ) as progress:
+        progress.add_task(f"Downloading {hf_repo}…", total=None)
+        try:
+            local_dir = snapshot_download(
+                repo_id=hf_repo,
+                repo_type=repo_type,
+                local_dir=str(target),
+                local_dir_use_symlinks=False,
+            )
+        except Exception as exc:
+            console.print(f"[red]\u2717 HuggingFace download failed: {exc}[/red]")
+            raise typer.Exit(1)
+
+    console.print(f"[green]\u2713 Downloaded '{skill_name}' \u2192 {local_dir}[/green]")
+    console.print(
+        "\n[bold]Next steps:[/bold]\n"
+        f"  \u2022 Browse [cyan]{target}[/cyan] for JSONL files and data cards\n"
+        "  \u2022 Load into your fine-tuning pipeline or RAG setup\n"
+        "  \u2022 Reference [cyan]README.md[/cyan] inside the folder for usage details"
+    )

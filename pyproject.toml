@@ -25,6 +25,7 @@ dependencies = [
 
 [project.optional-dependencies]
 mcp = ["mcp>=1.0"]
+huggingface = ["huggingface_hub>=0.23"]
 
 [project.urls]
 Homepage = "https://github.com/MRWillisT/PullNexus"

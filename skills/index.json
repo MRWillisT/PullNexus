@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 100,
+  "total": 105,
   "skills": [
     {
       "name": "n8n-mcp-tool",
@@ -2277,6 +2277,126 @@
       "category": "research",
       "resource_type": "repository",
       "installable": false
+    },
+    {
+      "name": "smoltalk-dataset",
+      "resource_type": "dataset",
+      "version": "1.0.0",
+      "description": "HuggingFace SmolTalk: 1M+ high-quality conversational instruction pairs from Smol models. Ideal for fine-tuning local chat models on natural multi-turn dialogue.",
+      "tags": [
+        "dataset",
+        "fine-tuning",
+        "instruction",
+        "chat",
+        "smol",
+        "use:fine-tuning"
+      ],
+      "license": "Apache-2.0",
+      "author": "HuggingFaceTB",
+      "source": "huggingface",
+      "hf_repo": "HuggingFaceTB/smoltalk",
+      "hf_repo_type": "dataset",
+      "installable": true,
+      "category": "data-prep",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "name": "agent-flan-dataset",
+      "resource_type": "dataset",
+      "version": "1.0.0",
+      "description": "AgentFLAN from Salesforce: 57K tool-use and agent reasoning examples in ShareGPT format. Best public dataset for training agents that plan, call tools, and reason step-by-step.",
+      "tags": [
+        "dataset",
+        "agents",
+        "tool-use",
+        "fine-tuning",
+        "reasoning",
+        "use:agents"
+      ],
+      "license": "Apache-2.0",
+      "author": "Salesforce",
+      "source": "huggingface",
+      "hf_repo": "Salesforce/agent-flan",
+      "hf_repo_type": "dataset",
+      "installable": true,
+      "category": "agents",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "name": "open-hermes-dataset",
+      "resource_type": "dataset",
+      "version": "2.5.0",
+      "description": "OpenHermes 2.5 by Teknium: 1M GPT-4 instruction samples across code, reasoning, math, and roleplay. The gold standard open dataset for general fine-tuning.",
+      "tags": [
+        "dataset",
+        "fine-tuning",
+        "instruction",
+        "gpt4",
+        "general",
+        "use:fine-tuning"
+      ],
+      "license": "MIT",
+      "author": "teknium",
+      "source": "huggingface",
+      "hf_repo": "teknium/OpenHermes-2.5",
+      "hf_repo_type": "dataset",
+      "installable": true,
+      "category": "data-prep",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "name": "code-feedback-dataset",
+      "resource_type": "dataset",
+      "version": "1.0.0",
+      "description": "CodeFeedback from Zheng et al: 66K code instruction examples with multi-turn feedback loops. Trains models to fix bugs, explain errors, and iterate on code like a real pair programmer.",
+      "tags": [
+        "dataset",
+        "code",
+        "fine-tuning",
+        "debugging",
+        "instruction",
+        "use:code"
+      ],
+      "license": "Apache-2.0",
+      "author": "m-a-p",
+      "source": "huggingface",
+      "hf_repo": "m-a-p/CodeFeedback-Filtered-Instruction",
+      "hf_repo_type": "dataset",
+      "installable": true,
+      "category": "data-prep",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-01"
+    },
+    {
+      "name": "ultrachat-dataset",
+      "resource_type": "dataset",
+      "version": "200k",
+      "description": "UltraChat 200K from HuggingFace H4: 200K filtered multi-turn conversations. The dataset behind Zephyr-7B \u2014 excellent for training local models to hold long, coherent conversations.",
+      "tags": [
+        "dataset",
+        "fine-tuning",
+        "chat",
+        "multi-turn",
+        "zephyr",
+        "use:fine-tuning"
+      ],
+      "license": "MIT",
+      "author": "HuggingFaceH4",
+      "source": "huggingface",
+      "hf_repo": "HuggingFaceH4/ultrachat_200k",
+      "hf_repo_type": "dataset",
+      "installable": true,
+      "category": "data-prep",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-01"
     }
   ],
   "external_sources": [
