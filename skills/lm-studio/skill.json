@@ -1,0 +1,25 @@
+{
+  "name": "lm-studio",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Desktop app for running local LLMs with a clean UI. Download models from Hugging Face, run locally, get an OpenAI-compatible local server. Best onboarding for non-developers.",
+  "tags": [
+    "inference",
+    "desktop",
+    "local-ai",
+    "ui",
+    "openai-compatible",
+    "use:beginner"
+  ],
+  "license": "MIT",
+  "author": "lmstudio-ai",
+  "source": "https://github.com/lmstudio-ai/lmstudio.js",
+  "repo": "lmstudio-ai/lmstudio.js",
+  "github_stars_k": 28,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

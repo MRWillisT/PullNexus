@@ -1,0 +1,25 @@
+{
+  "name": "playwright-mcp",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Give Claude a real browser. Navigate, click, screenshot, read dynamic content. Analyze any site in 30 seconds. The most powerful MCP server for web tasks.",
+  "tags": [
+    "mcp",
+    "browser",
+    "playwright",
+    "automation",
+    "claude",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "microsoft",
+  "source": "https://github.com/microsoft/playwright-mcp",
+  "repo": "microsoft/playwright-mcp",
+  "github_stars_k": 31,
+  "mcp_compatible": true,
+  "installable": false,
+  "category": "tools",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

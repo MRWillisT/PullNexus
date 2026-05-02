@@ -1,0 +1,24 @@
+{
+  "name": "files-to-prompt",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Turn your entire codebase into one prompt. Respects .gitignore, recursive, filterable. By Simon Willison. The simplest tool for feeding projects to Claude.",
+  "tags": [
+    "context",
+    "codebase",
+    "prompt",
+    "cli",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "simonw",
+  "source": "https://github.com/simonw/files-to-prompt",
+  "repo": "simonw/files-to-prompt",
+  "github_stars_k": 3,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "tools",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

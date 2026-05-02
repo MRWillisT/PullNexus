@@ -1,0 +1,25 @@
+{
+  "name": "markitdown",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Convert any file to Markdown. PDF, Word, Excel, PowerPoint, images, audio. Feeds clean structured text to your LLM instead of garbage. By Microsoft.",
+  "tags": [
+    "data-prep",
+    "pdf",
+    "markdown",
+    "conversion",
+    "microsoft",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "microsoft",
+  "source": "https://github.com/microsoft/markitdown",
+  "repo": "microsoft/markitdown",
+  "github_stars_k": 38,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

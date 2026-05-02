@@ -1,0 +1,24 @@
+{
+  "name": "braintrust",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Eval framework for LLM apps. Track quality across model versions, prompts, and configurations. Because vibes aren't a metric.",
+  "tags": [
+    "evals",
+    "quality",
+    "tracking",
+    "versioning",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "braintrustdata",
+  "source": "https://github.com/braintrustdata/braintrust-sdk",
+  "repo": "braintrustdata/braintrust-sdk",
+  "github_stars_k": 3,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "evals",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

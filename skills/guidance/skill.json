@@ -1,0 +1,24 @@
+{
+  "name": "guidance",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Control LLM output structure with code. Interleave generation with logic, force JSON schemas, constrain outputs. When you need the model to output exactly what you need.",
+  "tags": [
+    "evals",
+    "structured-output",
+    "constrained-generation",
+    "json",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "guidance-ai",
+  "source": "https://github.com/guidance-ai/guidance",
+  "repo": "guidance-ai/guidance",
+  "github_stars_k": 20,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "evals",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

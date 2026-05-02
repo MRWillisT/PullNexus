@@ -1,0 +1,25 @@
+{
+  "name": "datatrove",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Large-scale data processing for LLM training by Hugging Face. Process terabytes of text with deduplication, quality filtering, and content classification. What the big labs use.",
+  "tags": [
+    "data-prep",
+    "training",
+    "deduplication",
+    "filtering",
+    "scale",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "huggingface",
+  "source": "https://github.com/huggingface/datatrove",
+  "repo": "huggingface/datatrove",
+  "github_stars_k": 3,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

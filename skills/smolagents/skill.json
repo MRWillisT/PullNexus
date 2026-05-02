@@ -1,0 +1,25 @@
+{
+  "name": "smolagents",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Minimal agent framework by Hugging Face. Code agents that write and execute Python to solve tasks. Incredibly simple \u2014 1000 lines of code total. The anti-LangChain.",
+  "tags": [
+    "agents",
+    "code-agents",
+    "huggingface",
+    "minimal",
+    "python",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "huggingface",
+  "source": "https://github.com/huggingface/smolagents",
+  "repo": "huggingface/smolagents",
+  "github_stars_k": 14,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "agents",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

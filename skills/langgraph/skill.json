@@ -1,0 +1,25 @@
+{
+  "name": "langgraph",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Build stateful multi-agent workflows as graphs. Nodes are agents or functions, edges are transitions. Handles complex logic, loops, human-in-the-loop. The production-grade agent framework.",
+  "tags": [
+    "agents",
+    "graph",
+    "stateful",
+    "multi-agent",
+    "human-in-the-loop",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "langchain-ai",
+  "source": "https://github.com/langchain-ai/langgraph",
+  "repo": "langchain-ai/langgraph",
+  "github_stars_k": 10,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "agents",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

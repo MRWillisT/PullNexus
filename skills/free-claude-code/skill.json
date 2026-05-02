@@ -1,0 +1,24 @@
+{
+  "name": "free-claude-code",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Run Claude Code completely free via GitHub Models API. Step-by-step guide and setup scripts. $0, forever.",
+  "tags": [
+    "claude",
+    "free",
+    "github-models",
+    "cli",
+    "use:beginner"
+  ],
+  "license": "MIT",
+  "author": "Alishahryar1",
+  "source": "https://github.com/Alishahryar1/free-claude-code",
+  "repo": "Alishahryar1/free-claude-code",
+  "github_stars_k": 2,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "claude",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

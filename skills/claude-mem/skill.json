@@ -1,0 +1,24 @@
+{
+  "name": "claude-mem",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Persistent memory for Claude. Auto-captures everything Claude does across sessions. Claude remembers who you are and what you're working on.",
+  "tags": [
+    "claude",
+    "memory",
+    "persistence",
+    "context",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "thedotmack",
+  "source": "https://github.com/thedotmack/claude-mem",
+  "repo": "thedotmack/claude-mem",
+  "github_stars_k": 1,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "claude",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

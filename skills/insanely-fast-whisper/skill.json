@@ -1,0 +1,26 @@
+{
+  "name": "insanely-fast-whisper",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Whisper but 10-20x faster. One command, automatic GPU optimization, batch processing. Transcribe a 2-hour podcast in 2 minutes on consumer hardware.",
+  "tags": [
+    "vision",
+    "speech",
+    "transcription",
+    "audio",
+    "gpu",
+    "fast",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "Vaibhavs10",
+  "source": "https://github.com/Vaibhavs10/insanely-fast-whisper",
+  "repo": "Vaibhavs10/insanely-fast-whisper",
+  "github_stars_k": 8,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "vision",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

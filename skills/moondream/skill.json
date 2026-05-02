@@ -1,0 +1,25 @@
+{
+  "name": "moondream",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Tiny vision language model that runs anywhere. 1.6B parameters. Describe images, answer visual questions, detect objects. Runs on a Raspberry Pi. The smallest useful vision model.",
+  "tags": [
+    "vision",
+    "vlm",
+    "multimodal",
+    "local-ai",
+    "edge",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "vikhyat",
+  "source": "https://github.com/vikhyat/moondream",
+  "repo": "vikhyat/moondream",
+  "github_stars_k": 10,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "vision",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

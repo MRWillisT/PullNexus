@@ -1,0 +1,24 @@
+{
+  "name": "chroma",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "The open-source vector database. Store embeddings, search by similarity, filter by metadata. Runs in-memory or persistent. The simplest way to add semantic search to any project.",
+  "tags": [
+    "vector-db",
+    "embeddings",
+    "semantic-search",
+    "rag",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "chroma-core",
+  "source": "https://github.com/chroma-core/chroma",
+  "repo": "chroma-core/chroma",
+  "github_stars_k": 16,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "rag",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

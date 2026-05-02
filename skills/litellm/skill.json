@@ -1,0 +1,25 @@
+{
+  "name": "litellm",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "One API for 100+ LLMs. OpenAI format, works with Claude, GPT, Gemini, local models. Load balancing, fallbacks, cost tracking. The proxy layer between your app and every LLM provider.",
+  "tags": [
+    "deployment",
+    "proxy",
+    "openai-compatible",
+    "load-balancing",
+    "cost-tracking",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "BerriAI",
+  "source": "https://github.com/BerriAI/litellm",
+  "repo": "BerriAI/litellm",
+  "github_stars_k": 16,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "deployment",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

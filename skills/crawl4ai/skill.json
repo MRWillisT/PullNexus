@@ -1,0 +1,24 @@
+{
+  "name": "crawl4ai",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Web scraping for AI. Extracts clean Markdown from any URL, handles JS-heavy sites, structured data extraction. The web data layer for any AI pipeline.",
+  "tags": [
+    "web-scraping",
+    "markdown",
+    "data-prep",
+    "crawler",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "unclecode",
+  "source": "https://github.com/unclecode/crawl4ai",
+  "repo": "unclecode/crawl4ai",
+  "github_stars_k": 30,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "tools",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

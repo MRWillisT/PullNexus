@@ -1,0 +1,25 @@
+{
+  "name": "awesome-mcp-servers",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "500+ ready-made MCP servers. GitHub, Slack, Notion, databases, browsers, finance. Every integration you'll ever need in one catalog.",
+  "tags": [
+    "mcp",
+    "catalog",
+    "integrations",
+    "github",
+    "databases",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "punkpeye",
+  "source": "https://github.com/punkpeye/awesome-mcp-servers",
+  "repo": "punkpeye/awesome-mcp-servers",
+  "github_stars_k": 27,
+  "mcp_compatible": true,
+  "installable": false,
+  "category": "tools",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

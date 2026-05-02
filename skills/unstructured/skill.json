@@ -1,0 +1,25 @@
+{
+  "name": "unstructured",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Extract and transform unstructured data for LLMs. PDFs, HTML, Word, images, emails \u2014 all parsed into clean chunks ready for RAG. The data layer most AI pipelines are missing.",
+  "tags": [
+    "data-prep",
+    "pdf",
+    "html",
+    "rag",
+    "extraction",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "Unstructured-IO",
+  "source": "https://github.com/Unstructured-IO/unstructured",
+  "repo": "Unstructured-IO/unstructured",
+  "github_stars_k": 10,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

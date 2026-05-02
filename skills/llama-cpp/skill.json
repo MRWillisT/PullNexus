@@ -1,0 +1,26 @@
+{
+  "name": "llama-cpp",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "LLM inference in pure C++. Runs on CPU, GPU, Apple Silicon. The engine behind most local AI tools. Extremely fast, low memory usage.",
+  "tags": [
+    "inference",
+    "c++",
+    "cpu",
+    "gpu",
+    "apple-silicon",
+    "local-ai",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "ggml-org",
+  "source": "https://github.com/ggml-org/llama.cpp",
+  "repo": "ggml-org/llama.cpp",
+  "github_stars_k": 72,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

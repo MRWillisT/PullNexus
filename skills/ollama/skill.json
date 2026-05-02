@@ -1,0 +1,25 @@
+{
+  "name": "ollama",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Run Llama, Mistral, Qwen, Gemma locally with one command. GPU acceleration, REST API, OpenAI-compatible endpoints. The fastest way to get a model running on your machine.",
+  "tags": [
+    "inference",
+    "local-ai",
+    "ollama",
+    "gpu",
+    "openai-compatible",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "ollama",
+  "source": "https://github.com/ollama/ollama",
+  "repo": "ollama/ollama",
+  "github_stars_k": 98,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

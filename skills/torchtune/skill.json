@@ -1,0 +1,24 @@
+{
+  "name": "torchtune",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "PyTorch-native fine-tuning library from Meta. Simple, hackable, well-documented. The reference implementation for fine-tuning in pure PyTorch.",
+  "tags": [
+    "fine-tuning",
+    "pytorch",
+    "meta",
+    "lora",
+    "use:developer"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "pytorch",
+  "source": "https://github.com/pytorch/torchtune",
+  "repo": "pytorch/torchtune",
+  "github_stars_k": 5,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "fine-tuning",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

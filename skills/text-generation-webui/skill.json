@@ -1,0 +1,25 @@
+{
+  "name": "text-generation-webui",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "The Swiss Army knife for local LLMs. Supports every model format, every backend, every sampler. Character mode, notebook mode, API mode. The most feature-complete local UI.",
+  "tags": [
+    "inference",
+    "ui",
+    "local-ai",
+    "gguf",
+    "character-mode",
+    "use:developer"
+  ],
+  "license": "AGPL-3.0",
+  "author": "oobabooga",
+  "source": "https://github.com/oobabooga/text-generation-webui",
+  "repo": "oobabooga/text-generation-webui",
+  "github_stars_k": 42,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

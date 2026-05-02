@@ -1,0 +1,24 @@
+{
+  "name": "outlines",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Structured text generation. Force models to output valid JSON, regex patterns, specific formats. Zero prompt engineering needed \u2014 guaranteed output structure.",
+  "tags": [
+    "structured-output",
+    "json",
+    "regex",
+    "constrained-generation",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "dottxt-ai",
+  "source": "https://github.com/dottxt-ai/outlines",
+  "repo": "dottxt-ai/outlines",
+  "github_stars_k": 11,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "evals",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

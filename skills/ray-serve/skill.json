@@ -1,0 +1,25 @@
+{
+  "name": "ray-serve",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Distributed AI inference at scale. Serve multiple models, autoscale, handle millions of requests. Used by OpenAI, Anyscale, production AI companies.",
+  "tags": [
+    "deployment",
+    "distributed",
+    "inference",
+    "autoscaling",
+    "production",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "ray-project",
+  "source": "https://github.com/ray-project/ray",
+  "repo": "ray-project/ray",
+  "github_stars_k": 34,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "deployment",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

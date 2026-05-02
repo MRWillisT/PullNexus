@@ -1,0 +1,25 @@
+{
+  "name": "unsloth",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Fine-tune LLMs 2x faster with 80% less memory. Supports Llama, Mistral, Qwen, Gemma. Runs on a single GPU. The only fine-tuning library you need if you're resource-constrained.",
+  "tags": [
+    "fine-tuning",
+    "lora",
+    "qlora",
+    "gpu",
+    "memory-efficient",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "unslothai",
+  "source": "https://github.com/unslothai/unsloth",
+  "repo": "unslothai/unsloth",
+  "github_stars_k": 24,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "fine-tuning",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

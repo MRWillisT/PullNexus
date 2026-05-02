@@ -1,0 +1,25 @@
+{
+  "name": "n8n",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Self-hosted workflow automation with 400+ integrations. Connect LLMs to any app, trigger AI workflows on schedules or webhooks, run custom JS/Python in nodes. Replaces $50K/year Zapier.",
+  "tags": [
+    "automation",
+    "workflow",
+    "integrations",
+    "self-hosted",
+    "llm",
+    "use:developer"
+  ],
+  "license": "Sustainable-Use-1.0",
+  "author": "n8n-io",
+  "source": "https://github.com/n8n-io/n8n",
+  "repo": "n8n-io/n8n",
+  "github_stars_k": 47,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "automation",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "superagi",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Self-hosted autonomous AI agent infrastructure. Agent marketplace, performance telemetry, concurrent agents, graphical UI. Run multiple agents in parallel on your own server.",
+  "tags": [
+    "agents",
+    "autonomous",
+    "self-hosted",
+    "parallel",
+    "ui",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "TransformerOptimus",
+  "source": "https://github.com/TransformerOptimus/SuperAGI",
+  "repo": "TransformerOptimus/SuperAGI",
+  "github_stars_k": 16,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "agents",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

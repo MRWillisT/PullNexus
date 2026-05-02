@@ -1,0 +1,25 @@
+{
+  "name": "localai",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Self-hosted OpenAI drop-in replacement. Same API, local models. Swap Claude/GPT with local LLMs in any app without changing a single line of code.",
+  "tags": [
+    "inference",
+    "openai-compatible",
+    "self-hosted",
+    "local-ai",
+    "api",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "mudler",
+  "source": "https://github.com/mudler/LocalAI",
+  "repo": "mudler/LocalAI",
+  "github_stars_k": 26,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

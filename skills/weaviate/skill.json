@@ -1,0 +1,25 @@
+{
+  "name": "weaviate",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Vector database with built-in ML models. Hybrid search, multi-tenancy, real-time updates. Production-ready, scales to billions of objects.",
+  "tags": [
+    "vector-db",
+    "embeddings",
+    "hybrid-search",
+    "production",
+    "rag",
+    "use:developer"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "weaviate",
+  "source": "https://github.com/weaviate/weaviate",
+  "repo": "weaviate/weaviate",
+  "github_stars_k": 12,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "rag",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

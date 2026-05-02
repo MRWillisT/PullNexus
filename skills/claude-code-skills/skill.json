@@ -1,0 +1,24 @@
+{
+  "name": "claude-code-skills",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Official Anthropic skills framework. SKILL.md patterns that teach Claude to handle documents, automations, and workflows without errors. The foundation of how Claude Code handles complex tasks.",
+  "tags": [
+    "claude",
+    "skills",
+    "anthropic",
+    "vscode-skill",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "anthropics",
+  "source": "https://github.com/anthropics/claude-code-skills",
+  "repo": "anthropics/claude-code-skills",
+  "github_stars_k": 0,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "claude",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

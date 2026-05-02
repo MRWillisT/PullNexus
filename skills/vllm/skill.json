@@ -1,0 +1,25 @@
+{
+  "name": "vllm",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "High-throughput LLM serving engine for production. Continuous batching, paged attention, OpenAI-compatible API. The standard for deploying models at scale.",
+  "tags": [
+    "inference",
+    "serving",
+    "production",
+    "openai-compatible",
+    "batching",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "vllm-project",
+  "source": "https://github.com/vllm-project/vllm",
+  "repo": "vllm-project/vllm",
+  "github_stars_k": 44,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

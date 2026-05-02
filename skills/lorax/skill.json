@@ -1,0 +1,25 @@
+{
+  "name": "lorax",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Serve hundreds of LoRA fine-tuned models on one GPU. One base model, hundreds of adapters loaded dynamically. 10x cost reduction for serving fine-tuned models.",
+  "tags": [
+    "deployment",
+    "lora",
+    "serving",
+    "gpu",
+    "fine-tuning",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "predibase",
+  "source": "https://github.com/predibase/lorax",
+  "repo": "predibase/lorax",
+  "github_stars_k": 3,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "deployment",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

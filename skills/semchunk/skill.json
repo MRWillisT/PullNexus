@@ -1,0 +1,25 @@
+{
+  "name": "semchunk",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Semantic text chunking for RAG. Splits text at natural boundaries instead of arbitrary token counts. Better chunks \u2192 better retrieval \u2192 better answers.",
+  "tags": [
+    "data-prep",
+    "rag",
+    "chunking",
+    "semantic",
+    "retrieval",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "umarbutler",
+  "source": "https://github.com/umarbutler/semchunk",
+  "repo": "umarbutler/semchunk",
+  "github_stars_k": 1,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

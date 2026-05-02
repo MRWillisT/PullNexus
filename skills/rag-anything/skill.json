@@ -1,0 +1,25 @@
+{
+  "name": "rag-anything",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Multimodal RAG for any LLM. Handles text, tables, images, charts, graphs \u2014 not just PDFs. 6 lines to set up. Used in production by serious teams.",
+  "tags": [
+    "rag",
+    "multimodal",
+    "tables",
+    "images",
+    "local-ai",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "HKUDS",
+  "source": "https://github.com/HKUDS/RAG-Anything",
+  "repo": "HKUDS/RAG-Anything",
+  "github_stars_k": 12,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "rag",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

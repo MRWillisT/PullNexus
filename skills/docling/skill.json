@@ -1,0 +1,25 @@
+{
+  "name": "docling",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Convert documents to structured Markdown for AI. Handles PDFs with tables, figures, formulas \u2014 not just plain text extraction. Built by IBM Research.",
+  "tags": [
+    "pdf",
+    "document-parsing",
+    "markdown",
+    "rag",
+    "data-prep",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "DS4SD",
+  "source": "https://github.com/DS4SD/docling",
+  "repo": "DS4SD/docling",
+  "github_stars_k": 22,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

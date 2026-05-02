@@ -1,0 +1,25 @@
+{
+  "name": "supabase",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "The default backend for AI applications. Open-source Firebase alternative built on Postgres. Real-time database, auth, storage, edge functions, vector search. Replaces Firebase + Auth0.",
+  "tags": [
+    "backend",
+    "database",
+    "vector-db",
+    "postgres",
+    "auth",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "supabase",
+  "source": "https://github.com/supabase/supabase",
+  "repo": "supabase/supabase",
+  "github_stars_k": 73,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "deployment",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

@@ -1,0 +1,24 @@
+{
+  "name": "crewai",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Orchestrate role-playing AI agents. Define a crew, assign roles, set goals \u2014 agents collaborate like a team. Easiest way to build multi-agent systems that actually work.",
+  "tags": [
+    "agents",
+    "multi-agent",
+    "roles",
+    "orchestration",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "crewAIInc",
+  "source": "https://github.com/crewAIInc/crewAI",
+  "repo": "crewAIInc/crewAI",
+  "github_stars_k": 28,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "agents",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

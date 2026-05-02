@@ -1,0 +1,25 @@
+{
+  "name": "stable-diffusion-webui",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "The browser interface for Stable Diffusion. Generate, edit, upscale images from text. 143K stars. Hundreds of extensions, ControlNet, inpainting. Runs on your GPU.",
+  "tags": [
+    "vision",
+    "image-generation",
+    "stable-diffusion",
+    "gpu",
+    "ui",
+    "use:beginner"
+  ],
+  "license": "AGPL-3.0",
+  "author": "AUTOMATIC1111",
+  "source": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+  "repo": "AUTOMATIC1111/stable-diffusion-webui",
+  "github_stars_k": 143,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "vision",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

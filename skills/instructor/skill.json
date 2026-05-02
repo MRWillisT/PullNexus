@@ -1,0 +1,24 @@
+{
+  "name": "instructor",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Structured outputs from LLMs using Pydantic. Define a schema, get back a validated Python object. Works with OpenAI, Anthropic, Google, local models. The cleanest structured output solution.",
+  "tags": [
+    "structured-output",
+    "pydantic",
+    "validation",
+    "python",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "instructor-ai",
+  "source": "https://github.com/instructor-ai/instructor",
+  "repo": "instructor-ai/instructor",
+  "github_stars_k": 9,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "evals",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

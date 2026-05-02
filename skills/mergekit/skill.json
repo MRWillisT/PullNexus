@@ -1,0 +1,25 @@
+{
+  "name": "mergekit",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Merge multiple fine-tuned models into one. SLERP, TIES, DARE, linear merge \u2014 all the techniques. No GPU needed for merging. Create models that outperform their parents.",
+  "tags": [
+    "fine-tuning",
+    "model-merging",
+    "slerp",
+    "ties",
+    "dare",
+    "use:developer"
+  ],
+  "license": "LGPL-3.0",
+  "author": "arcee-ai",
+  "source": "https://github.com/arcee-ai/mergekit",
+  "repo": "arcee-ai/mergekit",
+  "github_stars_k": 4,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "fine-tuning",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

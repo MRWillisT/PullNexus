@@ -1,0 +1,25 @@
+{
+  "name": "llama-factory",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Fine-tune 100+ LLMs with zero code. Web UI, supports LoRA, QLoRA, full fine-tuning. The most user-friendly fine-tuning tool available.",
+  "tags": [
+    "fine-tuning",
+    "lora",
+    "qlora",
+    "ui",
+    "no-code",
+    "use:beginner"
+  ],
+  "license": "Apache-2.0",
+  "author": "hiyouga",
+  "source": "https://github.com/hiyouga/LLaMA-Factory",
+  "repo": "hiyouga/LLaMA-Factory",
+  "github_stars_k": 40,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "fine-tuning",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

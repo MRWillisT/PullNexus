@@ -1,0 +1,25 @@
+{
+  "name": "axolotl",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Streamlined fine-tuning for LLMs. YAML config, every dataset format, every training technique. The ops layer on top of Hugging Face Transformers. Used by most serious fine-tuners.",
+  "tags": [
+    "fine-tuning",
+    "yaml",
+    "lora",
+    "qlora",
+    "huggingface",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "axolotl-org",
+  "source": "https://github.com/axolotl-org/axolotl",
+  "repo": "axolotl-org/axolotl",
+  "github_stars_k": 8,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "fine-tuning",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

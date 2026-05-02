@@ -1,0 +1,25 @@
+{
+  "name": "triton-inference-server",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "NVIDIA's production inference server. Maximum GPU utilization, dynamic batching, multi-model serving. The standard for GPU inference in enterprise.",
+  "tags": [
+    "deployment",
+    "inference",
+    "gpu",
+    "nvidia",
+    "enterprise",
+    "use:developer"
+  ],
+  "license": "BSD-3-Clause",
+  "author": "triton-inference-server",
+  "source": "https://github.com/triton-inference-server/server",
+  "repo": "triton-inference-server/server",
+  "github_stars_k": 8,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "deployment",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "whisper",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Open-source speech recognition by OpenAI. Transcribes audio in 99 languages. Runs locally, handles accents, background noise, technical jargon. Feed audio to your LLM pipeline.",
+  "tags": [
+    "vision",
+    "speech",
+    "transcription",
+    "audio",
+    "local-ai",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "openai",
+  "source": "https://github.com/openai/whisper",
+  "repo": "openai/whisper",
+  "github_stars_k": 74,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "vision",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

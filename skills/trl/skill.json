@@ -1,0 +1,26 @@
+{
+  "name": "trl",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Transformer Reinforcement Learning. RLHF, DPO, PPO \u2014 the techniques used to align GPT-4 and Claude. By Hugging Face. For training models to do what you actually want.",
+  "tags": [
+    "fine-tuning",
+    "rlhf",
+    "dpo",
+    "ppo",
+    "alignment",
+    "huggingface",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "huggingface",
+  "source": "https://github.com/huggingface/trl",
+  "repo": "huggingface/trl",
+  "github_stars_k": 12,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "fine-tuning",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

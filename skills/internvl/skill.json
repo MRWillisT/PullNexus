@@ -1,0 +1,24 @@
+{
+  "name": "internvl",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "State-of-the-art open-source vision model. Matches GPT-4V on most benchmarks. Understand images, charts, documents, screenshots. The open alternative to Claude's vision.",
+  "tags": [
+    "vision",
+    "vlm",
+    "multimodal",
+    "gpt4v",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "OpenGVLab",
+  "source": "https://github.com/OpenGVLab/InternVL",
+  "repo": "OpenGVLab/InternVL",
+  "github_stars_k": 7,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "vision",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "jan",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Open-source ChatGPT alternative that runs 100% offline. Clean UI, model management, local API server. Works on Mac, Windows, Linux. No data leaves your machine.",
+  "tags": [
+    "inference",
+    "offline",
+    "local-ai",
+    "ui",
+    "privacy",
+    "use:beginner"
+  ],
+  "license": "AGPL-3.0",
+  "author": "janhq",
+  "source": "https://github.com/janhq/jan",
+  "repo": "janhq/jan",
+  "github_stars_k": 26,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

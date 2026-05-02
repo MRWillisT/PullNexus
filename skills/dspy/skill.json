@@ -1,0 +1,25 @@
+{
+  "name": "dspy",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Programming \u2014 not prompting \u2014 LLMs. Define what you want, DSPy optimizes the prompts automatically. From Stanford NLP. Replaces manual prompt engineering with systematic optimization.",
+  "tags": [
+    "evals",
+    "prompting",
+    "optimization",
+    "stanford",
+    "structured-output",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "stanfordnlp",
+  "source": "https://github.com/stanfordnlp/dspy",
+  "repo": "stanfordnlp/dspy",
+  "github_stars_k": 22,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "evals",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

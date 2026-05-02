@@ -1,0 +1,25 @@
+{
+  "name": "promptfoo",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Test and eval your prompts. Run automated tests, compare models, catch regressions. Like unit tests but for AI. Essential before shipping anything to production.",
+  "tags": [
+    "evals",
+    "testing",
+    "prompts",
+    "regression",
+    "ci",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "promptfoo",
+  "source": "https://github.com/promptfoo/promptfoo",
+  "repo": "promptfoo/promptfoo",
+  "github_stars_k": 6,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "evals",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

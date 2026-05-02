@@ -1,0 +1,24 @@
+{
+  "name": "trafilatura",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Web content extraction for AI. Strips boilerplate, keeps content, outputs clean text or Markdown. The best single-page web extractor for feeding text to models.",
+  "tags": [
+    "data-prep",
+    "web-scraping",
+    "markdown",
+    "extraction",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "adbar",
+  "source": "https://github.com/adbar/trafilatura",
+  "repo": "adbar/trafilatura",
+  "github_stars_k": 3,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

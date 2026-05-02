@@ -1,0 +1,25 @@
+{
+  "name": "haystack",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "End-to-end NLP framework for RAG pipelines. Modular, production-ready, works with any LLM or vector DB. The most mature RAG framework available.",
+  "tags": [
+    "rag",
+    "nlp",
+    "pipeline",
+    "framework",
+    "production",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "deepset-ai",
+  "source": "https://github.com/deepset-ai/haystack",
+  "repo": "deepset-ai/haystack",
+  "github_stars_k": 18,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "rag",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

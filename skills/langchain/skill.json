@@ -1,0 +1,26 @@
+{
+  "name": "langchain",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "The most popular LLM framework. Chains, agents, retrievers, memory. Connects LLMs to any data source or tool. Massive ecosystem of integrations.",
+  "tags": [
+    "rag",
+    "framework",
+    "agents",
+    "retrieval",
+    "memory",
+    "integrations",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "author": "langchain-ai",
+  "source": "https://github.com/langchain-ai/langchain",
+  "repo": "langchain-ai/langchain",
+  "github_stars_k": 98,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "rag",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

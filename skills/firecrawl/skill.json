@@ -1,0 +1,24 @@
+{
+  "name": "firecrawl",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Turn any website into LLM-ready data. Full site crawling, structured extraction, clean Markdown output. The production-grade web scraper for AI apps.",
+  "tags": [
+    "web-scraping",
+    "markdown",
+    "data-prep",
+    "production",
+    "use:developer"
+  ],
+  "license": "AGPL-3.0",
+  "author": "mendableai",
+  "source": "https://github.com/mendableai/firecrawl",
+  "repo": "mendableai/firecrawl",
+  "github_stars_k": 25,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "tools",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}

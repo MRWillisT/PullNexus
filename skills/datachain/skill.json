@@ -1,0 +1,25 @@
+{
+  "name": "datachain",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "AI-native dataset management. Version, query, and transform multimodal datasets. Works with images, video, text, embeddings. Built for LLM training workflows.",
+  "tags": [
+    "data-prep",
+    "dataset",
+    "versioning",
+    "multimodal",
+    "training",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "iterative",
+  "source": "https://github.com/iterative/datachain",
+  "repo": "iterative/datachain",
+  "github_stars_k": 2,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "data-prep",
+  "maturity": "beta",
+  "maintained": "yes",
+  "last_verified": "2026-05-02"
+}
