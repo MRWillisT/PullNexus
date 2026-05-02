@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 103,
+  "total": 100,
   "skills": [
     {
       "name": "n8n-mcp-tool",
@@ -1643,24 +1643,6 @@
       "category": "creative"
     },
     {
-      "name": "annie-universal-api-orchestrator",
-      "version": "1.0.0",
-      "description": "Design and coordinate multi-step API workflows with robust routing, retries, and schema-aware transformations.",
-      "tags": [
-        "imported",
-        "api",
-        "automation",
-        "orchestration",
-        "integration",
-        "use:automation"
-      ],
-      "license": "SEE-SKILL",
-      "examples": 0,
-      "mcp_compatible": false,
-      "author": "community-import",
-      "category": "automation"
-    },
-    {
       "name": "autonomous-agent-patterns",
       "version": "1.0.0",
       "description": "Core patterns for building autonomous AI agents \u2014 task planning, tool orchestration, multi-step execution, error recovery, and memory persistence across sessions.",
@@ -1958,42 +1940,6 @@
         "pdf",
         "extraction",
         "formatting",
-        "use:documents"
-      ],
-      "license": "SEE-SKILL",
-      "examples": 0,
-      "mcp_compatible": false,
-      "author": "community-import",
-      "category": "documents"
-    },
-    {
-      "name": "pdfkit-generation",
-      "version": "1.0.0",
-      "description": "Produce production-ready PDFs with PDFKit using templates, dynamic data, and layout controls.",
-      "tags": [
-        "imported",
-        "pdf",
-        "pdfkit",
-        "documents",
-        "templating",
-        "use:documents"
-      ],
-      "license": "SEE-SKILL",
-      "examples": 0,
-      "mcp_compatible": false,
-      "author": "community-import",
-      "category": "documents"
-    },
-    {
-      "name": "PDFKit-Generation-v2",
-      "version": "1.0.0",
-      "description": "Apply advanced PDFKit patterns for modular components, pagination, and high-fidelity document output.",
-      "tags": [
-        "imported",
-        "pdf",
-        "pdfkit",
-        "pagination",
-        "components",
         "use:documents"
       ],
       "license": "SEE-SKILL",
