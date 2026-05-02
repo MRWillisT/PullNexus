@@ -1,5 +1,35 @@
 # PullNexus
-**Tagline:** Your local AI shouldn't have to be dumb. Pull skills, tools, and knowledge on demand — free, open, community-built.
+**Your local AI shouldn't have to be dumb.** Pull skills, tools, configs, and knowledge on demand — free, open, community-built.
+
+[![PyPI](https://img.shields.io/pypi/v/pullnexus)](https://pypi.org/project/pullnexus/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Registry](https://img.shields.io/badge/registry-145%20resources-brightgreen)](skills/index.json)
+
+---
+
+## Quickstart
+
+```bash
+pip install pullnexus
+```
+
+**Find something:**
+```bash
+pullnexus search "fine-tune 35B on consumer GPU"
+pullnexus recommend "local agent loop" --context hardware=8GB
+```
+
+**Get the details:**
+```bash
+pullnexus info fine-tune-with-unsloth
+pullnexus install fine-tune-with-unsloth
+```
+
+**Contribute something you found:**
+```bash
+pullnexus submit --interactive --type template
+# or open an issue: github.com/MRWillisT/PullNexus/issues/new/choose
+```
+
+> 145 resources across 9 types: skills, tools, templates, playbooks, policies, datasets, environments, evals, repositories. All free, all open.
 
 ---
 
@@ -100,7 +130,7 @@ This isn't another data dump. It's the **executable intelligence layer** missing
 
 | Platform | What It Is | What's Missing |
 |---|---|---|
-| HuggingFace | Data warehouse | Not pull-on-demand, not local-first |
+| HuggingFace | Data warehouse | Not pull-on-demand, not local-first | <----BRIDGED>
 | OpenSkills | Skills ecosystem | Closed, provider-specific |
 | Agent toolkits | Tool calling frameworks | Not community-owned, not general-purpose |
 | **PullNexus** | Living skill commons | **Nothing — this is it** |

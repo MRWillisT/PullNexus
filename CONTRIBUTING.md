@@ -1,15 +1,45 @@
 # Contributing to PullNexus
 
-Thank you for contributing to the open commons of local AI skills. Every skill you add makes local models smarter for everyone — for free, forever.
+Thank you for contributing to the open commons of local AI knowledge. Every resource you add makes local models smarter for everyone — for free, forever.
 
 ---
 
 ## What Can I Contribute?
 
-- **Skills** — JSONL conversation examples teaching a model a specific capability
-- **Improvements** — better examples, eval cases, or README clarity for existing skills
+| Type | What it is | Example |
+|---|---|---|
+| **skill** | JSONL conversation examples that teach a capability | `python-advanced-debugging` |
+| **template** | Launch config, command flags, or config file | `qwen3-35b-12gb-llama-server` |
+| **policy** | Best-practice rule set or operational guideline | `kv-cache-vram-best-practices` |
+| **playbook** | Step-by-step runbook for setup or deployment | `ollama-open-webui-setup` |
+| **tool** | CLI tool, script, or MCP-compatible tool | `ollama`, `llama.cpp` |
+| **dataset** | Curated JSONL or HuggingFace dataset | HF training sets |
+| **environment** | Hardware/software stack profile | `env-8gb-vram-local-chat` |
+| **eval** | Benchmark or evaluation harness | evaluation suites |
+
+You can also contribute:
+- **Improvements** — better examples, eval cases, or README clarity for existing resources
 - **Bug reports** — issues with the CLI, registry, or skill format
-- **New skill requests** — open an issue describing a skill you'd find useful
+- **Requests** — open an issue describing a resource you'd find useful
+
+---
+
+## Fastest Way to Contribute (No Setup Required)
+
+[Open a Submit Issue](https://github.com/MRWillisT/PullNexus/issues/new/choose) — fill in the form and a maintainer handles the rest. No install, no fork, no JSON.
+
+---
+
+## CLI Wizard (Recommended for Developers)
+
+If you have `pullnexus` installed, the interactive wizard builds your submission folder automatically:
+
+```bash
+pip install pullnexus
+pullnexus submit --interactive --type template   # or policy, playbook, skill, tool...
+```
+
+It prompts for all required fields, auto-parses llama-server flags into structured `config_params`, and writes a ready-to-submit `skill.json` + `README.md` into `submissions/<name>/`. Then open a PR with that folder.
 
 ---
 
@@ -85,13 +115,18 @@ Each line is a test case:
 
 ---
 
-## How to Submit a Skill
+## Submitting via Pull Request
 
-### Step 1: Validate locally
+### Step 1: Build or validate your submission
 
-Install the CLI and validate your skill:
+**Option A — Use the wizard (generates everything):**
 ```bash
-pip install pullnexus
+pullnexus submit --interactive --type template
+# Output lands in submissions/<name>/
+```
+
+**Option B — Build manually, then validate:**
+```bash
 pullnexus submit path/to/your-skill-name --dry-run
 ```
 

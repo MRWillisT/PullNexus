@@ -1,0 +1,118 @@
+name: "Submit a Resource"
+description: "Contribute a skill, template, policy, playbook, tool, or dataset to the PullNexus registry. No install required."
+title: "submit: <your-resource-name>"
+labels: ["submission", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Welcome to PullNexus!
+        Fill out this form to contribute a resource. A maintainer will process your submission and add it to the registry.
+        
+        **Tip:** If you have `pullnexus` installed, you can also run `pullnexus submit --interactive --type template` locally to generate a submission folder and open a PR directly.
+
+  - type: dropdown
+    id: resource_type
+    attributes:
+      label: Resource Type
+      description: What kind of resource are you submitting?
+      options:
+        - template — launch config, command, or config file (e.g. llama-server flags)
+        - policy — best-practice rule set or operational guideline
+        - playbook — step-by-step runbook for setting up or running something
+        - skill — JSONL conversation examples that teach a model a capability
+        - tool — CLI tool, script, or MCP-compatible tool
+        - dataset — curated JSONL or HuggingFace dataset
+        - environment — hardware/software stack profile
+        - other
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: Resource Name (slug)
+      description: "Lowercase, hyphen-separated. e.g. `qwen3-35b-12gb-llama-server`"
+      placeholder: my-resource-name
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: One clear sentence — what does this resource do, and what problem does it solve?
+      placeholder: "Optimized llama-server launch config for running Qwen3 35B on 12GB VRAM using Q4_K_XL quant and 8-bit KV cache."
+    validations:
+      required: true
+
+  - type: textarea
+    id: tags
+    attributes:
+      label: Tags
+      description: Comma-separated tags for discoverability. Include model name, hardware, backend, topic.
+      placeholder: "llama.cpp, qwen3, 35b, 12gb-vram, kv-cache, flash-attention, consumer-gpu"
+    validations:
+      required: true
+
+  - type: textarea
+    id: content
+    attributes:
+      label: "The Resource Content"
+      description: |
+        Paste the actual content here. This is the most important field.
+        
+        - **template**: paste the exact command or config block
+        - **policy**: list the rules/guidelines, one per line
+        - **playbook**: paste the steps
+        - **skill**: paste example conversations (ShareGPT/JSONL format)
+        - **tool**: paste the repo URL and a brief description of what it does
+      placeholder: |
+        llama-server \
+          --model ~/models/Qwen3.6-35B-A3B-UD-Q4_K_XL.gguf \
+          --port 8001 \
+          --ctk q8_0 --ctv q8_0 \
+          -fa -fit \
+          -c 131072
+    validations:
+      required: true
+
+  - type: input
+    id: hardware
+    attributes:
+      label: Hardware Requirements (if applicable)
+      description: "VRAM needed, GPU model, RAM floor. e.g. `12GB VRAM, any RTX 30/40/50 series`"
+      placeholder: "12GB VRAM"
+
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: Link to the tweet, post, repo, paper, or thread where this came from.
+      placeholder: "https://x.com/..."
+
+  - type: input
+    id: author
+    attributes:
+      label: Credit / Author Handle
+      description: Who should get credit? GitHub username, X handle, etc.
+      placeholder: "@yourhandle"
+
+  - type: input
+    id: license
+    attributes:
+      label: License
+      description: "Community configs default to CC0-1.0. Skills/tools typically use MIT."
+      placeholder: "CC0-1.0"
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Submission Checklist
+      options:
+        - label: This resource does not contain PII, secrets, credentials, or copyrighted material
+          required: true
+        - label: I have the right to share this content under the stated license
+          required: true
+        - label: I understand this will be publicly visible in the PullNexus registry
+          required: true
