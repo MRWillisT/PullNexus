@@ -54,6 +54,7 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [x] Add validation rules by type in submit flow (type-specific field warnings).
 - [x] Add quality scoring metadata (`maturity`, `maintained`, `last_verified`) to schema constants.
 - [ ] Add signed checksum support for downloadable artifacts.
+- [ ] Add `supersedes` field to skill schema — allows a newer entry to declare it replaces an older one. Superseded entries are hidden in search by default but still accessible via `pullnexus info`. Prevents duplicate/conflicting skills accumulating as the registry grows.
 
 ## Open Questions — Resolved
 
