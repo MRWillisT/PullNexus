@@ -1,7 +1,7 @@
 # PullNexus
 **GitHub-backed registry and CLI for local AI resources.** Search, pull, and submit reusable skills, tools, templates, datasets, and workflow artifacts.
 
-[![PyPI](https://img.shields.io/pypi/v/pullnexus)](https://pypi.org/project/pullnexus/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Registry](https://img.shields.io/badge/registry-145%20resources-brightgreen)](skills/index.json)
+[![PyPI](https://img.shields.io/pypi/v/pullnexus)](https://pypi.org/project/pullnexus/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Registry](https://img.shields.io/badge/registry-155%20resources-brightgreen)](skills/index.json)
 
 ---
 
@@ -29,7 +29,7 @@ pullnexus submit --interactive --type skill
 # or open an issue: github.com/MRWillisT/PullNexus/issues/new/choose
 ```
 
-> Current registry: 145 resources across 9 resource types: skills, tools, templates, playbooks, policies, datasets, environments, evals, and repositories.
+> Current registry: 155 resources across 10 resource types: skills, tools, templates, playbooks, policies, prompts, datasets, environments, evals, and repositories.
 
 ---
 
@@ -118,10 +118,10 @@ The structure is intentionally plain so that review, reuse, and validation stay 
 ## 5. Current Surface
 
 ### Available today
-- GitHub-backed registry with 145 indexed resources across 9 resource types
+- GitHub-backed registry with 155 indexed resources across 10 resource types
 - Public CLI commands for search, pull/install, listing, and submission scaffolding
 - Interactive submission wizard that generates resource folders and validates metadata
-- Schema support for skills, tools, templates, policies, playbooks, datasets, environments, evals, and repositories
+- Schema support for skills, tools, templates, policies, playbooks, prompts, datasets, environments, evals, and repositories
 - Local/remote registry fetching so the CLI can degrade gracefully when GitHub is unavailable
 - Skill folders built around plain files: metadata, JSONL examples, README, and optional eval/tool definitions
 
@@ -166,22 +166,21 @@ If the project grows into a true multi-maintainer effort, governance can expand 
 
 ---
 
-## 9. Seed Skills (Original Launch Set)
+## 9. Registry Highlights
 
-These were the first skills the project was designed to ship with, built directly from the existing JSONL pipeline:
+A few entry points worth knowing about:
 
-1. `autonomous-agent-patterns` — planning, tool orchestration, memory loops
-2. `python-advanced-debugging` — memory leaks, pdb, tracing
-3. `pytest-and-testing` — test structure, fixtures, coverage
-4. `vibe-coder-workflow` — idea to working code, full loop
-5. `reasoning-and-problem-solving` — breaking down complex problems
-6. `code-refactoring` — cleanup, modularization, readability
-7. `crypto-trading-bot` — strategy logic, backtesting, bot architecture
-8. `n8n-mcp-workflows` — MCP-native n8n automation patterns
-9. `autonomous-agent-payments` — x402-style payment and policy guardrails
-10. `kronos-trading-integration` — Kronos forecast fusion for safer bot decisions
+- `autonomous-agent-training-pack` — 160+ synthetic JSONL examples, 16 themes, ready-to-use train/val/test splits
+- `synthetic-general-training-pack` — 110+ general-purpose training examples for coding, reasoning, docs, and web
+- `agent-role-orchestrator` / `agent-role-coder` / `agent-role-reviewer` — system prompts for a full multi-agent local setup
+- `local-agent-system-blueprint` — beginner guide to building a local autonomous agent system
+- `multi-agent-roles-template` — JSON role config for a 5-agent local system out of the box
+- `vibe-coder-workflow` — the full self-taught builder loop, from vague idea to working code
+- `qwen3-35b-12gb-llama-server` — community-contributed llama-server config for Qwen3 on 12GB VRAM
+- `kv-cache-vram-best-practices` — VRAM optimization policy for KV cache tuning
+- `n8n-mcp-workflows` / `autonomous-agent-payments` — MCP ecosystem entries
 
-The catalog is larger now. This list is best read as the original launch set rather than the current ceiling of the project.
+Search the registry to browse all 155 entries: `pullnexus list-skills`
 
 ---
 

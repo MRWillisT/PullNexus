@@ -16,6 +16,7 @@ This guide covers how to contribute resources to the PullNexus registry and how 
 | **dataset** | Curated JSONL or HuggingFace dataset | HF training sets |
 | **environment** | Hardware/software stack profile | `env-8gb-vram-local-chat` |
 | **eval** | Benchmark or evaluation harness | evaluation suites |
+| **prompt** | System prompt, agent role, or workflow guide | `agent-role-orchestrator` |
 | **repository** | External repository worth indexing as a reference | `ggml-org/llama.cpp` |
 
 You can also contribute:

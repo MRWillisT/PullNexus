@@ -38,6 +38,9 @@ logs/
 
 # Personal training data / private chat exports
 converted-chats/
+
+# Local working notes (not for public repo)
+RESOURCE_REGISTRY_TODO.md
 knowledge_base/
 knowledge_base/chats_raw/
 autonomous-agent/autonomous_agent_train.jsonl

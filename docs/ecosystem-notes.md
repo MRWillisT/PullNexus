@@ -46,7 +46,7 @@ Essentially: **agents that can spend their own money** — a major step toward t
 - Apify + x402 + MCPC is exactly the tool combo local model users will want skills for
 - Positions PullNexus as the nexus connecting all these emerging MCP capabilities
 
-**Skill shipped:** `skills/autonomous-agent-payments/`
+**Skill shipped:** `skills/autonomous-agent-payments/` *(entry in registry index)*
 
 **Monetized Skills (long-term):** x402 opens a door — premium contributors could charge
 micro-payments for specialized skills via the same protocol. Free tier stays CC0,
