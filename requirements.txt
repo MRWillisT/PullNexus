@@ -1,1 +1,2 @@
-pullnexus[mcp]==0.2.6
+# Railway installs the local package source via railway.toml.
+# Keep this file free of self-referencing pullnexus pins.
