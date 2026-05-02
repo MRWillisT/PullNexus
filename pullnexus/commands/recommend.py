@@ -1,6 +1,7 @@
 """pullnexus recommend — suggest skills for a problem statement."""
 
 import json
+from pathlib import Path
 from typing import Optional
 
 import typer
@@ -11,6 +12,9 @@ from pullnexus.api import fetch_index
 from pullnexus.schema import SCHEMA_VERSION
 
 console = Console()
+
+_FEEDBACK_DIR = Path(__file__).resolve().parents[2] / "feedback"
+_FEEDBACK_MIN_REPORTS = 3
 
 CATEGORY_KEYWORDS = {
     "automation": ["automation", "agent", "workflow", "mcp", "orchestr", "integration"],
@@ -41,6 +45,11 @@ def recommend(
         "--type",
         help="Filter to a resource type (e.g. skill, tool, playbook). Defaults to all types.",
     ),
+    context: Optional[str] = typer.Option(
+        None,
+        "--context",
+        help="Hardware/model context to filter by compatibility. Format: model=llama3,hardware=8GB",
+    ),
     limit: int = typer.Option(5, "--limit", "-n", help="Maximum recommendations"),
     explain: str = typer.Option(
         "basic",
@@ -57,6 +66,7 @@ def recommend(
 
     Searches across all resource types by default (skills, tools, playbooks, datasets).
     Use [bold]--type skill[/bold] to narrow to skills only.
+    Use [bold]--context model=llama3,hardware=8GB[/bold] to filter by verified compatibility.
     """
     skills = fetch_index()
     if not skills:
@@ -67,6 +77,18 @@ def recommend(
     if explain_level not in {"basic", "verbose"}:
         console.print("[red]Invalid --explain value. Use 'basic' or 'verbose'.[/red]")
         raise typer.Exit(1)
+
+    # Parse --context into a dict: "model=llama3,hardware=8GB" -> {"model": "llama3", "hardware": "8gb"}
+    ctx: dict[str, str] = {}
+    if context:
+        for part in context.split(","):
+            part = part.strip()
+            if "=" in part:
+                k, _, v = part.partition("=")
+                ctx[k.strip().lower()] = v.strip().lower()
+        if ctx:
+            ctx_display = ", ".join(f"{k}={v}" for k, v in ctx.items())
+            console.print(f"[dim]Filtering by context: {ctx_display}[/dim]")
 
     requested_category = category.lower().strip() if category else ""
     requested_type = resource_type.lower().strip() if resource_type else ""
@@ -81,6 +103,18 @@ def recommend(
             continue
         if requested_type and skill_type != requested_type:
             continue
+
+        # Context filtering: skip resources with confirmed breakage on this hardware/model
+        if ctx:
+            compat = _load_compatibility(skill.get("name", ""))
+            hw = ctx.get("hardware", "")
+            model = ctx.get("model", "")
+            if compat.get("status") == "verified":
+                broken = [b.lower() for b in compat.get("broken_on", [])]
+                if hw and any(hw in b for b in broken):
+                    continue
+                # Boost score if explicitly verified to work on this hardware
+                # (handled below in scoring)
 
         tags = [t.lower() for t in skill.get("tags", [])]
         name = skill.get("name", "").lower()
@@ -117,6 +151,23 @@ def recommend(
         if examples_bonus:
             verbose_parts.append(f"examples bonus +{examples_bonus}")
 
+        # Compatibility boost: verified to work on requested hardware/model
+        if ctx and score > 0:
+            compat = _load_compatibility(skill.get("name", ""))
+            if compat.get("status") == "verified":
+                hw = ctx.get("hardware", "")
+                model = ctx.get("model", "")
+                works = [w.lower() for w in compat.get("works_on", [])]
+                models = [m.lower() for m in compat.get("tested_models", [])]
+                if hw and any(hw in w for w in works):
+                    score += 15
+                    reasons.append("verified on your hardware")
+                    verbose_parts.append("hardware compatibility +15")
+                if model and any(model in m for m in models):
+                    score += 10
+                    reasons.append("tested with your model")
+                    verbose_parts.append("model compatibility +10")
+
         if score > 0:
             reason = ", ".join(reasons)
             if explain_level == "verbose":
@@ -136,6 +187,7 @@ def recommend(
             "problem": problem,
             "requested_category": requested_category or None,
             "requested_type": requested_type or None,
+            "context": ctx or None,
             "inferred_category": inferred_category or None,
             "explain": explain_level,
             "total_recommendations": len(top),
@@ -226,3 +278,34 @@ def _resource_type_slug(skill: dict) -> str:
 def _resource_type_label(skill: dict) -> str:
     """Return human-readable resource type label for UI tables."""
     return _resource_type_slug(skill).replace("-", " ").title()
+
+
+def _load_compatibility(resource_id: str) -> dict:
+    """Load compatibility summary from feedback JSONL for context-aware filtering."""
+    fb_path = _FEEDBACK_DIR / f"{resource_id}.jsonl"
+    if not fb_path.exists():
+        return {"status": "unverified", "report_count": 0}
+
+    reports = []
+    try:
+        for line in fb_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                reports.append(json.loads(line))
+    except Exception:
+        return {"status": "unverified", "report_count": 0}
+
+    count = len(reports)
+    if count < _FEEDBACK_MIN_REPORTS:
+        return {"status": "unverified", "report_count": count}
+
+    works_on = sorted({r["hardware"] for r in reports if r.get("outcome") == "success" and r.get("hardware")})
+    broken_on = sorted({r["hardware"] for r in reports if r.get("outcome") == "failure" and r.get("hardware")})
+    models = sorted({r["model"] for r in reports if r.get("model")})
+    return {
+        "status": "verified",
+        "report_count": count,
+        "works_on": works_on,
+        "broken_on": broken_on,
+        "tested_models": models,
+    }

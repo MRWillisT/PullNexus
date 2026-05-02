@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 105,
+  "total": 113,
   "skills": [
     {
       "name": "n8n-mcp-tool",
@@ -2397,6 +2397,225 @@
       "maturity": "stable",
       "maintained": "yes",
       "last_verified": "2026-05-01"
+    },
+    {
+      "name": "safe-output-guardrails",
+      "resource_type": "policy",
+      "version": "1.0.0",
+      "description": "Refusal rules and safety guardrails for local LLMs: hate speech, self-harm, PII leakage, jailbreak patterns, and prompt injection. Drop-in system prompt blocks compatible with Ollama and LM Studio.",
+      "tags": [
+        "policy",
+        "safety",
+        "guardrails",
+        "refusal",
+        "system-prompt",
+        "use:policy"
+      ],
+      "license": "CC0-1.0",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "policy",
+      "maturity": "alpha",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
+    },
+    {
+      "name": "pii-redaction-policy",
+      "resource_type": "policy",
+      "version": "1.0.0",
+      "description": "Structured policy for detecting and redacting PII (names, emails, phone numbers, SSNs) from LLM inputs and outputs. Includes regex patterns and system-prompt instructions.",
+      "tags": [
+        "policy",
+        "pii",
+        "privacy",
+        "compliance",
+        "redaction",
+        "use:policy"
+      ],
+      "license": "CC0-1.0",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "policy",
+      "maturity": "alpha",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
+    },
+    {
+      "name": "local-rag-starter-template",
+      "resource_type": "template",
+      "version": "1.0.0",
+      "description": "Starter project layout for a local RAG app: Ollama + ChromaDB + LangChain. Includes folder structure, ingest script, retrieval chain, and .env template. Copy and run in under 10 minutes.",
+      "tags": [
+        "template",
+        "rag",
+        "ollama",
+        "chroma",
+        "langchain",
+        "starter",
+        "use:template"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "developer",
+      "maturity": "alpha",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
+    },
+    {
+      "name": "mcp-server-starter-template",
+      "resource_type": "template",
+      "version": "1.0.0",
+      "description": "Minimal FastMCP server template: one file, three tools, full type annotations. Wired to stdio transport by default. Add your tools and it works with Claude Code, Continue.dev, and Cursor immediately.",
+      "tags": [
+        "template",
+        "mcp",
+        "fastmcp",
+        "server",
+        "starter",
+        "use:template"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "automation",
+      "maturity": "alpha",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
+    },
+    {
+      "name": "fine-tune-pipeline-template",
+      "resource_type": "template",
+      "version": "1.0.0",
+      "description": "End-to-end fine-tuning project template: data prep, Axolotl config, train script, eval harness, and model card. Supports QLoRA on consumer GPUs. Parameterized for any base model.",
+      "tags": [
+        "template",
+        "fine-tuning",
+        "axolotl",
+        "qlora",
+        "training",
+        "use:template"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "data-prep",
+      "maturity": "alpha",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
+    },
+    {
+      "name": "env-8gb-vram-local-chat",
+      "resource_type": "environment",
+      "version": "1.0.0",
+      "description": "Verified local chat stack for 8GB VRAM GPUs (RTX 3060/4060/5060): Ollama + Llama 3.1 8B Q4_K_M + Open WebUI. Includes install commands, model pull steps, and known working config.",
+      "tags": [
+        "environment",
+        "ollama",
+        "8gb",
+        "rtx-3060",
+        "rtx-4060",
+        "llama3",
+        "local",
+        "use:environment"
+      ],
+      "license": "CC0-1.0",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": false,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "compatibility": {
+        "works_on": [
+          "8GB VRAM",
+          "RTX 3060",
+          "RTX 4060",
+          "RTX 5060"
+        ],
+        "known_issues": [],
+        "unverified_on": [
+          "AMD RX 7600",
+          "Apple M2"
+        ]
+      }
+    },
+    {
+      "name": "env-24gb-vram-agent-stack",
+      "resource_type": "environment",
+      "version": "1.0.0",
+      "description": "Verified agent stack for 24GB VRAM (RTX 3090/4090): Ollama + Qwen2.5-72B Q3 or Llama 3.3 70B Q4 + LangGraph + ChromaDB. Runs full multi-agent loops locally at usable speed.",
+      "tags": [
+        "environment",
+        "ollama",
+        "24gb",
+        "rtx-3090",
+        "rtx-4090",
+        "agents",
+        "qwen",
+        "use:environment"
+      ],
+      "license": "CC0-1.0",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": false,
+      "category": "agents",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "compatibility": {
+        "works_on": [
+          "24GB VRAM",
+          "RTX 3090",
+          "RTX 4090"
+        ],
+        "known_issues": [],
+        "unverified_on": [
+          "RTX 5090"
+        ]
+      }
+    },
+    {
+      "name": "env-apple-silicon-local-ai",
+      "resource_type": "environment",
+      "version": "1.0.0",
+      "description": "Verified local AI stack for Apple Silicon (M1/M2/M3/M4): Ollama + Mistral 7B or Llama 3.1 8B + LM Studio optional. Uses Metal GPU acceleration. No CUDA needed.",
+      "tags": [
+        "environment",
+        "apple-silicon",
+        "m1",
+        "m2",
+        "m3",
+        "ollama",
+        "metal",
+        "use:environment"
+      ],
+      "license": "CC0-1.0",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": false,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "compatibility": {
+        "works_on": [
+          "Apple M1",
+          "Apple M2",
+          "Apple M3",
+          "Apple M4"
+        ],
+        "known_issues": [
+          "Flash attention not supported on Metal"
+        ],
+        "unverified_on": []
+      }
     }
   ],
   "external_sources": [

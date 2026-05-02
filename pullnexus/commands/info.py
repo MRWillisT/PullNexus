@@ -1,6 +1,7 @@
 """pullnexus info — show detailed information about a skill."""
 
 import json
+from pathlib import Path
 from typing import Optional
 
 import typer
@@ -12,6 +13,9 @@ from pullnexus.api import fetch_skill_json, fetch_skill_readme
 from pullnexus.schema import SCHEMA_VERSION
 
 console = Console()
+
+_FEEDBACK_DIR = Path(__file__).resolve().parents[2] / "feedback"
+_FEEDBACK_MIN_REPORTS = 3
 
 # Types where pulling a file package makes no sense.
 _NON_INSTALLABLE_TYPES = {"repository", "eval", "policy"}
@@ -40,6 +44,9 @@ def info(
             payload.update(skill_json)
         if readme:
             payload["readme"] = readme
+        # Enrich with live compatibility data from feedback files
+        if skill_json:
+            payload["compatibility"] = _load_compatibility(skill_name)
         print(json.dumps(payload, indent=2))
         raise typer.Exit(0)
 
@@ -126,3 +133,33 @@ def info(
             f"\n[dim]Install this skill: [bold]pullnexus pull {skill_name}[/bold][/dim]"
         )
 
+
+def _load_compatibility(resource_id: str) -> dict:
+    """Load compatibility summary from feedback JSONL for agent-native --json output."""
+    fb_path = _FEEDBACK_DIR / f"{resource_id}.jsonl"
+    if not fb_path.exists():
+        return {"status": "unverified", "report_count": 0}
+
+    reports = []
+    try:
+        for line in fb_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line:
+                reports.append(json.loads(line))
+    except Exception:
+        return {"status": "unverified", "report_count": 0}
+
+    count = len(reports)
+    if count < _FEEDBACK_MIN_REPORTS:
+        return {"status": "unverified", "report_count": count}
+
+    works_on = sorted({r["hardware"] for r in reports if r.get("outcome") == "success" and r.get("hardware")})
+    broken_on = sorted({r["hardware"] for r in reports if r.get("outcome") == "failure" and r.get("hardware")})
+    models = sorted({r["model"] for r in reports if r.get("model")})
+    return {
+        "status": "verified",
+        "report_count": count,
+        "works_on": works_on,
+        "broken_on": broken_on,
+        "tested_models": models,
+    }

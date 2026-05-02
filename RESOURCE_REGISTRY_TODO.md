@@ -1,6 +1,6 @@
 # PullNexus Typed Resource Registry TODO
 
-Last updated: 2026-05-01
+Last updated: 2026-05-02
 
 ## Goal
 Build PullNexus beyond a skill-only registry into a typed, gap-filling resource network for local LLMs.
@@ -17,9 +17,9 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [x] `dataset` resources: training corpora, eval datasets, synthetic packs, licensing metadata. (`synthetic-training-datasets`)
 - [x] `eval` resources: benchmark suites, score rubrics, pass/fail gates. (`rag-eval-baseline`)
 - [x] `playbook` resources: deploy/runbook procedures. (`local-rag-starter-pack`)
-- [ ] `policy` resources: guardrails, refusal rules, safety/compliance templates.
-- [ ] `template` resources: starter project layouts and config bundles.
-- [ ] `environment` resources: known-good stacks (GPU tier, runtime, vector DB, embedding model).
+- [x] `policy` resources: guardrails, refusal rules, safety/compliance templates. (`safe-output-guardrails`, `pii-redaction-policy`)
+- [x] `template` resources: starter project layouts and config bundles. (`local-rag-starter-template`, `mcp-server-starter-template`, `fine-tune-pipeline-template`)
+- [x] `environment` resources: known-good stacks (GPU tier, runtime, vector DB, embedding model). (`env-8gb-vram-local-chat`, `env-24gb-vram-agent-stack`, `env-apple-silicon-local-ai`)
 
 ## P1 - RAG-Specific Expansion
 - [x] Add a `local-rag-starter-pack` playbook (ingestion, chunking, retrieval, eval, deployment).
@@ -32,8 +32,8 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [x] Add `pullnexus feedback <resource-id>` CLI command (saves locally; GitHub-backed submission coming).
 - [x] Surface compatibility data in `pullnexus info` output (works_on, known_issues, unverified_on).
 - [x] Include quality/provenance fields in `pullnexus info` (maturity, maintained, last_verified).
-- [ ] Include `compatibility` field in `pullnexus info --json` for agent-native consumption.
-- [ ] Add `--context model=<name>,hardware=<vram>` flag to `pullnexus recommend` to filter by compatibility.
+- [x] Include `compatibility` field in `pullnexus info --json` for agent-native consumption.
+- [x] Add `--context model=<name>,hardware=<vram>` flag to `pullnexus recommend` to filter by compatibility.
 
 ### Out of scope until 200+ resources
 - Web UI feedback form (PullNexus is LLM-first CLI)
