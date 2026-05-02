@@ -55,12 +55,13 @@ Build PullNexus beyond a skill-only registry into a typed, gap-filling resource 
 - [x] Add quality scoring metadata (`maturity`, `maintained`, `last_verified`) to schema constants.
 - [ ] Add signed checksum support for downloadable artifacts.
 
-## Open Questions
-- [ ] Should `repository` remain a type or be folded into `tool`/`dataset`/`playbook` after curation?
-- [ ] Should `recommend` default to `--type skill` or include all types by default?
-- [ ] Which minimum fields are mandatory for each type in `skill.json`/resource metadata?
-- [ ] What is the minimum feedback volume (N reports) before compatibility data is shown rather than "unverified"?
-- [ ] Should feedback be stored as flat JSONL per resource in the repo, or as a separate `feedback/` index?
+## Open Questions — Resolved
+
+- [x] **`repository` type:** Fold it. "Repository" describes where something lives, not what it is. A repo is a tool, dataset, or playbook — contributors must pick the right one. `repository` stays as a legacy/catalog type but new submissions must use a real type.
+- [x] **`recommend` default:** All types. Default to the most useful behavior — let users narrow with `--type skill` if needed. Defaulting to skills-only undermines the whole multi-type vision.
+- [x] **Mandatory fields per type:** `name`, `version`, `description`, `tags`, `license`, `resource_type` — that's it for every type. Everything else is optional. Simple = more contributors.
+- [x] **Feedback volume threshold:** 3 reports before showing compatibility data. Below 3 shows "unverified". Count always displayed so users can judge confidence.
+- [x] **Feedback storage:** Separate `feedback/` index, one JSONL file per resource (`feedback/python-advanced-debugging.jsonl`). Avoids merge conflicts when multiple contributors submit simultaneously.
 
 ## P3 - PullNexus MCP Server
 

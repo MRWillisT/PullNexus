@@ -39,7 +39,7 @@ def recommend(
     resource_type: Optional[str] = typer.Option(
         None,
         "--type",
-        help="Hard-filter recommendations to a resource type (e.g. skill, repository).",
+        help="Filter to a resource type (e.g. skill, tool, playbook). Defaults to all types.",
     ),
     limit: int = typer.Option(5, "--limit", "-n", help="Maximum recommendations"),
     explain: str = typer.Option(
@@ -53,7 +53,11 @@ def recommend(
         help="Output recommendations as JSON for machine-friendly consumption.",
     ),
 ):
-    """Recommend the most relevant skills for a user problem."""
+    """Recommend the most relevant resources for a user problem.
+
+    Searches across all resource types by default (skills, tools, playbooks, datasets).
+    Use [bold]--type skill[/bold] to narrow to skills only.
+    """
     skills = fetch_index()
     if not skills:
         console.print("[yellow]No skills available yet.[/yellow]")

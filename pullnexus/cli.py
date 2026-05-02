@@ -3,7 +3,7 @@
 import typer
 from rich.console import Console
 
-from pullnexus.commands import search, install, list_skills, submit, info, recommend, categories, types, feedback
+from pullnexus.commands import search, install, list_skills, submit, info, recommend, categories, types, feedback, serve
 
 console = Console()
 
@@ -52,6 +52,7 @@ app.command()(recommend.recommend)
 app.command()(categories.categories)
 app.command()(types.types)
 app.command()(feedback.feedback)
+app.command()(serve.serve)
 
 if __name__ == "__main__":
     app()
