@@ -1,0 +1,30 @@
+{
+  "version": "v1",
+  "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "user_preferences": {
+    "response_style": "concise",
+    "risk_tolerance": "low",
+    "ask_before_high_impact_changes": true
+  },
+  "project_constraints": [],
+  "active_objectives": [
+    {
+      "id": "obj_001",
+      "title": "Your objective title",
+      "status": "in_progress",
+      "milestones": [
+        {
+          "name": "milestone_name",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
+  "rejected_approaches": [
+    {
+      "approach": "approach_name",
+      "reason": "why it was rejected"
+    }
+  ],
+  "next_actions": []
+}

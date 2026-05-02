@@ -1,0 +1,17 @@
+{
+  "name": "uncertainty-behavior-policy",
+  "resource_type": "policy",
+  "version": "1.0.0",
+  "description": "Governs how an AI assistant should behave when it lacks information or confidence. Prefer reversible actions, state what is unknown, inspect before claiming, and correct plainly. Essential for any local agent that makes tool calls or file changes.",
+  "tags": ["policy", "uncertainty", "agent", "safety", "local-ai", "behavior", "reliability", "use:policy"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "category": "safety",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "policy_file": "policy.md",
+  "applies_to": ["all agents", "orchestrator", "coder", "reviewer"],
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai", "any"]
+}

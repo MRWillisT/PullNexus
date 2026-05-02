@@ -1,0 +1,16 @@
+{
+  "name": "windows-local-ai-tips",
+  "resource_type": "policy",
+  "version": "1.0.0",
+  "description": "Essential commands and safety habits for running local AI on Windows. Covers py -3, ollama, nvidia-smi, rg, and PowerShell-native practices. Reduces common mistakes when managing models, files, and training runs on Windows.",
+  "tags": ["policy", "windows", "local-ai", "ollama", "setup", "safety", "powershell", "nvidia", "use:policy"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "category": "setup",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "policy_file": "policy.md",
+  "compatible_with": ["ollama", "lm-studio", "any"]
+}

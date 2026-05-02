@@ -1,6 +1,6 @@
 # Contributing to PullNexus
 
-Thank you for contributing to the open commons of local AI knowledge. Every resource you add makes local models smarter for everyone — for free, forever.
+This guide covers how to contribute resources to the PullNexus registry and how submissions are reviewed.
 
 ---
 
@@ -16,6 +16,7 @@ Thank you for contributing to the open commons of local AI knowledge. Every reso
 | **dataset** | Curated JSONL or HuggingFace dataset | HF training sets |
 | **environment** | Hardware/software stack profile | `env-8gb-vram-local-chat` |
 | **eval** | Benchmark or evaluation harness | evaluation suites |
+| **repository** | External repository worth indexing as a reference | `ggml-org/llama.cpp` |
 
 You can also contribute:
 - **Improvements** — better examples, eval cases, or README clarity for existing resources
@@ -26,7 +27,7 @@ You can also contribute:
 
 ## Fastest Way to Contribute (No Setup Required)
 
-[Open a Submit Issue](https://github.com/MRWillisT/PullNexus/issues/new/choose) — fill in the form and a maintainer handles the rest. No install, no fork, no JSON.
+[Open a Submit Issue](https://github.com/MRWillisT/PullNexus/issues/new/choose) if you want to suggest a resource without setting up the CLI or preparing files yourself.
 
 ---
 
@@ -39,18 +40,20 @@ pip install pullnexus
 pullnexus submit --interactive --type template   # or policy, playbook, skill, tool...
 ```
 
-It prompts for all required fields, auto-parses llama-server flags into structured `config_params`, and writes a ready-to-submit `skill.json` + `README.md` into `submissions/<name>/`. Then open a PR with that folder.
+It prompts for the required fields, parses llama-server flags into structured `config_params` where relevant, and writes a submission folder into `submissions/<name>/`. From there, open a pull request with the generated files.
 
 ---
 
 ## Skill Format
+
+PullNexus supports multiple resource types. The layout below is specific to `skill` submissions, which are the most structured resource type in the registry.
 
 Every skill lives in `skills/<your-skill-name>/` and contains these files:
 
 ```
 skills/your-skill-name/
 ├── skill.json          ← Required: metadata (name, description, tags, version, license)
-├── examples.jsonl      ← Required: JSONL conversation pairs (the training data)
+├── examples.jsonl      ← Required: JSONL conversation pairs or examples
 ├── README.md           ← Required: human-readable description and usage
 └── eval.jsonl          ← Recommended: test cases to verify the skill works
 ```
@@ -60,20 +63,20 @@ Copy `skills/_template/` to get started:
 cp -r skills/_template skills/your-skill-name
 ```
 
-### skill.json fields
+### `skill.json` fields
 
 | Field | Required | Description |
 |---|---|---|
 | `name` | ✓ | Kebab-case identifier matching the folder name |
 | `version` | ✓ | Semantic version string (start with `1.0.0`) |
-| `description` | ✓ | One clear sentence — what does this skill teach? |
+| `description` | ✓ | One clear sentence describing what the skill teaches |
 | `tags` | ✓ | Array of lowercase tag strings for discoverability |
 | `license` | ✓ | Must be `CC0-1.0` for community skills |
 | `examples` | ✓ | Number of examples in `examples.jsonl` |
 | `mcp_compatible` | — | `true` if the skill includes or describes MCP tool usage |
 | `author` | — | Your GitHub username |
 
-### examples.jsonl format
+### `examples.jsonl` format
 
 Each line must be valid JSON with a `conversations` key (ShareGPT format):
 
@@ -94,14 +97,14 @@ Multi-turn conversations are supported:
 ]}
 ```
 
-**Quality guidelines:**
+Quality guidelines:
 - Minimum 5 examples; aim for 10+
 - Use real problems, not textbook examples
 - Show the reasoning process, not just the answer
 - Include edge cases and failure modes
 - Avoid PII, secrets, credentials, and copyrighted content
 
-### eval.jsonl format
+### `eval.jsonl` format
 
 Each line is a test case:
 ```json
@@ -119,15 +122,15 @@ Each line is a test case:
 
 ### Step 1: Build or validate your submission
 
-**Option A — Use the wizard (generates everything):**
+**Option A: Use the wizard**
 ```bash
 pullnexus submit --interactive --type template
 # Output lands in submissions/<name>/
 ```
 
-**Option B — Build manually, then validate:**
+**Option B: Build manually, then validate**
 ```bash
-pullnexus submit path/to/your-skill-name --dry-run
+pullnexus submit path/to/your-resource-name --dry-run
 ```
 
 Fix any errors before continuing.
@@ -138,29 +141,31 @@ Fix any errors before continuing.
 # Fork MRWillisT/PullNexus on GitHub, then:
 git clone https://github.com/YOUR_USERNAME/PullNexus
 cd PullNexus
-git checkout -b skill/your-skill-name
+git checkout -b resource/your-resource-name
 ```
 
-### Step 3: Copy your skill folder
+### Step 3: Copy your resource folder
 
 ```bash
-cp -r path/to/your-skill-name skills/your-skill-name
+cp -r path/to/your-resource-name skills/your-resource-name
 ```
+
+For non-skill resources, keep the generated metadata and README together in the folder you submit.
 
 ### Step 4: Update the index
 
-Add your skill's metadata to `skills/index.json` — follow the existing format exactly.
+Add your resource metadata to `skills/index.json` and follow the existing format exactly.
 
 ### Step 5: Open a Pull Request
 
 Push your branch and open a PR against `main`. Use this title format:
 ```
-skill: add your-skill-name
+resource: add your-resource-name
 ```
 
 In the PR description, briefly explain:
-- What the skill teaches
-- Where the examples came from (synthetic, real conversations, etc.)
+- What the resource is for
+- Where the examples or source material came from
 - Any caveats or known gaps
 
 ---
@@ -170,12 +175,12 @@ In the PR description, briefly explain:
 Maintainers will check:
 - [ ] All required files present
 - [ ] `skill.json` fields complete and valid
-- [ ] `examples.jsonl` is valid JSONL with correct schema
+- [ ] Any included JSONL files are valid and match the expected schema
 - [ ] No PII, secrets, or copyrighted material
 - [ ] `skills/index.json` updated
 - [ ] `README.md` is clear and accurate
 
-Most skill PRs are reviewed within a few days. If your skill is rejected, the feedback will explain what to fix.
+Most PRs are reviewed within a few days. If a submission is rejected or needs changes, the review should explain what to fix.
 
 ---
 
@@ -192,14 +197,14 @@ Open a PR that:
 ## Code of Conduct
 
 - Be respectful and constructive in reviews
-- Don't submit skills that contain harmful, deceptive, or unsafe content
-- Don't submit skills that teach models to bypass safety measures
-- Skills that contain PII, credentials, or proprietary data will be rejected
+- Don't submit resources that contain harmful, deceptive, or unsafe content
+- Don't submit resources that teach models to bypass safety measures
+- Resources that contain PII, credentials, or proprietary data will be rejected
 
 ---
 
 ## Questions?
 
-Open an issue with the label `question`. We're happy to help you get your first skill submitted.
+Open an issue with the label `question`.
 
-*Pull from the Nexus. Give back to the Nexus. Keep local AI smart.*
+*Search the registry. Pull what fits. Submit what helped.*

@@ -1,0 +1,16 @@
+{
+  "name": "agent-memory-state-template",
+  "resource_type": "template",
+  "version": "1.0.0",
+  "description": "JSON template for tracking an autonomous agent's persistent memory: user preferences, project constraints, active objectives with milestones, rejected approaches, and next actions. Drop into any local agent runtime to enable cross-session continuity.",
+  "tags": ["template", "memory", "agent", "local-ai", "multi-agent", "persistence", "json", "use:template"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "template_file": "template.json",
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai", "any"]
+}

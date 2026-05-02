@@ -1,5 +1,5 @@
 # PullNexus
-**Your local AI shouldn't have to be dumb.** Pull skills, tools, configs, and knowledge on demand — free, open, community-built.
+**GitHub-backed registry and CLI for local AI resources.** Search, pull, and submit reusable skills, tools, templates, datasets, and workflow artifacts.
 
 [![PyPI](https://img.shields.io/pypi/v/pullnexus)](https://pypi.org/project/pullnexus/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Registry](https://img.shields.io/badge/registry-145%20resources-brightgreen)](skills/index.json)
 
@@ -11,67 +11,77 @@
 pip install pullnexus
 ```
 
-**Find something:**
+**Search the registry:**
 ```bash
 pullnexus search "fine-tune 35B on consumer GPU"
-pullnexus recommend "local agent loop" --context hardware=8GB
+pullnexus search "local agent loop" --type skill
 ```
 
-**Get the details:**
+**Browse what's available:**
 ```bash
-pullnexus info fine-tune-with-unsloth
-pullnexus install fine-tune-with-unsloth
+pullnexus list-skills --type dataset
+pullnexus pull local-rag-starter-pack
 ```
 
-**Contribute something you found:**
+**Start a submission:**
 ```bash
-pullnexus submit --interactive --type template
+pullnexus submit --interactive --type skill
 # or open an issue: github.com/MRWillisT/PullNexus/issues/new/choose
 ```
 
-> 145 resources across 9 types: skills, tools, templates, playbooks, policies, datasets, environments, evals, repositories. All free, all open.
+> Current registry: 145 resources across 9 resource types: skills, tools, templates, playbooks, policies, datasets, environments, evals, and repositories.
 
 ---
 
-## 1. Vision (Elevator Pitch)
+## 1. Vision 
 
-Local LLMs are powerful but isolated. They forget niche expertise, hallucinate on specifics, and keep reinventing the wheel.
+Local models are improving quickly, but the surrounding workflow is still fragmented. Useful prompts, JSONL examples, tool definitions, templates, hardware notes, and evaluation sets are scattered across repositories, gists, and chat logs.
 
-PullNexus is a living, open commons where anyone contributes high-quality skills, tools, curated conversations, JSONL training data, or prompt packs. Your local model (Ollama, LM Studio, etc.) hits a wall → queries PullNexus → instantly pulls the exact skill it needs → levels up on the fly.
+PullNexus packages those artifacts into a consistent registry format that can be searched from a CLI today and extended by other clients over time. The practical goal is simple: find a relevant resource, inspect its metadata, pull it if it is installable, or use it as reference material for your own local setup.
 
-No subscriptions. No corporate gatekeeping. Just Wikipedia + Hugging Face + npm, built for local AI brains.
+It is a small, open distribution layer for local AI workflows rather than a model host, hosted agent platform, or prompt gallery.
 
 ---
 
 ## 2. Why Now
 
-The timing is perfect:
+Several pieces have matured at the same time:
 
-- **Ollama** crossed massive mainstream adoption (tens of millions of downloads) — local AI is no longer niche.
-- **Affordable hardware is here:** RTX 5060 Ti just launched, making strong VRAM setups realistic for regular users.
-- **Growing backlash** against API pricing and paywalls is pushing more people toward fully local setups.
-- **The "AI skills" ecosystem is exploding**, but there's still no general-purpose, community-owned, pull-on-demand registry for everyday local models.
-- **HuggingFace is a great data warehouse. OpenSkills is closed. Agent toolkits are provider-specific.** None of them are local-first, pull-on-demand, and community-owned.
+- Local inference tools such as Ollama, llama.cpp, LM Studio, and vLLM are now normal parts of developer workflows.
+- More people are keeping inference local because pricing, privacy, and latency matter in day-to-day use.
+- The reusable material around those workflows still lacks a standard home. Models and datasets have hubs; operational artifacts usually do not.
+- Most adjacent tools solve runtime orchestration or model hosting, not discovery and reuse of smaller building blocks like skills, playbooks, templates, or evals.
 
-This isn't coincidence — it's a real window to build the missing infrastructure layer.
+That makes a typed, pull-oriented registry useful even at a modest scale.
 
 ---
 
 ## 3. How It Works
 
-1. Community submits skills via GitHub PRs or a simple web form.
-2. Skills are versioned, rated, and tagged.
-3. Local client / CLI / MCP integration:
-   ```
-   pullnexus search rust debugger
-   pullnexus install rust-memory-leak
-   ```
-4. Model loads it into context or as a tool and gets smarter immediately.
-5. You improve it → submit v2 → everyone benefits.
+1. Resources are indexed in `skills/index.json` with typed metadata.
+2. The CLI can search the registry, filter by type/category/tag, and pull installable resources.
+3. Contributors can submit through GitHub or generate a draft folder with the interactive wizard.
+4. Resources stay versioned, tagged, and reviewable in the repository.
+5. The same schema can support richer clients and integrations later.
 
-### The Contributor Loop (Our Unfair Advantage)
+### Contribution Workflow
 
-Use your real conversations with local models → run them through your JSONL pipeline → auto-generate high-quality training data → submit back to the commons. Real usage becomes new skills. This closes the loop beautifully and makes contribution nearly effortless. No other project in this space has this.
+Resources do not need to start as "skills." A useful JSONL conversation set, deployment playbook, model template, policy document, tool reference, or environment profile can all go through the same registry format.
+
+In practice, many entries come from real project work: something becomes reusable, gets documented, and is added to the registry with metadata and optional supporting files.
+
+### CLI Surface
+
+Current public commands:
+
+```
+pullnexus search rust debugger --type skill
+pullnexus list-skills --category automation
+pullnexus pull local-rag-starter-pack
+pullnexus submit --interactive --type playbook
+```
+
+Some resource types are installable file packages; others are reference entries that point to external repositories, datasets, or documentation.
 
 ---
 
@@ -82,9 +92,9 @@ Here's the folder structure for a skill — this is what people submit:
 ```
 skills/python-advanced-debugging/
 ├── skill.json          → Metadata (name, description, tags, version, license)
-├── examples.jsonl      → JSONL conversation pairs (the real training meat)
-├── README.md           → Human-readable explanation + usage instructions
-├── eval.jsonl          → Test cases to verify the skill works well
+├── examples.jsonl      → JSONL conversation pairs or training examples
+├── README.md           → Human-readable explanation and usage notes
+├── eval.jsonl          → Test cases to verify the skill behaves as expected
 └── tools/              → Optional MCP tool definitions
 ```
 
@@ -101,39 +111,39 @@ skills/python-advanced-debugging/
 }
 ```
 
-This "show, don't tell" structure makes it dead simple for any developer to contribute.
+The structure is intentionally plain so that review, reuse, and validation stay straightforward.
 
 ---
 
-## 5. Core Features
+## 5. Current Surface
 
-### MVP (Ship First)
-- Standardized skill format (JSONL + Markdown as the core spec)
-- GitHub-backed registry + simple web UI (GitHub Pages to start)
-- CLI tool: `pullnexus pull`, `pullnexus search`, `pullnexus submit`
-- Basic search, ratings, and versioning
-- Ollama / LM Studio / MCP integration examples
-- 5–10 seed skills live on day one
+### Available today
+- GitHub-backed registry with 145 indexed resources across 9 resource types
+- Public CLI commands for search, pull/install, listing, and submission scaffolding
+- Interactive submission wizard that generates resource folders and validates metadata
+- Schema support for skills, tools, templates, policies, playbooks, datasets, environments, evals, and repositories
+- Local/remote registry fetching so the CLI can degrade gracefully when GitHub is unavailable
+- Skill folders built around plain files: metadata, JSONL examples, README, and optional eval/tool definitions
 
-### Later
-- Web search API for local models
-- Automated quality scoring + evals
-- Federated nodes (run your own mirror)
-- Bounty board for missing skills
-- Reputation system
+### Near-term work
+- Expose the additional packaged command surfaces more cleanly in the main CLI
+- Improve MCP/client integration documentation
+- Tighten validation, review, and compatibility reporting around submitted resources
+- Improve registry browsing and filtering UX
+- Add more automation around publishing and quality checks
 
 ---
 
-## 6. Differentiation
+## 6. Positioning
 
-This isn't another data dump. It's the **executable intelligence layer** missing from the open AI stack — discoverable, pullable skills designed specifically for local models.
+PullNexus sits between raw repositories and full platform products. It is not trying to host models or replace agent runtimes. Its job is narrower: keep reusable local-AI resources in one searchable format with enough metadata to make them easy to discover and reuse.
 
-| Platform | What It Is | What's Missing |
+| Platform | Primary focus | Gap PullNexus addresses |
 |---|---|---|
-| HuggingFace | Data warehouse | Not pull-on-demand, not local-first | <----BRIDGED>
-| OpenSkills | Skills ecosystem | Closed, provider-specific |
-| Agent toolkits | Tool calling frameworks | Not community-owned, not general-purpose |
-| **PullNexus** | Living skill commons | **Nothing — this is it** |
+| HuggingFace | Models and datasets | Not organized around smaller local-AI workflow artifacts |
+| OpenSkills | Hosted skills ecosystem | Not open, repo-native, or local-first |
+| Agent toolkits | Runtime and tool frameworks | Do not solve registry/discovery for reusable resources |
+| **PullNexus** | Registry for local-AI resources | Early-stage project focused on schema, search, and contribution flow |
 
 ---
 
@@ -143,20 +153,22 @@ This isn't another data dump. It's the **executable intelligence layer** missing
 |---|---|
 | Quality | Stars, reviews, test cases, curation queue |
 | Spam | GitHub workflow + signing |
-| Incentives | Leaderboards, badges, PullNexus Hall of Fame |
+| Incentives | Attribution, contributor history, and reusable outputs |
 | Legal | Clear CC0/MIT contribution license + provenance tracking |
 
 ---
 
 ## 8. Governance
 
-PullNexus will start with a simple steering committee made up of founding contributors (top active people + initial maintainers). Major decisions — core registry policies, format changes — go through public discussion with voting weighted by contribution history. This keeps it community-driven while preventing hijacking or chaos. As it grows, it can evolve into a proper open source foundation structure.
+PullNexus is currently maintained by one person. Decisions about the registry format, contribution rules, and moderation are made openly in the repository through issues and pull requests. That keeps the project straightforward: fast decisions, public rationale, and a clear paper trail.
+
+If the project grows into a true multi-maintainer effort, governance can expand into a lightweight maintainer model with documented roles and decision rules. For now, the priority is simple: keep the standards clear, keep the process public, and keep the project useful.
 
 ---
 
-## 9. Seed Skills (Day One Inventory)
+## 9. Seed Skills (Original Launch Set)
 
-These can be built directly from the existing JSONL pipeline before launch — no extra work needed:
+These were the first skills the project was designed to ship with, built directly from the existing JSONL pipeline:
 
 1. `autonomous-agent-patterns` — planning, tool orchestration, memory loops
 2. `python-advanced-debugging` — memory leaks, pdb, tracing
@@ -169,31 +181,32 @@ These can be built directly from the existing JSONL pipeline before launch — n
 9. `autonomous-agent-payments` — x402-style payment and policy guardrails
 10. `kronos-trading-integration` — Kronos forecast fusion for safer bot decisions
 
-These aren't placeholders — they're real, battle-tested conversations already in JSONL format. That's the head start no other project launching in this space has.
+The catalog is larger now. This list is best read as the original launch set rather than the current ceiling of the project.
 
 ---
 
-## 10. Launch Plan (Next 30–60 Days)
+## 10. Near-Term Roadmap
 
-| Week | Action |
+| Area | Next step |
 |---|---|
-| **Week 1** | Lock everything — GitHub org (`pullnexus`), PyPI package, domain (`pullnexus.dev` or `pullnexus.io`) |
-| **Week 1** | Convert 10 seed skills from existing JSONL pipeline/community patterns into the skill format |
-| **Week 2** | Write the full spec doc + contribution guide |
-| **Week 2** | Build basic CLI in Python (`pull`, `search`, `submit`) |
-| **Week 3** | GitHub Pages landing page + registry structure |
-| **Week 4** | Polish README, record a 2-min demo |
-| **Day 30** | Launch post on r/LocalLLaMA, r/MachineLearning, HuggingFace, X/Twitter |
-| **Ongoing** | Reach out to Ollama, LM Studio, Continue.dev communities for collaboration |
+| CLI | Expose additional packaged commands more consistently and align help text with the public surface |
+| Registry | Keep expanding coverage across the 9 supported resource types while tightening metadata quality |
+| Docs | Add clearer integration guidance for CLI, MCP/server usage, and contribution paths |
+| Review | Improve validation, compatibility reporting, and contributor feedback loops |
+| Discovery | Add better browsing, filtering, and categorization around the live index |
 
-> ⚡ **Do today:** Register `pullnexus` on PyPI and grab the domain. GitHub org is done — finish locking the name everywhere else before posting publicly.
+
 
 ---
 
-## 11. About the Founder
+## 11. About the Maintainer
 
-PullNexus was conceived by a vibe coder who spent a year and a half building real AI-assisted projects, got fed up with paywalls and pricing changes, and decided to build the infrastructure that should have existed already. The JSONL pipeline powering PullNexus's contribution format was built and battle-tested on real projects before this project existed — meaning the tooling isn't theoretical, it works.
+PullNexus is maintained by a developer who has spent roughly a year and a half working on real AI-assisted projects. The project grew out of repeated reuse problems: useful prompts, JSONL examples, deployment notes, and tool references kept showing up in ad hoc formats with no clear place to standardize them.
+
+That is why the repository is biased toward practical artifacts and plain files. The goal is not to present a grand platform vision first; it is to make reusable local-AI material easier to package, review, find, and use.
+
+
 
 ---
 
-*PullNexus — Pull from the Nexus. Give back to the Nexus. Keep local AI smart.*
+*Search the registry. Pull what fits. Submit what helped.*
