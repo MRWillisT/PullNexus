@@ -1,1 +1,1 @@
-pullnexus[mcp]==0.2.5
+pullnexus[mcp]==0.2.6
