@@ -371,4 +371,6 @@ def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
     """Run the MCP server over HTTP (team/cloud deployments)."""
     mcp.settings.host = host
     mcp.settings.port = port
+    # Allow any Host header (required for cloud/proxy deployments like Railway)
+    mcp.settings.allowed_hosts = ["*"]
     mcp.run(transport="streamable-http")

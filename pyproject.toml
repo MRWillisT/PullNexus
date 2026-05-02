@@ -1,6 +1,6 @@
 [project]
 name = "pullnexus"
-version = "0.2.3"
+version = "0.2.4"
 description = "Pull from the Nexus. Give back to the Nexus. Keep local AI smart."
 readme = "README.md"
 requires-python = ">=3.10"
