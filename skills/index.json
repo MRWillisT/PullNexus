@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 153,
+  "total": 155,
   "skills": [
     {
       "name": "n8n-mcp-tool",
@@ -3633,6 +3633,82 @@
         "claude",
         "openai",
         "any"
+      ]
+    },
+    {
+      "name": "autonomous-agent-training-pack",
+      "resource_type": "dataset",
+      "version": "1.0.0",
+      "description": "160+ synthetic JSONL training examples for local autonomous agent behavior. 16 themed files covering planning, coding, tool use, multi-agent coordination, safety, memory, reliability, evaluation, vibe-coding, and general assistant patterns. Includes train/val/test splits, validation script, split generator, manifest, and sampling guide.",
+      "tags": [
+        "dataset",
+        "training",
+        "autonomous-agent",
+        "local-ai",
+        "sharegpt",
+        "chatml",
+        "synthetic",
+        "multi-agent",
+        "tool-use",
+        "safety",
+        "memory",
+        "use:dataset"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "category": "training",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "installable": true,
+      "formats": [
+        "sharegpt",
+        "chatml"
+      ],
+      "total_examples": 160,
+      "compatible_with": [
+        "axolotl",
+        "unsloth",
+        "llama-factory",
+        "torchtune",
+        "trl"
+      ]
+    },
+    {
+      "name": "synthetic-general-training-pack",
+      "resource_type": "dataset",
+      "version": "1.0.0",
+      "description": "110+ synthetic JSONL training examples for general coding assistant behavior. 11 themed files covering backtesting, execution, general assistant, web languages, README writing, reasoning, risk, trading psychology, uncertainty, refusals, and vibe coding. Useful for reducing domain skew in any local model.",
+      "tags": [
+        "dataset",
+        "training",
+        "synthetic",
+        "local-ai",
+        "sharegpt",
+        "general-assistant",
+        "coding",
+        "web",
+        "use:dataset"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "category": "training",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "installable": true,
+      "formats": [
+        "sharegpt"
+      ],
+      "total_examples": 110,
+      "compatible_with": [
+        "axolotl",
+        "unsloth",
+        "llama-factory",
+        "torchtune",
+        "trl"
       ]
     }
   ],

@@ -1,0 +1,31 @@
+{
+  "name": "synthetic-general-training-pack",
+  "resource_type": "dataset",
+  "version": "1.0.0",
+  "description": "110+ synthetic JSONL training examples for general coding assistant behavior. 11 themed files covering backtesting + quant methods, execution + ops, general assistant, modern web languages, README writing, reasoning, risk management, trading psychology, uncertainty handling, refusals, and vibe coding full-cycle. Broad coverage — useful for reducing domain skew in any local model.",
+  "tags": ["dataset", "training", "synthetic", "local-ai", "sharegpt", "general-assistant", "coding", "web", "use:dataset"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "category": "training",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "installable": true,
+  "formats": ["sharegpt"],
+  "total_examples": 110,
+  "files": [
+    "synthetic_advanced_backtesting_2026-04-28.jsonl",
+    "synthetic_brainstorming_2026-04-29.jsonl",
+    "synthetic_execution_and_ops_2026-04-28.jsonl",
+    "synthetic_general_assistant_2026-04-29.jsonl",
+    "synthetic_modern_languages_2026-04-28.jsonl",
+    "synthetic_readme_and_docs_2026-04-29.jsonl",
+    "synthetic_reasoning_and_problem_solving_2026-04-28.jsonl",
+    "synthetic_risk_management_2026-04-28.jsonl",
+    "synthetic_trading_psychology_2026-04-28.jsonl",
+    "synthetic_uncertainty_and_refusals_2026-04-29.jsonl",
+    "synthetic_vibe_coder_fullcycle_2026-04-29.jsonl"
+  ],
+  "compatible_with": ["axolotl", "unsloth", "llama-factory", "torchtune", "trl"]
+}
