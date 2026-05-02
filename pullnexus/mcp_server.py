@@ -435,6 +435,8 @@ def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
             mcp.settings.host = host
         if hasattr(mcp.settings, "port"):
             mcp.settings.port = port
+        if transport_security is not None and hasattr(mcp.settings, "transport_security"):
+            mcp.settings.transport_security = transport_security
 
     starlette_app = streamable_http_app(**app_kwargs)
     uvicorn.run(
