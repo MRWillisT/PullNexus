@@ -5,11 +5,14 @@ from pathlib import Path
 from rich.console import Console
 from rich.progress import Progress, SpinnerColumn, TextColumn
 
-from pullnexus.api import fetch_skill_files, download_file, fetch_index
+from pullnexus.api import fetch_skill_files, download_file, fetch_index, fetch_skill_json
 
 console = Console()
 
 _SKILLS_DIR = Path("./pullnexus-skills")
+
+# Resource types that cannot be downloaded as a file package.
+_NON_INSTALLABLE_TYPES = {"repository", "eval", "policy"}
 
 
 def install(
@@ -22,6 +25,18 @@ def install(
     force: bool = typer.Option(False, "--force", "-f", help="Overwrite existing skill"),
 ):
     """Pull a skill from the Nexus and save it locally."""
+
+    # Reject non-installable resource types before hitting the network.
+    meta = fetch_skill_json(skill_name)
+    if meta is not None:
+        resource_type = str(meta.get("resource_type", "skill")).lower()
+        if resource_type in _NON_INSTALLABLE_TYPES:
+            console.print(
+                f"[yellow]⚠ '{skill_name}' is a [bold]{resource_type}[/bold] resource — "
+                f"it cannot be pulled as a file package.[/yellow]\n"
+                f"Run [bold]pullnexus info {skill_name}[/bold] to view details and links."
+            )
+            raise typer.Exit(1)
 
     target = output / skill_name
 

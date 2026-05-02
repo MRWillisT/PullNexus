@@ -1,0 +1,31 @@
+{
+  "name": "local-rag-starter-pack",
+  "resource_type": "playbook",
+  "version": "1.0.0",
+  "description": "Step-by-step playbook for deploying a fully local RAG pipeline: document ingestion, chunking strategy, embedding model selection, vector DB setup (Chroma or Weaviate), retrieval, reranking, and answer-quality eval.",
+  "tags": [
+    "rag",
+    "retrieval",
+    "local-ai",
+    "ollama",
+    "chroma",
+    "weaviate",
+    "embeddings",
+    "playbook",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "author": "MRWillisT",
+  "source": "pullnexus",
+  "mcp_compatible": false,
+  "installable": true,
+  "category": "developer",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-01",
+  "compatibility": {
+    "works_on": ["Ollama + Llama3", "Ollama + Mistral-7b", "LM Studio"],
+    "known_issues": ["GPU <8GB VRAM may require quantized models for embedding + generation simultaneously"],
+    "unverified_on": ["GPT4All", "Jan.ai"]
+  }
+}

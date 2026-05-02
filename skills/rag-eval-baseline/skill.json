@@ -1,0 +1,24 @@
+{
+  "name": "rag-eval-baseline",
+  "resource_type": "eval",
+  "version": "1.0.0",
+  "description": "Baseline eval suite for local RAG pipelines. Measures retrieval precision/recall and answer faithfulness + relevance against a ground-truth question set. Use with local-rag-starter-pack.",
+  "tags": [
+    "rag",
+    "eval",
+    "retrieval",
+    "faithfulness",
+    "benchmark",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "author": "MRWillisT",
+  "source": "pullnexus",
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "developer",
+  "maturity": "alpha",
+  "maintained": "yes",
+  "last_verified": "2026-05-01",
+  "related": ["local-rag-starter-pack"]
+}

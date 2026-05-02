@@ -1,0 +1,26 @@
+{
+  "name": "synthetic-training-datasets",
+  "resource_type": "dataset",
+  "version": "1.0.0",
+  "description": "Curated collection of synthetic multi-turn training datasets for fine-tuning local LLMs: debugging, testing, reasoning, trading, refactoring, and autonomous agent workflows. CC0 licensed, ready for Axolotl/Unsloth/LLaMA-Factory.",
+  "tags": [
+    "dataset",
+    "fine-tuning",
+    "synthetic",
+    "training",
+    "jsonl",
+    "cc0",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "author": "MRWillisT",
+  "source": "pullnexus",
+  "mcp_compatible": false,
+  "installable": true,
+  "category": "developer",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-01",
+  "formats": ["sharegpt", "chatml"],
+  "total_examples": 500
+}

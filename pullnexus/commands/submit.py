@@ -13,6 +13,11 @@ REQUIRED_FILES = {"skill.json", "examples.jsonl", "README.md"}
 OPTIONAL_FILES = {"eval.jsonl", "tools"}
 
 REQUIRED_SKILL_FIELDS = {"name", "version", "description", "tags", "license"}
+PROVENANCE_FIELDS = {"source", "author"}
+QUALITY_FIELDS = {"maturity", "maintained", "last_verified"}
+
+# Types that don't require training examples — their validation is lighter.
+_NO_EXAMPLES_REQUIRED = {"tool", "playbook", "dataset", "eval", "policy", "template", "environment", "repository"}
 
 
 def submit(
@@ -37,9 +42,23 @@ def submit(
         console.print("[red]✗ Path must be a directory (skill folder).[/red]")
         raise typer.Exit(1)
 
-    # 2. Required files
+    # 2. Required files (examples.jsonl not required for non-skill types)
     existing = {f.name for f in skill_path.iterdir()}
-    for required in REQUIRED_FILES:
+
+    # Peek at resource_type before full validation
+    raw_meta: dict = {}
+    if "skill.json" in existing:
+        try:
+            raw_meta = json.loads((skill_path / "skill.json").read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    resource_type = str(raw_meta.get("resource_type", "skill")).lower()
+
+    required_files = {"skill.json", "README.md"}
+    if resource_type not in _NO_EXAMPLES_REQUIRED:
+        required_files.add("examples.jsonl")
+
+    for required in required_files:
         if required not in existing:
             errors.append(f"Missing required file: {required}")
 
@@ -59,10 +78,32 @@ def submit(
                 errors.append("skill.json: 'tags' must be a list")
             if skill_meta.get("tags") and len(skill_meta["tags"]) < 1:
                 warnings.append("skill.json: add at least one tag for discoverability")
+
+            # Provenance checks (warnings, not errors)
+            for field in PROVENANCE_FIELDS:
+                if not skill_meta.get(field):
+                    warnings.append(f"skill.json: missing provenance field '{field}' (recommended)")
+
+            # Quality metadata checks (warnings)
+            for field in QUALITY_FIELDS:
+                if not skill_meta.get(field):
+                    warnings.append(f"skill.json: missing quality field '{field}' (recommended)")
+
+            # Type-specific validation
+            detected_type = str(skill_meta.get("resource_type", "skill")).lower()
+            if detected_type == "tool" and not skill_meta.get("repo"):
+                warnings.append("skill.json: 'tool' resources should include a 'repo' field")
+            if detected_type == "dataset" and not skill_meta.get("formats"):
+                warnings.append("skill.json: 'dataset' resources should list supported 'formats'")
+            if detected_type == "eval" and not skill_meta.get("related"):
+                warnings.append("skill.json: 'eval' resources should list 'related' resources they evaluate")
+            if detected_type == "playbook" and not skill_meta.get("compatibility"):
+                warnings.append("skill.json: 'playbook' resources should include a 'compatibility' block")
+
         except json.JSONDecodeError as exc:
             errors.append(f"skill.json is not valid JSON: {exc}")
 
-    # 4. Validate examples.jsonl
+    # 4. Validate examples.jsonl (only required/meaningful for skill type)
     example_count = 0
     if "examples.jsonl" in existing:
         try:
@@ -79,7 +120,8 @@ def submit(
                     )
                     break
             example_count = len(lines)
-            if example_count < 3:
+            detected_type = str(skill_meta.get("resource_type", "skill")).lower()
+            if detected_type not in _NO_EXAMPLES_REQUIRED and example_count < 3:
                 warnings.append(
                     f"examples.jsonl has only {example_count} example(s). "
                     "Aim for at least 5 for better quality."

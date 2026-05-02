@@ -1,17 +1,29 @@
 """pullnexus info — show detailed information about a skill."""
 
+import json
+from typing import Optional
+
 import typer
 from rich.console import Console
 from rich.panel import Panel
 from rich.markdown import Markdown
 
 from pullnexus.api import fetch_skill_json, fetch_skill_readme
+from pullnexus.schema import SCHEMA_VERSION
 
 console = Console()
+
+# Types where pulling a file package makes no sense.
+_NON_INSTALLABLE_TYPES = {"repository", "eval", "policy"}
 
 
 def info(
     skill_name: str = typer.Argument(..., help="Skill name (e.g. python-advanced-debugging)"),
+    as_json: bool = typer.Option(
+        False,
+        "--json",
+        help="Output metadata as JSON for agent-native consumption.",
+    ),
 ):
     """Show full details for a skill — description, tags, examples, and usage."""
 
@@ -21,6 +33,15 @@ def info(
     if skill_json is None and readme is None:
         console.print(f"[red]✗ Skill '{skill_name}' not found in the registry.[/red]")
         raise typer.Exit(1)
+
+    if as_json:
+        payload: dict = {"schema_version": SCHEMA_VERSION}
+        if skill_json:
+            payload.update(skill_json)
+        if readme:
+            payload["readme"] = readme
+        print(json.dumps(payload, indent=2))
+        raise typer.Exit(0)
 
     # Header panel with metadata
     if skill_json:
@@ -34,10 +55,16 @@ def info(
         author = skill_json.get("author", "")
         inspired_by = skill_json.get("inspired_by", "")
         source = skill_json.get("source", "")
-        resource_type = skill_json.get("resource_type", "")
+        resource_type = str(skill_json.get("resource_type", "skill")).lower()
         repo = skill_json.get("repo", "")
+        maturity = skill_json.get("maturity", "")
+        maintained = skill_json.get("maintained", "")
+        last_verified = skill_json.get("last_verified", "")
+        compatibility = skill_json.get("compatibility", {})
 
         meta_lines = []
+        if resource_type:
+            meta_lines.append(f"**Type:** {resource_type}")
         if version:
             meta_lines.append(f"**Version:** {version}")
         if author:
@@ -48,6 +75,12 @@ def info(
             meta_lines.append(f"**Examples:** {examples}")
         if mcp:
             meta_lines.append("**MCP compatible:** ✓")
+        if maturity:
+            meta_lines.append(f"**Maturity:** {maturity}")
+        if maintained:
+            meta_lines.append(f"**Maintained:** {maintained}")
+        if last_verified:
+            meta_lines.append(f"**Last verified:** {last_verified}")
         if tags:
             meta_lines.append(f"**Tags:** {', '.join(tags)}")
         if inspired_by:
@@ -65,14 +98,31 @@ def info(
             border_style="cyan",
         ))
 
+        # Compatibility section
+        if compatibility:
+            works_on = compatibility.get("works_on", [])
+            known_issues = compatibility.get("known_issues", [])
+            unverified = compatibility.get("unverified_on", [])
+            console.print()
+            if works_on:
+                console.print("[green]✓ Works on:[/green] " + ", ".join(works_on))
+            if known_issues:
+                console.print("[red]✗ Known issues:[/red] " + ", ".join(known_issues))
+            if unverified:
+                console.print("[yellow]⚠ Unverified on:[/yellow] " + ", ".join(unverified))
+
     # README content
     if readme:
         console.print()
         console.print(Markdown(readme))
 
-    if skill_json and skill_json.get("resource_type") == "repository":
-        console.print("\n[dim]This is a repository resource entry (reference metadata, not a pullable skill package).[/dim]")
+    if skill_json and str(skill_json.get("resource_type", "skill")).lower() in _NON_INSTALLABLE_TYPES:
+        console.print(
+            f"\n[dim]This is a [bold]{skill_json.get('resource_type')}[/bold] resource — "
+            "reference metadata only, not a pullable file package.[/dim]"
+        )
     else:
         console.print(
             f"\n[dim]Install this skill: [bold]pullnexus pull {skill_name}[/bold][/dim]"
         )
+
