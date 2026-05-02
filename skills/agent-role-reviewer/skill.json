@@ -1,0 +1,17 @@
+{
+  "name": "agent-role-reviewer",
+  "resource_type": "prompt",
+  "version": "1.0.0",
+  "description": "System prompt for a Reviewer specialist agent. Critically evaluates changes, identifies bugs and regressions, requires evidence for correctness claims. Outputs structured findings with severity ordering and a final verdict.",
+  "tags": ["prompt", "system-prompt", "agent", "reviewer", "code-review", "multi-agent", "local-ai", "use:prompt"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "installable": true,
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "prompt_file": "system_prompt.txt",
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai"]
+}

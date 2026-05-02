@@ -1,0 +1,17 @@
+{
+  "name": "local-agent-system-blueprint",
+  "resource_type": "prompt",
+  "version": "1.0.0",
+  "description": "Beginner-friendly guide and reference for building a local autonomous agent system: Brain/Hands/Manager/Memory layers, personality vs role separation, runtime loop, minimum memory, and tool stack. Pairs with the Orchestrator/Coder/Reviewer prompts.",
+  "tags": ["prompt", "blueprint", "agent", "local-ai", "multi-agent", "orchestrator", "beginner", "planning", "use:prompt"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "installable": true,
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "prompt_file": "blueprint.md",
+  "compatible_with": ["ollama", "lm-studio", "any"]
+}

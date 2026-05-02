@@ -1,0 +1,17 @@
+{
+  "name": "agent-role-orchestrator",
+  "resource_type": "prompt",
+  "version": "1.0.0",
+  "description": "System prompt for the Orchestrator — the primary autonomous agent role. Plans, delegates to specialist roles, maintains memory, and verifies outcomes. The top-level brain of a multi-agent local AI system.",
+  "tags": ["prompt", "system-prompt", "agent", "orchestrator", "multi-agent", "local-ai", "planning", "use:prompt"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "installable": true,
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "prompt_file": "system_prompt.txt",
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai"]
+}

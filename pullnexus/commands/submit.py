@@ -53,6 +53,16 @@ _WIZARD_STEPS: dict[str, list[dict]] = {
         {"key": "author", "prompt": "Author / handle [optional, Enter to skip]", "required": False},
         {"key": "license", "prompt": "License [default: MIT]", "required": False, "default": "MIT"},
     ],
+    "prompt": [
+        {"key": "name", "prompt": "Slug name (e.g. agent-role-coder, vibe-coder-workflow)", "required": True},
+        {"key": "description", "prompt": "One sentence — what role/behavior does this prompt define?", "required": True},
+        {"key": "tags_raw", "prompt": "Tags, comma-separated (e.g. system-prompt,agent,coder,local-ai)", "required": True},
+        {"key": "prompt_content", "prompt": "Paste the prompt text — type END on its own line when done", "required": True, "multiline": True},
+        {"key": "compatible_with_raw", "prompt": "Compatible clients, comma-separated (e.g. ollama,lm-studio,claude) [default: any]", "required": False, "default": "any"},
+        {"key": "source", "prompt": "Source URL [optional, Enter to skip]", "required": False},
+        {"key": "author", "prompt": "Author / handle [optional, Enter to skip]", "required": False},
+        {"key": "license", "prompt": "License [default: MIT]", "required": False, "default": "MIT"},
+    ],
     "skill": [
         {"key": "name", "prompt": "Slug name (e.g. extract-action-items)", "required": True},
         {"key": "description", "prompt": "One sentence — what does this skill do?", "required": True},
@@ -72,7 +82,7 @@ _WIZARD_STEPS_DEFAULT = [
     {"key": "license", "prompt": "License [default: MIT]", "required": False, "default": "MIT"},
 ]
 
-_VALID_TYPES = {"skill", "tool", "template", "policy", "playbook", "dataset", "eval", "environment", "repository"}
+_VALID_TYPES = {"skill", "tool", "template", "policy", "playbook", "dataset", "eval", "environment", "repository", "prompt"}
 
 
 def _slug(value: str) -> str:
@@ -177,6 +187,15 @@ def _run_wizard(resource_type: str, output_dir: Path) -> Path:
     elif resource_type == "playbook":
         platforms_raw = collected.get("platform_raw", "Linux")
         meta["platforms"] = [p.strip() for p in platforms_raw.split(",") if p.strip()]
+    elif resource_type == "prompt":
+        compat_raw = collected.get("compatible_with_raw", "any")
+        meta["compatible_with"] = [c.strip() for c in compat_raw.split(",") if c.strip()]
+        prompt_lines = collected.get("prompt_content", [])
+        meta["prompt_file"] = "prompt.txt"
+        # Write the prompt file
+        prompt_text = "\n".join(prompt_lines) if isinstance(prompt_lines, list) else prompt_lines
+        (skill_dir / "prompt.txt").write_text(prompt_text, encoding="utf-8")
+        console.print(f"  [dim]• prompt.txt[/dim]")
 
     # Write output
     skill_dir = output_dir / name

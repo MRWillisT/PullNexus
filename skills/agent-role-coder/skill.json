@@ -1,0 +1,17 @@
+{
+  "name": "agent-role-coder",
+  "resource_type": "prompt",
+  "version": "1.0.0",
+  "description": "System prompt for a Coder specialist agent. Focused on accurate implementation, test-backed changes, and self-correcting error handling. Drop into any local LLM or multi-agent setup.",
+  "tags": ["prompt", "system-prompt", "agent", "coder", "multi-agent", "local-ai", "use:prompt"],
+  "license": "MIT",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "installable": true,
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "prompt_file": "system_prompt.txt",
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai"]
+}

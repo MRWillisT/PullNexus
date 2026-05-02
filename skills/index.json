@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 145,
+  "total": 149,
   "skills": [
     {
       "name": "n8n-mcp-tool",
@@ -2111,14 +2111,18 @@
         "local-ai",
         "development",
         "beginner",
-        "use:developer"
+        "use:developer",
+        "prompt",
+        "vibe-coder"
       ],
       "license": "CC0-1.0",
       "examples": 10,
       "mcp_compatible": false,
       "author": "MRWillisT",
       "category": "developer",
-      "resource_type": "skill"
+      "resource_type": "skill",
+      "prompt_file": "workflow.md",
+      "last_verified": "2026-05-02"
     },
     {
       "name": "web-artifacts-builder",
@@ -3382,6 +3386,129 @@
         "Enable flash attention (-fa) before adjusting weight quantization",
         "Use -fit to allow model to split across GPU/CPU when VRAM is tight",
         "Tune weight quant (Q4 vs Q5 vs Q8) only after KV and context are stable"
+      ]
+    },
+    {
+      "name": "agent-role-coder",
+      "resource_type": "prompt",
+      "version": "1.0.0",
+      "description": "System prompt for a Coder specialist agent. Focused on accurate implementation, test-backed changes, and self-correcting error handling. Drop into any local LLM or multi-agent setup.",
+      "tags": [
+        "prompt",
+        "system-prompt",
+        "agent",
+        "coder",
+        "multi-agent",
+        "local-ai",
+        "use:prompt"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "agent",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "prompt_file": "system_prompt.txt",
+      "compatible_with": [
+        "ollama",
+        "lm-studio",
+        "claude",
+        "openai"
+      ]
+    },
+    {
+      "name": "agent-role-orchestrator",
+      "resource_type": "prompt",
+      "version": "1.0.0",
+      "description": "System prompt for the Orchestrator -- the primary autonomous agent role. Plans, delegates to specialist roles, maintains memory, and verifies outcomes. The top-level brain of a multi-agent local AI system.",
+      "tags": [
+        "prompt",
+        "system-prompt",
+        "agent",
+        "orchestrator",
+        "multi-agent",
+        "local-ai",
+        "planning",
+        "use:prompt"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "agent",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "prompt_file": "system_prompt.txt",
+      "compatible_with": [
+        "ollama",
+        "lm-studio",
+        "claude",
+        "openai"
+      ]
+    },
+    {
+      "name": "agent-role-reviewer",
+      "resource_type": "prompt",
+      "version": "1.0.0",
+      "description": "System prompt for a Reviewer specialist agent. Critically evaluates changes, identifies bugs and regressions, requires evidence for correctness claims. Outputs structured findings with severity ordering and a final verdict.",
+      "tags": [
+        "prompt",
+        "system-prompt",
+        "agent",
+        "reviewer",
+        "code-review",
+        "multi-agent",
+        "local-ai",
+        "use:prompt"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "agent",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "prompt_file": "system_prompt.txt",
+      "compatible_with": [
+        "ollama",
+        "lm-studio",
+        "claude",
+        "openai"
+      ]
+    },
+    {
+      "name": "local-agent-system-blueprint",
+      "resource_type": "prompt",
+      "version": "1.0.0",
+      "description": "Beginner-friendly guide for building a local autonomous agent system: Brain/Hands/Manager/Memory layers, personality vs role separation, runtime loop, minimum memory, and tool stack. Pairs with the Orchestrator/Coder/Reviewer prompts.",
+      "tags": [
+        "prompt",
+        "blueprint",
+        "agent",
+        "local-ai",
+        "multi-agent",
+        "orchestrator",
+        "beginner",
+        "planning",
+        "use:prompt"
+      ],
+      "license": "MIT",
+      "author": "PullNexus Contributors",
+      "source": "https://github.com/MRWillisT/PullNexus",
+      "installable": true,
+      "category": "agent",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "prompt_file": "blueprint.md",
+      "compatible_with": [
+        "ollama",
+        "lm-studio",
+        "any"
       ]
     }
   ],

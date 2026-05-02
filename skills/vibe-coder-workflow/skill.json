@@ -1,13 +1,16 @@
 {
   "name": "vibe-coder-workflow",
+  "resource_type": "skill",
   "version": "1.0.0",
-  "description": "The self-taught builder's AI workflow — how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally.",
+  "description": "The self-taught builder's AI workflow — how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally. Includes a step-by-step workflow prompt.",
   "tags": [
     "workflow",
     "vibe-coding",
+    "vibe-coder",
     "local-ai",
     "development",
     "beginner",
+    "prompt",
     "use:developer"
   ],
   "license": "CC0-1.0",
@@ -15,5 +18,7 @@
   "mcp_compatible": false,
   "author": "MRWillisT",
   "source": "autonomous-agent",
-  "category": "developer"
+  "category": "developer",
+  "prompt_file": "workflow.md",
+  "last_verified": "2026-05-02"
 }
