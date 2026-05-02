@@ -369,12 +369,6 @@ def run_stdio() -> None:
 
 def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
     """Run the MCP server over HTTP (team/cloud deployments)."""
-    try:
-        import uvicorn
-    except ImportError as exc:
-        raise ImportError(
-            "HTTP transport requires uvicorn.\n"
-            "Install it with: pip install pullnexus[mcp]"
-        ) from exc
-    app = mcp.streamable_http_app()
-    uvicorn.run(app, host=host, port=port)
+    mcp.settings.host = host
+    mcp.settings.port = port
+    mcp.run(transport="streamable-http")

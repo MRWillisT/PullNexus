@@ -1,6 +1,6 @@
 [project]
 name = "pullnexus"
-version = "0.2.2"
+version = "0.2.3"
 description = "Pull from the Nexus. Give back to the Nexus. Keep local AI smart."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -24,7 +24,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-mcp = ["mcp>=1.0", "uvicorn>=0.29"]
+mcp = ["mcp>=1.0"]
 huggingface = ["huggingface_hub>=0.23"]
 
 [project.urls]
