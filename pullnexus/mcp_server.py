@@ -369,8 +369,15 @@ def run_stdio() -> None:
 
 def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
     """Run the MCP server over HTTP (team/cloud deployments)."""
+    import os
     mcp.settings.host = host
     mcp.settings.port = port
-    # Allow any Host header (required for cloud/proxy deployments like Railway)
-    mcp.settings.allowed_hosts = ["*"]
+    # In cloud/proxy deployments the public hostname differs from the bind host.
+    # Read allowed hosts from env var so Railway (or any proxy) works without
+    # hardcoding the domain. Set PULLNEXUS_ALLOWED_HOST or leave unset for local.
+    extra_host = os.getenv("PULLNEXUS_ALLOWED_HOST")
+    if extra_host:
+        mcp.settings.allowed_hosts = [extra_host, "localhost", "127.0.0.1"]
+    else:
+        mcp.settings.allowed_hosts = ["*"]
     mcp.run(transport="streamable-http")
