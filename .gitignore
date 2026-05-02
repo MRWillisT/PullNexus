@@ -11,10 +11,6 @@ build/
 *.egg
 *.whl
 
-# PyPI publishing tools
-twine
-twine/
-
 # Virtual environments
 .venv/
 venv/
@@ -36,17 +32,13 @@ Thumbs.db
 *.log
 logs/
 
-# Personal training data / private chat exports
-converted-chats/
-
 # Local working notes (not for public repo)
 RESOURCE_REGISTRY_TODO.md
 PullNexus_TODO.md
+
+# Local-only content (personal exports, raw knowledge base)
+converted-chats/
 knowledge_base/
-knowledge_base/chats_raw/
-autonomous-agent/autonomous_agent_train.jsonl
-autonomous-agent/autonomous_agent_val.jsonl
-autonomous-agent/autonomous_agent_test.jsonl
 
 # Personal / generated docs (not part of project)
 docs/freedom-bot-full-architecture.md
