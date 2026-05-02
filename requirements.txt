@@ -1,2 +1,2 @@
-pullnexus[mcp]>=0.2.2
+.[mcp]
 uvicorn>=0.29
