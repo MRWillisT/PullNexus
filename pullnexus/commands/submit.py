@@ -1,10 +1,14 @@
 """pullnexus submit — validate and submit a skill to the Nexus."""
 
 import json
+import re
+from datetime import date
 from pathlib import Path
+from typing import Optional
 
 import typer
 from rich.console import Console
+from rich.panel import Panel
 from rich.table import Table
 
 console = Console()
@@ -19,16 +23,230 @@ QUALITY_FIELDS = {"maturity", "maintained", "last_verified"}
 # Types that don't require training examples — their validation is lighter.
 _NO_EXAMPLES_REQUIRED = {"tool", "playbook", "dataset", "eval", "policy", "template", "environment", "repository"}
 
+# Fields collected per resource type in wizard mode
+_WIZARD_STEPS: dict[str, list[dict]] = {
+    "template": [
+        {"key": "name", "prompt": "Slug name (e.g. mistral-7b-8gb-llama-server)", "required": True},
+        {"key": "description", "prompt": "One sentence — what does this run, on what hardware, what's the trick?", "required": True},
+        {"key": "tags_raw", "prompt": "Tags, comma-separated (e.g. llama.cpp,7b,8gb-vram,flash-attention)", "required": True},
+        {"key": "vram_gb", "prompt": "VRAM required in GB (number only, e.g. 12)", "required": True},
+        {"key": "command", "prompt": "Paste the exact command / config block", "required": True},
+        {"key": "source", "prompt": "Source URL (tweet, post, repo) [optional, Enter to skip]", "required": False},
+        {"key": "author", "prompt": "Author / handle for credit [optional, Enter to skip]", "required": False},
+        {"key": "license", "prompt": "License [default: CC0-1.0]", "required": False, "default": "CC0-1.0"},
+    ],
+    "policy": [
+        {"key": "name", "prompt": "Slug name (e.g. kv-cache-vram-best-practices)", "required": True},
+        {"key": "description", "prompt": "One sentence — what rule/guidance does this capture?", "required": True},
+        {"key": "tags_raw", "prompt": "Tags, comma-separated", "required": True},
+        {"key": "key_rules_raw", "prompt": "Key rules, one per line — type END on its own line when done", "required": True, "multiline": True},
+        {"key": "source", "prompt": "Source URL [optional, Enter to skip]", "required": False},
+        {"key": "author", "prompt": "Author / handle [optional, Enter to skip]", "required": False},
+        {"key": "license", "prompt": "License [default: CC0-1.0]", "required": False, "default": "CC0-1.0"},
+    ],
+    "playbook": [
+        {"key": "name", "prompt": "Slug name (e.g. ollama-open-webui-setup)", "required": True},
+        {"key": "description", "prompt": "One sentence — what does this playbook walk you through?", "required": True},
+        {"key": "tags_raw", "prompt": "Tags, comma-separated", "required": True},
+        {"key": "platform_raw", "prompt": "Platforms supported, comma-separated (e.g. Windows,Mac,Linux)", "required": False, "default": "Linux"},
+        {"key": "source", "prompt": "Source URL [optional, Enter to skip]", "required": False},
+        {"key": "author", "prompt": "Author / handle [optional, Enter to skip]", "required": False},
+        {"key": "license", "prompt": "License [default: MIT]", "required": False, "default": "MIT"},
+    ],
+    "skill": [
+        {"key": "name", "prompt": "Slug name (e.g. extract-action-items)", "required": True},
+        {"key": "description", "prompt": "One sentence — what does this skill do?", "required": True},
+        {"key": "tags_raw", "prompt": "Tags, comma-separated", "required": True},
+        {"key": "source", "prompt": "Source URL [optional, Enter to skip]", "required": False},
+        {"key": "author", "prompt": "Author / handle [optional, Enter to skip]", "required": False},
+        {"key": "license", "prompt": "License [default: MIT]", "required": False, "default": "MIT"},
+    ],
+}
+# Default steps for types not explicitly listed
+_WIZARD_STEPS_DEFAULT = [
+    {"key": "name", "prompt": "Slug name", "required": True},
+    {"key": "description", "prompt": "One sentence description", "required": True},
+    {"key": "tags_raw", "prompt": "Tags, comma-separated", "required": True},
+    {"key": "source", "prompt": "Source URL [optional, Enter to skip]", "required": False},
+    {"key": "author", "prompt": "Author / handle [optional, Enter to skip]", "required": False},
+    {"key": "license", "prompt": "License [default: MIT]", "required": False, "default": "MIT"},
+]
+
+_VALID_TYPES = {"skill", "tool", "template", "policy", "playbook", "dataset", "eval", "environment", "repository"}
+
+
+def _slug(value: str) -> str:
+    """Normalize a name to a URL-safe slug."""
+    return re.sub(r"[^a-z0-9-]", "-", value.strip().lower()).strip("-")
+
+
+def _parse_llama_command(command: str) -> dict:
+    """Best-effort parse of llama-server / ollama flags into a config dict."""
+    params: dict = {}
+    # Extract --flag value pairs
+    for match in re.finditer(r"--([a-z_-]+)\s+([^\s\\]+)", command):
+        key = match.group(1).replace("-", "_")
+        val = match.group(2).strip("'\"")
+        # Try numeric coercion
+        try:
+            params[key] = int(val)
+        except ValueError:
+            try:
+                params[key] = float(val)
+            except ValueError:
+                params[key] = val
+    # Boolean flags (present without value)
+    for match in re.finditer(r"(?:^|\s)-(fa|fit)\b", command):
+        params[match.group(1)] = True
+    return params
+
+
+def _run_wizard(resource_type: str, output_dir: Path) -> Path:
+    """Interactive wizard — collects fields and writes skill.json + README.md."""
+    steps = _WIZARD_STEPS.get(resource_type, _WIZARD_STEPS_DEFAULT)
+    today = date.today().isoformat()
+
+    console.print(Panel(
+        f"[bold cyan]PullNexus Submit Wizard[/bold cyan]\n"
+        f"Type: [yellow]{resource_type}[/yellow]  |  "
+        "Press Enter to accept [dim]defaults[/dim]. Type [dim]END[/dim] to finish multi-line inputs.",
+        border_style="cyan",
+    ))
+    console.print()
+
+    collected: dict = {}
+    for step in steps:
+        key = step["key"]
+        prompt_text = step["prompt"]
+        default = step.get("default", "")
+        multiline = step.get("multiline", False)
+
+        if multiline:
+            console.print(f"[bold]{prompt_text}[/bold]")
+            lines = []
+            while True:
+                line = typer.prompt("  ", default="", show_default=False)
+                if line.strip().upper() == "END":
+                    break
+                if line.strip():
+                    lines.append(line.strip())
+            collected[key] = lines
+        else:
+            value = typer.prompt(f"[bold]{prompt_text}[/bold]", default=default, show_default=bool(default))
+            collected[key] = value.strip()
+
+    # Build skill.json
+    name = _slug(collected.get("name", "unnamed"))
+    tags_raw = collected.get("tags_raw", "")
+    tags = [t.strip() for t in tags_raw.split(",") if t.strip()]
+    if f"use:{resource_type}" not in tags:
+        tags.append(f"use:{resource_type}")
+    if resource_type not in tags:
+        tags.insert(0, resource_type)
+
+    meta: dict = {
+        "name": name,
+        "resource_type": resource_type,
+        "version": "1.0.0",
+        "description": collected.get("description", ""),
+        "tags": tags,
+        "license": collected.get("license") or "MIT",
+        "author": collected.get("author") or "Community",
+        "source": collected.get("source") or "",
+        "installable": False,
+        "category": "community",
+        "maturity": "community",
+        "maintained": "community",
+        "last_verified": today,
+    }
+
+    # Type-specific extras
+    if resource_type == "template":
+        vram_raw = collected.get("vram_gb", "0")
+        try:
+            vram = int(vram_raw)
+        except ValueError:
+            vram = 0
+        command = collected.get("command", "")
+        meta["hardware_requirements"] = {"vram_gb": vram}
+        meta["config_params"] = _parse_llama_command(command) or {"raw": command}
+        if command:
+            meta["config_params"]["_raw_command"] = command.strip()
+    elif resource_type == "policy":
+        meta["key_rules"] = collected.get("key_rules_raw", [])
+    elif resource_type == "playbook":
+        platforms_raw = collected.get("platform_raw", "Linux")
+        meta["platforms"] = [p.strip() for p in platforms_raw.split(",") if p.strip()]
+
+    # Write output
+    skill_dir = output_dir / name
+    skill_dir.mkdir(parents=True, exist_ok=True)
+    (skill_dir / "skill.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
+
+    # Generate a minimal README
+    readme_lines = [
+        f"# {name}",
+        "",
+        meta["description"],
+        "",
+        f"**Type:** {resource_type}  ",
+        f"**License:** {meta['license']}  ",
+        f"**Author:** {meta['author']}  ",
+    ]
+    if meta.get("source"):
+        readme_lines.append(f"**Source:** {meta['source']}  ")
+    if resource_type == "template" and meta.get("hardware_requirements"):
+        readme_lines += ["", f"**VRAM required:** {meta['hardware_requirements'].get('vram_gb')}GB"]
+        raw_cmd = meta.get("config_params", {}).get("_raw_command", "")
+        if raw_cmd:
+            readme_lines += ["", "## Command", "", "```bash", raw_cmd, "```"]
+    elif resource_type == "policy" and meta.get("key_rules"):
+        readme_lines += ["", "## Rules", ""]
+        for rule in meta["key_rules"]:
+            readme_lines.append(f"- {rule}")
+    readme_lines += ["", f"*Last verified: {today}*", ""]
+    (skill_dir / "README.md").write_text("\n".join(readme_lines), encoding="utf-8")
+
+    console.print(f"\n[green]✓ Created submission folder:[/green] {skill_dir.resolve()}")
+    console.print(f"  [dim]• skill.json[/dim]")
+    console.print(f"  [dim]• README.md[/dim]")
+    return skill_dir
+
 
 def submit(
-    path: str = typer.Argument(..., help="Path to your skill folder"),
-    dry_run: bool = typer.Option(
-        False, "--dry-run", help="Validate only — don't open a PR"
-    ),
+    path: Optional[str] = typer.Argument(None, help="Path to your skill folder (omit to use --interactive)"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Validate only — don't open a PR"),
+    interactive: bool = typer.Option(False, "--interactive", "-i", help="Run the step-by-step submission wizard"),
+    resource_type: str = typer.Option("template", "--type", "-t", help=f"Resource type for wizard mode. One of: {', '.join(sorted(_VALID_TYPES))}"),
+    output: str = typer.Option("submissions", "--output", "-o", help="Output directory for wizard-generated folders"),
 ):
-    """Validate a skill folder and submit it to the Nexus via GitHub PR."""
-    skill_path = Path(path)
+    """Validate a skill folder and submit it to the Nexus via GitHub PR.
 
+    Run with [bold]--interactive[/bold] to use the step-by-step wizard instead of
+    pointing at an existing folder:
+
+      pullnexus submit --interactive --type template
+    """
+    # ── Wizard mode ─────────────────────────────────────────────────────────
+    if interactive:
+        rtype = resource_type.lower().strip()
+        if rtype not in _VALID_TYPES:
+            console.print(f"[red]✗ Unknown type '{rtype}'. Valid: {', '.join(sorted(_VALID_TYPES))}[/red]")
+            raise typer.Exit(1)
+        out_dir = Path(output)
+        skill_path = _run_wizard(rtype, out_dir)
+        # Fall through to validation with the generated folder
+    elif path is None:
+        console.print(
+            "[yellow]Tip:[/yellow] Provide a folder path, or use [cyan]--interactive[/cyan] "
+            "to build one with the wizard.\n\n"
+            "  [dim]pullnexus submit --interactive --type template[/dim]"
+        )
+        raise typer.Exit(0)
+    else:
+        skill_path = Path(path)
+
+    # ── Validation ───────────────────────────────────────────────────────────
     console.print(f"\n[bold]Validating skill at:[/bold] {skill_path.resolve()}\n")
 
     errors: list[str] = []
