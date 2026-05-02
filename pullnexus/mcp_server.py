@@ -369,7 +369,9 @@ def run_stdio() -> None:
 
 def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
     """Run the MCP server over HTTP (team/cloud deployments)."""
+    import inspect
     import os
+    import uvicorn
 
     public_host = os.getenv("PULLNEXUS_ALLOWED_HOST") or os.getenv("RAILWAY_PUBLIC_DOMAIN")
 
@@ -378,53 +380,66 @@ def run_http(host: str = "127.0.0.1", port: int = 7337) -> None:
     except ImportError:
         TransportSecuritySettings = None
 
-    if TransportSecuritySettings is not None:
-        transport_security = None
-        if public_host:
-            transport_security = TransportSecuritySettings(
-                enable_dns_rebinding_protection=True,
-                allowed_hosts=[
-                    "127.0.0.1",
-                    "127.0.0.1:*",
-                    "localhost",
-                    "localhost:*",
-                    "[::1]",
-                    "[::1]:*",
-                    public_host,
-                    f"{public_host}:*",
-                ],
-                allowed_origins=[
-                    "http://127.0.0.1",
-                    "http://127.0.0.1:*",
-                    "http://localhost",
-                    "http://localhost:*",
-                    "http://[::1]",
-                    "http://[::1]:*",
-                    f"https://{public_host}",
-                    f"https://{public_host}:*",
-                    f"http://{public_host}",
-                    f"http://{public_host}:*",
-                ],
-            )
-
-        mcp.run(
-            transport="streamable-http",
-            host=host,
-            port=port,
-            transport_security=transport_security,
+    transport_security = None
+    if TransportSecuritySettings is not None and public_host:
+        transport_security = TransportSecuritySettings(
+            enable_dns_rebinding_protection=True,
+            allowed_hosts=[
+                "127.0.0.1",
+                "127.0.0.1:*",
+                "localhost",
+                "localhost:*",
+                "[::1]",
+                "[::1]:*",
+                public_host,
+                f"{public_host}:*",
+            ],
+            allowed_origins=[
+                "http://127.0.0.1",
+                "http://127.0.0.1:*",
+                "http://localhost",
+                "http://localhost:*",
+                "http://[::1]",
+                "http://[::1]:*",
+                f"https://{public_host}",
+                f"https://{public_host}:*",
+                f"http://{public_host}",
+                f"http://{public_host}:*",
+            ],
         )
+
+    run_params = inspect.signature(mcp.run).parameters
+    if "host" in run_params and "port" in run_params:
+        run_kwargs = {
+            "transport": "streamable-http",
+            "host": host,
+            "port": port,
+        }
+        if transport_security is not None and "transport_security" in run_params:
+            run_kwargs["transport_security"] = transport_security
+        mcp.run(**run_kwargs)
         return
 
-    # FastMCP 1.x stores HTTP bind settings on the instance and doesn't expose
-    # transport_security. Serve the Starlette app directly for compatibility.
-    import uvicorn
+    # Older and intermediate FastMCP variants still need uvicorn to own the HTTP bind.
+    # If the app method supports host/transport_security, pass them through there.
+    app_kwargs: dict[str, object] = {}
+    streamable_http_app = getattr(mcp, "streamable_http_app")
+    app_params = inspect.signature(streamable_http_app).parameters
+    if "host" in app_params:
+        app_kwargs["host"] = host
+    if transport_security is not None and "transport_security" in app_params:
+        app_kwargs["transport_security"] = transport_security
 
-    mcp.settings.host = host
-    mcp.settings.port = port
-    starlette_app = mcp.streamable_http_app()
+    if hasattr(mcp, "settings"):
+        if hasattr(mcp.settings, "host"):
+            mcp.settings.host = host
+        if hasattr(mcp.settings, "port"):
+            mcp.settings.port = port
+
+    starlette_app = streamable_http_app(**app_kwargs)
     uvicorn.run(
         starlette_app,
         host=host,
         port=port,
-        log_level=mcp.settings.log_level.lower(),
+        log_level=getattr(getattr(mcp, "settings", None), "log_level", "info").lower(),
     )
