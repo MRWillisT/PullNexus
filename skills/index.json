@@ -1604,7 +1604,8 @@
       "inspired_by": "https://github.com/mattpocock/skills",
       "source": "https://github.com/mattpocock/skills/tree/main/grill-me",
       "external": true,
-      "category": "planning"
+      "category": "planning",
+      "resource_type": "skill"
     },
     {
       "name": "ai-image-color-cycling",
@@ -1618,11 +1619,12 @@
         "animation",
         "use:creative"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "creative"
+      "category": "creative",
+      "resource_type": "skill"
     },
     {
       "name": "algorithmic-art",
@@ -1636,11 +1638,12 @@
         "visuals",
         "use:creative"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "creative"
+      "category": "creative",
+      "resource_type": "skill"
     },
     {
       "name": "autonomous-agent-patterns",
@@ -1658,7 +1661,8 @@
       "examples": 10,
       "mcp_compatible": true,
       "author": "MRWillisT",
-      "category": "automation"
+      "category": "automation",
+      "resource_type": "skill"
     },
     {
       "name": "autonomous-agent-payments",
@@ -1676,7 +1680,8 @@
       "examples": 5,
       "mcp_compatible": true,
       "author": "MRWillisT",
-      "category": "automation"
+      "category": "automation",
+      "resource_type": "skill"
     },
     {
       "name": "brainstorming",
@@ -1690,11 +1695,12 @@
         "strategy",
         "use:planning"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "planning"
+      "category": "planning",
+      "resource_type": "skill"
     },
     {
       "name": "brand-guidelines",
@@ -1708,11 +1714,12 @@
         "design",
         "use:writing"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "writing"
+      "category": "writing",
+      "resource_type": "skill"
     },
     {
       "name": "canvas-design",
@@ -1726,11 +1733,12 @@
         "whiteboarding",
         "use:design"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "design"
+      "category": "design",
+      "resource_type": "skill"
     },
     {
       "name": "code-refactoring",
@@ -1748,7 +1756,8 @@
       "examples": 5,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "developer"
+      "category": "developer",
+      "resource_type": "skill"
     },
     {
       "name": "crypto-trading-bot",
@@ -1766,7 +1775,8 @@
       "examples": 5,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "finance"
+      "category": "finance",
+      "resource_type": "skill"
     },
     {
       "name": "docx",
@@ -1780,11 +1790,12 @@
         "formatting",
         "use:documents"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "documents"
+      "category": "documents",
+      "resource_type": "skill"
     },
     {
       "name": "frontend-design",
@@ -1798,11 +1809,12 @@
         "responsive",
         "use:design"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "design"
+      "category": "design",
+      "resource_type": "skill"
     },
     {
       "name": "frontend-slides",
@@ -1816,11 +1828,12 @@
         "storytelling",
         "use:presentation"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "presentation"
+      "category": "presentation",
+      "resource_type": "skill"
     },
     {
       "name": "high-end-website-design",
@@ -1834,11 +1847,12 @@
         "conversion",
         "use:design"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "design"
+      "category": "design",
+      "resource_type": "skill"
     },
     {
       "name": "image-to-cinematic-video",
@@ -1852,11 +1866,12 @@
         "creative",
         "use:creative"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "creative"
+      "category": "creative",
+      "resource_type": "skill"
     },
     {
       "name": "kronos-trading-integration",
@@ -1874,7 +1889,8 @@
       "examples": 6,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "finance"
+      "category": "finance",
+      "resource_type": "skill"
     },
     {
       "name": "manim-video",
@@ -1888,11 +1904,12 @@
         "video",
         "use:creative"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "creative"
+      "category": "creative",
+      "resource_type": "skill"
     },
     {
       "name": "mcp-builder",
@@ -1906,11 +1923,12 @@
         "protocol",
         "use:automation"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "automation"
+      "category": "automation",
+      "resource_type": "skill"
     },
     {
       "name": "n8n-mcp-workflows",
@@ -1928,7 +1946,8 @@
       "examples": 5,
       "mcp_compatible": true,
       "author": "MRWillisT",
-      "category": "automation"
+      "category": "automation",
+      "resource_type": "skill"
     },
     {
       "name": "pdf",
@@ -1942,11 +1961,12 @@
         "formatting",
         "use:documents"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "documents"
+      "category": "documents",
+      "resource_type": "skill"
     },
     {
       "name": "pptx",
@@ -1960,11 +1980,12 @@
         "office",
         "use:presentation"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "presentation"
+      "category": "presentation",
+      "resource_type": "skill"
     },
     {
       "name": "pytest-and-testing",
@@ -1982,7 +2003,8 @@
       "examples": 8,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "testing"
+      "category": "testing",
+      "resource_type": "skill"
     },
     {
       "name": "python-advanced-debugging",
@@ -2000,7 +2022,8 @@
       "examples": 6,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "developer"
+      "category": "developer",
+      "resource_type": "skill"
     },
     {
       "name": "reasoning-and-problem-solving",
@@ -2018,7 +2041,8 @@
       "examples": 12,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "planning"
+      "category": "planning",
+      "resource_type": "skill"
     },
     {
       "name": "skill-creator",
@@ -2032,11 +2056,12 @@
         "evaluation",
         "use:developer"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "developer"
+      "category": "developer",
+      "resource_type": "skill"
     },
     {
       "name": "systematic-debugging",
@@ -2050,11 +2075,12 @@
         "development",
         "use:developer"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "developer"
+      "category": "developer",
+      "resource_type": "skill"
     },
     {
       "name": "test-driven-development",
@@ -2068,11 +2094,12 @@
         "development",
         "use:testing"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "testing"
+      "category": "testing",
+      "resource_type": "skill"
     },
     {
       "name": "vibe-coder-workflow",
@@ -2090,7 +2117,8 @@
       "examples": 10,
       "mcp_compatible": false,
       "author": "MRWillisT",
-      "category": "developer"
+      "category": "developer",
+      "resource_type": "skill"
     },
     {
       "name": "web-artifacts-builder",
@@ -2104,11 +2132,12 @@
         "deployment",
         "use:web"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "web"
+      "category": "web",
+      "resource_type": "skill"
     },
     {
       "name": "web-design-guidelines",
@@ -2122,11 +2151,12 @@
         "ui",
         "use:design"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "design"
+      "category": "design",
+      "resource_type": "skill"
     },
     {
       "name": "webapp-testing",
@@ -2140,11 +2170,12 @@
         "regression",
         "use:testing"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "testing"
+      "category": "testing",
+      "resource_type": "skill"
     },
     {
       "name": "writing-plans",
@@ -2158,11 +2189,12 @@
         "content",
         "use:writing"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "writing"
+      "category": "writing",
+      "resource_type": "skill"
     },
     {
       "name": "writing-skills",
@@ -2176,11 +2208,12 @@
         "communication",
         "use:writing"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "writing"
+      "category": "writing",
+      "resource_type": "skill"
     },
     {
       "name": "xlsx",
@@ -2194,11 +2227,12 @@
         "automation",
         "use:documents"
       ],
-      "license": "SEE-SKILL",
+      "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "documents"
+      "category": "documents",
+      "resource_type": "skill"
     },
     {
       "name": "open-source-ai-toolbox-2026",
@@ -2218,7 +2252,9 @@
       "author": "MRWillisT",
       "inspired_by": "https://x.com/seelffff/status/2049214021430325677",
       "source": "https://x.com/seelffff/status/2049214021430325677",
-      "category": "research"
+      "category": "research",
+      "resource_type": "repository",
+      "installable": false
     },
     {
       "name": "open-source-ai-repo-catalog-2026",
@@ -2238,7 +2274,9 @@
       "author": "MRWillisT",
       "inspired_by": "https://x.com/seelffff/status/2049214021430325677",
       "source": "https://x.com/seelffff/status/2049214021430325677",
-      "category": "research"
+      "category": "research",
+      "resource_type": "repository",
+      "installable": false
     }
   ],
   "external_sources": [
