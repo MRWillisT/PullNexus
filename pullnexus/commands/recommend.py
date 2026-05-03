@@ -1,6 +1,7 @@
 """pullnexus recommend — suggest skills for a problem statement."""
 
 import json
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -17,6 +18,7 @@ _FEEDBACK_DIR = Path(__file__).resolve().parents[2] / "feedback"
 _FEEDBACK_MIN_REPORTS = 3
 
 CATEGORY_KEYWORDS = {
+    "rag": ["rag", "retrieval", "embedding", "embeddings", "chunk", "chunking", "vector", "rerank", "reranking", "pdf", "ingestion"],
     "automation": ["automation", "agent", "workflow", "mcp", "orchestr", "integration"],
     "design": ["design", "ui", "ux", "frontend", "layout", "brand"],
     "documents": ["pdf", "docx", "xlsx", "document", "ppt", "slides", "excel"],
@@ -30,6 +32,168 @@ CATEGORY_KEYWORDS = {
     "presentation": ["slides", "ppt", "presentation"],
     "web": ["web", "website", "deploy", "artifact"],
 }
+
+STOPWORDS = {
+    "about", "after", "against", "also", "and", "any", "are", "around", "bad",
+    "been", "being", "between", "both", "but", "can", "concrete", "did", "does",
+    "feel", "feels", "for", "from", "fully", "get", "gets", "got", "had", "has",
+    "have", "help", "here", "how", "inspect", "install", "into", "its", "just",
+    "like", "local", "looking", "need", "now", "off", "on", "one", "only", "or",
+    "our", "out", "problem", "quality", "really", "right", "should", "something",
+    "specific", "still", "than", "that", "the", "their", "them", "there", "these",
+    "they", "this", "use", "using", "want", "what", "when", "which", "with", "without",
+    "work", "workflow", "would", "you", "your", "pipeline", "build", "building",
+}
+
+WANTS_INSTALL_TOKENS = {"install", "pull", "download", "save", "inspect"}
+
+
+def _tokenize_text(text: str) -> list[str]:
+    raw_tokens = re.findall(r"[a-z0-9][a-z0-9+\-]*", str(text or "").lower())
+    tokens: list[str] = []
+    for token in raw_tokens:
+        if len(token) >= 3 or token in {"ui", "ux", "3d"}:
+            tokens.append(token)
+    return tokens
+
+
+def _problem_tokens(problem: str) -> set[str]:
+    return {token for token in _tokenize_text(problem) if token not in STOPWORDS}
+
+
+def _keyword_hit(problem_tokens: set[str], raw_problem: str, keyword: str) -> bool:
+    value = keyword.strip().lower()
+    if not value:
+        return False
+    if " " in value:
+        return value in raw_problem
+    return any(token == value or token.startswith(value) for token in problem_tokens)
+
+
+def _score_resource_for_problem(
+    skill: dict,
+    problem_tokens: set[str],
+    raw_problem: str,
+    requested_category: str = "",
+    inferred_category: str = "",
+    context: Optional[dict[str, str]] = None,
+) -> tuple[int, list[str], list[str]]:
+    skill_category = _skill_category_slug(skill)
+    name_tokens = set(_tokenize_text(skill.get("name", "")))
+    desc_tokens = set(_tokenize_text(skill.get("description", "")))
+    tag_tokens: set[str] = set()
+    for tag in skill.get("tags", []):
+        if isinstance(tag, str):
+            tag_tokens.update(_tokenize_text(tag))
+
+    score = 0
+    reasons: list[str] = []
+    verbose_parts: list[str] = []
+
+    if requested_category and skill_category == requested_category:
+        score += 30
+        reasons.append(f"category={_skill_category_label(skill)}")
+        verbose_parts.append(f"requested category match +30 ({requested_category})")
+    elif inferred_category and skill_category == inferred_category:
+        score += 12
+        reasons.append(f"category={_skill_category_label(skill)}")
+        verbose_parts.append(f"inferred category match +12 ({inferred_category})")
+
+    name_overlap = sorted(problem_tokens.intersection(name_tokens))
+    if name_overlap:
+        points = min(32, len(name_overlap) * 8)
+        score += points
+        reasons.append("name match")
+        verbose_parts.append(f"name overlap +{points} ({', '.join(name_overlap[:6])})")
+
+    tag_overlap = sorted(problem_tokens.intersection(tag_tokens))
+    if tag_overlap:
+        points = min(28, len(tag_overlap) * 7)
+        score += points
+        reasons.append("tag overlap")
+        verbose_parts.append(f"tag overlap +{points} ({', '.join(tag_overlap[:6])})")
+
+    desc_overlap = sorted(problem_tokens.intersection(desc_tokens))
+    if desc_overlap:
+        points = min(24, len(desc_overlap) * 4)
+        score += points
+        reasons.append("description overlap")
+        verbose_parts.append(f"description overlap +{points} ({', '.join(desc_overlap[:6])})")
+
+    if problem_tokens.intersection(WANTS_INSTALL_TOKENS) and bool(skill.get("installable", False)):
+        score += 8
+        reasons.append("installable")
+        verbose_parts.append("installable boost +8")
+
+    examples_bonus = min(4, int(skill.get("examples", 0)))
+    if score > 0 and examples_bonus:
+        score += examples_bonus
+        verbose_parts.append(f"examples bonus +{examples_bonus}")
+
+    if context and score > 0:
+        compat = _load_compatibility(skill.get("name", ""))
+        if compat.get("status") == "verified":
+            hw = str(context.get("hardware", "")).lower()
+            model = str(context.get("model", "")).lower()
+            works = [w.lower() for w in compat.get("works_on", [])]
+            models = [m.lower() for m in compat.get("tested_models", [])]
+            if hw and any(hw in item for item in works):
+                score += 15
+                reasons.append("verified on your hardware")
+                verbose_parts.append("hardware compatibility +15")
+            if model and any(model in item for item in models):
+                score += 10
+                reasons.append("tested with your model")
+                verbose_parts.append("model compatibility +10")
+
+    return score, reasons, verbose_parts
+
+
+def rank_resources_for_problem(
+    problem: str,
+    skills: list[dict],
+    requested_category: str = "",
+    requested_type: str = "",
+    context: Optional[dict[str, str]] = None,
+    explain_level: str = "basic",
+) -> tuple[list[tuple[int, dict, str, list[str]]], str]:
+    raw_problem = problem.lower()
+    problem_tokens = _problem_tokens(problem)
+    inferred_category = "" if requested_category else _infer_category(problem)
+    scored: list[tuple[int, dict, str, list[str]]] = []
+
+    for skill in skills:
+        skill_category = _skill_category_slug(skill)
+        skill_type = _resource_type_slug(skill)
+        if requested_category and skill_category != requested_category:
+            continue
+        if requested_type and skill_type != requested_type:
+            continue
+
+        if context:
+            compat = _load_compatibility(skill.get("name", ""))
+            hw = str(context.get("hardware", "")).lower()
+            if compat.get("status") == "verified":
+                broken = [b.lower() for b in compat.get("broken_on", [])]
+                if hw and any(hw in item for item in broken):
+                    continue
+
+        score, reasons, verbose_parts = _score_resource_for_problem(
+            skill,
+            problem_tokens,
+            raw_problem,
+            requested_category=requested_category,
+            inferred_category=inferred_category,
+            context=context,
+        )
+        if score > 0:
+            reason = ", ".join(reasons)
+            if explain_level == "verbose":
+                reason = " | ".join(verbose_parts) if verbose_parts else "relevance"
+            scored.append((score, skill, reason or "relevance", verbose_parts))
+
+    scored.sort(key=lambda item: item[0], reverse=True)
+    return scored, inferred_category
 
 
 def recommend(
@@ -92,89 +256,14 @@ def recommend(
 
     requested_category = category.lower().strip() if category else ""
     requested_type = resource_type.lower().strip() if resource_type else ""
-    inferred_category = _infer_category(problem) if not requested_category else ""
-    q = problem.lower()
-    scored: list[tuple[int, dict, str, list[str]]] = []
-
-    for skill in skills:
-        skill_category = _skill_category_slug(skill)
-        skill_type = _resource_type_slug(skill)
-        if requested_category and skill_category != requested_category:
-            continue
-        if requested_type and skill_type != requested_type:
-            continue
-
-        # Context filtering: skip resources with confirmed breakage on this hardware/model
-        if ctx:
-            compat = _load_compatibility(skill.get("name", ""))
-            hw = ctx.get("hardware", "")
-            model = ctx.get("model", "")
-            if compat.get("status") == "verified":
-                broken = [b.lower() for b in compat.get("broken_on", [])]
-                if hw and any(hw in b for b in broken):
-                    continue
-                # Boost score if explicitly verified to work on this hardware
-                # (handled below in scoring)
-
-        tags = [t.lower() for t in skill.get("tags", [])]
-        name = skill.get("name", "").lower()
-        desc = skill.get("description", "").lower()
-
-        score = 0
-        reasons: list[str] = []
-        verbose_parts: list[str] = []
-
-        if requested_category and skill_category == requested_category:
-            score += 40
-            reasons.append(f"category={_skill_category_label(skill)}")
-            verbose_parts.append(f"category match +40 ({requested_category})")
-        elif inferred_category and skill_category == inferred_category:
-            score += 40
-            reasons.append(f"category={_skill_category_label(skill)}")
-            verbose_parts.append(f"inferred category match +40 ({inferred_category})")
-
-        if any(token in name for token in q.split() if token):
-            score += 25
-            reasons.append("name match")
-            verbose_parts.append("name token overlap +25")
-
-        overlap = [token for token in q.split() if token and (token in tags or token in desc)]
-        if overlap:
-            overlap_points = min(20, len(overlap) * 4)
-            score += overlap_points
-            reasons.append("keyword overlap")
-            verbose_parts.append(f"keyword overlap +{overlap_points} ({', '.join(sorted(set(overlap)))})")
-
-        # Prefer richer skills when scores tie.
-        examples_bonus = min(10, int(skill.get("examples", 0)))
-        score += examples_bonus
-        if examples_bonus:
-            verbose_parts.append(f"examples bonus +{examples_bonus}")
-
-        # Compatibility boost: verified to work on requested hardware/model
-        if ctx and score > 0:
-            compat = _load_compatibility(skill.get("name", ""))
-            if compat.get("status") == "verified":
-                hw = ctx.get("hardware", "")
-                model = ctx.get("model", "")
-                works = [w.lower() for w in compat.get("works_on", [])]
-                models = [m.lower() for m in compat.get("tested_models", [])]
-                if hw and any(hw in w for w in works):
-                    score += 15
-                    reasons.append("verified on your hardware")
-                    verbose_parts.append("hardware compatibility +15")
-                if model and any(model in m for m in models):
-                    score += 10
-                    reasons.append("tested with your model")
-                    verbose_parts.append("model compatibility +10")
-
-        if score > 0:
-            reason = ", ".join(reasons)
-            if explain_level == "verbose":
-                reason = " | ".join(verbose_parts) if verbose_parts else "relevance"
-            scored.append((score, skill, reason, verbose_parts))
-
-    scored.sort(key=lambda x: x[0], reverse=True)
+    scored, inferred_category = rank_resources_for_problem(
+        problem,
+        skills,
+        requested_category=requested_category,
+        requested_type=requested_type,
+        context=ctx,
+        explain_level=explain_level,
+    )
     top = scored[:limit]
 
     if not top:
@@ -241,11 +330,12 @@ def recommend(
 def _infer_category(problem: str) -> str:
     """Infer likely category from problem keywords."""
     text = problem.lower()
+    tokens = _problem_tokens(problem)
     best = ""
     best_hits = 0
 
     for category, keywords in CATEGORY_KEYWORDS.items():
-        hits = sum(1 for kw in keywords if kw in text)
+        hits = sum(1 for kw in keywords if _keyword_hit(tokens, text, kw))
         if hits > best_hits:
             best = category
             best_hits = hits

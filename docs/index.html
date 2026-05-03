@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PullNexus - Local AI Skill Commons</title>
   <meta name="description" content="Pull skills, tools, and knowledge for local LLMs on demand. Open, free, and community-built.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PullNexus — Local AI Skill Commons">
+  <meta property="og:description" content="Open, free, community-built skills for local LLMs. Discover practical modules, pull what you need, contribute improvements back.">
+  <meta property="og:url" content="https://mrwillist.github.io/PullNexus/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="PullNexus — Local AI Skill Commons">
+  <meta name="twitter:description" content="Open, free, community-built skills for local LLMs. Discover practical modules, pull what you need, contribute improvements back.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,9 +29,11 @@
       --panel: #fff9ef;
       --accent: #d64545;
       --accent-2: #f08c00;
+      --accent-3: #f6d097;
       --ok: #2f855a;
       --line: #d9c9ac;
       --shadow: 0 12px 30px rgba(16, 42, 67, 0.15);
+      --shadow-lg: 0 28px 60px rgba(16, 42, 67, 0.16);
       --radius: 16px;
       --max: 1120px;
     }
@@ -56,15 +71,31 @@
       z-index: 1;
       width: min(var(--max), 92vw);
       margin: 0 auto;
-      padding: 28px 0 56px;
+      padding: 28px 0 64px;
     }
 
     .hero {
+      position: relative;
       border: 1px solid var(--line);
       border-radius: calc(var(--radius) + 8px);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
       overflow: hidden;
-      background: linear-gradient(135deg, #fff9ef, #fff2d8);
+      background:
+        radial-gradient(circle at 78% 24%, rgba(240, 140, 0, 0.20), transparent 24%),
+        radial-gradient(circle at 88% 14%, rgba(214, 69, 69, 0.16), transparent 24%),
+        linear-gradient(135deg, #fffaf2 0%, #fff4e2 42%, #fff0db 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      bottom: -64px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(240, 140, 0, 0.12), rgba(240, 140, 0, 0));
+      pointer-events: none;
     }
 
     .hero-head {
@@ -91,7 +122,55 @@
     }
 
     .hero-main {
-      padding: 28px 20px 30px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.8fr);
+      gap: 24px;
+      align-items: end;
+      padding: 34px 28px 32px;
+    }
+
+    .hero-copy {
+      max-width: 780px;
+    }
+
+    .hero-side {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      align-self: stretch;
+    }
+
+    .hero-mini {
+      position: relative;
+      border: 1px solid rgba(201, 169, 107, 0.8);
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: rgba(255, 249, 239, 0.82);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 14px 28px rgba(16, 42, 67, 0.08);
+    }
+
+    .hero-mini-label {
+      display: block;
+      margin-bottom: 6px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+
+    .hero-mini strong {
+      display: block;
+      font-size: 1.05rem;
+      line-height: 1.15;
+    }
+
+    .hero-mini p {
+      margin: 8px 0 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      line-height: 1.45;
     }
 
     h1 {
@@ -144,8 +223,13 @@
     .grid {
       margin-top: 22px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr) minmax(280px, 0.9fr);
       gap: 16px;
+      align-items: start;
+    }
+
+    .panel-full {
+      grid-column: 1 / 2;
     }
 
     .panel {
@@ -183,13 +267,19 @@
       padding: 14px;
     }
 
+    .panel-accent {
+      background:
+        linear-gradient(180deg, rgba(255, 245, 225, 0.98), rgba(255, 250, 241, 0.98)),
+        linear-gradient(135deg, rgba(240, 140, 0, 0.08), rgba(214, 69, 69, 0.06));
+    }
+
     .muted {
       color: var(--ink-soft);
     }
 
     .controls {
       display: grid;
-      grid-template-columns: 1.5fr 1fr auto;
+      grid-template-columns: minmax(0, 2.2fr) minmax(150px, 1fr) minmax(150px, 1fr) auto;
       gap: 10px;
       align-items: center;
     }
@@ -208,21 +298,24 @@
     .skills {
       margin-top: 14px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 12px;
     }
 
     .skill {
       border: 1px solid #dcc8a7;
       border-radius: 14px;
-      background: #fffef9;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 238, 0.96));
       padding: 14px;
-      transition: transform 180ms ease, border-color 180ms ease;
+      min-height: 100%;
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
     }
 
     .skill:hover {
       transform: translateY(-2px);
       border-color: #d49b5a;
+      box-shadow: 0 12px 20px rgba(16, 42, 67, 0.08);
     }
 
     .skill h3 {
@@ -283,6 +376,29 @@
       font-size: 0.9rem;
     }
 
+    .code-block {
+      margin: 0;
+      padding: 16px;
+      white-space: pre-wrap;
+      font-family: "IBM Plex Mono", monospace;
+      color: #274c68;
+      line-height: 1.5;
+      border: 1px solid #e0c89f;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fffdf8, #fff5e8);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    }
+
+    .vision-link {
+      color: #1f5f8b;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.16em;
+    }
+
+    .vision-link:hover {
+      color: #0d3f66;
+    }
+
     .empty {
       border: 1px dashed #c5aa7a;
       border-radius: 12px;
@@ -291,16 +407,262 @@
       background: #fff9ed;
     }
 
-    @media (max-width: 1040px) {
-      .grid,
-      .skills {
+    .showcase {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel-wide {
+      grid-column: 1 / -1;
+    }
+
+    .latest-list {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .latest-item {
+      border: 1px solid #dcc8a7;
+      border-radius: 14px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 249, 238, 0.96));
+    }
+
+    .latest-item h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .latest-meta {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 18px;
+      line-height: 1.55;
+    }
+
+    .feature-list li + li {
+      margin-top: 8px;
+    }
+
+    .mcp-flow {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 12px 12px 14px;
+      border-radius: 14px;
+      border: 1px solid #d8c29b;
+      background: linear-gradient(180deg, #fffdf9, #fff5e8);
+      overflow: hidden;
+      min-height: 96px;
+      animation: glow-cycle 8s ease-in-out infinite;
+    }
+
+    .flow-step:nth-child(2) {
+      animation-delay: 1.2s;
+    }
+
+    .flow-step:nth-child(3) {
+      animation-delay: 2.4s;
+    }
+
+    .flow-step:nth-child(4) {
+      animation-delay: 3.6s;
+    }
+
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+      transform: translateX(-130%);
+      animation: sweep 8s ease-in-out infinite;
+    }
+
+    .flow-step:nth-child(2)::after {
+      animation-delay: 1.2s;
+    }
+
+    .flow-step:nth-child(3)::after {
+      animation-delay: 2.4s;
+    }
+
+    .flow-step:nth-child(4)::after {
+      animation-delay: 3.6s;
+    }
+
+    .flow-step strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .flow-step span {
+      position: relative;
+      z-index: 1;
+      display: block;
+      color: var(--ink-soft);
+      font-size: 0.86rem;
+      line-height: 1.4;
+    }
+
+    .prompt-box {
+      padding: 14px 16px;
+      border: 1px solid #d8c29b;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fffdf8, #fff4e7);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #274c68;
+    }
+
+    .compare {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .chat-card {
+      border: 1px solid #dcc8a7;
+      border-radius: 14px;
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,249,238,0.96));
+    }
+
+    .chat-card-strong {
+      border-color: #cda062;
+      background: linear-gradient(180deg, #fff8ef, #fff2df);
+      box-shadow: 0 14px 26px rgba(240, 140, 0, 0.10);
+    }
+
+    .chat-label {
+      margin-bottom: 10px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+
+    .chat-line {
+      margin: 0 0 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fffdf9;
+      border: 1px solid #e8d7b8;
+      line-height: 1.45;
+      font-size: 0.92rem;
+    }
+
+    .chat-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .chat-line.accent {
+      border-color: #d6a05d;
+      background: #fff4df;
+    }
+
+    .mini-note {
+      margin-top: 14px;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    @keyframes glow-cycle {
+      0%, 18%, 100% {
+        transform: translateY(0);
+        box-shadow: none;
+        border-color: #d8c29b;
+      }
+      8% {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 24px rgba(240, 140, 0, 0.12);
+        border-color: #d49b5a;
+      }
+    }
+
+    @keyframes sweep {
+      0%, 20%, 100% {
+        transform: translateX(-130%);
+      }
+      10% {
+        transform: translateX(130%);
+      }
+    }
+
+    @media (max-width: 1020px) {
+      .hero-main {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        max-width: none;
+      }
+
+      .hero-side {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .panel-full {
+        grid-column: 1 / -1;
+      }
+
+      .showcase {
+        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 740px) {
-      .grid,
-      .skills,
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-main {
+        padding: 28px 20px 24px;
+      }
+
+      .hero-side {
+        grid-template-columns: 1fr;
+      }
+
+      .mcp-flow,
+      .compare {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
       .controls {
         grid-template-columns: 1fr;
       }
@@ -311,7 +673,22 @@
       }
 
       .hero-main {
+        gap: 18px;
         padding-top: 22px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        text-align: center;
+      }
+
+      .mcp-flow,
+      .compare {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -324,21 +701,38 @@
         <span class="badge" id="live-source">Loading registry source...</span>
       </div>
       <div class="hero-main">
-        <h1>Pull from the Nexus.<br>Keep local AI smart.</h1>
-        <p class="tagline">Open, free, community-built skills for local LLMs. Discover practical modules, pull what you need, and contribute improvements back to the commons.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/MRWillisT/PullNexus">View Repository</a>
-          <a class="btn btn-secondary" href="https://github.com/MRWillisT/PullNexus/blob/main/CONTRIBUTING.md">Contribute a Skill</a>
+        <div class="hero-copy">
+          <h1>Pull from the Nexus.<br>Keep local AI smart.</h1>
+          <p class="tagline">Open, free, community-built skills for local LLMs. Discover practical modules, pull what you need, and contribute improvements back to the commons.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/MRWillisT/PullNexus">View Repository</a>
+            <a class="btn btn-secondary" href="https://github.com/MRWillisT/PullNexus/blob/main/CONTRIBUTING.md">Contribute a Skill</a>
+          </div>
+        </div>
+        <div class="hero-side" aria-label="Project highlights">
+          <div class="hero-mini">
+            <span class="hero-mini-label">What It Solves</span>
+            <strong>Reusable local AI skills without closed platforms.</strong>
+            <p>Package prompt workflows, tool patterns, and agent modules in a format you can inspect and remix.</p>
+          </div>
+          <div class="hero-mini">
+            <span class="hero-mini-label">Built For</span>
+            <strong>CLI workflows, MCP patterns, and community curation.</strong>
+            <p>Use it as a registry, a contribution surface, or a practical catalog for local-first AI stacks.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="grid">
-      <article class="panel">
+      <article class="panel panel-full">
         <div class="panel-head">Skill Browser</div>
         <div class="panel-body">
           <div class="controls">
             <input id="search" class="input" placeholder="Search skills, tags, descriptions..." aria-label="Search skills">
+            <select id="type" class="select" aria-label="Filter by resource type">
+              <option value="">All types</option>
+            </select>
             <select id="tag" class="select" aria-label="Filter by tag">
               <option value="">All tags</option>
             </select>
@@ -349,23 +743,23 @@
         </div>
       </article>
 
-      <article class="panel">
+      <article class="panel panel-accent">
         <div class="panel-head">Quick Start</div>
         <div class="panel-body">
-<pre style="margin:0;white-space:pre-wrap;font-family:'IBM Plex Mono',monospace;color:#334e68;line-height:1.45;"># Install from source
-pip install -e .
+<pre class="code-block"># Install
+pip install pullnexus
 
 # Discover skills
 pullnexus list
 pullnexus search debugging
 
 # Pull one locally
-pullnexus pull python-advanced-debugging</pre>
+pullnexus pull local-rag-starter-pack</pre>
           <p class="foot">Use pulled skill folders for context loading, prompt packs, or fine-tuning datasets.</p>
         </div>
       </article>
 
-      <article class="panel">
+      <article class="panel panel-accent">
         <div class="panel-head">Project Direction</div>
         <div class="panel-body">
           <p class="muted" style="margin-top:0;">PullNexus is building the missing intelligence layer for local-first AI: discoverable, pullable, remixable skills with open governance and no paywalls.</p>
@@ -375,7 +769,75 @@ pullnexus pull python-advanced-debugging</pre>
             <li>MCP-compatible patterns</li>
             <li>Community skill curation loop</li>
           </ul>
-          <p class="foot">Read the full vision: <a href="vision.md">docs/vision.md</a></p>
+          <p class="foot">Read the full vision: <a class="vision-link" href="vision.md">vision.md</a></p>
+        </div>
+      </article>
+    </section>
+
+    <section class="showcase">
+      <article class="panel">
+        <div class="panel-head">MCP Assistant Mode</div>
+        <div class="panel-body">
+          <p class="muted" style="margin-top:0;">Any AI assistant connected to the PullNexus MCP server can use the live registry as part of the conversation instead of guessing from generic background knowledge.</p>
+          <ul class="feature-list">
+            <li>Search the registry mid-conversation for relevant skills, playbooks, datasets, or tools.</li>
+            <li>Recommend concrete resources based on the user's stack, failure mode, or goal.</li>
+            <li>Pull installable resources locally without leaving the chat flow.</li>
+            <li>Submit compatibility feedback after a workflow succeeds or fails.</li>
+          </ul>
+          <div class="mcp-flow" aria-label="Animated PullNexus MCP workflow">
+            <div class="flow-step">
+              <strong>1. Search</strong>
+              <span>Find live resources instead of answering from memory alone.</span>
+            </div>
+            <div class="flow-step">
+              <strong>2. Recommend</strong>
+              <span>Rank useful options against the actual problem being described.</span>
+            </div>
+            <div class="flow-step">
+              <strong>3. Install</strong>
+              <span>Pull the chosen resource into a local folder for immediate use.</span>
+            </div>
+            <div class="flow-step">
+              <strong>4. Report Back</strong>
+              <span>Append compatibility feedback so the registry gets smarter over time.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel panel-accent">
+        <div class="panel-head">Try This Prompt</div>
+        <div class="panel-body">
+          <div class="prompt-box">I’m building a fully local RAG pipeline for PDFs with Ollama. Retrieval quality is bad, chunking feels wrong, and I want something concrete I can inspect or install. What should I use?</div>
+          <div class="compare">
+            <div class="chat-card">
+              <div class="chat-label">Without PullNexus</div>
+              <p class="chat-line">"You could try LangChain, Chroma, or LlamaIndex. Here are some general RAG tips for chunk size and embeddings."</p>
+              <p class="chat-line">Helpful, but generic. No live registry search, no concrete PullNexus resources, no install step.</p>
+            </div>
+            <div class="chat-card chat-card-strong">
+              <div class="chat-label">With PullNexus MCP</div>
+              <p class="chat-line accent">"I found local-rag-starter-pack, a playbook for local RAG pipelines covering ingestion, chunking, embeddings, vector DB setup, retrieval, reranking, and eval."</p>
+              <p class="chat-line accent">"I also found rag-eval-baseline for retrieval precision/recall and answer faithfulness. If you want, I can pull local-rag-starter-pack into ./pullnexus-skills right now."</p>
+            </div>
+          </div>
+          <p class="mini-note">Good demo questions mention a real stack, a clear failure mode, and a concrete goal. RAG setup, debugging, agent workflows, or fine-tuning all work well for before/after comparisons.</p>
+          <div class="prompt-box" style="margin-top:14px;">
+            New playbook: <strong>small-model-guidance-tuning</strong><br>
+            Use it when a small model gets more relevant with PullNexus but still needs prompt-contract, formatting, and trustworthiness tuning.
+          </div>
+          <pre class="code-block">pullnexus pull small-model-guidance-tuning</pre>
+        </div>
+      </article>
+
+      <article class="panel panel-accent panel-wide">
+        <div class="panel-head">Latest Registry Additions</div>
+        <div class="panel-body">
+          <p class="muted" style="margin-top:0;">This panel is populated from the same live registry index as the search view, so new entries can surface on the homepage automatically.</p>
+          <div class="latest-list" id="latest-entries">
+            <div class="empty">Loading latest entries...</div>
+          </div>
         </div>
       </article>
     </section>
@@ -389,13 +851,20 @@ pullnexus pull python-advanced-debugging</pre>
       const sourceLabel = document.getElementById("live-source");
       const stats = document.getElementById("stats");
       const skillsNode = document.getElementById("skills");
+      const latestEntriesNode = document.getElementById("latest-entries");
       const searchNode = document.getElementById("search");
+      const typeNode = document.getElementById("type");
       const tagNode = document.getElementById("tag");
       const clearNode = document.getElementById("clear");
 
       let allSkills = [];
 
       const text = (v) => (typeof v === "string" ? v : "");
+
+      function parseDate(value) {
+        const timestamp = Date.parse(text(value));
+        return Number.isFinite(timestamp) ? timestamp : 0;
+      }
 
       function scoreSkill(skill, query) {
         const q = query.toLowerCase();
@@ -413,11 +882,13 @@ pullnexus pull python-advanced-debugging</pre>
       function applyFilters() {
         const q = searchNode.value.trim().toLowerCase();
         const t = tagNode.value.trim().toLowerCase();
+        const rt = typeNode.value.trim().toLowerCase();
 
         let filtered = allSkills.filter((skill) => {
           const hasTag = !t || (skill.tags || []).some((tag) => text(tag).toLowerCase() === t);
+          const hasType = !rt || text(skill.resource_type).toLowerCase() === rt;
           const hasQuery = !q || scoreSkill(skill, q) < 99;
-          return hasTag && hasQuery;
+          return hasTag && hasType && hasQuery;
         });
 
         filtered = filtered
@@ -442,6 +913,7 @@ pullnexus pull python-advanced-debugging</pre>
           return `
             <article class="skill">
               <h3>${text(skill.name)}</h3>
+              <div class="muted" style="font-size:0.82rem;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;">${text(skill.resource_type) || "skill"}</div>
               <div class="muted">${text(skill.description)}</div>
               <div class="pill-row">${tags}</div>
               <div class="meta">
@@ -453,7 +925,40 @@ pullnexus pull python-advanced-debugging</pre>
         }).join("");
       }
 
+      function renderLatest(skills) {
+        if (!latestEntriesNode) return;
+
+        const latest = [...skills]
+          .sort((a, b) => parseDate(b.last_verified) - parseDate(a.last_verified) || text(a.name).localeCompare(text(b.name)))
+          .slice(0, 6);
+
+        if (!latest.length) {
+          latestEntriesNode.innerHTML = '<div class="empty">No registry entries available yet.</div>';
+          return;
+        }
+
+        latestEntriesNode.innerHTML = latest.map((skill) => {
+          const tags = (skill.tags || []).slice(0, 3).map((tag) => `<span class="pill">${tag}</span>`).join("");
+          return `
+            <article class="latest-item">
+              <div class="muted" style="font-size:0.78rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.04em;">${text(skill.resource_type) || "skill"}</div>
+              <h3>${text(skill.name)}</h3>
+              <div class="muted">${text(skill.description)}</div>
+              <div class="pill-row">${tags}</div>
+              <div class="latest-meta">
+                <span>${text(skill.last_verified) || "date n/a"}</span>
+                <span>v${text(skill.version) || "1.0.0"}</span>
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
+
       function populateTags(skills) {
+        const types = Array.from(new Set(skills.map((s) => text(s.resource_type)).filter(Boolean))).sort();
+        typeNode.innerHTML = '<option value="">All types</option>' +
+          types.map((rt) => `<option value="${rt}">${rt}</option>`).join("");
+
         const tags = Array.from(new Set(skills.flatMap((s) => s.tags || [])))
           .map((tag) => text(tag))
           .filter(Boolean)
@@ -465,9 +970,11 @@ pullnexus pull python-advanced-debugging</pre>
 
       function bindEvents() {
         searchNode.addEventListener("input", applyFilters);
+        typeNode.addEventListener("change", applyFilters);
         tagNode.addEventListener("change", applyFilters);
         clearNode.addEventListener("click", function () {
           searchNode.value = "";
+          typeNode.value = "";
           tagNode.value = "";
           applyFilters();
         });
@@ -487,6 +994,7 @@ pullnexus pull python-advanced-debugging</pre>
             const data = await response.json();
             allSkills = Array.isArray(data.skills) ? data.skills : [];
             populateTags(allSkills);
+            renderLatest(allSkills);
             render(allSkills);
             sourceLabel.textContent = target.label;
             return;
@@ -498,6 +1006,9 @@ pullnexus pull python-advanced-debugging</pre>
         sourceLabel.textContent = "Registry unavailable";
         stats.textContent = "Could not load skill index";
         skillsNode.innerHTML = '<div class="empty">Unable to fetch skills/index.json right now. Check repository visibility or network access.</div>';
+        if (latestEntriesNode) {
+          latestEntriesNode.innerHTML = '<div class="empty">Latest entries are unavailable until the registry can be fetched.</div>';
+        }
       }
 
       bindEvents();

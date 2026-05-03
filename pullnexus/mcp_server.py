@@ -24,14 +24,25 @@ except ImportError as exc:
     ) from exc
 
 from pullnexus.api import fetch_index, fetch_skill_json, fetch_skill_readme, fetch_registry
-from pullnexus.commands.feedback import _feedback_path, FEEDBACK_MIN_REPORTS
+from pullnexus.commands.recommend import rank_resources_for_problem
+from pullnexus.commands.feedback import _FEEDBACK_DIR, _feedback_path, FEEDBACK_MIN_REPORTS
 
 mcp = FastMCP(
     name="PullNexus",
     instructions=(
         "PullNexus is the open registry of skills, tools, datasets, playbooks, and evals "
         "for local LLMs. Use pullnexus_search or pullnexus_recommend to find resources, "
-        "pullnexus_info to get full details, and pullnexus_install to pull files locally."
+        "pullnexus_info to get full details, and pullnexus_install to pull files locally.\n\n"
+        "Response format rules (apply to every skill recommendation):\n"
+        "- Commit to one specific approach immediately. Do not offer a menu of options.\n"
+        "- Name actual tools and packages by their real name. Never use vague category labels "
+        "like 'a document loader' or 'an embedding model' — say the specific package.\n"
+        "- Write in plain connected prose. No bold section headers, no bullet-point readouts.\n"
+        "- End with a directive next step, not a question. You already chose the approach.\n"
+        "- When a skill's pullnexus_info response includes model_hints.small_model.response_contract, "
+        "follow that contract exactly for small or quantized models (<=14B parameters).\n"
+        "- Call pullnexus_model_context once at session start to load the instruction profile "
+        "for your specific model."
     ),
 )
 
@@ -97,7 +108,9 @@ def pullnexus_recommend(
     resource_type: Optional[str] = None,
     limit: int = 5,
 ) -> str:
-    """Recommend the most relevant PullNexus resources for a problem statement.
+    """Call this when you're unsure what skill, tool, or resource would help with a task.
+
+    Describe the problem in plain English and PullNexus will find the best match automatically.
 
     Searches across all resource types by default. Use resource_type to narrow.
 
@@ -110,41 +123,18 @@ def pullnexus_recommend(
         JSON list of scored recommendations with name, type, score, and reason.
     """
     skills = fetch_index()
-    q = problem.lower()
-    scored = []
-
-    for s in skills:
-        if resource_type and str(s.get("resource_type", "skill")).lower() != resource_type.lower():
-            continue
-        name = str(s.get("name", "")).lower()
-        desc = str(s.get("description", "")).lower()
-        tags = " ".join(str(t).lower() for t in s.get("tags", []))
-        combined = f"{name} {desc} {tags}"
-
-        score = 0
-        reasons = []
-        for word in q.split():
-            if len(word) < 3:
-                continue
-            if word in name:
-                score += 3
-                reasons.append(f"name matches '{word}'")
-            elif word in desc:
-                score += 2
-                reasons.append(f"description matches '{word}'")
-            elif word in tags:
-                score += 1
-                reasons.append(f"tag matches '{word}'")
-
-        if score > 0:
-            scored.append((score, s, reasons))
-
-    scored.sort(key=lambda x: x[0], reverse=True)
+    scored, inferred_category = rank_resources_for_problem(
+        problem,
+        skills,
+        requested_type=resource_type.lower().strip() if resource_type else "",
+        explain_level="basic",
+    )
     top = scored[:limit]
 
     return json.dumps({
         "problem": problem,
         "total_candidates": len(scored),
+        "inferred_category": inferred_category or None,
         "recommendations": [
             {
                 "name": s.get("name"),
@@ -152,10 +142,10 @@ def pullnexus_recommend(
                 "version": s.get("version"),
                 "description": s.get("description"),
                 "score": score,
-                "reasons": reasons[:3],
+                "reasons": [part.strip() for part in reason.split(",") if part.strip()][:3],
                 "installable": s.get("installable", True),
             }
-            for score, s, reasons in top
+            for score, s, reason, _ in top
         ],
     }, indent=2)
 
@@ -272,6 +262,149 @@ def pullnexus_types() -> str:
 
 
 @mcp.tool()
+def pullnexus_model_context(model: str, param_count_b: Optional[int] = None) -> str:
+    """Call this once at session start to load the instruction profile for your model.
+
+    Returns formatting rules and behavioral hints tuned for your model size.
+    Small and quantized models (<=14B) get a stricter directive contract to avoid
+    vague responses. Larger models get lighter guidance.
+
+    Args:
+        model: Model identifier (e.g. 'qwen2.5-coder:7b', 'llama3-8b-q4', 'mistral-7b').
+        param_count_b: Optional explicit parameter count in billions. Inferred from model
+                       name if omitted.
+
+    Returns:
+        JSON object with instruction_style, rules, and usage notes for this session.
+    """
+    import re
+
+    # Infer param count from model name if not supplied
+    if param_count_b is None:
+        match = re.search(r"(\d+(?:\.\d+)?)\s*[bB]", model)
+        param_count_b = int(float(match.group(1))) if match else 0
+
+    is_small = 0 < param_count_b <= 14
+
+    if is_small:
+        profile = {
+            "instruction_style": "directive",
+            "model": model,
+            "param_count_b": param_count_b,
+            "applies_to": "models with <=14B parameters",
+            "rules": [
+                "Commit to one approach immediately. No option menus.",
+                "Name the specific package or tool by its real name — never a category label.",
+                "Write 2-4 prose sentences only. No bold headers, no bullet readouts.",
+                "End with a directive next step, not a question.",
+                "When pullnexus_info returns model_hints.small_model.response_contract, follow it exactly.",
+            ],
+            "note": (
+                "Small models lose specificity with long instruction lists. "
+                "Use the response_contract from model_hints when available — it encodes "
+                "the minimum instructions needed for correct output on this model class."
+            ),
+            "recommended_workflow": [
+                "1. pullnexus_recommend(problem) to find the best resource.",
+                "2. pullnexus_info(skill_name) to get full metadata including model_hints.",
+                "3. If model_hints.small_model.response_contract is present, follow it for your reply.",
+                "4. pullnexus_feedback(resource_id, model, hardware, use_case, outcome) after responding.",
+            ],
+        }
+    else:
+        profile = {
+            "instruction_style": "standard",
+            "model": model,
+            "param_count_b": param_count_b if param_count_b else "unknown",
+            "applies_to": "models with >14B parameters",
+            "rules": [
+                "Prefer concrete recommendations over broad surveys.",
+                "Name specific packages and tools, not category labels.",
+                "Diagnose the user's actual problem before recommending a stack.",
+                "Check model_hints in pullnexus_info for any resource-specific guidance.",
+            ],
+            "recommended_workflow": [
+                "1. pullnexus_recommend(problem) to find the best resource.",
+                "2. pullnexus_info(skill_name) to get full metadata.",
+                "3. Respond using the resource context.",
+                "4. pullnexus_feedback(resource_id, model, hardware, use_case, outcome) after responding.",
+            ],
+        }
+
+    return json.dumps(profile, indent=2)
+
+
+@mcp.tool()
+def pullnexus_hints_needed(min_fail_reports: int = 2) -> str:
+    """Return skills that have failure reports on small models but no model_hints yet.
+
+    Use this to prioritize which skills need model_hints.small_model added to their
+    skill.json. Skills appear here when real usage reports flag them as failing on
+    small/quantized models — no manual testing required.
+
+    Args:
+        min_fail_reports: Minimum number of fail/partial reports to surface a skill (default 2).
+
+    Returns:
+        JSON list of skills needing model_hints, sorted by fail count descending.
+    """
+    import re
+
+    if not _FEEDBACK_DIR.exists():
+        return json.dumps({"total": 0, "skills_needing_hints": []})
+
+    skills_index = {s.get("name"): s for s in fetch_index() if isinstance(s, dict)}
+    needs_hints: list[dict] = []
+
+    for feedback_file in sorted(_FEEDBACK_DIR.glob("*.jsonl")):
+        resource_id = feedback_file.stem
+        skill_meta = skills_index.get(resource_id, {})
+
+        # Skip if model_hints already present
+        if skill_meta.get("model_hints"):
+            continue
+
+        fail_on_small: list[dict] = []
+        try:
+            for line in feedback_file.read_text(encoding="utf-8").splitlines():
+                if not line.strip():
+                    continue
+                report = json.loads(line)
+                if report.get("outcome") not in {"fail", "partial"}:
+                    continue
+                model_str = str(report.get("model", ""))
+                match = re.search(r"(\d+(?:\.\d+)?)\s*[bB]", model_str)
+                param_b = int(float(match.group(1))) if match else 0
+                if 0 < param_b <= 14:
+                    fail_on_small.append({
+                        "model": model_str,
+                        "outcome": report.get("outcome"),
+                        "use_case": report.get("use_case", ""),
+                        "notes": report.get("notes", ""),
+                    })
+        except Exception:
+            continue
+
+        if len(fail_on_small) >= min_fail_reports:
+            needs_hints.append({
+                "resource_id": resource_id,
+                "resource_type": skill_meta.get("resource_type", "unknown"),
+                "description": skill_meta.get("description", ""),
+                "fail_report_count": len(fail_on_small),
+                "sample_reports": fail_on_small[:3],
+                "action": f"Add model_hints.small_model.response_contract to skills/{resource_id}/skill.json",
+            })
+
+    needs_hints.sort(key=lambda x: -x["fail_report_count"])
+
+    return json.dumps({
+        "total": len(needs_hints),
+        "min_fail_reports_threshold": min_fail_reports,
+        "skills_needing_hints": needs_hints,
+    }, indent=2)
+
+
+@mcp.tool()
 def pullnexus_feedback(
     resource_id: str,
     model: str,
@@ -314,7 +447,6 @@ def pullnexus_feedback(
         "submitted_at": datetime.now(timezone.utc).isoformat(),
     }
 
-    from pullnexus.commands.feedback import _FEEDBACK_DIR, _feedback_path
     _FEEDBACK_DIR.mkdir(parents=True, exist_ok=True)
     out_path = _feedback_path(resource_id)
     with out_path.open("a", encoding="utf-8") as f:

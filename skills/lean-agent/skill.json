@@ -1,0 +1,17 @@
+{
+  "name": "lean-agent",
+  "resource_type": "prompt",
+  "version": "1.0.0",
+  "description": "Agent behavior prompt for narrow, low-context fixes. Restricts exploration to the minimum needed, enforces smallest-safe-change discipline, and keeps output brief. Drop into any local LLM or AI coding assistant.",
+  "tags": ["prompt", "agent", "behavior", "coding", "minimal", "focused", "local-ai", "use:prompt"],
+  "license": "MIT",
+  "author": "MRWillisT",
+  "source": "pullnexus",
+  "installable": true,
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "prompt_file": "agent.md",
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai", "vscode-copilot", "continue", "cursor"]
+}

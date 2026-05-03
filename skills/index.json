@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 155,
+  "total": 156,
   "skills": [
     {
       "name": "n8n-mcp-tool",
@@ -75,6 +75,31 @@
       "maturity": "alpha",
       "maintained": "yes",
       "last_verified": "2026-05-01"
+    },
+    {
+      "name": "small-model-guidance-tuning",
+      "resource_type": "playbook",
+      "version": "1.0.0",
+      "description": "Playbook for making small local models more reliable with PullNexus: improve retrieval routing, prompt contract, formatting, and eval loops before reaching for fine-tuning.",
+      "tags": [
+        "small-models",
+        "prompt-engineering",
+        "pullnexus",
+        "retrieval",
+        "eval",
+        "local-ai",
+        "playbook",
+        "use:developer"
+      ],
+      "license": "CC0-1.0",
+      "author": "MRWillisT",
+      "source": "pullnexus",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
     },
     {
       "name": "synthetic-training-datasets",
@@ -3387,6 +3412,40 @@
         "Use -fit to allow model to split across GPU/CPU when VRAM is tight",
         "Tune weight quant (Q4 vs Q5 vs Q8) only after KV and context are stable"
       ]
+    },
+    {
+      "name": "lean-agent",
+      "resource_type": "prompt",
+      "version": "1.0.0",
+      "description": "Agent behavior prompt for narrow, low-context fixes. Restricts exploration to the minimum needed, enforces smallest-safe-change discipline, and keeps output brief. Drop into any local LLM or AI coding assistant.",
+      "tags": ["prompt", "agent", "behavior", "coding", "minimal", "focused", "local-ai", "use:prompt"],
+      "license": "MIT",
+      "author": "MRWillisT",
+      "source": "pullnexus",
+      "installable": true,
+      "category": "agent",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "prompt_file": "agent.md",
+      "compatible_with": ["ollama", "lm-studio", "claude", "openai", "vscode-copilot", "continue", "cursor"]
+    },
+    {
+      "name": "code-only-mode",
+      "resource_type": "prompt",
+      "version": "1.0.0",
+      "description": "Agent behavior prompt that suppresses all prose, explanations, and filler. Outputs working code only. Minimizes token usage and keeps responses machine-readable. Ideal for small models and token-constrained sessions.",
+      "tags": ["prompt", "agent", "behavior", "coding", "minimal", "token-efficient", "local-ai", "use:prompt"],
+      "license": "MIT",
+      "author": "MRWillisT",
+      "source": "pullnexus",
+      "installable": true,
+      "category": "agent",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02",
+      "prompt_file": "agent.md",
+      "compatible_with": ["ollama", "lm-studio", "claude", "openai", "vscode-copilot", "continue", "cursor"]
     },
     {
       "name": "agent-role-coder",

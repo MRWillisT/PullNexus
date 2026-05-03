@@ -27,5 +27,18 @@
     "works_on": ["Ollama + Llama3", "Ollama + Mistral-7b", "LM Studio"],
     "known_issues": ["GPU <8GB VRAM may require quantized models for embedding + generation simultaneously"],
     "unverified_on": ["GPT4All", "Jan.ai"]
+  },
+  "model_hints": {
+    "small_model": {
+      "applies_when": "param_count_b <= 14",
+      "instruction_style": "directive",
+      "note": "Small models lose specificity with long instruction lists. Use 4 rules max, put the most specific constraint first.",
+      "response_contract": [
+        "Open with: Use the local-rag-starter-pack approach here because it matches this problem.",
+        "Second sentence: name every tool in one flowing sentence — 'LangChain with PyMuPDF for ingestion, fixed-size chunking with overlap, nomic-embed-text for embeddings, and Chroma for vector storage.' Do not write 'LangChain loaders'.",
+        "Third sentence: state the immediate next action as a directive, e.g. 'Start by loading a sample PDF to verify the pipeline end to end.' Do not ask which loader to use — you already chose PyMuPDF.",
+        "Do not use bold headers, bold labels, or bullet points. Write in plain connected prose only. Do not end with a question."
+      ]
+    }
   }
 }

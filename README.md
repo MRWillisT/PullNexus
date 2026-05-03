@@ -1,7 +1,7 @@
 # PullNexus
 **GitHub-backed registry and CLI for local AI resources.** Search, pull, and submit reusable skills, tools, templates, datasets, and workflow artifacts.
 
-[![PyPI](https://img.shields.io/pypi/v/pullnexus)](https://pypi.org/project/pullnexus/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Registry](https://img.shields.io/badge/registry-155%20resources-brightgreen)](skills/index.json)
+[![PyPI](https://img.shields.io/pypi/v/pullnexus)](https://pypi.org/project/pullnexus/) [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Registry](https://img.shields.io/badge/registry-156%20resources-brightgreen)](skills/index.json)
 
 ---
 
@@ -29,7 +29,7 @@ pullnexus submit --interactive --type skill
 # or open an issue: github.com/MRWillisT/PullNexus/issues/new/choose
 ```
 
-> Current registry: 155 resources across 10 resource types: skills, tools, templates, playbooks, policies, prompts, datasets, environments, evals, and repositories.
+> Current registry: 156 resources across 10 resource types: skills, tools, templates, playbooks, policies, prompts, datasets, environments, evals, and repositories.
 
 ---
 
@@ -118,12 +118,31 @@ The structure is intentionally plain so that review, reuse, and validation stay 
 ## 5. Current Surface
 
 ### Available today
-- GitHub-backed registry with 155 indexed resources across 10 resource types
+- GitHub-backed registry with 156 indexed resources across 10 resource types
 - Public CLI commands for search, pull/install, listing, and submission scaffolding
 - Interactive submission wizard that generates resource folders and validates metadata
 - Schema support for skills, tools, templates, policies, playbooks, prompts, datasets, environments, evals, and repositories
 - Local/remote registry fetching so the CLI can degrade gracefully when GitHub is unavailable
 - Skill folders built around plain files: metadata, JSONL examples, README, and optional eval/tool definitions
+
+### MCP Assistant Mode
+
+Any AI assistant connected to the PullNexus MCP server can use the live registry mid-conversation instead of replying from generic background knowledge alone.
+
+- Search the registry while the conversation is happening
+- Recommend specific resources based on the user's stack, problem, or goal
+- Pull installable resources locally without leaving chat
+- Submit compatibility feedback after a workflow succeeds or fails
+
+Example prompt for a strong before/after demo:
+
+```text
+I’m building a fully local RAG pipeline for PDFs with Ollama. Retrieval quality is bad, chunking feels wrong, and I want something concrete I can inspect or install. What should I use?
+```
+
+Without PullNexus, most assistants give broad advice about RAG frameworks and chunk sizing. With PullNexus MCP connected, the assistant can search the live registry, recommend concrete resources like `local-rag-starter-pack` and `rag-eval-baseline`, and offer to pull them into a local folder immediately.
+
+Other good demo prompts are ones that include a real stack plus a failure mode: local RAG debugging, agent orchestration, MCP integration, or Python debugging all work well.
 
 ### Near-term work
 - Expose the additional packaged command surfaces more cleanly in the main CLI

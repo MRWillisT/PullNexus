@@ -1,0 +1,17 @@
+{
+  "name": "code-only-mode",
+  "resource_type": "prompt",
+  "version": "1.0.0",
+  "description": "Agent behavior prompt that suppresses all prose, explanations, and filler. Outputs working code only. Minimizes token usage and keeps responses machine-readable. Ideal for small models and token-constrained sessions.",
+  "tags": ["prompt", "agent", "behavior", "coding", "minimal", "token-efficient", "local-ai", "use:prompt"],
+  "license": "MIT",
+  "author": "MRWillisT",
+  "source": "pullnexus",
+  "installable": true,
+  "category": "agent",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-02",
+  "prompt_file": "agent.md",
+  "compatible_with": ["ollama", "lm-studio", "claude", "openai", "vscode-copilot", "continue", "cursor"]
+}
