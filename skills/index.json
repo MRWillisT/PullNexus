@@ -1,10 +1,40 @@
 {
   "version": "1.0",
   "updated": "2026-05-02",
-  "total": 156,
+  "total": 158,
   "skills": [
     {
-      "name": "n8n-mcp-tool",
+      "name": "build-your-own-openclaw",
+      "resource_type": "playbook",
+      "version": "1.0.0",
+      "description": "18-step progressive tutorial to build your own AI agent from scratch — covering chat loop, tools, skills, persistence, slash commands, compaction, event-driven architecture, multi-agent routing, cron tasks, memory, and more. A lightweight rebuild of OpenClaw step by step.",
+      "tags": [
+        "openclaw",
+        "ai-agent",
+        "tutorial",
+        "build-your-own",
+        "multi-agent",
+        "llm",
+        "python",
+        "skills",
+        "memory",
+        "event-driven",
+        "local-ai",
+        "use:developer"
+      ],
+      "license": "MIT",
+      "author": "czl9707",
+      "source": "https://github.com/czl9707/build-your-own-openclaw",
+      "repo": "czl9707/build-your-own-openclaw",
+      "mcp_compatible": false,
+      "installable": false,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-03"
+    },
+    {
+      "name": "n8n-mcp",
       "resource_type": "tool",
       "version": "1.0.0",
       "description": "Connect local LLMs to 400+ n8n integrations via the official n8n MCP server. Enables agents to create, edit, and trigger n8n workflows natively \u2014 no copy-paste JSON required.",
@@ -75,6 +105,58 @@
       "maturity": "alpha",
       "maintained": "yes",
       "last_verified": "2026-05-01"
+    },
+    {
+      "name": "deepeval",
+      "resource_type": "eval",
+      "version": "2.x",
+      "description": "Unit-test style evaluation framework for LLM applications. Measures hallucination, answer relevance, faithfulness, contextual recall, and toxicity. Integrates with RAG pipelines and agent outputs. No manual labeling needed — metrics are computed automatically.",
+      "tags": [
+        "eval",
+        "rag",
+        "agent",
+        "hallucination",
+        "faithfulness",
+        "metrics",
+        "testing",
+        "use:developer"
+      ],
+      "license": "Apache-2.0",
+      "author": "confident-ai",
+      "source": "https://github.com/confident-ai/deepeval",
+      "repo": "confident-ai/deepeval",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
+    },
+    {
+      "name": "ragas",
+      "resource_type": "eval",
+      "version": "0.2.x",
+      "description": "Automatic evaluation metrics for RAG pipelines: faithfulness, answer relevance, context precision, context recall, and answer correctness. Works with LangChain, LlamaIndex, and raw retrieval outputs. No ground-truth labels required for most metrics.",
+      "tags": [
+        "eval",
+        "rag",
+        "retrieval",
+        "faithfulness",
+        "metrics",
+        "langchain",
+        "llamaindex",
+        "use:developer"
+      ],
+      "license": "Apache-2.0",
+      "author": "explodinggradients",
+      "source": "https://github.com/explodinggradients/ragas",
+      "repo": "explodinggradients/ragas",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-02"
     },
     {
       "name": "small-model-guidance-tuning",
@@ -3769,6 +3851,30 @@
         "torchtune",
         "trl"
       ]
+    },
+    {
+      "name": "premortem",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Run a premortem on any plan, launch, product, hire, strategy, or decision. Assumes it already failed 6 months from now and works backward to find every reason why. Produces failure stories, hidden assumptions, early warning signs, a revised plan, and a visual HTML report.",
+      "tags": [
+        "planning",
+        "decision-making",
+        "premortem",
+        "claude-skill",
+        "risk-analysis",
+        "strategy",
+        "use:planning"
+      ],
+      "license": "CC-BY-4.0",
+      "author": "community",
+      "source": "https://docs.google.com/document/d/1zmqqIWpmLWnqvOPH4Ui3znx1sXErbkXNYUrrTmnaiFU",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "planning",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-03"
     }
   ],
   "external_sources": [

@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit to PullNexus — Share a skill, tool, or template</title>
+  <meta name="description" content="Share a skill, tool, dataset, or template with the PullNexus community registry. Fast, free, no account needed.">
+  <meta property="og:title" content="Submit to PullNexus">
+  <meta property="og:description" content="Share a skill, tool, dataset, or template with the PullNexus community. Fast, free, open.">
+  <meta property="og:url" content="https://mrwillist.github.io/PullNexus/submit.html">
+  <meta property="og:image" content="https://mrwillist.github.io/PullNexus/images/logo.svg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Submit to PullNexus">
+  <meta name="twitter:description" content="Share a skill, tool, dataset, or template with the PullNexus community.">
+  <meta name="twitter:image" content="https://mrwillist.github.io/PullNexus/images/logo.svg">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050b14;
+      --bg-2: #081223;
+      --panel: rgba(8, 19, 36, 0.88);
+      --panel-strong: rgba(10, 25, 48, 0.94);
+      --line: rgba(112, 197, 255, 0.22);
+      --line-strong: rgba(112, 197, 255, 0.42);
+      --text: #eaf7ff;
+      --muted: #8eaed0;
+      --accent: #72e8ff;
+      --accent-2: #3599ff;
+      --accent-3: #9ff4ff;
+      --ok: #7df4c2;
+      --warn: #ffd27d;
+      --danger: #ff8f8f;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+      --radius: 22px;
+      --max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Oxanium", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 50% 8%, rgba(82, 214, 255, 0.18), transparent 22%),
+        radial-gradient(circle at 80% 20%, rgba(53, 153, 255, 0.18), transparent 24%),
+        radial-gradient(circle at 20% 30%, rgba(41, 117, 255, 0.12), transparent 20%),
+        linear-gradient(180deg, #040911 0%, #06101e 40%, #050b14 100%);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background-image:
+        linear-gradient(rgba(114, 232, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(114, 232, 255, 0.08) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 88%);
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(114, 232, 255, 0.10), transparent 18%),
+        radial-gradient(circle at 50% 18%, rgba(114, 232, 255, 0.06) 0, rgba(114, 232, 255, 0.00) 58%);
+      opacity: 0.85;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), 92vw);
+      margin: 0 auto;
+      padding: 28px 0 72px;
+    }
+
+    .hero,
+    .shell,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(7, 16, 30, 0.92), rgba(7, 18, 33, 0.82));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -40% auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(114, 232, 255, 0.16), rgba(114, 232, 255, 0));
+      pointer-events: none;
+    }
+
+    .hero-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      color: var(--accent-3);
+      background: rgba(8, 20, 36, 0.82);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .tagline {
+      margin: 0;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.16rem);
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn,
+    button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover,
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary,
+    .primary {
+      color: #03111f;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 14px 30px rgba(53, 153, 255, 0.24);
+    }
+
+    .btn-secondary,
+    .secondary {
+      color: var(--text);
+      background: rgba(12, 25, 44, 0.88);
+      border-color: var(--line-strong);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy p + p {
+      margin-top: 12px;
+    }
+
+    .nexus-card {
+      position: relative;
+      min-height: 350px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at center, rgba(114, 232, 255, 0.22), transparent 34%),
+        radial-gradient(circle at center, rgba(53, 153, 255, 0.16), transparent 56%),
+        linear-gradient(180deg, rgba(7, 17, 32, 0.96), rgba(5, 12, 22, 0.92));
+      overflow: hidden;
+    }
+
+    .ring,
+    .ring::before,
+    .ring::after {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(114, 232, 255, 0.28);
+      content: "";
+      inset: 0;
+      margin: auto;
+    }
+
+    .ring {
+      width: 76%;
+      aspect-ratio: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 30px rgba(114, 232, 255, 0.18), inset 0 0 30px rgba(114, 232, 255, 0.08);
+    }
+
+    .ring::before {
+      width: 72%;
+      height: 72%;
+      border-color: rgba(114, 232, 255, 0.44);
+      box-shadow: 0 0 22px rgba(114, 232, 255, 0.18);
+    }
+
+    .ring::after {
+      width: 44%;
+      height: 44%;
+      border-color: rgba(159, 244, 255, 0.7);
+      box-shadow: 0 0 26px rgba(114, 232, 255, 0.28);
+    }
+
+    .core {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      width: 140px;
+      height: 140px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border: 1px solid rgba(159, 244, 255, 0.55);
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle, rgba(114, 232, 255, 0.26), rgba(8, 18, 34, 0.94) 68%);
+      text-align: center;
+      padding: 18px;
+      box-shadow: 0 0 35px rgba(114, 232, 255, 0.24);
+    }
+
+    .core strong {
+      display: block;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+    }
+
+    .core span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .node {
+      position: absolute;
+      display: grid;
+      gap: 6px;
+      color: var(--accent-3);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .node::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid rgba(159, 244, 255, 0.7);
+      background: radial-gradient(circle, rgba(159, 244, 255, 0.95), rgba(114, 232, 255, 0.12));
+      box-shadow: 0 0 18px rgba(114, 232, 255, 0.38);
+    }
+
+    .node-a { top: 14%; left: 50%; transform: translateX(-50%); }
+    .node-b { right: 12%; top: 31%; }
+    .node-c { right: 18%; bottom: 18%; }
+    .node-d { left: 16%; bottom: 18%; }
+    .node-e { left: 10%; top: 34%; }
+
+    .shell {
+      margin-top: 22px;
+      padding: 22px;
+    }
+
+    .shell-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .shell-head h2,
+    .panel h2,
+    .panel h3 {
+      margin: 0;
+    }
+
+    .shell-head p,
+    .muted {
+      color: var(--muted);
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.78fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field,
+    .checklist,
+    .panel-body {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(9, 20, 38, 0.92), rgba(8, 18, 33, 0.82));
+      padding: 14px;
+    }
+
+    .span-2 {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .hint {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(122, 202, 255, 0.26);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      color: var(--text);
+      background: rgba(5, 12, 22, 0.92);
+      outline: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(114, 232, 255, 0.7);
+      box-shadow: 0 0 0 3px rgba(114, 232, 255, 0.12);
+    }
+
+    textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .check-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .check-item input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .status {
+      margin-top: 14px;
+      min-height: 24px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    .status.ok { color: var(--ok); }
+    .status.warn { color: var(--warn); }
+    .status.error { color: var(--danger); }
+
+    .panel {
+      overflow: hidden;
+      position: sticky;
+      top: 18px;
+    }
+
+    .panel-head {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-3);
+      background: rgba(10, 24, 43, 0.92);
+    }
+
+    .panel-body {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      padding: 16px;
+    }
+
+    .stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(8, 19, 35, 0.84);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    .draft {
+      margin: 0;
+      white-space: pre-wrap;
+      max-height: 360px;
+      overflow: auto;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(5, 12, 22, 0.94);
+      color: #cfe8ff;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(8, 18, 32, 0.9);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent-3);
+      font-size: 0.9rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    .foot {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    a.inline {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.16em;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .panel {
+        position: static;
+      }
+
+      .nexus-card {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .form-grid,
+      .mini-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-head,
+      .shell-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .actions,
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn,
+      button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);">
+        <img src="images/logo.svg" alt="PullNexus" style="width:38px;height:38px;border-radius:50%;border:1px solid var(--line-strong);">
+        <span style="font-weight:700;font-size:1.05rem;letter-spacing:-0.02em;">PullNexus</span>
+      </a>
+      <a href="index.html" style="font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--muted);text-decoration:none;letter-spacing:0.04em;">← Back to registry</a>
+    </nav>
+    <section class="hero">
+      <div class="hero-head">
+        <span class="badge">Open community registry</span>
+        <span class="badge">Free · Fast · Permanent credit</span>
+      </div>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Share something useful.</h1>
+          <p class="tagline">Got a prompt, tool, config, playbook, or dataset that helped your local AI setup? Drop it here — fill out the form, click submit, and GitHub opens with your draft ready to post.</p>
+          <p style="margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:0.86rem;letter-spacing:0.04em;color:var(--accent-3);opacity:0.75;">Search the registry. Pull what fits. Submit what helped.</p>
+        </div>
+        <div class="nexus-card" aria-hidden="true">
+          <div class="ring"></div>
+          <div class="core">
+            <div>
+              <strong>PullNexus</strong>
+              <span>submit node</span>
+            </div>
+          </div>
+          <div class="node node-a">Skill Repo</div>
+          <div class="node node-b">Toolchain</div>
+          <div class="node node-c">Datasets</div>
+          <div class="node node-d">Policies</div>
+          <div class="node node-e">Playbooks</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell">
+      <div class="shell-head">
+        <div>
+          <h2>Quick submit form</h2>
+          <p class="muted">If you've ever built an effective system prompt, tuned a config, or found a workflow that just works — that's a skill worth sharing. Fill out the form below and help everyone's local model get a little smarter.</p>
+        </div>
+      </div>
+
+      <div class="layout">
+        <form id="submit-form" class="form-grid" novalidate>
+          <div class="field">
+            <label for="resource_type">Resource Type</label>
+            <select id="resource_type" name="resource_type" required>
+              <option value="template">template - launch config or config file</option>
+              <option value="policy">policy - operational rules or best practices</option>
+              <option value="playbook">playbook - step-by-step runbook</option>
+              <option value="skill" selected>skill - reusable model capability or examples</option>
+              <option value="tool">tool - CLI, script, or MCP tool</option>
+              <option value="dataset">dataset - JSONL or HuggingFace data</option>
+              <option value="environment">environment - hardware or software profile</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="name">Short name</label>
+            <input id="name" name="name" type="text" placeholder="e.g. my-rag-starter or qwen3-launch-config" autocomplete="off" required>
+            <span class="hint">Use letters, numbers, and dashes. We'll clean it up automatically as you type.</span>
+          </div>
+
+          <div class="field span-2">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="One clear sentence about what this resource does and what problem it solves." required></textarea>
+          </div>
+
+          <div class="field span-2">
+            <label for="tags">Tags</label>
+            <input id="tags" name="tags" type="text" placeholder="ollama, local-llm, rag, pdf, chroma" required>
+            <span class="hint">Comma-separated tags. Include stack, backend, model, hardware, and topic when possible.</span>
+          </div>
+
+          <div class="field span-2">
+            <label for="content">Paste your content here</label>
+            <textarea id="content" name="content" placeholder="Paste commands, config blocks, steps, examples, a repo URL, or anything else useful. The more you include the better." required></textarea>
+            <div id="upload-row" style="display:none;margin-top:10px;">
+              <label style="display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid var(--line-strong);border-radius:999px;background:rgba(114,232,255,0.08);color:var(--accent-3);font-size:0.84rem;font-family:'IBM Plex Mono',monospace;cursor:pointer;transition:background 160ms;" onmouseover="this.style.background='rgba(114,232,255,0.16)'" onmouseout="this.style.background='rgba(114,232,255,0.08)'">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 2v8M5 5l3-3 3 3M2 12h12"/></svg>
+                Upload .md file
+                <input type="file" id="md-upload" accept=".md,.txt" style="display:none;">
+              </label>
+              <span id="upload-name" style="margin-left:10px;font-size:0.82rem;color:var(--muted);font-family:'IBM Plex Mono',monospace;">or paste above</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="hardware">Hardware Requirements</label>
+            <input id="hardware" name="hardware" type="text" placeholder="12GB VRAM, any RTX 30/40/50 series">
+          </div>
+
+          <div class="field">
+            <label for="source">Source URL</label>
+            <input id="source" name="source" type="url" placeholder="https://x.com/... or https://github.com/...">
+          </div>
+
+          <div class="field">
+            <label for="author">Credit / Author Handle</label>
+            <input id="author" name="author" type="text" placeholder="@yourhandle or github-user">
+          </div>
+
+          <div class="field">
+            <label for="license">License <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+            <input id="license" name="license" type="text" placeholder="CC0-1.0 or MIT">
+          </div>
+
+          <div class="checklist span-2">
+            <label>Submission Checklist</label>
+            <div class="check-grid">
+              <label class="check-item"><input id="check_pii" type="checkbox" required><span>This resource does not contain PII, secrets, credentials, or copyrighted material.</span></label>
+              <label class="check-item"><input id="check_rights" type="checkbox" required><span>I have the right to share this content under the stated license.</span></label>
+              <label class="check-item"><input id="check_public" type="checkbox" required><span>I understand this will be publicly visible in the PullNexus registry.</span></label>
+            </div>
+          </div>
+
+          <div class="span-2">
+            <p style="margin:0 0 12px;font-size:0.9rem;color:var(--muted);line-height:1.5;">When you click Submit, GitHub will open in a new tab with your draft already filled in. Just hit the green <strong style="color:var(--text);">"Submit new issue"</strong> button there — you're done.</p>
+            <div class="actions">
+              <button class="primary" id="submit-button" type="submit" style="font-size:1.05rem;padding:14px 24px;">Submit to PullNexus →</button>
+              <button class="secondary" id="copy-button" type="button">Copy as text</button>
+            </div>
+            <div class="status" id="status"></div>
+            <p style="margin:12px 0 0;font-size:0.8rem;"><a href="https://github.com/MRWillisT/PullNexus/issues/new?template=submit_resource.yml" style="color:var(--muted);" target="_blank" rel="noopener">Use the classic GitHub form instead</a></p>
+          </div>
+        </form>
+
+        <aside class="panel">
+          <div class="panel-head">Live Draft Preview</div>
+          <div class="panel-body">
+            <div class="stack">
+              <div class="mini-grid">
+                <div class="metric">
+                  <span>Issue title</span>
+                  <strong id="preview-title">submit: your-resource-name</strong>
+                </div>
+                <div class="metric">
+                  <span>GitHub labels</span>
+                  <strong>submission, needs-review</strong>
+                </div>
+                <div class="metric">
+                  <span>Type</span>
+                  <strong id="preview-type">skill</strong>
+                </div>
+                <div class="metric">
+                  <span>License</span>
+                  <strong id="preview-license">CC0-1.0</strong>
+                </div>
+              </div>
+
+              <pre class="draft" id="draft-preview">## PullNexus Submission
+
+Fill out the form to generate your GitHub draft.</pre>
+
+              <p class="foot">If your content is large, we'll copy it to your clipboard and open GitHub with just the title. Paste the text into the issue body manually.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  <p style="margin-top:22px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:0.84rem;color:var(--muted);letter-spacing:0.04em;">Search the registry. Pull what fits. Submit what helped.</p>
+  </main>
+
+  <script>
+    (function () {
+      const issueBase = "https://github.com/MRWillisT/PullNexus/issues/new";
+      const labels = "submission,needs-review";
+      const form = document.getElementById("submit-form");
+      const statusNode = document.getElementById("status");
+      const copyButton = document.getElementById("copy-button");
+      const nameNode = document.getElementById("name");
+      const typeNode = document.getElementById("resource_type");
+      const licenseNode = document.getElementById("license");
+      const titleNode = document.getElementById("preview-title");
+      const typePreview = document.getElementById("preview-type");
+      const licensePreview = document.getElementById("preview-license");
+      const draftPreview = document.getElementById("draft-preview");
+
+      const fields = {
+        resource_type: document.getElementById("resource_type"),
+        name: document.getElementById("name"),
+        description: document.getElementById("description"),
+        tags: document.getElementById("tags"),
+        content: document.getElementById("content"),
+        hardware: document.getElementById("hardware"),
+        source: document.getElementById("source"),
+        author: document.getElementById("author"),
+        license: document.getElementById("license"),
+        check_pii: document.getElementById("check_pii"),
+        check_rights: document.getElementById("check_rights"),
+        check_public: document.getElementById("check_public")
+      };
+
+      function slugify(value) {
+        return String(value || "")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .replace(/-{2,}/g, "-");
+      }
+
+      function smartDefaultLicense(type) {
+        if (type === "tool" || type === "skill") return "MIT";
+        return "CC0-1.0";
+      }
+
+      function value(id) {
+        return String(fields[id].value || "").trim();
+      }
+
+      function isChecked(id) {
+        return Boolean(fields[id].checked);
+      }
+
+      function buildTitle() {
+        const slug = slugify(value("name")) || "your-resource-name";
+        return "submit: " + slug;
+      }
+
+      function buildBody() {
+        const slug = slugify(value("name")) || "your-resource-name";
+        const type = value("resource_type") || "skill";
+        const license = value("license") || smartDefaultLicense(type);
+        const lines = [
+          "## PullNexus Submission",
+          "",
+          "**Resource Type:** " + type,
+          "**Resource Name (slug):** " + slug,
+          "**Description:** " + (value("description") || "n/a"),
+          "**Tags:** " + (value("tags") || "n/a"),
+          "**Hardware Requirements:** " + (value("hardware") || "n/a"),
+          "**Source URL:** " + (value("source") || "n/a"),
+          "**Credit / Author Handle:** " + (value("author") || "n/a"),
+          "**License:** " + license,
+          "",
+          "## Resource Content",
+          "",
+          value("content") || "n/a",
+          "",
+          "## Submission Checklist",
+          "",
+          "- [" + (isChecked("check_pii") ? "x" : " ") + "] This resource does not contain PII, secrets, credentials, or copyrighted material",
+          "- [" + (isChecked("check_rights") ? "x" : " ") + "] I have the right to share this content under the stated license",
+          "- [" + (isChecked("check_public") ? "x" : " ") + "] I understand this will be publicly visible in the PullNexus registry",
+          "",
+          "Submitted via PullNexus submit portal: https://mrwillist.github.io/PullNexus/submit.html"
+        ];
+
+        return lines.join("\n");
+      }
+
+      function setStatus(message, tone) {
+        statusNode.textContent = message;
+        statusNode.className = "status" + (tone ? " " + tone : "");
+      }
+
+      function syncDerivedFields() {
+        const normalized = slugify(nameNode.value);
+        if (nameNode.value !== normalized) {
+          nameNode.value = normalized;
+        }
+
+        if (!licenseNode.value.trim()) {
+          licenseNode.placeholder = smartDefaultLicense(typeNode.value);
+        }
+      }
+
+      function updatePreview() {
+        const type = value("resource_type") || "skill";
+        const license = value("license") || smartDefaultLicense(type);
+        titleNode.textContent = buildTitle();
+        typePreview.textContent = type;
+        licensePreview.textContent = license;
+        draftPreview.textContent = buildBody();
+      }
+
+      async function copyDraft() {
+        const draft = buildBody();
+        await navigator.clipboard.writeText(draft);
+        setStatus("Markdown draft copied. You can paste it anywhere, including GitHub issue body fields.", "ok");
+      }
+
+      function validateForm() {
+        const missing = [];
+        ["resource_type", "name", "description", "tags", "content"].forEach(function (id) {
+          if (!value(id)) missing.push(id);
+        });
+        ["check_pii", "check_rights", "check_public"].forEach(function (id) {
+          if (!isChecked(id)) missing.push(id);
+        });
+        return missing;
+      }
+
+      form.addEventListener("input", function () {
+        syncDerivedFields();
+        updatePreview();
+      });
+
+      typeNode.addEventListener("change", function () {
+        if (!licenseNode.value.trim()) {
+          licenseNode.placeholder = smartDefaultLicense(typeNode.value);
+        }
+        // show/hide .md upload row for skill/playbook/policy types
+        const uploadRow = document.getElementById("upload-row");
+        if (uploadRow) {
+          const t = typeNode.value;
+          uploadRow.style.display = (t === "skill" || t === "playbook" || t === "policy") ? "block" : "none";
+        }
+        updatePreview();
+      });
+
+      // .md file upload handler
+      const mdUpload = document.getElementById("md-upload");
+      if (mdUpload) {
+        mdUpload.addEventListener("change", function () {
+          const file = mdUpload.files[0];
+          if (!file) return;
+          const uploadName = document.getElementById("upload-name");
+          if (uploadName) uploadName.textContent = file.name;
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const contentArea = document.getElementById("content");
+            if (contentArea) {
+              contentArea.value = e.target.result;
+              updatePreview();
+              setStatus("File loaded — review the content above, then submit.", "ok");
+            }
+          };
+          reader.readAsText(file);
+        });
+      }
+
+      // initialise upload row visibility
+      (function () {
+        const uploadRow = document.getElementById("upload-row");
+        if (uploadRow) {
+          const t = typeNode.value;
+          uploadRow.style.display = (t === "skill" || t === "playbook" || t === "policy") ? "block" : "none";
+        }
+      })();
+
+      copyButton.addEventListener("click", async function () {
+        try {
+          await copyDraft();
+        } catch (err) {
+          setStatus("Couldn't access clipboard — select the text from the preview panel and copy manually.", "warn");
+        }
+      });
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        syncDerivedFields();
+        updatePreview();
+
+        const missing = validateForm();
+        if (missing.length) {
+          setStatus("Fill in: " + missing.join(", ") + " — then try again.", "error");
+          return;
+        }
+
+        const title = buildTitle();
+        const body = buildBody();
+        const params = new URLSearchParams({
+          title: title,
+          labels: labels,
+          body: body
+        });
+        const issueUrl = issueBase + "?" + params.toString();
+
+        if (issueUrl.length > 7000) {
+          try {
+            await copyDraft();
+          } catch (err) {
+            setStatus("The draft is large for a URL handoff. Copy the preview manually, then paste it into GitHub.", "warn");
+          }
+          const shortParams = new URLSearchParams({
+            title: title,
+            labels: labels
+          });
+          window.open(issueBase + "?" + shortParams.toString(), "_blank", "noopener");
+          setStatus("Draft was too large for a safe URL. GitHub opened with the title and labels only; paste the copied markdown into the issue body.", "warn");
+          return;
+        }
+
+        window.open(issueUrl, "_blank", "noopener");
+        setStatus("GitHub draft opened in a new tab.", "ok");
+      });
+
+      licenseNode.placeholder = smartDefaultLicense(typeNode.value);
+      updatePreview();
+    })();
+  </script>
+</body>
+</html>

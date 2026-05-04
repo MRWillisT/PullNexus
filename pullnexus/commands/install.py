@@ -53,6 +53,53 @@ def install(
             _install_from_huggingface(skill_name, hf_repo, meta, output, force)
             raise typer.Exit(0)
 
+        # External-only entries (installable: false) with a repo field: offer git clone
+        if not meta.get("installable", True):
+            source_url = meta.get("source", "")
+            repo = meta.get("repo", "")
+            clone_target = output / skill_name
+
+            console.print(
+                f"\n[bold cyan]{skill_name}[/bold cyan] is hosted at an external repository.\n"
+                f"[dim]{meta.get('description', '')}[/dim]\n"
+            )
+            if source_url:
+                console.print(f"[bold]Source:[/bold] {source_url}\n")
+
+            if repo and (not clone_target.exists() or force):
+                clone_url = f"https://github.com/{repo}"
+                do_clone = typer.confirm(
+                    f"Clone {clone_url} into {clone_target}?",
+                    default=True,
+                )
+                if do_clone:
+                    import subprocess
+                    clone_target.parent.mkdir(parents=True, exist_ok=True)
+                    console.print(f"[dim]Cloning {clone_url}…[/dim]")
+                    result = subprocess.run(
+                        ["git", "clone", clone_url, str(clone_target)],
+                        capture_output=True,
+                        text=True,
+                    )
+                    if result.returncode == 0:
+                        console.print(f"[green]✓ Cloned → {clone_target}[/green]")
+                        console.print(
+                            f"\n[bold]Next steps:[/bold]\n"
+                            f"  • Open [cyan]{clone_target}[/cyan] to explore the repo\n"
+                            f"  • Check the README for setup instructions"
+                        )
+                    else:
+                        console.print(f"[red]✗ Clone failed:[/red] {result.stderr.strip()}")
+                        raise typer.Exit(1)
+                else:
+                    console.print(
+                        f"\n[dim]To clone manually:[/dim]\n"
+                        f"  git clone {clone_url} ./pullnexus-skills/{skill_name}"
+                    )
+            elif clone_target.exists():
+                console.print(f"[yellow]⚠ Already exists at {clone_target}[/yellow]  (use --force to re-clone)")
+            raise typer.Exit(0)
+
     target = output / skill_name
 
     if target.exists() and not force:

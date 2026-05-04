@@ -50,15 +50,28 @@ def fetch_registry() -> dict:
     return {"skills": _fetch_skills_from_directory(), "external_sources": []}
 
 
-def fetch_index() -> list[dict]:
+def fetch_index(include_superseded: bool = False) -> list[dict]:
     """
     Fetch the machine-readable skills index (skills/index.json).
 
     Returns a list of skill metadata dicts. Falls back to the GitHub
     directory listing if the index file is missing, and returns an
     empty list when the registry is completely unreachable.
+
+    Entries that declare ``supersedes`` are the *replacement* entries.
+    The entry they replace is hidden from search by default unless
+    ``include_superseded=True`` is passed.
     """
-    return fetch_registry().get("skills", [])
+    all_skills = fetch_registry().get("skills", [])
+    if include_superseded:
+        return all_skills
+    # Collect all names that have been declared superseded by another entry
+    superseded_names = {
+        str(s.get("supersedes", "")).strip().lower()
+        for s in all_skills
+        if s.get("supersedes")
+    }
+    return [s for s in all_skills if s.get("name", "").lower() not in superseded_names]
 
 
 def fetch_skill_json(skill_name: str) -> Optional[dict]:
@@ -79,10 +92,17 @@ def fetch_skill_json(skill_name: str) -> Optional[dict]:
     if local is not None:
         return _normalize_resource_entry(local)
 
-    # Virtual/generated entries can still be discovered from the index.
+    # Virtual/generated entries can still be discovered from the remote index.
     for skill in fetch_index():
         if skill.get("name") == skill_name:
             return skill
+
+    # Final fallback: check local index.json for entries not yet pushed to remote.
+    local_registry = _fetch_registry_from_local_index()
+    if local_registry:
+        for skill in local_registry.get("skills", []):
+            if skill.get("name") == skill_name:
+                return _normalize_resource_entry(skill)
 
     return None
 

@@ -37,6 +37,9 @@ RESOURCE_REGISTRY_TODO.md
 PullNexus_TODO.md
 SMALL_MODEL_NOTES.md
 
+# Admin tool — local only, not for public repo
+docs/admin.html
+
 # Local-only content (personal exports, raw knowledge base)
 converted-chats/
 knowledge_base/
