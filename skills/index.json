@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "updated": "2026-05-02",
-  "total": 158,
+  "updated": "2026-05-05",
+  "total": 173,
   "skills": [
     {
       "name": "build-your-own-openclaw",
@@ -182,6 +182,29 @@
       "maturity": "stable",
       "maintained": "yes",
       "last_verified": "2026-05-02"
+    },
+    {
+      "name": "small-model-reasoning-boost",
+      "version": "1.0.0",
+      "description": "Gives 7B\u201334B local models a repeatable Plan \u2192 Execute \u2192 Critique \u2192 Refine protocol that consistently improves performance on multi-step reasoning, coding, research, and agentic tasks without hardware upgrades.",
+      "tags": [
+        "small-models",
+        "reasoning",
+        "workflow",
+        "local-ai",
+        "quality",
+        "reliability",
+        "use:developer",
+        "use:agent"
+      ],
+      "license": "CC0-1.0",
+      "examples": 8,
+      "evals": 4,
+      "mcp_compatible": true,
+      "author": "Grok-xAI",
+      "notes": "Third AI-submitted skill to PullNexus.",
+      "category": "workflow",
+      "resource_type": "skill"
     },
     {
       "name": "synthetic-training-datasets",
@@ -1867,6 +1890,30 @@
       "resource_type": "skill"
     },
     {
+      "name": "context-compaction",
+      "version": "1.0.0",
+      "description": "Teaches local LLMs to detect context window pressure, checkpoint working state, and hand off to a fresh session without losing task continuity. Prevents silent degradation and hallucination on long tasks in Ollama, LM Studio, and llama.cpp.",
+      "tags": [
+        "context-management",
+        "workflow",
+        "memory",
+        "session",
+        "local-ai",
+        "reliability",
+        "long-context",
+        "use:developer",
+        "use:agent"
+      ],
+      "license": "CC0-1.0",
+      "examples": 6,
+      "evals": 5,
+      "mcp_compatible": true,
+      "author": "Claude-Copilot (Anthropic/Microsoft)",
+      "notes": "Second AI-submitted skill to PullNexus.",
+      "category": "workflow",
+      "resource_type": "skill"
+    },
+    {
       "name": "crypto-trading-bot",
       "version": "1.0.0",
       "description": "Core concepts and implementation guidance for crypto trading bots: market regimes, execution, slippage, risk controls, and backtest-to-live reliability.",
@@ -2171,6 +2218,29 @@
       "resource_type": "skill"
     },
     {
+      "name": "spec-first-development",
+      "version": "1.0.0",
+      "description": "Forces local LLMs to always create a clear, testable specification before writing any code. Reduces hallucinations, scope creep, and refactoring time on 7B-70B models.",
+      "tags": [
+        "development",
+        "workflow",
+        "reasoning",
+        "quality",
+        "best-practices",
+        "spec-driven",
+        "planning",
+        "use:developer"
+      ],
+      "license": "CC0-1.0",
+      "examples": 5,
+      "evals": 4,
+      "mcp_compatible": true,
+      "author": "Grok-xAI",
+      "notes": "First AI-submitted skill to PullNexus.",
+      "category": "workflow",
+      "resource_type": "skill"
+    },
+    {
       "name": "systematic-debugging",
       "version": "1.0.0",
       "description": "Debug complex issues step by step using hypotheses, instrumentation, and evidence-driven iteration.",
@@ -2230,6 +2300,29 @@
       "resource_type": "skill",
       "prompt_file": "workflow.md",
       "last_verified": "2026-05-02"
+    },
+    {
+      "name": "voice-profile",
+      "version": "1.0.0",
+      "description": "A two-prompt workflow that interviews you across 100 structured questions and then compresses the result into a compact about-me.md file so any LLM can write in your voice.",
+      "tags": [
+        "voice",
+        "writing",
+        "identity",
+        "personalization",
+        "about-me",
+        "interview",
+        "prompting",
+        "use:writing",
+        "use:personalization"
+      ],
+      "license": "CC0-1.0",
+      "examples": 5,
+      "mcp_compatible": false,
+      "author": "pullnexus-community",
+      "source": "https://x.com/rubenhassid/status/2050787472666399042",
+      "category": "writing",
+      "resource_type": "skill"
     },
     {
       "name": "web-artifacts-builder",
@@ -3875,6 +3968,182 @@
       "maturity": "stable",
       "maintained": "yes",
       "last_verified": "2026-05-03"
+    },
+    {
+      "name": "prompt-engineering",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "The foundational skill for reliable LLM output. Covers system prompt design, few-shot examples, chain-of-thought, temperature and sampling settings, format control, and common failure modes with fixes.",
+      "tags": [
+        "prompting",
+        "few-shot",
+        "chain-of-thought",
+        "system-prompt",
+        "local-ai",
+        "fundamentals",
+        "use:developer",
+        "use:beginner"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": true,
+      "installable": false,
+      "examples": 8,
+      "evals": 5,
+      "category": "workflow",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
+    },
+    {
+      "name": "discord-bot-builder",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Build a Discord bot powered by a local LLM via Ollama. Covers discord.py event handling, per-user conversation history, slash commands, rate limiting, and configurable persona via system prompt. Full working template included.",
+      "tags": [
+        "discord",
+        "telegram",
+        "chatbot",
+        "local-ai",
+        "ollama",
+        "bot",
+        "discord.py",
+        "persona",
+        "use:developer",
+        "use:agent"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "automation",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
+    },
+    {
+      "name": "model-selection-guide",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Choose the right local LLM for your hardware and use case. Covers VRAM requirements, model families (Llama, Qwen, Mistral, Gemma, Phi, DeepSeek), size-to-task matching, and specific model recommendations for common hardware configs.",
+      "tags": [
+        "model-selection",
+        "hardware",
+        "vram",
+        "local-ai",
+        "llama",
+        "qwen",
+        "mistral",
+        "7b",
+        "13b",
+        "use:beginner",
+        "use:developer"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": false,
+      "installable": false,
+      "category": "inference",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
+    },
+    {
+      "name": "quantization-guide",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Understand GGUF quantization levels (Q2_K through Q8_0, IQ quants) and pick the right one for your hardware. Includes VRAM tables, GPU layer offloading guidance, and practical model download recipes for Ollama and llama.cpp.",
+      "tags": [
+        "quantization",
+        "gguf",
+        "vram",
+        "local-ai",
+        "llama-cpp",
+        "ollama",
+        "memory",
+        "performance",
+        "use:beginner"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": false,
+      "installable": false,
+      "category": "inference",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
+    },
+    {
+      "name": "secure-coding",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Write and review code against the OWASP Top 10. Covers SQL injection, command injection, password hashing, JWT auth, CORS, SSRF, secret management, and a quick review checklist for LLM-generated code.",
+      "tags": [
+        "security",
+        "owasp",
+        "secure-coding",
+        "input-validation",
+        "sql-injection",
+        "secrets",
+        "authentication",
+        "use:developer"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": true,
+      "installable": false,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
+    },
+    {
+      "name": "sql-and-databases",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Design schemas, write efficient queries, and avoid common pitfalls across SQLite, PostgreSQL, and MySQL. Covers normalization, indexing, N+1 queries, transactions, upsert, cursor pagination, ORM vs raw SQL, and parameterized queries.",
+      "tags": [
+        "sql",
+        "database",
+        "postgresql",
+        "sqlite",
+        "mysql",
+        "query-optimization",
+        "schema-design",
+        "use:developer"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": true,
+      "installable": false,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
+    },
+    {
+      "name": "structured-output-local",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Get reliable JSON and typed structured data from local LLMs. Covers schema injection in system prompts, Ollama format:json mode, retry-validate loops, Python code patterns, and Pydantic/jsonschema validation.",
+      "tags": [
+        "structured-output",
+        "json",
+        "schema",
+        "local-ai",
+        "reliability",
+        "parsing",
+        "validation",
+        "use:developer"
+      ],
+      "license": "CC0-1.0",
+      "author": "community",
+      "mcp_compatible": true,
+      "installable": false,
+      "category": "workflow",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-05"
     }
   ],
   "external_sources": [

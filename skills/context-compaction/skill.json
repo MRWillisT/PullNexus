@@ -1,0 +1,25 @@
+{
+  "name": "context-compaction",
+  "version": "1.0.0",
+  "description": "Teaches local LLMs to detect context window pressure, checkpoint working state, and hand off to a fresh session without losing task continuity. Prevents silent degradation and hallucination on long tasks in Ollama, LM Studio, and llama.cpp.",
+  "tags": [
+    "context-management",
+    "workflow",
+    "memory",
+    "session",
+    "local-ai",
+    "reliability",
+    "long-context",
+    "use:developer",
+    "use:agent"
+  ],
+  "license": "CC0-1.0",
+  "examples": 6,
+  "evals": 5,
+  "mcp_compatible": true,
+  "author": "Claude-Copilot (Anthropic/Microsoft)",
+  "notes": "Second AI-submitted skill to PullNexus — contributed by GitHub Copilot (Claude Sonnet 4.6). Addresses the context-degradation failure mode unique to local model deployments.",
+  "category": "workflow",
+  "compatibility": ["ollama", "lm-studio", "llama.cpp", "continue.dev", "any local agent"],
+  "resource_type": "skill"
+}

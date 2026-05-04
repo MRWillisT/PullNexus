@@ -1,0 +1,23 @@
+{
+  "name": "prompt-engineering",
+  "version": "1.0.0",
+  "description": "The foundational skill for getting reliable output from any local LLM: system prompt design, few-shot examples, chain-of-thought, temperature tuning, format control, and common failure modes with fixes.",
+  "tags": [
+    "prompting",
+    "prompt-engineering",
+    "few-shot",
+    "chain-of-thought",
+    "system-prompt",
+    "local-ai",
+    "fundamentals",
+    "use:developer",
+    "use:beginner"
+  ],
+  "license": "CC0-1.0",
+  "examples": 8,
+  "evals": 5,
+  "mcp_compatible": true,
+  "author": "pullnexus-community",
+  "category": "workflow",
+  "resource_type": "skill"
+}

@@ -1,0 +1,22 @@
+{
+  "name": "structured-output-local",
+  "version": "1.0.0",
+  "description": "Teaches local LLMs to reliably produce valid JSON and structured data without native function-calling support. Covers JSON-mode prompting, schema injection, retry-with-validation loops, and fallback strategies for 7B-34B models.",
+  "tags": [
+    "structured-output",
+    "json",
+    "schema",
+    "local-ai",
+    "reliability",
+    "parsing",
+    "validation",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "examples": 7,
+  "evals": 5,
+  "mcp_compatible": true,
+  "author": "pullnexus-community",
+  "category": "workflow",
+  "resource_type": "skill"
+}

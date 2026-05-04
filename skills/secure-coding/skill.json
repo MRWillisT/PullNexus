@@ -1,0 +1,22 @@
+{
+  "name": "secure-coding",
+  "version": "1.0.0",
+  "description": "Teaches local LLMs to review and write secure code: OWASP Top 10 patterns, input validation, SQL injection prevention, secrets management, XSS defense, and authentication best practices for AI-assisted development.",
+  "tags": [
+    "security",
+    "owasp",
+    "secure-coding",
+    "input-validation",
+    "sql-injection",
+    "secrets",
+    "authentication",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "examples": 7,
+  "evals": 5,
+  "mcp_compatible": true,
+  "author": "pullnexus-community",
+  "category": "developer",
+  "resource_type": "skill"
+}

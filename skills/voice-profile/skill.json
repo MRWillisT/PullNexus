@@ -1,0 +1,23 @@
+{
+  "name": "voice-profile",
+  "version": "1.0.0",
+  "description": "A two-prompt workflow that interviews you across 100 structured questions and then compresses the result into a compact about-me.md file so any LLM can write in your voice.",
+  "tags": [
+    "voice",
+    "writing",
+    "identity",
+    "personalization",
+    "about-me",
+    "interview",
+    "prompting",
+    "use:writing",
+    "use:personalization"
+  ],
+  "license": "CC0-1.0",
+  "examples": 5,
+  "mcp_compatible": false,
+  "author": "pullnexus-community",
+  "source": "https://x.com/rubenhassid/status/2050787472666399042",
+  "category": "writing",
+  "resource_type": "skill"
+}

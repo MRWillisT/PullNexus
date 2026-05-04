@@ -1,0 +1,25 @@
+{
+  "name": "model-selection-guide",
+  "version": "1.0.0",
+  "description": "Answers the most common local AI question: which model should I run? Covers 7B vs 13B vs 34B vs 70B tradeoffs, VRAM requirements, use-case matching, family comparisons (Llama, Qwen, Mistral, Gemma, Phi), and when to stay small.",
+  "tags": [
+    "model-selection",
+    "hardware",
+    "vram",
+    "local-ai",
+    "llama",
+    "qwen",
+    "mistral",
+    "7b",
+    "13b",
+    "use:beginner",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "examples": 6,
+  "evals": 4,
+  "mcp_compatible": false,
+  "author": "pullnexus-community",
+  "category": "inference",
+  "resource_type": "skill"
+}

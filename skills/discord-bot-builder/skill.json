@@ -1,0 +1,24 @@
+{
+  "name": "discord-bot-builder",
+  "version": "1.0.0",
+  "description": "Build Discord (and Telegram/Slack) bots powered by local LLMs. Covers event handling, message queuing, rate limiting, persona management, context windowing per user, slash commands, and connecting to Ollama or LM Studio from discord.py / python-telegram-bot.",
+  "tags": [
+    "discord",
+    "telegram",
+    "chatbot",
+    "local-ai",
+    "ollama",
+    "bot",
+    "discord.py",
+    "persona",
+    "use:developer",
+    "use:agent"
+  ],
+  "license": "CC0-1.0",
+  "examples": 7,
+  "evals": 4,
+  "mcp_compatible": false,
+  "author": "pullnexus-community",
+  "category": "automation",
+  "resource_type": "skill"
+}

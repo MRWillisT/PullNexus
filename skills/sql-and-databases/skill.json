@@ -1,0 +1,22 @@
+{
+  "name": "sql-and-databases",
+  "version": "1.0.0",
+  "description": "SQL design, query writing, optimization, and common anti-patterns. Covers schema design, indexing, joins, aggregations, migrations, and integration patterns for SQLite, PostgreSQL, and MySQL in AI-assisted projects.",
+  "tags": [
+    "sql",
+    "database",
+    "postgresql",
+    "sqlite",
+    "mysql",
+    "query-optimization",
+    "schema-design",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "examples": 7,
+  "evals": 4,
+  "mcp_compatible": true,
+  "author": "pullnexus-community",
+  "category": "developer",
+  "resource_type": "skill"
+}

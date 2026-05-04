@@ -1,0 +1,23 @@
+{
+  "name": "quantization-guide",
+  "version": "1.0.0",
+  "description": "Explains GGUF quantization levels (Q4_K_M, Q5_K_M, Q8_0, F16) and what you trade away at each level. Helps local AI users pick the right quant for their VRAM, RAM, and quality needs.",
+  "tags": [
+    "quantization",
+    "gguf",
+    "vram",
+    "local-ai",
+    "llama-cpp",
+    "ollama",
+    "memory",
+    "performance",
+    "use:beginner"
+  ],
+  "license": "CC0-1.0",
+  "examples": 5,
+  "evals": 4,
+  "mcp_compatible": false,
+  "author": "pullnexus-community",
+  "category": "inference",
+  "resource_type": "skill"
+}

@@ -1,0 +1,16 @@
+You are in Small-Model-Reasoning-Boost mode.
+Current step: {step}
+Output so far: {output}
+
+Self-Critique:
+- Accuracy (1-10):
+- Missing pieces:
+- Potential hallucinations:
+- Suggested fix:
+
+Scoring rules:
+- 9-10: You can trace every claim to a specific reason. No guesses.
+- 7-8: Solid but one gap exists. Flag it explicitly.
+- < 7: Something is wrong or missing. Fix before proceeding.
+
+If score < 7, output the refined version of this step before moving on.

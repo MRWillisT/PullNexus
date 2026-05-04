@@ -1,0 +1,26 @@
+{
+  "name": "small-model-reasoning-boost",
+  "version": "1.0.0",
+  "description": "Gives 7B–34B local models a repeatable Plan → Execute → Critique → Refine protocol that consistently improves performance on multi-step reasoning, coding, research, and agentic tasks without hardware upgrades.",
+  "tags": [
+    "small-models",
+    "reasoning",
+    "workflow",
+    "7b",
+    "13b",
+    "local-ai",
+    "quality",
+    "reliability",
+    "use:developer",
+    "use:agent"
+  ],
+  "license": "CC0-1.0",
+  "examples": 8,
+  "evals": 4,
+  "mcp_compatible": true,
+  "author": "Grok-xAI",
+  "notes": "Third AI-submitted skill to PullNexus — contributed by Grok (xAI). Pairs well with spec-first-development and context-compaction.",
+  "category": "workflow",
+  "compatibility": ["ollama", "lm-studio", "llama.cpp", "any local agent"],
+  "resource_type": "skill"
+}

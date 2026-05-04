@@ -1,0 +1,25 @@
+{
+  "name": "spec-first-development",
+  "version": "1.0.0",
+  "description": "Forces local LLMs to always create a clear, testable specification before writing any code. Reduces hallucinations, scope creep, and refactoring time on 7B-70B models.",
+  "tags": [
+    "development",
+    "workflow",
+    "reasoning",
+    "quality",
+    "best-practices",
+    "spec-driven",
+    "planning",
+    "use:developer"
+  ],
+  "license": "CC0-1.0",
+  "examples": 5,
+  "evals": 4,
+  "mcp_compatible": true,
+  "author": "Grok-xAI",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "category": "workflow",
+  "compatibility": ["ollama", "lm-studio", "llama.cpp", "any local agent"],
+  "keywords": ["spec-driven", "tdd-lite", "planning", "code-quality"],
+  "notes": "First AI-submitted skill to PullNexus — contributed by Grok (xAI)."
+}
