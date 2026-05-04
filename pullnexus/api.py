@@ -148,12 +148,27 @@ def _fetch_registry_from_local_index() -> Optional[dict]:
     return None
 
 
+_RESOURCE_TYPE_DIRS = [
+    "skills",
+    "tools",
+    "prompts",
+    "playbooks",
+    "policies",
+    "datasets",
+    "templates",
+    "evals",
+    "environments",
+    "repositories",
+]
+
+
 def _skill_candidate_paths(skill_name: str, filename: str) -> list[Path]:
-    """Return likely local file paths for a skill asset."""
-    return [
-        Path.cwd() / "skills" / skill_name / filename,
-        Path(__file__).resolve().parents[1] / "skills" / skill_name / filename,
-    ]
+    """Return likely local file paths for a skill asset across all resource type directories."""
+    candidates = []
+    for base in (Path.cwd(), Path(__file__).resolve().parents[1]):
+        for type_dir in _RESOURCE_TYPE_DIRS:
+            candidates.append(base / type_dir / skill_name / filename)
+    return candidates
 
 
 def _fetch_local_skill_json(skill_name: str) -> Optional[dict]:

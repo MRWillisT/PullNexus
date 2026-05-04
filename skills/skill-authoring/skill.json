@@ -1,0 +1,21 @@
+{
+  "name": "skill-authoring",
+  "resource_type": "skill",
+  "version": "1.0.0",
+  "description": "TDD-based methodology for creating and validating agent skills. Use when writing, editing, or verifying a new SKILL.md before deployment. Teaches RED-GREEN-REFACTOR applied to process documentation.",
+  "tags": [
+    "skill-creation",
+    "tdd",
+    "agent-customization",
+    "meta",
+    "process",
+    "use:developer"
+  ],
+  "license": "MIT",
+  "mcp_compatible": false,
+  "author": "community",
+  "category": "developer",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-04"
+}

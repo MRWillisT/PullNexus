@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-05",
-  "total": 173,
+  "total": 175,
   "skills": [
     {
       "name": "build-your-own-openclaw",
@@ -37,7 +37,7 @@
       "name": "n8n-mcp",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Connect local LLMs to 400+ n8n integrations via the official n8n MCP server. Enables agents to create, edit, and trigger n8n workflows natively \u2014 no copy-paste JSON required.",
+      "description": "Connect local LLMs to 400+ n8n integrations via the official n8n MCP server. Enables agents to create, edit, and trigger n8n workflows natively — no copy-paste JSON required.",
       "tags": [
         "mcp",
         "n8n",
@@ -186,7 +186,7 @@
     {
       "name": "small-model-reasoning-boost",
       "version": "1.0.0",
-      "description": "Gives 7B\u201334B local models a repeatable Plan \u2192 Execute \u2192 Critique \u2192 Refine protocol that consistently improves performance on multi-step reasoning, coding, research, and agentic tasks without hardware upgrades.",
+      "description": "Gives 7B–34B local models a repeatable Plan → Execute → Critique → Refine protocol that consistently improves performance on multi-step reasoning, coding, research, and agentic tasks without hardware upgrades.",
       "tags": [
         "small-models",
         "reasoning",
@@ -436,7 +436,7 @@
       "name": "llamaindex",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Data framework for LLM applications. Index any data source \u2014 PDF, SQL, Notion, Slack \u2014 and query it with natural language. Best-in-class for pure RAG use cases.",
+      "description": "Data framework for LLM applications. Index any data source — PDF, SQL, Notion, Slack — and query it with natural language. Best-in-class for pure RAG use cases.",
       "tags": [
         "rag",
         "indexing",
@@ -462,7 +462,7 @@
       "name": "rag-anything",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Multimodal RAG for any LLM. Handles text, tables, images, charts, graphs \u2014 not just PDFs. 6 lines to set up. Used in production by serious teams.",
+      "description": "Multimodal RAG for any LLM. Handles text, tables, images, charts, graphs — not just PDFs. 6 lines to set up. Used in production by serious teams.",
       "tags": [
         "rag",
         "multimodal",
@@ -561,7 +561,7 @@
       "name": "docling",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Convert documents to structured Markdown for AI. Handles PDFs with tables, figures, formulas \u2014 not just plain text extraction. Built by IBM Research.",
+      "description": "Convert documents to structured Markdown for AI. Handles PDFs with tables, figures, formulas — not just plain text extraction. Built by IBM Research.",
       "tags": [
         "pdf",
         "document-parsing",
@@ -610,7 +610,7 @@
       "name": "crewai",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Orchestrate role-playing AI agents. Define a crew, assign roles, set goals \u2014 agents collaborate like a team. Easiest way to build multi-agent systems that actually work.",
+      "description": "Orchestrate role-playing AI agents. Define a crew, assign roles, set goals — agents collaborate like a team. Easiest way to build multi-agent systems that actually work.",
       "tags": [
         "agents",
         "multi-agent",
@@ -683,7 +683,7 @@
       "name": "smolagents",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Minimal agent framework by Hugging Face. Code agents that write and execute Python to solve tasks. Incredibly simple \u2014 1000 lines of code total. The anti-LangChain.",
+      "description": "Minimal agent framework by Hugging Face. Code agents that write and execute Python to solve tasks. Incredibly simple — 1000 lines of code total. The anti-LangChain.",
       "tags": [
         "agents",
         "code-agents",
@@ -757,7 +757,7 @@
       "name": "dspy",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Programming \u2014 not prompting \u2014 LLMs. Define what you want, DSPy optimizes the prompts automatically. From Stanford NLP. Replaces manual prompt engineering with systematic optimization.",
+      "description": "Programming — not prompting — LLMs. Define what you want, DSPy optimizes the prompts automatically. From Stanford NLP. Replaces manual prompt engineering with systematic optimization.",
       "tags": [
         "evals",
         "prompting",
@@ -806,7 +806,7 @@
       "name": "outlines",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Structured text generation. Force models to output valid JSON, regex patterns, specific formats. Zero prompt engineering needed \u2014 guaranteed output structure.",
+      "description": "Structured text generation. Force models to output valid JSON, regex patterns, specific formats. Zero prompt engineering needed — guaranteed output structure.",
       "tags": [
         "structured-output",
         "json",
@@ -978,7 +978,7 @@
       "name": "trl",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Transformer Reinforcement Learning. RLHF, DPO, PPO \u2014 the techniques used to align GPT-4 and Claude. By Hugging Face. For training models to do what you actually want.",
+      "description": "Transformer Reinforcement Learning. RLHF, DPO, PPO — the techniques used to align GPT-4 and Claude. By Hugging Face. For training models to do what you actually want.",
       "tags": [
         "fine-tuning",
         "rlhf",
@@ -1028,7 +1028,7 @@
       "name": "mergekit",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Merge multiple fine-tuned models into one. SLERP, TIES, DARE, linear merge \u2014 all the techniques. No GPU needed for merging. Create models that outperform their parents.",
+      "description": "Merge multiple fine-tuned models into one. SLERP, TIES, DARE, linear merge — all the techniques. No GPU needed for merging. Create models that outperform their parents.",
       "tags": [
         "fine-tuning",
         "model-merging",
@@ -1470,7 +1470,7 @@
       "name": "unstructured",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Extract and transform unstructured data for LLMs. PDFs, HTML, Word, images, emails \u2014 all parsed into clean chunks ready for RAG. The data layer most AI pipelines are missing.",
+      "description": "Extract and transform unstructured data for LLMs. PDFs, HTML, Word, images, emails — all parsed into clean chunks ready for RAG. The data layer most AI pipelines are missing.",
       "tags": [
         "data-prep",
         "pdf",
@@ -1544,7 +1544,7 @@
       "name": "semchunk",
       "resource_type": "tool",
       "version": "1.0.0",
-      "description": "Semantic text chunking for RAG. Splits text at natural boundaries instead of arbitrary token counts. Better chunks \u2192 better retrieval \u2192 better answers.",
+      "description": "Semantic text chunking for RAG. Splits text at natural boundaries instead of arbitrary token counts. Better chunks → better retrieval → better answers.",
       "tags": [
         "data-prep",
         "rag",
@@ -1778,7 +1778,7 @@
     {
       "name": "autonomous-agent-patterns",
       "version": "1.0.0",
-      "description": "Core patterns for building autonomous AI agents \u2014 task planning, tool orchestration, multi-step execution, error recovery, and memory persistence across sessions.",
+      "description": "Core patterns for building autonomous AI agents — task planning, tool orchestration, multi-step execution, error recovery, and memory persistence across sessions.",
       "tags": [
         "autonomous-agent",
         "tool-use",
@@ -2144,7 +2144,7 @@
     {
       "name": "pytest-and-testing",
       "version": "1.0.0",
-      "description": "Practical pytest patterns for developers who have never written tests \u2014 mocking exchange APIs, fixtures, conftest.py, parametrize, coverage, and testing async code.",
+      "description": "Practical pytest patterns for developers who have never written tests — mocking exchange APIs, fixtures, conftest.py, parametrize, coverage, and testing async code.",
       "tags": [
         "python",
         "pytest",
@@ -2163,7 +2163,7 @@
     {
       "name": "python-advanced-debugging",
       "version": "1.0.0",
-      "description": "Expert multi-turn debugging techniques for Python \u2014 async hangs, silent failures, rate limits, P&L calculation errors, and systematic diagnosis workflows.",
+      "description": "Expert multi-turn debugging techniques for Python — async hangs, silent failures, rate limits, P&L calculation errors, and systematic diagnosis workflows.",
       "tags": [
         "python",
         "debugging",
@@ -2182,7 +2182,7 @@
     {
       "name": "reasoning-and-problem-solving",
       "version": "1.0.0",
-      "description": "Systematic problem decomposition for complex technical questions \u2014 REST vs WebSockets tradeoffs, debugging vague failures, architectural decisions, and reasoning under uncertainty.",
+      "description": "Systematic problem decomposition for complex technical questions — REST vs WebSockets tradeoffs, debugging vague failures, architectural decisions, and reasoning under uncertainty.",
       "tags": [
         "reasoning",
         "problem-solving",
@@ -2281,7 +2281,7 @@
     {
       "name": "vibe-coder-workflow",
       "version": "1.0.0",
-      "description": "The self-taught builder's AI workflow \u2014 how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally.",
+      "description": "The self-taught builder's AI workflow — how a local LLM should orient in an unfamiliar repo, handle vague requests, avoid blind rewrites, and ship incrementally.",
       "tags": [
         "workflow",
         "vibe-coding",
@@ -2401,23 +2401,26 @@
       "resource_type": "skill"
     },
     {
-      "name": "writing-skills",
+      "name": "skill-authoring",
       "version": "1.0.0",
-      "description": "Improve writing quality with techniques for clarity, tone, structure, and concise communication.",
+      "description": "TDD-based methodology for creating and validating agent skills. Use when writing, editing, or verifying a new SKILL.md before deployment. Teaches RED-GREEN-REFACTOR applied to process documentation.",
       "tags": [
-        "imported",
-        "writing",
-        "editing",
-        "clarity",
-        "communication",
-        "use:writing"
+        "skill-creation",
+        "tdd",
+        "agent-customization",
+        "meta",
+        "process",
+        "use:developer"
       ],
       "license": "MIT",
       "examples": 0,
       "mcp_compatible": false,
       "author": "community-import",
-      "category": "writing",
-      "resource_type": "skill"
+      "category": "developer",
+      "resource_type": "skill",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-04"
     },
     {
       "name": "xlsx",
@@ -2582,7 +2585,7 @@
       "name": "ultrachat-dataset",
       "resource_type": "dataset",
       "version": "200k",
-      "description": "UltraChat 200K from HuggingFace H4: 200K filtered multi-turn conversations. The dataset behind Zephyr-7B \u2014 excellent for training local models to hold long, coherent conversations.",
+      "description": "UltraChat 200K from HuggingFace H4: 200K filtered multi-turn conversations. The dataset behind Zephyr-7B — excellent for training local models to hold long, coherent conversations.",
       "tags": [
         "dataset",
         "fine-tuning",
@@ -2825,7 +2828,7 @@
       "name": "fabric-extract-wisdom",
       "resource_type": "skill",
       "version": "1.0.0",
-      "description": "Extract the most insightful ideas, quotes, and actionable advice from any text or transcript. Fabric's most famous pattern \u2014 outputs structured wisdom blocks.",
+      "description": "Extract the most insightful ideas, quotes, and actionable advice from any text or transcript. Fabric's most famous pattern — outputs structured wisdom blocks.",
       "tags": [
         "summarize",
         "insights",
@@ -3593,7 +3596,16 @@
       "resource_type": "prompt",
       "version": "1.0.0",
       "description": "Agent behavior prompt for narrow, low-context fixes. Restricts exploration to the minimum needed, enforces smallest-safe-change discipline, and keeps output brief. Drop into any local LLM or AI coding assistant.",
-      "tags": ["prompt", "agent", "behavior", "coding", "minimal", "focused", "local-ai", "use:prompt"],
+      "tags": [
+        "prompt",
+        "agent",
+        "behavior",
+        "coding",
+        "minimal",
+        "focused",
+        "local-ai",
+        "use:prompt"
+      ],
       "license": "MIT",
       "author": "MRWillisT",
       "source": "pullnexus",
@@ -3603,14 +3615,31 @@
       "maintained": "yes",
       "last_verified": "2026-05-02",
       "prompt_file": "agent.md",
-      "compatible_with": ["ollama", "lm-studio", "claude", "openai", "vscode-copilot", "continue", "cursor"]
+      "compatible_with": [
+        "ollama",
+        "lm-studio",
+        "claude",
+        "openai",
+        "vscode-copilot",
+        "continue",
+        "cursor"
+      ]
     },
     {
       "name": "code-only-mode",
       "resource_type": "prompt",
       "version": "1.0.0",
       "description": "Agent behavior prompt that suppresses all prose, explanations, and filler. Outputs working code only. Minimizes token usage and keeps responses machine-readable. Ideal for small models and token-constrained sessions.",
-      "tags": ["prompt", "agent", "behavior", "coding", "minimal", "token-efficient", "local-ai", "use:prompt"],
+      "tags": [
+        "prompt",
+        "agent",
+        "behavior",
+        "coding",
+        "minimal",
+        "token-efficient",
+        "local-ai",
+        "use:prompt"
+      ],
       "license": "MIT",
       "author": "MRWillisT",
       "source": "pullnexus",
@@ -3620,7 +3649,15 @@
       "maintained": "yes",
       "last_verified": "2026-05-02",
       "prompt_file": "agent.md",
-      "compatible_with": ["ollama", "lm-studio", "claude", "openai", "vscode-copilot", "continue", "cursor"]
+      "compatible_with": [
+        "ollama",
+        "lm-studio",
+        "claude",
+        "openai",
+        "vscode-copilot",
+        "continue",
+        "cursor"
+      ]
     },
     {
       "name": "agent-role-coder",
@@ -4144,6 +4181,51 @@
       "maturity": "stable",
       "maintained": "yes",
       "last_verified": "2026-05-05"
+    },
+    {
+      "name": "caveman",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles, and pleasantries while keeping full technical accuracy. Use when user says caveman mode, talk like caveman, use caveman, less tokens, or be brief.",
+      "tags": [
+        "communication",
+        "brevity",
+        "token-efficiency",
+        "agent-mode",
+        "use:productivity"
+      ],
+      "license": "MIT",
+      "author": "Matt Pocock",
+      "source": "https://github.com/mattpocock/skills/tree/main/skills/productivity/caveman",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "productivity",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-04"
+    },
+    {
+      "name": "write-a-skill",
+      "resource_type": "skill",
+      "version": "1.0.0",
+      "description": "Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new agent skill file.",
+      "tags": [
+        "skill-creation",
+        "agent-customization",
+        "vscode-skill",
+        "workflow",
+        "meta",
+        "use:developer"
+      ],
+      "license": "MIT",
+      "author": "Matt Pocock",
+      "source": "https://github.com/mattpocock/skills/tree/main/skills/productivity/write-a-skill",
+      "mcp_compatible": false,
+      "installable": true,
+      "category": "developer",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-04"
     }
   ],
   "external_sources": [
