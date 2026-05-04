@@ -11,6 +11,21 @@ from pullnexus.api import fetch_index
 console = Console()
 
 
+# Words that carry no search signal
+_STOPWORDS = {
+    "a", "an", "the", "on", "in", "for", "of", "to", "and", "or", "with",
+    "is", "it", "at", "by", "as", "up", "my", "we", "be", "do", "if",
+    "how", "can", "use", "using", "run", "need", "want", "get", "set",
+}
+
+
+def _query_tokens(q: str) -> list[str]:
+    """Return meaningful lower-case tokens from a query string."""
+    import re
+    raw = re.split(r"[\s\-_/]+", q.lower())
+    return [t for t in raw if len(t) > 2 and t not in _STOPWORDS]
+
+
 def search(
     query: str = typer.Argument("", help="Search term — matches name, tags, and description"),
     tag: Optional[str] = typer.Option(None, "--tag", "-t", help="Filter by a specific tag"),
@@ -67,7 +82,7 @@ def search(
         if resource_type and skill_type != resource_type.lower().strip():
             continue
 
-        # Score relevance
+        # Score relevance — exact phrase first, then token-based fallback
         if not q:
             results.append((3, skill))
         elif normalized_q == skill_category:
@@ -79,6 +94,16 @@ def search(
             results.append((1, skill))
         elif q in desc:
             results.append((2, skill))
+        else:
+            # Token-based fallback: score by fraction of meaningful tokens matched
+            tokens = _query_tokens(q)
+            if tokens:
+                haystack = f"{name} {' '.join(tags)} {desc}"
+                hits = sum(1 for tok in tokens if tok in haystack)
+                if hits:
+                    # Score 4+: lower is better; penalise partial coverage
+                    score = 4 + (len(tokens) - hits)
+                    results.append((score, skill))
 
     results.sort(key=lambda x: x[0])
     results = [s for _, s in results][:limit]

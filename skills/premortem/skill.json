@@ -1,0 +1,24 @@
+{
+  "name": "premortem",
+  "resource_type": "skill",
+  "version": "1.0.0",
+  "description": "Run a premortem on any plan, launch, product, hire, strategy, or decision. Assumes it already failed 6 months from now and works backward to find every reason why. Produces failure stories, hidden assumptions, early warning signs, a revised plan, and a visual HTML report.",
+  "tags": [
+    "planning",
+    "decision-making",
+    "premortem",
+    "claude-skill",
+    "risk-analysis",
+    "strategy",
+    "use:planning"
+  ],
+  "license": "CC-BY-4.0",
+  "author": "community",
+  "source": "https://docs.google.com/document/d/1zmqqIWpmLWnqvOPH4Ui3znx1sXErbkXNYUrrTmnaiFU",
+  "mcp_compatible": false,
+  "installable": true,
+  "category": "planning",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-03"
+}

@@ -47,6 +47,50 @@ STOPWORDS = {
 
 WANTS_INSTALL_TOKENS = {"install", "pull", "download", "save", "inspect"}
 
+# Signals the user wants to BUILD/CLONE/SET UP something (prefer repository/playbook)
+SETUP_INTENT_TOKENS = {
+    "setup", "set", "build", "create", "start", "clone", "make", "own",
+    "from", "scratch", "tutorial", "guide", "step",
+}
+SETUP_INTENT_PHRASES = [
+    "help me", "how do i", "how to", "get started", "set up", "set my", "set it",
+    "build my", "build a", "build your", "create my", "create a", "make my",
+    "my own", "from scratch", "step by step",
+]
+
+# Signals the user wants to FIND SKILLS for something they already have
+DISCOVER_INTENT_TOKENS = {
+    "skills", "skill", "tools", "tool", "list", "show", "find", "any", "what",
+    "have", "available", "options", "resources", "add", "extend", "use", "for",
+}
+DISCOVER_INTENT_PHRASES = [
+    "what skills", "what tools", "what can", "show me", "list of", "do you have",
+    "can i use", "skills for", "tools for", "resources for",
+]
+
+
+def _detect_intent(problem: str) -> str:
+    """Return 'setup', 'discover', or '' (ambiguous)."""
+    raw = problem.lower()
+    tokens = set(re.findall(r"[a-z]+", raw))
+
+    setup_phrase = any(p in raw for p in SETUP_INTENT_PHRASES)
+    discover_phrase = any(p in raw for p in DISCOVER_INTENT_PHRASES)
+
+    if discover_phrase:
+        return "discover"
+    if setup_phrase:
+        return "setup"
+
+    setup_score = len(tokens & SETUP_INTENT_TOKENS)
+    discover_score = len(tokens & DISCOVER_INTENT_TOKENS)
+
+    if setup_score > discover_score:
+        return "setup"
+    if discover_score > setup_score:
+        return "discover"
+    return ""
+
 
 def _tokenize_text(text: str) -> list[str]:
     raw_tokens = re.findall(r"[a-z0-9][a-z0-9+\-]*", str(text or "").lower())
@@ -125,6 +169,30 @@ def _score_resource_for_problem(
         reasons.append("installable")
         verbose_parts.append("installable boost +8")
 
+    # Intent-based boosting
+    intent = _detect_intent(raw_problem)
+    skill_type = skill.get("resource_type", "").lower()
+    if intent == "setup":
+        if skill_type in {"repository", "playbook"}:
+            score += 20
+            reasons.append("matches setup intent")
+            verbose_parts.append("setup intent boost +20 (repo/playbook)")
+        elif not skill.get("installable", True):
+            # External repos with a clone path are great for setup
+            if skill.get("repo"):
+                score += 14
+                reasons.append("clonable external repo")
+                verbose_parts.append("setup intent boost +14 (clonable)")
+    elif intent == "discover":
+        if bool(skill.get("installable", False)) and skill_type not in {"repository"}:
+            score += 18
+            reasons.append("installable skill")
+            verbose_parts.append("discover intent boost +18 (installable)")
+        elif skill_type == "repository":
+            # Downrank repos when user is browsing skills, not building
+            score = max(0, score - 10)
+            verbose_parts.append("discover intent penalty -10 (repository)")
+
     examples_bonus = min(4, int(skill.get("examples", 0)))
     if score > 0 and examples_bonus:
         score += examples_bonus
@@ -156,10 +224,11 @@ def rank_resources_for_problem(
     requested_type: str = "",
     context: Optional[dict[str, str]] = None,
     explain_level: str = "basic",
-) -> tuple[list[tuple[int, dict, str, list[str]]], str]:
+) -> tuple[list[tuple[int, dict, str, list[str]]], str, str]:
     raw_problem = problem.lower()
     problem_tokens = _problem_tokens(problem)
     inferred_category = "" if requested_category else _infer_category(problem)
+    intent = _detect_intent(problem)
     scored: list[tuple[int, dict, str, list[str]]] = []
 
     for skill in skills:
@@ -193,7 +262,7 @@ def rank_resources_for_problem(
             scored.append((score, skill, reason or "relevance", verbose_parts))
 
     scored.sort(key=lambda item: item[0], reverse=True)
-    return scored, inferred_category
+    return scored, inferred_category, intent
 
 
 def recommend(
@@ -256,7 +325,7 @@ def recommend(
 
     requested_category = category.lower().strip() if category else ""
     requested_type = resource_type.lower().strip() if resource_type else ""
-    scored, inferred_category = rank_resources_for_problem(
+    scored, inferred_category, intent = rank_resources_for_problem(
         problem,
         skills,
         requested_category=requested_category,
@@ -278,6 +347,7 @@ def recommend(
             "requested_type": requested_type or None,
             "context": ctx or None,
             "inferred_category": inferred_category or None,
+            "intent": intent or None,
             "explain": explain_level,
             "total_recommendations": len(top),
             "recommendations": [
@@ -300,7 +370,8 @@ def recommend(
             f"Recommended Skills for: {problem}" +
             (f"  [category={requested_category}]" if requested_category else "") +
             (f"  [type={requested_type}]" if requested_type else "") +
-            (f"  [inferred={inferred_category}]" if inferred_category else "")
+            (f"  [inferred={inferred_category}]" if inferred_category else "") +
+            (f"  [intent={intent}]" if intent else "")
         ),
         show_header=True,
         header_style="bold cyan",

@@ -64,7 +64,7 @@ def pullnexus_search(
         query: Search term — matched against name, description, and tags.
         resource_type: Optional filter (skill, tool, playbook, dataset, eval, policy, template, environment).
         tag: Optional single tag filter.
-        limit: Maximum number of results to return (default 10).
+        limit: Maximum number of results to return (default 10, max 60).
 
     Returns:
         JSON list of matching resources with name, type, description, tags, and version.
@@ -72,7 +72,15 @@ def pullnexus_search(
     skills = fetch_index()
     q = query.lower()
 
-    results = []
+    # Tokenise multi-word queries so "fine-tune 35B on consumer GPU" still matches axolotl/llama-factory
+    import re as _re
+    _STOPWORDS = {
+        "a", "an", "the", "on", "in", "for", "of", "to", "and", "or", "with",
+        "is", "it", "at", "by", "as", "up", "how", "can", "use", "get", "set",
+    }
+    tokens = [t for t in _re.split(r"[\s\-_/]+", q) if len(t) > 2 and t not in _STOPWORDS]
+
+    scored = []
     for s in skills:
         if resource_type and str(s.get("resource_type", "skill")).lower() != resource_type.lower():
             continue
@@ -80,14 +88,24 @@ def pullnexus_search(
             continue
         name = str(s.get("name", "")).lower()
         desc = str(s.get("description", "")).lower()
-        tags = " ".join(str(t).lower() for t in s.get("tags", []))
-        if q in name or q in desc or q in tags:
-            results.append(s)
+        tags_str = " ".join(str(t).lower() for t in s.get("tags", []))
+        haystack = f"{name} {tags_str} {desc}"
+        if q in name or q in tags_str or q in desc:
+            scored.append((0, s))
+        elif tokens:
+            hits = sum(1 for tok in tokens if tok in haystack)
+            if hits:
+                scored.append((len(tokens) - hits, s))
 
-    results = results[:limit]
+    scored.sort(key=lambda x: x[0])
+    results = [s for _, s in scored]
+
+    total_matched = len(results)
+    results = results[:max(1, min(int(limit), 60))]
     return json.dumps({
         "query": query,
-        "total": len(results),
+        "total": total_matched,
+        "returned": len(results),
         "results": [
             {
                 "name": r.get("name"),
@@ -123,7 +141,7 @@ def pullnexus_recommend(
         JSON list of scored recommendations with name, type, score, and reason.
     """
     skills = fetch_index()
-    scored, inferred_category = rank_resources_for_problem(
+    scored, inferred_category, intent = rank_resources_for_problem(
         problem,
         skills,
         requested_type=resource_type.lower().strip() if resource_type else "",
@@ -135,6 +153,7 @@ def pullnexus_recommend(
         "problem": problem,
         "total_candidates": len(scored),
         "inferred_category": inferred_category or None,
+        "intent": intent or None,
         "recommendations": [
             {
                 "name": s.get("name"),
