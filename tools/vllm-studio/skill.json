@@ -1,0 +1,29 @@
+{
+  "name": "vllm-studio",
+  "resource_type": "tool",
+  "version": "1.0.0",
+  "description": "Unified local AI control panel for model lifecycle, chat/agent workflows, and observability. Supports vLLM, SGLang, llama.cpp, and exllamaV3 from a single web UI with an OpenAI-compatible proxy.",
+  "tags": [
+    "vllm",
+    "sglang",
+    "llama-cpp",
+    "exllamav3",
+    "local-ai",
+    "control-panel",
+    "model-lifecycle",
+    "inference",
+    "web-ui",
+    "use:developer"
+  ],
+  "license": "Apache-2.0",
+  "author": "0xSero",
+  "source": "https://github.com/0xSero/vllm-studio",
+  "repo": "0xSero/vllm-studio",
+  "github_stars_k": 0.8,
+  "mcp_compatible": false,
+  "installable": false,
+  "category": "inference",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-04"
+}

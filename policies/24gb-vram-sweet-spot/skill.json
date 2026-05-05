@@ -1,0 +1,27 @@
+{
+  "name": "24gb-vram-sweet-spot",
+  "resource_type": "policy",
+  "version": "1.0.0",
+  "description": "Current best model recommendations for 24GB VRAM GPUs (RTX 3090, RTX 4090, RX 7900 XTX). Covers top picks, quant selection, and context budget — as of May 2026.",
+  "tags": [
+    "policy",
+    "24gb-vram",
+    "rtx-3090",
+    "rtx-4090",
+    "model-selection",
+    "quant",
+    "local-ai",
+    "hardware",
+    "qwen3",
+    "use:policy"
+  ],
+  "license": "CC0-1.0",
+  "author": "PullNexus Contributors",
+  "source": "https://github.com/MRWillisT/PullNexus",
+  "category": "hardware",
+  "maturity": "stable",
+  "maintained": "yes",
+  "last_verified": "2026-05-04",
+  "policy_file": "policy.md",
+  "compatible_with": ["ollama", "lm-studio", "llama-cpp", "vllm", "sglang", "exllamav3"]
+}
