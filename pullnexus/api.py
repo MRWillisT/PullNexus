@@ -12,7 +12,21 @@ from typing import Optional
 import httpx
 from rich.console import Console
 
-from pullnexus import __registry_url__, __registry_index__
+from pullnexus import __registry_url__, __registry_index__, __registry_contents__
+
+# Maps resource_type value → top-level repository directory
+_RESOURCE_TYPE_TO_DIR: dict[str, str] = {
+    "skill": "skills",
+    "tool": "tools",
+    "prompt": "prompts",
+    "playbook": "playbooks",
+    "policy": "policies",
+    "dataset": "datasets",
+    "template": "templates",
+    "eval": "evals",
+    "environment": "environments",
+    "repository": "repositories",
+}
 
 HEADERS = {"Accept": "application/vnd.github.v3+json"}
 _console = Console()
@@ -236,33 +250,66 @@ def _fetch_skill_meta(client: httpx.Client, skill_name: str) -> Optional[dict]:
         return {"name": skill_name, "description": "", "tags": [], "version": ""}
 
 
+def _remote_files_from_url(url: str) -> list[dict] | None:
+    """
+    Fetch a directory listing from the GitHub Contents API.
+
+    Returns a list of file dicts, or None if the path does not exist (404).
+    Raises on other HTTP errors.
+    """
+    with httpx.Client(timeout=10.0) as client:
+        resp = client.get(url, headers=HEADERS)
+        if resp.status_code == 404:
+            return None
+        resp.raise_for_status()
+        entries = resp.json()
+        return [
+            {
+                "name": e["name"],
+                "download_url": e.get("download_url", ""),
+                "size": e.get("size", 0),
+            }
+            for e in entries
+            if e.get("type") == "file"
+        ]
+
+
 def fetch_skill_files(skill_name: str) -> list[dict]:
     """
-    Return a list of file descriptors for a skill folder on GitHub.
+    Return a list of file descriptors for a resource folder on GitHub.
 
     Each dict has: name, download_url, size.
-    Returns an empty list if the skill is not found.
+    Returns an empty list if the resource is not found in any type directory.
+
+    Tries the correct type directory first (resolved from the index), then falls
+    back to the legacy skills/ path and finally to all other type directories so
+    that resources moved out of skills/ are always discoverable.
     """
-    url = f"{__registry_url__}/{skill_name}"
     try:
-        with httpx.Client(timeout=10.0) as client:
-            resp = client.get(url, headers=HEADERS)
-            if resp.status_code == 404:
-                return []
-            resp.raise_for_status()
-            entries = resp.json()
-            return [
-                {
-                    "name": e["name"],
-                    "download_url": e.get("download_url", ""),
-                    "size": e.get("size", 0),
-                }
-                for e in entries
-                if e.get("type") == "file"
-            ]
+        # Resolve the correct directory from the index (no extra network call when
+        # the index is already cached or readable locally).
+        meta = fetch_skill_json(skill_name)
+        rtype = str((meta or {}).get("resource_type", "skill")).lower()
+        type_dir = _RESOURCE_TYPE_TO_DIR.get(rtype, "skills")
+
+        # Try the canonical directory first
+        result = _remote_files_from_url(f"{__registry_contents__}/{type_dir}/{skill_name}")
+        if result is not None:
+            return result
+
+        # Fall back: try every other type directory so a misclassified or recently
+        # moved resource is still found.
+        for dir_name in _RESOURCE_TYPE_TO_DIR.values():
+            if dir_name == type_dir:
+                continue
+            result = _remote_files_from_url(f"{__registry_contents__}/{dir_name}/{skill_name}")
+            if result is not None:
+                return result
+
     except Exception as exc:
         _console.print(f"[red]Registry error: {exc}[/red]")
-        return []
+
+    return []
 
 
 def download_file(url: str) -> Optional[bytes]:
