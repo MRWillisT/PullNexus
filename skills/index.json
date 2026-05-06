@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-05-05",
-  "total": 177,
+  "total": 178,
   "skills": [
     {
       "name": "build-your-own-openclaw",
@@ -4258,6 +4258,24 @@
       "maturity": "stable",
       "maintained": "yes",
       "last_verified": "2026-05-04"
+    },
+    {
+      "name": "hyperframes",
+      "resource_type": "tool",
+      "version": "1.0.0",
+      "description": "Write HTML, render video. Open-source video rendering framework built for AI agents — compose with HTML/CSS/GSAP, preview in browser, render to MP4. Works natively with Claude Code, Cursor, Codex, and Gemini CLI.",
+      "tags": ["video", "rendering", "html", "animation", "gsap", "ffmpeg", "ai-agent", "heygen", "mcp", "puppeteer", "typescript", "use:creative", "use:developer"],
+      "license": "Apache-2.0",
+      "author": "heygen-com",
+      "source": "https://github.com/heygen-com/hyperframes",
+      "repo": "heygen-com/hyperframes",
+      "github_stars_k": 14.8,
+      "mcp_compatible": true,
+      "installable": false,
+      "category": "video",
+      "maturity": "stable",
+      "maintained": "yes",
+      "last_verified": "2026-05-06"
     }
   ],
   "external_sources": [
